@@ -1,0 +1,16 @@
+{
+  "name": "Yalla Egypt — Private journeys through Egypt",
+  "short_name": "Yalla Egypt",
+  "description": "An Egypt-based travel house planning private journeys through the Nile Valley, the Western Desert and the Red Sea coast.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0B0A08",
+  "theme_color": "#0B0A08",
+  "lang": "en",
+  "icons": [
+    { "src": "assets/icons/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "assets/icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
