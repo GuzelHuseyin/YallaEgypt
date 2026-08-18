@@ -264,17 +264,31 @@ function restart(){
   raf = requestAnimationFrame(tick);
 }
 
+const heroVideo = () => $("#hero-video-slot video");
+
 function syncHeroToggle(){
   const b = $("#hero-toggle");
   if(!b) return;
+  const film = videoTookOver;
   b.classList.toggle("is-paused", userPaused);
   b.setAttribute("aria-pressed", String(userPaused));
-  b.setAttribute("aria-label", t(userPaused ? "hero.play" : "hero.pause"));
+  b.setAttribute("aria-label", t(
+    userPaused ? (film ? "hero.playFilm"  : "hero.play")
+               : (film ? "hero.pauseFilm" : "hero.pause")));
 }
 
+/* One control, two things to stop. Whichever is on screen is what
+   the button governs — a film that cannot be stopped fails WCAG
+   2.2.2 just as surely as a slideshow that cannot. */
 function toggleHero(){
   userPaused = !userPaused;
   syncHeroToggle();
+
+  if(videoTookOver){
+    const v = heroVideo();
+    if(v){ userPaused ? v.pause() : v.play().catch(() => {}); }
+    return;
+  }
   if(userPaused){ clearTimeout(timer); cancelAnimationFrame(raf); const b = $("#prog"); if(b) b.style.width = "0%"; }
   else restart();
 }
@@ -286,7 +300,14 @@ function toggleHero(){
    ============================================================ */
 function initHeroVideo(){
   if(!HERO_VIDEO.enabled || RM) return;
-  if(innerWidth < HERO_VIDEO.minWidth) return;              // data cost on phones
+
+  /* A landscape film centre-cropped into a 9:16 viewport loses its
+     composition and costs a phone the data anyway, so narrow
+     screens get their own cut or they keep the stills. */
+  const narrow  = innerWidth < HERO_VIDEO.minWidth;
+  const sources = narrow ? (HERO_VIDEO.mobileSources || []) : HERO_VIDEO.sources;
+  if(!sources.length) return;
+
   const net = navigator.connection;
   if(net && (net.saveData || /(^|\W)[23]g/.test(net.effectiveType || ""))) return;
 
@@ -294,7 +315,7 @@ function initHeroVideo(){
   v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true;
   v.playsInline = true; v.setAttribute("playsinline", "");
   v.preload = "auto"; v.tabIndex = -1;
-  HERO_VIDEO.sources.forEach(s => {
+  sources.forEach(s => {
     const el = document.createElement("source");
     el.src = s.src; el.type = s.type;
     v.append(el);
@@ -308,6 +329,7 @@ function initHeroVideo(){
     clearTimeout(timer); cancelAnimationFrame(raf);
     const bar = $("#prog"); if(bar) bar.style.width = "0%";
     applyVideoLabel();
+    syncHeroToggle();                                        // the control now governs the film
   }, { once:true });
 
   $("#hero-video-slot").append(v);
@@ -315,22 +337,22 @@ function initHeroVideo(){
   if(p && p.catch) p.catch(drop);                            // autoplay blocked
 }
 
-/* The field record belongs to the still sequence. With a film
-   running it either carries the film's own caption or steps
-   aside — it must never describe a frame that isn't on screen. */
+/* The field record describes the still sequence, so with a film
+   running it either carries the film's own caption (HERO_VIDEO.label)
+   or shows nothing — it must never keep labelling a frame that is no
+   longer on screen. The controls stay either way: the previous/next
+   buttons go, because there is nothing to step through, but pause
+   remains, because the film is auto-playing motion. */
 function applyVideoLabel(){
   const rec = $(".record");
   if(!rec) return;
   const L = HERO_VIDEO.label;
-  if(L){
-    $("#a-idx").textContent  = L.idx  || "";
-    $("#a-name").textContent = L.name || "";
-    $("#a-geo").textContent  = L.geo  || "";
-    $("#a-old").textContent  = L.old  || "";
-    $(".record-r").hidden = true;
-  } else {
-    rec.hidden = true;
-  }
+  $("#a-idx").textContent  = L ? (L.idx  || "") : "";
+  $("#a-name").textContent = L ? (L.name || "") : "";
+  $("#a-geo").textContent  = L ? (L.geo  || "") : "";
+  $("#a-old").textContent  = L ? (L.old  || "") : "";
+  $("#prev").hidden = true;
+  $("#next").hidden = true;
 }
 
 /* ============================================================
@@ -485,6 +507,11 @@ function initGround(){
   new IntersectionObserver(([e]) => {
     nav.classList.toggle("is-stuck", !e.isIntersecting);
     document.body.classList.toggle("past-hero", !e.isIntersecting);
+
+    // A background film decoding behind six screens of text is
+    // battery and bandwidth spent on nothing.
+    const v = heroVideo();
+    if(v && !userPaused) e.isIntersecting ? v.play().catch(() => {}) : v.pause();
   }, { rootMargin:"-70px 0px 0px 0px" }).observe(hero);
 }
 
@@ -622,6 +649,7 @@ $("#hero-toggle").addEventListener("click", toggleHero);
 $$(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
 
 document.addEventListener("visibilitychange", () => {
-  if(document.hidden){ clearTimeout(timer); cancelAnimationFrame(raf); }
+  if(document.hidden){ clearTimeout(timer); cancelAnimationFrame(raf); heroVideo()?.pause(); }
+  else if(videoTookOver){ if(!userPaused) heroVideo()?.play().catch(() => {}); }
   else restart();
 });

@@ -23,7 +23,7 @@ const CONFIG = {
      no plus sign and no spaces — that is what wa.me expects. */
   whatsapp:     "",                        // e.g. "201001234567"
   phone:        "",                        // e.g. "+20 100 123 4567"
-  email:        "hello@yallaegypt.com",    // PLACEHOLDER — confirm before launch
+  email:        "merhaba@yallaegypt.com",  // confirm the mailbox is live before launch
   address:      "",                        // office address, one line
   legalName:    "",                        // registered company name
   licence:      "",                        // travel agency licence / registration no.
@@ -39,50 +39,105 @@ const CONFIG = {
 };
 
 /* ------------------------------------------------------------
-   HERO BACKGROUND VIDEO
-   The hero is built so a cinematic film can take over the
+   HERO BACKGROUND FILM  —  layer 1 of the hero
+   The first screen is built so a cinematic film can take over the
    background without touching markup or CSS.
 
-   To go live:
+   TO GO LIVE
      1. Drop the encoded files into assets/videos/
-        (see assets/videos/README.txt for the encode recipe).
+        (assets/videos/README.txt carries the encode recipe).
      2. Set enabled:true below.
 
-   Until then the still sequence plays, and it stays the
-   permanent fallback for: narrow viewports, reduced-motion,
-   save-data, blocked autoplay, and any decode error. The LCP
-   element is the first still either way, so video never blocks
-   first paint.
+   Until then the still sequence plays, and it stays the permanent
+   fallback for: narrow viewports with no mobile cut, reduced
+   motion, save-data, blocked autoplay, and any decode error. The
+   LCP element is the first still either way, so the film can never
+   block first paint.
+
+   Two workflows are supported, and the choice is made here:
+
+     A. BACKGROUND ONLY (recommended)
+        The film is landscape Egypt footage. The hand and the mark
+        stay as layer 2, driven by CSS — so they stay sharp at every
+        resolution, and re-cutting the film never means re-shooting
+        the logo. Leave OPENING.enabled = true.
+
+     B. FULLY COMPOSITED
+        The delivered film already contains the hand and the mark.
+        Set OPENING.enabled = false and the gesture layer never
+        renders; the site simply plays the film and shows the mark
+        at rest underneath the headline.
    ------------------------------------------------------------ */
 const HERO_VIDEO = {
   enabled: false,
+
+  /* Landscape cut, used at and above minWidth. */
   sources: [
     { src: "assets/videos/hero.webm", type: "video/webm" },
     { src: "assets/videos/hero.mp4",  type: "video/mp4"  }
   ],
-  minWidth: 900,  // below this viewport width the stills are used instead
+
+  /* Optional portrait / square cut for phones. A landscape film
+     centre-cropped to a 9:16 viewport loses its whole composition,
+     and costs a phone the data anyway — so phones get their own cut
+     or they get the stills. Leave the array empty for stills. */
+  mobileSources: [
+    // { src: "assets/videos/hero-mobile.webm", type: "video/webm" },
+    // { src: "assets/videos/hero-mobile.mp4",  type: "video/mp4"  }
+  ],
+
+  minWidth: 900,  // below this viewport width, mobileSources (or the stills) are used
 
   /* Optional caption for the field-record strip while the film is
-     playing — the strip describes the still sequence, so it must
-     not keep labelling a frame that is no longer on screen.
-     Leave null and the strip hides itself instead. */
+     playing. The strip describes the still sequence, so it must not
+     keep labelling a frame that is no longer on screen. Leave null
+     and the descriptor hides itself — the pause control stays,
+     because an auto-playing film has to be stoppable (WCAG 2.2.2). */
   label: null     // { idx:"—", name:"Egypt", geo:"", old:"" }
 };
 
 /* ------------------------------------------------------------
-   BRAND INTRO (planned)
-   The "yalla" gesture reveal. Deliberately unimplemented until
-   real footage exists — a CSS approximation of a hand would
-   cheapen the mark. js/intro.js holds the shell that enforces
-   the constraints below; it does nothing at all while disabled.
+   THE OPENING  —  layer 2 of the hero
+   The "yalla" gesture: a hand rises into frame, pushes the mark
+   towards the viewer, and drops away as the mark settles into its
+   seat above the headline.
 
-   To go live: supply media, set enabled:true. Nothing else.
+   This replaces the earlier full-screen intro overlay, which was
+   the wrong shape for the idea: an overlay holds the whole site
+   hostage for its own duration and has to be skippable, whereas
+   this happens inside the first screen, over the footage, on top
+   of a page that is already rendered, scrollable and interactive.
+   Nothing waits for it.
+
+   The rules it keeps from the design audit are unchanged:
+     · first visit of a session only — an entrance impresses once
+       and obstructs every time after
+     · never under prefers-reduced-motion
+     · never blocks content, never delays a click
+     · abandoned the moment the visitor scrolls or hits a key
+
+   THE HAND
+     Shipped as an SVG silhouette (#ye-hand in index.html): near
+     black with a gold rim, motion-blurred, on screen for 1.3s.
+     That is what a real plate looks like at this speed, and it is
+     the one treatment that does not read as a cartoon.
+
+     When filmed or animated footage arrives, point handPlate at it
+     and the silhouette is replaced in place:
+
+       handPlate = { type:"video", src:"assets/videos/hand.webm" }
+       handPlate = { type:"image", src:"assets/images/hand-plate.png" }
+
+     It needs an alpha channel (VP9/VP8 with alpha in .webm, or a
+     transparent PNG) and should be framed so the palm sits in the
+     middle of the plate — the layer is anchored on the mark, so
+     the palm lands on the mark at every viewport size.
    ------------------------------------------------------------ */
-const INTRO = {
-  enabled: false,
-  media: null,          // { type:"video", src:"assets/videos/intro.webm", poster:"..." }
-  maxDurationMs: 1200,  // hard ceiling — the overlay is torn down regardless
-  oncePerSession: true  // returning visitors never sit through it twice
+const OPENING = {
+  enabled: true,
+  handPlate: null,      // null -> the built-in silhouette
+  oncePerSession: true, // returning visitors go straight to the settled state
+  maxDurationMs: 2200   // hard ceiling; the hero is released regardless
 };
 
 /* ------------------------------------------------------------

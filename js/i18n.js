@@ -26,6 +26,7 @@ const I18N = {
     "hero.sub":"An Egypt-based travel house. We plan private journeys through the Nile Valley, the Western Desert and the Red Sea coast — built around the time you actually have.",
     "hero.cta1":"Explore journeys","hero.cta2":"Talk to us first",
     "hero.pause":"Pause slideshow","hero.play":"Play slideshow",
+    "hero.pauseFilm":"Pause film","hero.playFilm":"Play film",
     "hero.prev":"Previous image","hero.next":"Next image",
 
     "trust":[
@@ -141,6 +142,7 @@ const I18N = {
     "hero.sub":"Mısır merkezli bir seyahat atölyesi. Nil Vadisi, Batı Çölü ve Kızıldeniz kıyısında özel rotalar kuruyoruz — elinizdeki gerçek süreye göre.",
     "hero.cta1":"Rotaları gör","hero.cta2":"Önce konuşalım",
     "hero.pause":"Slaytları duraklat","hero.play":"Slaytları oynat",
+    "hero.pauseFilm":"Filmi duraklat","hero.playFilm":"Filmi oynat",
     "hero.prev":"Önceki görsel","hero.next":"Sonraki görsel",
 
     "trust":[
@@ -256,6 +258,7 @@ const I18N = {
     "hero.sub":"Ein Reisehaus mit Sitz in Ägypten. Wir planen private Reisen durch das Niltal, die Westliche Wüste und die Küste des Roten Meeres — nach der Zeit, die Sie wirklich haben.",
     "hero.cta1":"Reisen ansehen","hero.cta2":"Erst sprechen",
     "hero.pause":"Diashow pausieren","hero.play":"Diashow starten",
+    "hero.pauseFilm":"Film pausieren","hero.playFilm":"Film abspielen",
     "hero.prev":"Vorheriges Bild","hero.next":"Nächstes Bild",
 
     "trust":[

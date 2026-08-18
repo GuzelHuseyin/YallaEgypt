@@ -118,6 +118,48 @@
       <path d="M4,20 L1,26"/>
     </g>
 
+    <!-- The hand that pushes the mark. A silhouette, not an
+         illustration: near-black against bright footage, on screen
+         for 1.3s, which is how a real plate would read. Built from
+         overlapping capsules — palm, thumb, four fingers, wrist —
+         so the union is a single clean form at any scale.
+
+         The wrist deliberately runs past the bottom of the viewBox:
+         the arm continues out of frame.
+
+         To swap in filmed footage instead, set OPENING.handPlate in
+         js/data.js. Nothing here has to change. -->
+    <!-- The forearm has to leave the frame, but a solid bar running
+         the full height of the screen reads as a column, not an arm.
+         This fades it out below the wrist the way falloff would. -->
+    <linearGradient id="ye-hand-fade" gradientUnits="userSpaceOnUse" x1="0" y1="270" x2="0" y2="560">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="ye-hand-mask" maskUnits="userSpaceOnUse" x="-80" y="-60" width="480" height="1040">
+      <rect x="-80" y="-60" width="480" height="1040" fill="url(#ye-hand-fade)"/>
+    </mask>
+
+    <g id="ye-hand">
+      <!-- Forearm. It runs far past the bottom of the viewBox on
+           purpose — the svg is overflow:visible, so the arm carries
+           on out of the frame instead of ending in a stump. -->
+      <rect x="122" y="228" width="74"  height="560" rx="32"   transform="rotate(9 159 290)"/>
+      <!-- back of the hand -->
+      <rect x="108" y="148" width="100" height="102" rx="34"/>
+      <!-- Thumb: pivoted from inside the palm and swung well out.
+           Its angle is the one thing that stops a hand reading as
+           a mitten, and its base has to overlap the palm or the
+           silhouette breaks into two shapes. -->
+      <rect x="84"  y="162" width="27"  height="88"  rx="13.5" transform="rotate(-38 128 218)"/>
+      <!-- Four fingers, about as long as the palm, splayed and
+           separated. Uniform parallel fingers read as a glove. -->
+      <rect x="110" y="66"  width="23"  height="109" rx="11.5" transform="rotate(-12 121 175)"/>
+      <rect x="137" y="52"  width="24"  height="123" rx="12"   transform="rotate(-3 149 175)"/>
+      <rect x="165" y="62"  width="23"  height="113" rx="11.5" transform="rotate(7 176 175)"/>
+      <rect x="191" y="88"  width="20"  height="87"  rx="10"   transform="rotate(17 201 175)"/>
+    </g>
+
     <symbol id="ye-mark" viewBox="0 0 400 400">
       <g fill="none" stroke="currentColor">
         <circle cx="200" cy="200" r="150" stroke-width="2"/>
@@ -201,24 +243,75 @@
 
 <main id="main">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" data-ground="dark" aria-labelledby="hero-h">
-  <!-- Still sequence. Also the poster and permanent fallback for the
-       optional background film — see js/data.js HERO_VIDEO. -->
+<!-- ===================== HERO =====================
+     Three stacked layers, deliberately independent so the client
+     can supply the film in either of the two workflows discussed:
+
+       LAYER 1  footage   .hero-stage (stills) + .hero-video-slot
+                          The stills are the LCP element, the video
+                          poster, and the permanent fallback. The
+                          film never blocks first paint.
+       LAYER 2  gesture   .hero-gesture — the hand that pushes the
+                          mark. Separate from the footage, so a
+                          background-only film still gets the throw.
+                          If the delivered film already has the hand
+                          and mark composited in, set
+                          OPENING.enabled = false and this layer
+                          never renders.
+       LAYER 3  interface .hero-lockup, headline, CTAs, field record.
+                          Always readable, whatever layer 1 is doing.
+
+     See js/data.js (HERO_VIDEO, OPENING) and assets/videos/README.txt.
+     ================================================================ -->
+<section class="hero" id="hero" data-ground="dark" aria-labelledby="hero-h">
+
+  <!-- LAYER 1 — footage -->
   <div class="hero-stage" id="stage" aria-hidden="true"></div>
   <div class="hero-video-slot" id="hero-video-slot" aria-hidden="true"></div>
   <div class="hero-veil" aria-hidden="true"></div>
+  <!-- Opening dim: black over the footage that lifts as the mark
+       lands. Sits at opacity 0 unless the opening is actually
+       running, so it costs nothing without JS. -->
+  <div class="hero-dim" aria-hidden="true"></div>
 
   <div class="hero-in">
-    <h1 id="hero-h" class="display" data-i18n="hero.h" data-i18n-html>Egypt,<br><em>unhurried.</em></h1>
-    <p class="hero-sub" data-i18n="hero.sub">An Egypt-based travel house. We plan private journeys through the Nile Valley, the Western Desert and the Red Sea coast — built around the time you actually have.</p>
-    <div class="hero-cta">
-      <a class="btn btn--gold" href="#journeys" data-i18n="hero.cta1">Explore journeys</a>
-      <a class="link-quiet" href="#contact" data-i18n="hero.cta2">Talk to us first</a>
+    <div class="hero-mid">
+
+      <div class="hero-brand">
+        <!-- LAYER 2 — the throw. Anchored to the mark rather than to
+             the viewport, so the hand meets the logo at every size. -->
+        <span class="hero-bloom" aria-hidden="true"></span>
+        <div class="hero-gesture" id="hero-gesture" aria-hidden="true">
+          <svg class="hero-hand" viewBox="0 0 320 360" focusable="false">
+            <g mask="url(#ye-hand-mask)">
+              <use href="#ye-hand" class="hand-rim"/>
+              <use href="#ye-hand" class="hand-body"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- The thrown object. Its resting state is the CSS default,
+             so with no JS, reduced motion, or a skipped opening it is
+             simply here, in place, at full quality. -->
+        <div class="hero-lockup" id="hero-lockup">
+          <svg class="hero-mark" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><use href="#ye-mark"/></svg>
+          <span class="rule-gold hero-rule" aria-hidden="true"></span>
+          <p class="hero-wordmark"><span class="brand-yalla">Yalla</span> <span class="brand-egypt">Egypt</span></p>
+        </div>
+      </div>
+
+      <h1 id="hero-h" class="hero-h" data-i18n="hero.h" data-i18n-html>Egypt,<br><em>unhurried.</em></h1>
+      <p class="hero-sub" data-i18n="hero.sub">An Egypt-based travel house. We plan private journeys through the Nile Valley, the Western Desert and the Red Sea coast — built around the time you actually have.</p>
+      <div class="hero-cta">
+        <a class="btn btn--gold" href="#journeys" data-i18n="hero.cta1">Explore journeys</a>
+        <a class="link-quiet" href="#contact" data-i18n="hero.cta2">Talk to us first</a>
+      </div>
     </div>
 
     <!-- Field record — position, coordinates and pharaonic name
-         update with every still. -->
+         update with every still. With a film running it carries the
+         film's own caption, and the control pauses the film instead
+         (WCAG 2.2.2: auto-playing motion needs a stop). -->
     <div class="record">
       <span class="record-prog" id="prog" aria-hidden="true"></span>
       <div class="record-l">
@@ -449,7 +542,8 @@
 
 <script src="js/data.js" defer></script>
 <script src="js/i18n.js" defer></script>
-<script src="js/intro.js" defer></script>
 <script src="js/main.js" defer></script>
+<!-- Last: the opening reads the hero stills that main.js renders. -->
+<script src="js/opening.js" defer></script>
 </body>
 </html>
