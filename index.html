@@ -160,6 +160,29 @@
       <rect x="191" y="88"  width="20"  height="87"  rx="10"   transform="rotate(17 201 175)"/>
     </g>
 
+    <!-- The two front fingers, a second time. These are drawn again
+         in .hero-gesture--fore, which sits after .hero-lockup in the
+         DOM and therefore paints over the mark — so for the first
+         600ms of the opening two fingers cross the face of the
+         medallion and the hand reads as holding it rather than
+         standing behind it. Occlusion is the only depth cue that
+         says "in front of" without ambiguity.
+
+         Identical geometry to the originals above, deliberately:
+         these are duplicates registered exactly over them. When
+         ye-fingers-release fades this group at the push, the hand
+         does not lose two fingers — the originals are still in the
+         back layer — it simply stops occluding, which is what has
+         to happen before the mark flies past the screen plane.
+
+         Body only, no rim: the rim in the back layer already draws
+         these two fingers, and a second pass would composite the
+         gold twice and brighten just this pair. -->
+    <g id="ye-hand-fore">
+      <rect x="110" y="66"  width="23"  height="109" rx="11.5" transform="rotate(-12 121 175)"/>
+      <rect x="137" y="52"  width="24"  height="123" rx="12"   transform="rotate(-3 149 175)"/>
+    </g>
+
     <symbol id="ye-mark" viewBox="0 0 400 400">
       <g fill="none" stroke="currentColor">
         <circle cx="200" cy="200" r="150" stroke-width="2"/>
@@ -251,13 +274,18 @@
                           The stills are the LCP element, the video
                           poster, and the permanent fallback. The
                           film never blocks first paint.
-       LAYER 2  gesture   .hero-gesture — the hand that pushes the
-                          mark. Separate from the footage, so a
-                          background-only film still gets the throw.
-                          If the delivered film already has the hand
-                          and mark composited in, set
-                          OPENING.enabled = false and this layer
-                          never renders.
+       LAYER 2  gesture   .hero-gesture (back: palm, thumb, all four
+                          fingers, forearm) and .hero-gesture--fore
+                          (the two front fingers again, over the
+                          mark). The mark sits between them, which
+                          is what makes the hand read as holding it
+                          rather than standing behind it. Separate
+                          from the footage, so a background-only
+                          film still gets the throw. If the
+                          delivered film already has the hand and
+                          mark composited in, set
+                          OPENING.enabled = false and neither layer
+                          renders.
        LAYER 3  interface .hero-lockup, headline, CTAs, field record.
                           Always readable, whatever layer 1 is doing.
 
@@ -297,6 +325,19 @@
           <svg class="hero-mark" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><use href="#ye-mark"/></svg>
           <span class="rule-gold hero-rule" aria-hidden="true"></span>
           <p class="hero-wordmark"><span class="brand-yalla">Yalla</span> <span class="brand-egypt">Egypt</span></p>
+        </div>
+
+        <!-- LAYER 2b — the same hand's two front fingers, painted
+             over the mark. Must stay AFTER .hero-lockup: the DOM
+             order is the whole mechanism. Same class, same size,
+             same animation and the same timing as the back layer,
+             so the duplicates sit exactly over their originals;
+             only ye-fingers-release is extra, and it lets go at
+             the push. Inert at rest like the back layer. -->
+        <div class="hero-gesture hero-gesture--fore" id="hero-gesture-fore" aria-hidden="true">
+          <svg class="hero-hand" viewBox="0 0 320 360" focusable="false">
+            <use href="#ye-hand-fore" class="hand-body"/>
+          </svg>
         </div>
       </div>
 

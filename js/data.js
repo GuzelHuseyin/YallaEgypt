@@ -98,9 +98,15 @@ const HERO_VIDEO = {
 
 /* ------------------------------------------------------------
    THE OPENING  —  layer 2 of the hero
-   The "yalla" gesture: a hand rises into frame, pushes the mark
-   towards the viewer, and drops away as the mark settles into its
-   seat above the headline.
+   The "yalla" gesture: a hand rises into frame HOLDING the mark,
+   presents it for a beat, pushes it towards the viewer, and drops
+   away as the mark settles into its seat above the headline.
+
+   The holding beat is what stops this reading as a logo zoom. The
+   hand and the mark travel as one solid for the first 600ms — same
+   clock, same vertical travel, matched scale — and two fingers are
+   drawn over the face of the medallion until the push. The timing
+   lives in css/styles.css, THE OPENING; nothing here animates.
 
    This replaces the earlier full-screen intro overlay, which was
    the wrong shape for the idea: an overlay holds the whole site
@@ -117,27 +123,40 @@ const HERO_VIDEO = {
      · abandoned the moment the visitor scrolls or hits a key
 
    THE HAND
-     Shipped as an SVG silhouette (#ye-hand in index.html): near
-     black with a gold rim, motion-blurred, on screen for 1.3s.
-     That is what a real plate looks like at this speed, and it is
-     the one treatment that does not read as a cartoon.
+     Shipped as an SVG silhouette (#ye-hand / #ye-hand-fore in
+     index.html): near black with a gold rim, motion-blurred, on
+     screen for 1.3s. That is what a real plate looks like at this
+     speed, and it is the one treatment that does not read as a
+     cartoon. It is a placeholder for a real plate all the same —
+     see assets/videos/README.txt for what to commission.
 
-     When filmed or animated footage arrives, point handPlate at it
-     and the silhouette is replaced in place:
+     Two layers, because the mark is held BETWEEN them:
 
-       handPlate = { type:"video", src:"assets/videos/hand.webm" }
-       handPlate = { type:"image", src:"assets/images/hand-plate.png" }
+       handPlate.back   palm, thumb, fingers, forearm  (behind)
+       handPlate.fore   only the fingers crossing the mark (front)
 
-     It needs an alpha channel (VP9/VP8 with alpha in .webm, or a
-     transparent PNG) and should be framed so the palm sits in the
-     middle of the plate — the layer is anchored on the mark, so
-     the palm lands on the mark at every viewport size.
+       handPlate = {
+         back: { type:"image", src:"assets/images/hand-back.webp" },
+         fore: { type:"image", src:"assets/images/hand-fore.webp" }
+       }
+
+     A bare { type, src } is still accepted and still means "the
+     whole hand"; supplying a back plate without a fore plate drops
+     the front layer, so the opening keeps the push and loses only
+     the fingers-over-the-mark occlusion.
+
+     Both plates need an alpha channel and must share one canvas
+     and one registration: palm centre horizontally centred, 34%
+     down, forearm bleeding off the bottom edge. The layer is
+     anchored on the mark, so a correctly registered palm lands on
+     the mark at every viewport size. A plate that fails to load
+     falls back to the silhouette rather than leaving a hole.
    ------------------------------------------------------------ */
 const OPENING = {
   enabled: true,
   handPlate: null,      // null -> the built-in silhouette
   oncePerSession: true, // returning visitors go straight to the settled state
-  maxDurationMs: 2200   // hard ceiling; the hero is released regardless
+  maxDurationMs: 2600   // hard ceiling; the hero is released regardless
 };
 
 /* ------------------------------------------------------------

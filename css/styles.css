@@ -583,158 +583,282 @@ ul,ol{ margin:0; padding:0; list-style:none; }
    hero is complete and correct with no JS, under reduced motion,
    on a repeat visit, and the instant the opening is skipped.
 
-   The physics, in order:
-     0.06s  hand rises into frame from below, carrying the mark
-     0.40s  contact -- the mark is drawn a fraction further back
-            (anticipation is what makes a throw read as a throw)
-     0.50s  the drive: hand comes forward, the mark takes the
-            impulse and accelerates out of it
-     0.85s  fastest point -- motion blur peaks here, not at the ends
-     1.15s  peak: the mark is 2x, past the screen plane, at you
-     1.25s  the hand has given up its momentum and drops out of frame
-     1.45s  the mark falls back into its seat, slightly past it
-     1.76s  settled
+   WHAT MAKES THIS READ AS A PUSH AND NOT A ZOOM
+   Three cues, in descending order of how much work they do:
+
+     1  CO-MOTION.  For the first 600ms the hand and the mark are
+        one rigid body. They share a clock (identical delay and
+        duration, so percentages line up frame for frame), they
+        share their vertical travel in rem -- absolute units, so
+        two boxes of different sizes displace by the same pixels
+        -- and the hand's scale tracks the mark's perspective
+        depth, 1400/(1400-z), so the pair shrinks and grows
+        together the way an object held in a hand does.
+        Nothing else in this file matters as much as this.
+
+     2  OCCLUSION.  Two fingers are drawn a second time in front
+        of the mark (.hero-gesture--fore, after .hero-lockup in
+        the DOM). Overlap is the strongest depth cue the visual
+        system has: fingers across the face of the medallion mean
+        the hand is in front of it, therefore holding it. Those
+        duplicates fade at the release -- the originals are still
+        in the back layer, so the silhouette never changes shape,
+        only the occlusion stops. It has to stop: once the mark
+        flies past the screen plane, a finger drawn over it would
+        be backwards.
+
+     3  ANTICIPATION.  The pair withdraws before the drive. A
+        throw that starts from rest reads as a slide.
+
+   THE BEATS, ON THE SHARED CLOCK (delay 160ms, duration 1390ms)
+
+       0ms   hold -- the still, under the dim. Nothing moves
+     160ms   hand rises into frame carrying the mark
+     430ms   arrival
+     500ms   PRESENT -- near-static, both sharp. The beat that
+             makes "a hand is holding the logo" legible
+     600ms   anticipation: the pair withdraws together
+     680ms   the drive, and the fingers let go
+     780ms   separated -- the mark is free and accelerating
+    1130ms   peak: 2x, past the screen plane, at you
+    1310ms   the hand is out of frame, momentum spent
+    1550ms   the mark is settled in its seat
+    1550ms+  headline, sub, CTAs and field record resolve
 
    Easing is declared per keyframe so each phase carries its own
    curve. One curve across the whole thing is what makes CSS
    animation read as CSS animation.
 
-   Every keyframe uses an identical transform function list, so the
-   browser interpolates function-by-function instead of decomposing
-   matrices -- the difference between an arc and a wobble.
+   Every ye-throw keyframe uses an identical transform function
+   list, so the browser interpolates function-by-function instead
+   of decomposing matrices -- the difference between an arc and a
+   wobble.
    ============================================================ */
 .hero.is-opening .hero-dim{
   animation:ye-dim 1900ms both cubic-bezier(.3,.6,.3,1);
 }
+
+/* Both gesture layers run the SAME animation with the SAME timing.
+   That is not a convenience -- it is what keeps the duplicated
+   fingers registered over their originals to the pixel. */
 .hero.is-opening .hero-gesture{
-  animation:ye-hand 1400ms 60ms both;
+  animation:ye-hand 1390ms 160ms both;
   will-change:transform, opacity;
 }
 .hero.is-opening .hero-hand{
-  animation:ye-hand-blur 1400ms 60ms both linear;
+  animation:ye-hand-blur 1390ms 160ms both linear;
 }
+/* The front fingers additionally let go at 680ms. */
+.hero.is-opening .hero-gesture--fore .hero-hand{
+  animation:ye-hand-blur 1390ms 160ms both linear,
+            ye-fingers-release 1390ms 160ms both linear;
+}
+
 .hero.is-opening .hero-lockup{
-  animation:ye-throw 1560ms 200ms both, ye-throw-blur 1560ms 200ms both linear;
+  animation:ye-throw 1390ms 160ms both, ye-throw-blur 1390ms 160ms both linear;
   will-change:transform, filter;
 }
 .hero.is-opening .hero-bloom{
-  animation:ye-bloom 1900ms 200ms both var(--ease);
+  animation:ye-bloom 1900ms 160ms both var(--ease);
 }
-.hero.is-opening .hero-h   { animation:ye-rise 900ms 1080ms both var(--ease); }
-.hero.is-opening .hero-sub { animation:ye-rise 900ms 1200ms both var(--ease); }
-.hero.is-opening .hero-cta { animation:ye-rise 900ms 1320ms both var(--ease); }
-.hero.is-opening .record   { animation:ye-rise 900ms 1500ms both var(--ease); }
+.hero.is-opening .hero-h   { animation:ye-rise 580ms 1550ms both var(--ease); }
+.hero.is-opening .hero-sub { animation:ye-rise 580ms 1645ms both var(--ease); }
+.hero.is-opening .hero-cta { animation:ye-rise 580ms 1740ms both var(--ease); }
+.hero.is-opening .record   { animation:ye-rise 580ms 1840ms both var(--ease); }
 
-/* The throw itself ------------------------------------------- */
+/* The mark -------------------------------------------------- */
+/* 0% -> 31.5% is the carried phase: every y here is repeated
+   verbatim in ye-hand, and every z has a matching scale there.
+   If you retime one, retime both or the hand lets go early. */
 @keyframes ye-throw{
-  /* held deep in the frame, out of focus, behind the hand */
+  /* below the frame, in the hand, already the right way up */
   0%{
     opacity:0;
-    transform:perspective(1400px) translate3d(0, 1.6rem, -1150px) rotateY(-17deg) rotateZ(-6deg);
-    animation-timing-function:cubic-bezier(.25,.8,.4,1);
+    transform:perspective(1400px) translate3d(0, 13rem, -190px) rotateY(-7deg) rotateZ(-6deg);
+    animation-timing-function:cubic-bezier(.2,.72,.32,1);
   }
-  14%{
+  8%{
     opacity:1;
-    transform:perspective(1400px) translate3d(0, 1.2rem, -1020px) rotateY(-15deg) rotateZ(-5deg);
-    animation-timing-function:cubic-bezier(.4,0,.7,.25);
+    transform:perspective(1400px) translate3d(0, 7.4rem, -188px) rotateY(-5.4deg) rotateZ(-4.6deg);
+    animation-timing-function:cubic-bezier(.24,.64,.3,1);
   }
-  /* anticipation -- a fraction further back before the drive */
-  26%{
+  /* arrival -- the hand has carried it up to the seat */
+  19%{
     opacity:1;
-    transform:perspective(1400px) translate3d(0, 1.5rem, -1270px) rotateY(-19deg) rotateZ(-7.5deg);
-    animation-timing-function:cubic-bezier(.14,.72,.3,1);
+    transform:perspective(1400px) translate3d(0, 1.1rem, -176px) rotateY(-1.8deg) rotateZ(-1.4deg);
+    animation-timing-function:cubic-bezier(.45,0,.55,1);
   }
-  /* the impulse has been taken; fastest point of the flight */
-  52%{
+  /* THE PRESENT BEAT. Almost no movement and no blur at all:
+     this is the one moment the visitor can actually read the
+     medallion, the rule and the wordmark as an object being held. */
+  24.5%{
     opacity:1;
-    transform:perspective(1400px) translate3d(0, -.3rem, 170px) rotateY(-4deg) rotateZ(-1.5deg);
-    animation-timing-function:cubic-bezier(.24,.5,.32,1);
+    transform:perspective(1400px) translate3d(0, .9rem, -174px) rotateY(-1.4deg) rotateZ(-1deg);
+    animation-timing-function:cubic-bezier(.4,0,.6,1);
+  }
+  /* anticipation -- withdrawn, still held */
+  31.5%{
+    opacity:1;
+    transform:perspective(1400px) translate3d(0, 2rem, -300px) rotateY(-5.2deg) rotateZ(-3.6deg);
+    animation-timing-function:cubic-bezier(.18,.74,.28,1);
+  }
+  /* the drive: the impulse has been taken, the fingers are opening */
+  37.5%{
+    opacity:1;
+    transform:perspective(1400px) translate3d(0, 1.1rem, -150px) rotateY(-2deg) rotateZ(-1.2deg);
+    animation-timing-function:cubic-bezier(.3,.05,.5,1);
+  }
+  /* free of the hand and accelerating */
+  44.5%{
+    opacity:1;
+    transform:perspective(1400px) translate3d(0, 0rem, 60px) rotateY(.8deg) rotateZ(.4deg);
+    animation-timing-function:cubic-bezier(.26,.5,.36,1);
+  }
+  63%{
+    opacity:1;
+    transform:perspective(1400px) translate3d(0, .9rem, calc(var(--throw-z) * .82)) rotateY(2.6deg) rotateZ(1.2deg);
+    animation-timing-function:cubic-bezier(.32,.2,.46,1);
   }
   /* peak -- closest to the camera */
-  66%{
+  70%{
     opacity:1;
-    transform:perspective(1400px) translate3d(0, 1.3rem, var(--throw-z)) rotateY(3.5deg) rotateZ(1.6deg);
-    animation-timing-function:cubic-bezier(.5,0,.28,1);
+    transform:perspective(1400px) translate3d(0, 1.3rem, var(--throw-z)) rotateY(3.4deg) rotateZ(1.6deg);
+    animation-timing-function:cubic-bezier(.5,0,.3,1);
+  }
+  76%{
+    opacity:1;
+    transform:perspective(1400px) translate3d(0, 1.1rem, calc(var(--throw-z) * .88)) rotateY(2.8deg) rotateZ(1.3deg);
+    animation-timing-function:cubic-bezier(.42,0,.3,1);
   }
   /* falls back into its seat, a little past it */
-  86%{
+  88%{
     opacity:1;
-    transform:perspective(1400px) translate3d(0, .12rem, -95px) rotateY(1deg) rotateZ(.4deg);
+    transform:perspective(1400px) translate3d(0, .12rem, -80px) rotateY(.9deg) rotateZ(.35deg);
     animation-timing-function:cubic-bezier(.22,.61,.36,1);
   }
   100%{
     opacity:1;
-    transform:perspective(1400px) translate3d(0, 0, 0) rotateY(0deg) rotateZ(0deg);
+    transform:perspective(1400px) translate3d(0, 0rem, 0px) rotateY(0deg) rotateZ(0deg);
   }
 }
 
-/* Focus and motion blur. Out of focus at depth, sharpening as it
-   arrives, with a second smear across the fastest part of the arc. */
+/* Focus and motion blur. Out of focus while it is being carried
+   in, dead sharp for the present beat, a hard smear across the
+   fastest part of the flight, sharp again once it is seated. */
 @keyframes ye-throw-blur{
-  0%  { filter:blur(4px); }
-  20% { filter:blur(2px); }
-  28% { filter:blur(.8px); }
-  52% { filter:blur(4.5px); }
-  68% { filter:blur(1.4px); }
-  84% { filter:blur(.3px); }
-  100%{ filter:blur(0); }
+  0%    { filter:blur(3.6px); }
+  12%   { filter:blur(1.5px); }
+  19%   { filter:blur(.5px); }
+  24.5% { filter:blur(0); }
+  31.5% { filter:blur(.7px); }
+  44.5% { filter:blur(4.2px); }
+  55%   { filter:blur(5px); }
+  70%   { filter:blur(1.5px); }
+  88%   { filter:blur(.35px); }
+  100%  { filter:blur(0); }
 }
 
-/* The hand. It leads the mark in, drives through, then decelerates
-   and drops away -- momentum has been transferred, so it must not
-   keep the speed it arrived with. */
+/* The hand -------------------------------------------------- */
+/* Through 31.5% the y values match ye-throw exactly and the
+   scale is the perspective scale of ye-throw's z at the same
+   keyframe -- 1400/(1400-z). That is the whole trick: the pair
+   travels and shrinks as one solid. After the drive the hand
+   decelerates and drops away; it must not keep the speed it
+   arrived with, because it has given that speed to the mark. */
 @keyframes ye-hand{
   0%{
     opacity:0;
-    transform:translate3d(7%, 92%, 0) rotate(12deg) scale(.88);
-    animation-timing-function:cubic-bezier(.18,.72,.34,1);
+    transform:translate3d(0, 13rem, 0) rotate(-6deg) scale(.88);
+    animation-timing-function:cubic-bezier(.2,.72,.32,1);
   }
-  18%{
-    opacity:.92;
-    transform:translate3d(4%, 52%, 0) rotate(8deg) scale(.92);
-    animation-timing-function:cubic-bezier(.3,.6,.4,1);
+  8%{
+    opacity:.86;
+    transform:translate3d(0, 7.4rem, 0) rotate(-4.6deg) scale(.881);
+    animation-timing-function:cubic-bezier(.24,.64,.3,1);
   }
-  30%{                                        /* contact */
-    opacity:.95;
-    transform:translate3d(1%, 27%, 0) rotate(4deg) scale(.97);
-    animation-timing-function:cubic-bezier(.2,.78,.3,1);
+  19%{
+    opacity:.97;
+    transform:translate3d(0, 1.1rem, 0) rotate(-1.4deg) scale(.888);
+    animation-timing-function:cubic-bezier(.45,0,.55,1);
   }
-  46%{                                        /* the drive */
-    opacity:.88;
-    transform:translate3d(-1%, 15%, 0) rotate(1deg) scale(1.11);
+  /* present -- held still */
+  24.5%{
+    opacity:1;
+    transform:translate3d(0, .9rem, 0) rotate(-1deg) scale(.889);
+    animation-timing-function:cubic-bezier(.4,0,.6,1);
+  }
+  /* anticipation -- back and down, carrying the mark with it */
+  31.5%{
+    opacity:1;
+    transform:translate3d(0, 2rem, 0) rotate(-3.6deg) scale(.824);
+    animation-timing-function:cubic-bezier(.18,.74,.28,1);
+  }
+  /* THE DRIVE. The hand comes forward and up through the mark's
+     seat; this is the frame the whole animation is built around. */
+  37.5%{
+    opacity:.94;
+    transform:translate3d(0, -.6rem, 0) rotate(1.6deg) scale(1.055);
     animation-timing-function:cubic-bezier(.36,0,.5,1);
   }
-  64%{
-    opacity:.5;
-    transform:translate3d(-3%, 46%, 0) rotate(-4deg) scale(1.02);
+  /* spent */
+  44.5%{
+    opacity:.82;
+    transform:translate3d(-1%, 1.8rem, 0) rotate(-2deg) scale(1.01);
     animation-timing-function:cubic-bezier(.4,0,.7,1);
   }
-  90%, 100%{
+  60%{
+    opacity:.46;
+    transform:translate3d(-3%, 7.5rem, 0) rotate(-7deg) scale(.96);
+    animation-timing-function:cubic-bezier(.42,0,.75,1);
+  }
+  78%, 100%{
     opacity:0;
-    transform:translate3d(-6%, 104%, 0) rotate(-9deg) scale(.9);
+    transform:translate3d(-6%, 15rem, 0) rotate(-12deg) scale(.9);
   }
 }
+
 @keyframes ye-hand-blur{
-  0%  { filter:blur(5px); }
-  30% { filter:blur(1.4px); }
-  48% { filter:blur(5px); }
-  100%{ filter:blur(11px); }
+  0%    { filter:blur(5px); }
+  10%   { filter:blur(2.2px); }
+  19%   { filter:blur(1px); }
+  24.5% { filter:blur(.6px); }
+  31.5% { filter:blur(1.4px); }
+  37.5% { filter:blur(5.5px); }
+  50%   { filter:blur(8px); }
+  100%  { filter:blur(13px); }
+}
+
+/* The release. Only the duplicated front fingers fade -- their
+   originals stay in the back layer, so the hand does not lose two
+   fingers, it lets go. Fast, and inside the drive's own motion
+   blur, so it reads as opening rather than as a fade. */
+@keyframes ye-fingers-release{
+  0%, 31.5% { opacity:1; }
+  35%       { opacity:.9; }
+  39%       { opacity:.28; }
+  42%, 100% { opacity:0; }
 }
 
 /* The mark catches the light as it comes past, then keeps a trace
-   of it -- the resting .hero-bloom opacity is where this lands. */
+   of it -- the resting .hero-bloom opacity is where this lands.
+   The low shoulder at 30% is the present beat: a held object gets
+   a hint of glow, not a flare. The flare belongs to the peak. */
 @keyframes ye-bloom{
-  0%,  18%{ opacity:0;   scale:.35; }
-  46%     { opacity:.42; scale:1.35; }
-  62%     { opacity:.55; scale:1.9; }
-  78%     { opacity:.3;  scale:1.5; }
+  0%,  16%{ opacity:0;   scale:.35; }
+  30%     { opacity:.17; scale:.85; }
+  44%     { opacity:.4;  scale:1.32; }
+  55%     { opacity:.58; scale:1.9; }
+  70%     { opacity:.3;  scale:1.5; }
   100%    { opacity:.16; scale:1; }
 }
 
+/* The still stays down while the hand owns the frame, and comes
+   up as the mark settles. */
 @keyframes ye-dim{
-  0%  { opacity:.66; }
-  34% { opacity:.5; }
-  72% { opacity:.18; }
+  0%  { opacity:.64; }
+  26% { opacity:.56; }
+  52% { opacity:.3; }
+  78% { opacity:.1; }
   100%{ opacity:0; }
 }
 

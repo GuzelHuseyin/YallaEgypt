@@ -65,36 +65,96 @@ control stays either way — auto-playing motion has to be stoppable.
 --------------------------------------------------------------------
 2. THE OPENING — the "yalla" gesture  ->  OPENING in js/data.js
 --------------------------------------------------------------------
-This is already live. A hand rises into the first screen, pushes the
-Yalla Egypt mark towards the camera, and drops away as the mark
-settles above the headline. It runs once per session, never under
-reduced motion, and is abandoned the moment the visitor scrolls.
+This is already live. A hand rises into the first screen HOLDING the
+Yalla Egypt mark, presents it for a beat, pushes it towards the
+camera, and drops away as the mark settles above the headline. It
+runs once per session, never under reduced motion, and is abandoned
+the moment the visitor scrolls.
 
-The hand currently ships as an SVG silhouette (#ye-hand in
-index.html): near black, gold rim, motion-blurred, on screen for 1.3
-seconds. That is what a real plate looks like at this speed, and it
-is the one treatment that does not read as a cartoon.
+The holding beat is the whole idea — it is what stops the sequence
+reading as a logo zoom. Three things carry it, and any replacement
+asset has to keep all three:
 
-If you have footage of a real hand, point OPENING.handPlate at it and
-the silhouette is replaced in place:
+  * the hand and the mark move as ONE SOLID for the first 600ms
+  * two fingers are drawn OVER the face of the medallion until the
+    push, then let go
+  * both withdraw together before the drive
 
-    OPENING.handPlate = { type:"video", src:"assets/videos/hand.webm" };
-    OPENING.handPlate = { type:"image", src:"assets/images/hand-plate.png" };
+The hand currently ships as an SVG silhouette (#ye-hand and
+#ye-hand-fore in index.html): near black, gold rim, motion-blurred,
+on screen for 1.3 seconds. It is honest placeholder artwork — it is
+posed as an open pushing palm, not as a hand gripping a disc, so the
+fingers cross the top third of the mark rather than wrapping its
+edge. Replacing it is the single biggest available improvement to
+the opening.
 
-Requirements for a plate:
-  * an alpha channel — VP9 or VP8 with alpha in .webm, or a
-    transparent PNG. There is no chroma key in the page
-  * framed with the palm in the middle of the plate. The layer is
-    anchored on the mark, so a centred palm lands on the mark at
-    every viewport size
-  * about 1.3 seconds, and short: it is cut off at OPENING.maxDurationMs
-  * shot against a dark ground, lit from upper left, to match the
-    rim on the current silhouette
 
-Encode with alpha:
+WHAT TO COMMISSION
+------------------
+Two stills, NOT video. The push is driven by CSS, so a static hand
+transformed in 3D stays vector-sharp, weighs ~40KB, and can never
+drift out of sync with the logo. At 1.3s under motion blur a filmed
+hand does not visibly articulate anyway — and two synced alpha videos
+is not a practical way to get the occlusion.
+
+    assets/images/hand-back.webp    palm, thumb, all fingers, forearm
+    assets/images/hand-fore.webp    ONLY the fingers that cross the
+                                    mark; transparent everywhere else
+
+Then set, in js/data.js:
+
+    OPENING.handPlate = {
+      back: { type:"image", src:"assets/images/hand-back.webp" },
+      fore: { type:"image", src:"assets/images/hand-fore.webp" }
+    };
+
+Specification — the registration items are not style preferences,
+they are what makes the palm land on the mark at every breakpoint:
+
+  * WebP with a real alpha channel. No matte, no halo: premultiplied
+    alpha fringing shows as a grey edge against the dark ground
+  * 1200 x 1350 px, i.e. aspect 320:360 — matches the layer's own
+    aspect-ratio, so no CSS changes
+  * BOTH FILES ON ONE CANVAS, ONE REGISTRATION. hand-fore must be
+    the same fingers in the same place as hand-back, just isolated.
+    If they do not register, the fingers will jump at the release
+  * palm centre horizontally centred, and 34% down from the top
+  * forearm bleeding off the bottom edge of the canvas
+  * ~50mm equivalent lens, camera slightly below and left. Not
+    wide-angle — it distorts the fingers
+  * back of the hand toward camera, fingers curling forward around
+    where the medallion sits, as though about to release it
+  * key light from upper left. Near-black body with a warm gold rim
+    on the upper-left contour, to match .hand-rim in the CSS
+  * a hairline linen galabeya cuff at the wrist is the only Egyptian
+    detail that survives at this speed and scale. Henna and
+    pharaonic cuffs read as costume and are invisible anyway
+
+If a plate 404s or the browser cannot decode it, the layer falls back
+to the built-in silhouette rather than leaving a hole.
+
+
+IF YOU WANT FILMED FOOTAGE ANYWAY
+---------------------------------
+Point handPlate at a video instead. Supplying only `back` (no `fore`)
+drops the front layer automatically, so the push survives and only
+the occlusion is lost:
+
+    OPENING.handPlate = { back:{ type:"video", src:"assets/videos/hand.webm" } };
+
+  * about 1.3 seconds, cut off at OPENING.maxDurationMs regardless
+  * same framing and registration rules as above
+  * an alpha channel — there is no chroma key in the page
+
     ffmpeg -i hand.mov -an -t 1.4 -c:v libvpx-vp9 -pix_fmt yuva420p \
            -crf 30 -b:v 0 hand.webm
 
+  ! SAFARI DOES NOT SUPPORT ALPHA IN VP9/WEBM. It will decode the
+    file and render the transparent areas BLACK, putting a black
+    rectangle over the hero. If you go the video route you need a
+    second HEVC-with-alpha .mp4 for Safari and a <source> pair, or
+    you accept that Safari shows the silhouette. This is the main
+    reason the two-still route above is the recommendation.
 
 --------------------------------------------------------------------
 3. IF THE FILM ALREADY HAS THE HAND AND THE MARK IN IT

@@ -2,9 +2,16 @@
    THE OPENING — "a hand pushes the mark towards you"
    ------------------------------------------------------------
    The client's idea, built as the second of the hero's three
-   layers. A hand rises into frame, drives the Yalla Egypt mark
-   towards the camera, and drops away as the mark falls back into
-   its seat above the headline.
+   layers. A hand rises into frame HOLDING the Yalla Egypt mark,
+   presents it for a beat, drives it towards the camera, and drops
+   away as the mark falls back into its seat above the headline.
+
+   The hold is the point. The gesture is drawn as two layers —
+   #hero-gesture behind the mark, #hero-gesture-fore (two fingers
+   again) in front of it — so for the first 600ms the fingers
+   cross the face of the medallion and the hand is unambiguously
+   holding it. Both layers run the same animation on the same
+   clock; see THE OPENING in css/styles.css for why that matters.
 
    This file does one job: decide whether the opening should run,
    and if so start it and clean up after it. All of the motion is
@@ -39,11 +46,13 @@
   const hero = document.querySelector(".hero");
   if(!hero) return;
 
-  // Settling also drops the gesture layer: the hand exists for one
+  // Settling also drops the gesture layers: the hand exists for one
   // run, and every path that ends the opening goes through here.
+  // Both layers go — the front fingers are painted over the mark,
+  // so leaving that one behind would sit a black shape on the logo.
   const settle = () => {
     hero.classList.add("is-open");
-    document.querySelector("#hero-gesture")?.remove();
+    document.querySelectorAll(".hero-gesture").forEach(el => el.remove());
   };
 
   if(typeof OPENING === "undefined" || !OPENING.enabled){ settle(); return; }
@@ -58,29 +67,58 @@
   const gesture = document.querySelector("#hero-gesture");
   const lockup  = document.querySelector("#hero-lockup");
   if(!gesture || !lockup){ settle(); return; }
+  // Optional. Without it the opening still runs, and only loses the
+  // fingers-over-the-mark occlusion.
+  const fore = document.querySelector("#hero-gesture-fore");
 
   /* ----------------------------------------------------------
-     Optional filmed / animated hand plate. Replaces the built-in
-     silhouette in place; the layer's position, size and timing
-     are unchanged, so a plate can be swapped in without touching
-     anything else. See OPENING.handPlate in js/data.js.
+     Optional filmed / drawn hand plates. Each replaces the built-in
+     silhouette of its own layer in place; position, size and timing
+     are unchanged, so plates can be swapped in without touching the
+     animation at all. See OPENING.handPlate in js/data.js.
+
+       handPlate.back   palm, thumb, fingers, forearm
+       handPlate.fore   only the fingers that cross the mark
+
+     A bare { type, src } is still accepted and still means "the
+     whole hand", which is what it meant before there were two
+     layers.
      ---------------------------------------------------------- */
-  let plate = null;
-  if(OPENING.handPlate && OPENING.handPlate.src){
-    const cfg = OPENING.handPlate;
+  const plates = [];
+
+  function loadPlate(host, cfg){
+    if(!host || !cfg || !cfg.src) return;
+    const fallback = host.innerHTML;          // the silhouette we replace
+    let el;
     if(cfg.type === "video"){
-      plate = document.createElement("video");
-      plate.src = cfg.src;
-      plate.muted = true; plate.defaultMuted = true;
-      plate.playsInline = true; plate.setAttribute("playsinline", "");
-      plate.preload = "auto"; plate.tabIndex = -1;
+      el = document.createElement("video");
+      el.muted = true; el.defaultMuted = true;
+      el.playsInline = true; el.setAttribute("playsinline", "");
+      el.preload = "auto"; el.tabIndex = -1;
     } else {
-      plate = document.createElement("img");
-      plate.src = cfg.src;
-      plate.alt = "";
-      plate.decoding = "async";
+      el = document.createElement("img");
+      el.alt = ""; el.decoding = "async";
     }
-    gesture.replaceChildren(plate);
+    /* A 404, a codec the browser will not decode, or an alpha
+       format it does not support must not leave a hole where the
+       hand should be. Put the silhouette back and carry on — a
+       plainer opening, not a broken one. */
+    el.addEventListener("error", () => { host.innerHTML = fallback; }, { once:true });
+    el.src = cfg.src;
+    host.replaceChildren(el);
+    plates.push(el);
+  }
+
+  const plateCfg = OPENING.handPlate;
+  if(plateCfg){
+    loadPlate(gesture, plateCfg.back || plateCfg);
+    loadPlate(fore,    plateCfg.fore);
+
+    /* A back plate with no front plate means the supplied artwork
+       owns the whole hand. Keeping our two drawn fingers would lay
+       a silhouette that no longer matches over the mark, so the
+       front layer goes and the opening loses only its occlusion. */
+    if((plateCfg.back || plateCfg.src) && !plateCfg.fore) fore?.remove();
   }
 
   /* ----------------------------------------------------------
@@ -130,7 +168,7 @@
     hero.classList.remove("is-opening");
     settle();
     lockup.style.willChange = "";
-    plate?.pause?.();
+    plates.forEach(p => p.pause?.());
   }
 
   function abandon(){ finish(); }
@@ -146,15 +184,22 @@
       requestAnimationFrame(() => {
         if(done) return;
         hero.classList.add("is-opening");
-        plate?.play?.().catch(() => {});
+        plates.forEach(p => p.play?.().catch(() => {}));
 
-        // The throw is the last thing to settle, so its end is the
-        // end of the opening. The timer is the backstop for a
-        // browser that never fires it.
-        lockup.addEventListener("animationend", e => {
-          if(e.animationName === "ye-throw") finish();
+        /* The field record is the last thing to resolve, so its
+           rise is the end of the opening — not the throw, which
+           lands 870ms earlier. Tearing down on the throw would drop
+           .is-opening while the headline, sub and CTAs were still
+           rising and snap all three to their resting state.
+           Falls back to the lockup if the hero has no record strip,
+           and the timer is the backstop for a browser that fires
+           neither. */
+        const last = document.querySelector(".record") || lockup;
+        last.addEventListener("animationend", e => {
+          if(e.target !== last) return;                 // not a child's
+          if(e.animationName === "ye-rise" || e.animationName === "ye-throw") finish();
         });
-        cap = setTimeout(finish, OPENING.maxDurationMs || 2200);
+        cap = setTimeout(finish, OPENING.maxDurationMs || 2600);
 
         addEventListener("scroll", abandon, { once:true, passive:true });
         addEventListener("keydown", abandon, { once:true });
