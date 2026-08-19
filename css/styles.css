@@ -1,50 +1,56 @@
 /* ============================================================
    YALLA EGYPT — DESIGN SYSTEM
    ------------------------------------------------------------
-   Colour and type come from the brand materials in design/:
-   yalla-egypt-renk-paleti.html (palette), yalla-egypt-logo-3.pdf
-   (mark) and Web_site_tasarım.html (first direction), read
-   against yalla-egypt-tasarim-denetimi.md (the design audit).
+   Colour comes from design/yalla-egypt-renk-paleti.html, which is
+   the definitive palette; type and the mark come from
+   yalla-egypt-logo-3.pdf.
 
-   Two deliberate departures from the palette file, both from
-   the audit:
-     · Sapphire-2 #3A6EA5 measured 3.73:1 on obsidian and could
-       not legally carry text. Replaced by --lapis #4E83CA,
-       same hue family, 5.11:1 on obsidian and 4.51:1 on
-       anthracite — passes AA on both dark grounds.
-     · Oxide red #8B3A2B was defined but never used. Dropped.
+   THE PAGE IS DARK THROUGHOUT. Obsidian is the page, anthracite is
+   the panel, and the two alternate down the page to give rhythm.
+   Gold is the dominant accent and carries every rule, border, icon
+   and button. Blue is deliberately rare: one section ground
+   (philosophy), the timeline numerals and rail, and the slideshow
+   index. Nothing else.
 
-   Everything else is the designer's, unchanged. Swapping the
-   palette later means editing this one block. Tones from the
-   palette file that this layout has no job for (anthracite-2)
-   are left out rather than declared and unused — they are still
-   in design/yalla-egypt-renk-paleti.html if a use turns up.
+   Two notes on how the palette is applied, both deliberate:
+     · Sapphire-2 #3A6EA5 measures 3.73:1 on obsidian, so it is used
+       for LINES and glows only, never for text. Where the palette
+       calls for a blue that has to be read — timeline numerals, the
+       slide index — Light Lapis #7FB0E0 carries it instead, which
+       is what the palette assigns it to anyway.
+     · Oxide red #8B3A2B is the palette's reserved colour. It is
+       wired to one state only: an invalid form field.
+
+   There is no light ground and no "on paper" role any longer, so
+   the paper/ink tokens are gone rather than left aliased. Swapping
+   the palette later means editing the one block below.
    ============================================================ */
 :root{
   /* -- Grounds ------------------------------------------------ */
-  --obsidian:      #0B0A08;   /* primary dark ground */
-  --anthracite:    #121A26;   /* dark panel, blue-leaning */
-  --sapphire-deep: #142B4A;   /* the blue section ground */
-  --sapphire:      #1C3A63;   /* blue panel, links on paper */
+  --obsidian:      #0B0A08;   /* main page background */
+  --anthracite:    #121A26;   /* panel / section background */
+  --navy-2:        #182337;   /* card hover, secondary panel */
 
-  /* -- Gold: brand, luxury, rules ----------------------------- */
-  --gold:          #C9A24B;
-  --gold-bright:   #E8C77A;
+  /* -- Gold: the dominant accent ------------------------------ */
+  --gold:          #C9A24B;   /* buttons, rules, icons, borders */
+  --gold-bright:   #E8C77A;   /* hover, emphasised text */
 
-  /* -- Blue: trust, state, interface -------------------------- */
-  --lapis:         #4E83CA;
+  /* -- Blue: sparing, and specific ---------------------------- */
+  --sapphire:      #1C3A63;   /* dark blue tone, subtle use */
+  --sapphire-2:    #3A6EA5;   /* timeline elements, hover glow */
+  --lapis:         #7FB0E0;   /* timeline numerals and indices */
 
-  /* -- Paper and ink ----------------------------------------- */
-  --papyrus:       #F3EAD3;   /* light ground · text on dark */
-  --papyrus-deep:  #E9DFC4;   /* alternate light ground */
-  --papyrus-dim:   #CABF9F;   /* secondary text on dark */
-  --ink:           #2A2620;   /* body text on paper  — 12.5:1 */
-  --umber:         #5B5445;   /* secondary text on paper — 6.3:1 */
+  /* -- Text ---------------------------------------------------- */
+  --papyrus:       #F3EAD3;   /* main text, headings */
+  --papyrus-dim:   #CABF9F;   /* secondary text, descriptions */
 
-  /* -- Hairlines: the signature device the audit asked us to keep */
-  --hair-gold:     rgba(201,162,75,.28);
-  --hair-onPaper:  rgba(11,10,8,.14);
-  --hair-blue:     rgba(78,131,202,.26);
+  /* -- Reserved ------------------------------------------------ */
+  --oxide:         #8B3A2B;   /* defined, deliberately unused —
+                                 held for a warning / error state */
+
+  /* -- Hairlines: the signature device ------------------------- */
+  --hair-gold:     rgba(201,162,75,.28);  /* borders, dividers */
+  --hair-blue:     rgba(58,110,165,.3);   /* timeline transitions */
 
   /* -- Type --------------------------------------------------- */
   --font-display: "Cinzel", "Trajan Pro", Georgia, serif;
@@ -91,7 +97,7 @@ html{
 body{
   margin:0;
   background:var(--obsidian);
-  color:var(--ink);
+  color:var(--papyrus);
   font-family:var(--font-ui);
   font-size:var(--fs-body);
   font-weight:400;
@@ -110,7 +116,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 ::selection{ background:var(--gold); color:var(--obsidian); }
 
 :focus-visible{
-  outline:2px solid var(--sapphire);
+  outline:2px solid var(--gold-bright);
   outline-offset:3px;
 }
 [data-ground="dark"] :focus-visible{ outline-color:var(--gold-bright); }
@@ -118,7 +124,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
    dark <html> would otherwise reach into a light section and paint
    a gold ring on cream. The light rule comes second on purpose:
    when both match, the nearer ground has to be the one that wins. */
-[data-ground="light"] :focus-visible{ outline-color:var(--sapphire); }
 
 .skip{
   position:fixed; top:0; left:0; z-index:200;
@@ -164,20 +169,20 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   text-wrap:balance;
 }
 .lead--sm{ font-size:var(--fs-h2-sm); max-width:28ch; }
-.sec--dark .lead, .sec--blue .lead{ color:var(--papyrus); }
+.lead{ color:var(--papyrus); }
 
 .eyebrow{
   display:flex; align-items:center; gap:1rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
   text-transform:uppercase; letter-spacing:var(--ls-eyebrow); line-height:1.4;
-  color:var(--umber);
+  color:var(--papyrus-dim);
   margin-bottom:clamp(1.4rem,3vw,2.4rem);
 }
 .eyebrow::after{
-  content:""; flex:1; height:1px; background:var(--hair-onPaper);
+  content:""; flex:1; height:1px; background:var(--hair-gold);
 }
-.sec--dark .eyebrow, .sec--blue .eyebrow{ color:var(--gold); }
-.sec--dark .eyebrow::after, .sec--blue .eyebrow::after{ background:var(--hair-gold); }
+.eyebrow{ color:var(--gold); }
+.eyebrow::after{ background:var(--hair-gold); }
 /* Section numbers. js/main.js writes data-n over the sections that
    are actually present, so the sequence never shows a gap when one
    is left out. Kept in CSS content because it is ornament, not
@@ -195,7 +200,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   display:inline-block; vertical-align:middle;
   margin-left:.55rem; padding:.12rem .45rem;
   border:1px solid currentColor;
-  color:var(--sapphire);
+  color:var(--lapis);
   font-size:.625rem; font-weight:500;
   text-transform:uppercase; letter-spacing:.12em; line-height:1.5;
   white-space:nowrap;
@@ -229,15 +234,11 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .btn--gold{ background:var(--gold); color:var(--obsidian); border-color:var(--gold); }
 .btn--gold:hover, .btn--gold:focus-visible{ background:var(--gold-bright); border-color:var(--gold-bright); }
 
-.btn--line{ border-color:var(--hair-onPaper); color:var(--ink); }
-.btn--line:hover, .btn--line:focus-visible{ background:var(--obsidian); color:var(--papyrus); border-color:var(--obsidian); }
-[data-ground="dark"] .btn--line{ border-color:var(--gold); color:var(--gold-bright); }
-[data-ground="dark"] .btn--line:hover, [data-ground="dark"] .btn--line:focus-visible{ background:var(--gold); color:var(--obsidian); }
-/* Same leak, and this one was visible: with <html> dark, the CTA in
-   the light sample-programme section rendered gold on cream at
-   about 1.3:1. Restated for light so the nearer ground wins. */
-[data-ground="light"] .btn--line{ border-color:var(--hair-onPaper); color:var(--ink); }
-[data-ground="light"] .btn--line:hover, [data-ground="light"] .btn--line:focus-visible{ background:var(--obsidian); color:var(--papyrus); border-color:var(--obsidian); }
+/* Every ground is dark now, so the outline button has one state set
+   rather than a dark pair and a light pair: gold hairline and bright
+   gold label at rest, solid gold with an obsidian label on hover. */
+.btn--line{ border-color:var(--gold); color:var(--gold-bright); }
+.btn--line:hover, .btn--line:focus-visible{ background:var(--gold); color:var(--obsidian); border-color:var(--gold); }
 
 .link-quiet{
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
@@ -265,10 +266,10 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   display:inline-flex; align-items:center; gap:.55rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
   text-transform:uppercase; letter-spacing:var(--ls-ui);
-  color:var(--umber); padding:.5rem 0;
+  color:var(--papyrus-dim); padding:.5rem 0;
   transition:color .3s var(--ease);
 }
-.ctl-text:hover, .ctl-text:focus-visible{ color:var(--ink); }
+.ctl-text:hover, .ctl-text:focus-visible{ color:var(--papyrus); }
 
 /* ============================================================
    NAVIGATION
@@ -290,19 +291,12 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   height:1px; background:var(--hair-gold);
 }
 [data-ground="dark"]  .nav{ color:var(--papyrus); }
-[data-ground="light"] .nav{ color:var(--ink); }
-[data-ground="light"] .nav-in::after{ background:var(--hair-onPaper); }
 
 .nav.is-stuck{
   background:rgba(11,10,8,.94);
   background:color-mix(in srgb, var(--obsidian) 92%, transparent);
   backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
   color:var(--papyrus);
-}
-.nav.is-stuck.on-paper{
-  background:rgba(243,234,211,.95);
-  background:color-mix(in srgb, var(--papyrus) 93%, transparent);
-  color:var(--ink);
 }
 .nav.is-stuck .nav-in{ padding-bottom:clamp(.6rem,1.1vw,.85rem); }
 
@@ -337,8 +331,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease);
 }
 .nav-links a:hover, .nav-links a:focus-visible{ opacity:1; color:var(--gold-bright); }
-[data-ground="light"] .nav-links a:hover, [data-ground="light"] .nav-links a:focus-visible{ color:var(--sapphire); }
-[data-ground="light"] .nav-links a::after{ background:var(--sapphire); }
 .nav-links a:hover::after, .nav-links a:focus-visible::after{ transform:scaleX(1); }
 
 .nav-right{ display:flex; align-items:center; gap:clamp(.85rem,1.7vw,1.5rem); }
@@ -351,7 +343,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .lang button{ opacity:.55; padding:.25rem .1rem; transition:opacity .3s, color .3s; }
 .lang button:hover, .lang button:focus-visible{ opacity:.9; }
 .lang button[aria-current="true"]{ opacity:1; color:var(--gold-bright); }
-[data-ground="light"] .lang button[aria-current="true"]{ color:var(--sapphire); }
 .lang i{ font-style:normal; opacity:.28; }
 
 [data-ground="dark"] .nav:not(.is-stuck) .nav-cta{
@@ -916,9 +907,12 @@ ul,ol{ margin:0; padding:0; list-style:none; }
    ============================================================ */
 .sec{ position:relative; padding-block:var(--sec-y); }
 .sec--dark{ background:var(--obsidian); color:var(--papyrus-dim); }
-.sec--blue{ background:var(--sapphire-deep); color:var(--papyrus-dim); }
-.sec--paper{ background:var(--papyrus); color:var(--ink); }
-.sec--paper-deep{ background:var(--papyrus-deep); color:var(--ink); }
+.sec--blue{ background:var(--anthracite); color:var(--papyrus-dim); }
+/* The two "paper" modifiers keep their names and their place in the
+   rhythm — they are simply the two dark tones now, alternating down
+   the page exactly as the light ones did. */
+.sec--paper{ background:var(--obsidian); color:var(--papyrus-dim); }
+.sec--paper-deep{ background:var(--anthracite); color:var(--papyrus-dim); }
 .sec--tight-top{ padding-top:0; }
 .sec--short{ padding-block:clamp(3rem,6vw,5rem); }
 .sec--strip{ padding-bottom:clamp(3rem,6vw,5rem); }
@@ -960,22 +954,23 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   position:relative;
   display:flex; flex-direction:column;
   min-width:0;                       /* long words must wrap, not push the grid */
-  border:1px solid var(--hair-onPaper);
-  background:var(--papyrus);
+  border:1px solid var(--hair-gold);
+  background:var(--anthracite);
   transition:transform .5s var(--ease), box-shadow .5s var(--ease),
              border-color .5s var(--ease);
 }
 .tcard:hover, .tcard:focus-within{
   transform:translateY(-4px);
-  border-color:var(--hair-gold);
-  box-shadow:0 18px 40px -24px rgba(11,10,8,.45);
+  background:var(--navy-2);
+  border-color:var(--gold);
+  box-shadow:0 18px 40px -24px rgba(0,0,0,.7);
 }
 
 .tcard-media{
   position:relative;
   aspect-ratio:4/3;
   overflow:hidden;
-  background:var(--papyrus-deep);
+  background:var(--navy-2);
 }
 .tcard-media img{
   width:100%; height:100%; object-fit:cover; display:block;
@@ -1002,13 +997,13 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .tcard-meta{
   margin-top:.9rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:.18em; color:var(--umber);
+  text-transform:uppercase; letter-spacing:.18em; color:var(--papyrus-dim);
 }
 .tcard-title{
   margin-top:.5rem;
   font-family:var(--font-display); font-weight:600;
   font-size:clamp(1.1rem,1.5vw,1.3rem); line-height:1.24;
-  color:var(--ink);
+  color:var(--papyrus);
   overflow-wrap:anywhere;            /* "Nil'de Lüks Cruise" must never overflow */
 }
 .tcard-title a{ color:inherit; text-decoration:none; }
@@ -1018,14 +1013,14 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 
 .tcard-desc{
   margin-top:.75rem;
-  font-size:var(--fs-sm); line-height:1.66; color:var(--umber);
+  font-size:var(--fs-sm); line-height:1.66; color:var(--papyrus-dim);
   text-wrap:pretty;
 }
 .tcard-cta{
   display:inline-flex; align-items:center; gap:.5rem;
   margin-top:auto; padding-top:1.2rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--sapphire);
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--gold-bright);
 }
 .tcard-cta i{ font-style:normal; transition:transform .4s var(--ease); }
 .tcard:hover .tcard-cta i{ transform:translateX(4px); }
@@ -1079,7 +1074,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 @media (min-width:700px){ .steps{ grid-template-columns:repeat(2,1fr); } }
 @media (min-width:1100px){ .steps{ grid-template-columns:repeat(5,1fr); } }
 .step{
-  background:var(--sapphire-deep);
+  background:var(--navy-2);
   padding:clamp(1.5rem,2.5vw,2rem) clamp(1.3rem,2vw,1.7rem);
   transition:background-color .4s var(--ease);
 }
@@ -1105,8 +1100,8 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
           mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
 }
-.mq-row{ border-top:1px solid var(--hair-onPaper); }
-.mq-row:last-child{ border-bottom:1px solid var(--hair-onPaper); }
+.mq-row{ border-top:1px solid var(--hair-gold); }
+.mq-row:last-child{ border-bottom:1px solid var(--hair-gold); }
 .mq-track{ display:flex; width:max-content; will-change:transform; }
 .mq-l .mq-track{ animation:mqL 72s linear infinite; }
 .mq-r .mq-track{ animation:mqR 78s linear infinite; }
@@ -1117,14 +1112,14 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 .tm{
   flex:0 0 auto; display:flex; align-items:baseline; gap:.9rem;
   padding:1.1rem clamp(1.3rem,2.8vw,2.4rem);
-  border-left:1px solid var(--hair-onPaper);
+  border-left:1px solid var(--hair-gold);
   white-space:nowrap;
 }
 .tm-stars{ color:var(--gold); font-size:.68rem; letter-spacing:.14em; flex:none; }
-.tm-q{ font-family:var(--font-edit); font-size:1.16rem; font-weight:500; color:var(--obsidian); }
+.tm-q{ font-family:var(--font-edit); font-size:1.16rem; font-weight:500; color:var(--papyrus); }
 .tm-who{
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber); font-style:normal;
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--papyrus-dim); font-style:normal;
 }
 .mq-foot{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
@@ -1133,9 +1128,9 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 .flag{
   display:inline-flex; align-items:center; gap:.6rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--papyrus-dim);
 }
-.flag::before{ content:""; width:5px; height:5px; background:var(--sapphire); transform:rotate(45deg); }
+.flag::before{ content:""; width:5px; height:5px; background:var(--gold); transform:rotate(45deg); }
 
 /* ============================================================
    07 · ABOUT
@@ -1148,12 +1143,12 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 .pull blockquote{
   font-family:var(--font-edit); font-weight:400; font-style:italic;
   font-size:clamp(1.35rem,2.7vw,2.05rem); line-height:1.34;
-  color:var(--obsidian); text-wrap:pretty;
+  color:var(--papyrus); text-wrap:pretty;
 }
 .pull figcaption{
   display:flex; align-items:center; flex-wrap:wrap; gap:.9rem; margin-top:1.5rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--papyrus-dim);
 }
 
 /* ============================================================
@@ -1163,7 +1158,10 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
    the sapphire ground, which is why it reads as part of the site
    rather than as a landing-page insert.
    ============================================================ */
-.philosophy{ padding-block:clamp(3.6rem,8vw,6.5rem); }
+/* The single blue moment on the page. Sapphire is used here and
+   nowhere else at section scale, which is what keeps it a luxury
+   accent rather than a second brand colour. */
+.philosophy{ background:var(--sapphire); padding-block:clamp(3.6rem,8vw,6.5rem); }
 .philosophy .wrap{ max-width:calc(var(--maxw-narrow) + 8rem); }
 
 /* On the dark ground the quote inverts; everything else is .pull. */
@@ -1213,7 +1211,7 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   width:2.4rem; height:2.4rem;
   display:grid; place-items:center;
   border:1px solid var(--gold); border-radius:50%;
-  background:var(--papyrus-deep);
+  background:var(--anthracite);
   font-family:var(--font-display); font-weight:500; font-size:.85rem;
   color:var(--gold); font-variant-numeric:tabular-nums;
   z-index:1;
@@ -1221,7 +1219,7 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 .itin-day::after{                  /* the rail between numerals */
   content:""; position:absolute;
   left:1.2rem; top:calc(clamp(1.4rem,2.6vw,2rem) + 2.4rem);
-  bottom:0; width:1px; background:var(--hair-onPaper);
+  bottom:0; width:1px; background:var(--hair-blue);
 }
 .itin-day:last-child::after{ display:none; }
 .itin-when{ display:flex; align-items:baseline; gap:.9rem; flex-wrap:wrap; }
@@ -1232,13 +1230,13 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 }
 .itin-place{
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:.2em; color:var(--umber);
+  text-transform:uppercase; letter-spacing:.2em; color:var(--papyrus-dim);
 }
 .itin-h{
   font-family:var(--font-display); font-weight:600;
-  font-size:var(--fs-h3); line-height:1.24; color:var(--ink);
+  font-size:var(--fs-h3); line-height:1.24; color:var(--papyrus);
 }
-.itin-p{ margin-top:.5rem; color:var(--umber); max-width:56ch; text-wrap:pretty; }
+.itin-p{ margin-top:.5rem; color:var(--papyrus-dim); max-width:56ch; text-wrap:pretty; }
 
 .itin-foot{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
@@ -1246,7 +1244,7 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   margin-top:clamp(1.8rem,3.4vw,2.6rem);
 }
 .itin-note{
-  font-size:var(--fs-sm); color:var(--umber); font-style:italic;
+  font-size:var(--fs-sm); color:var(--papyrus-dim); font-style:italic;
   max-width:54ch; text-wrap:pretty;
 }
 
@@ -1265,30 +1263,30 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   display:grid; grid-template-columns:1fr; gap:1.1rem 2.4rem;
   margin-top:clamp(2.2rem,4.5vw,3.4rem);
   padding-top:clamp(1.4rem,2.6vw,2rem);
-  border-top:1px solid var(--hair-onPaper);
+  border-top:1px solid var(--hair-gold);
 }
 .creds[hidden]{ display:none; }
 .cred dt{
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--papyrus-dim);
 }
-.cred dd{ margin:.3rem 0 0; color:var(--ink); font-variant-numeric:tabular-nums; }
+.cred dd{ margin:.3rem 0 0; color:var(--papyrus); font-variant-numeric:tabular-nums; }
 @media (min-width:700px){ .creds{ grid-template-columns:repeat(3,1fr); } }
 
 /* ============================================================
    08 · FAQ
    ============================================================ */
 .faq{ margin-top:clamp(2rem,4vw,3rem); }
-.faq-item{ border-top:1px solid var(--hair-onPaper); }
-.faq-item:last-child{ border-bottom:1px solid var(--hair-onPaper); }
+.faq-item{ border-top:1px solid var(--hair-gold); }
+.faq-item:last-child{ border-bottom:1px solid var(--hair-gold); }
 .faq-q{
   display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
   width:100%; text-align:left; padding:1.25rem 0;
   font-family:var(--font-edit); font-weight:500; font-size:1.22rem; line-height:1.3;
-  color:var(--obsidian);
+  color:var(--papyrus);
   transition:color .3s var(--ease);
 }
-.faq-q:hover{ color:var(--sapphire); }
+.faq-q:hover{ color:var(--gold-bright); }
 .faq-sign{ width:11px; height:11px; position:relative; flex:none; color:var(--gold); transition:transform .4s var(--ease); }
 .faq-sign::before, .faq-sign::after{
   content:""; position:absolute; inset:50% 0 auto; height:1px; background:currentColor; transform:translateY(-50%);
@@ -1298,7 +1296,7 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 .faq-a{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s var(--ease); }
 .faq-item.is-open .faq-a{ grid-template-rows:1fr; }
 .faq-a-in{ overflow:hidden; }
-.faq-a p{ max-width:56ch; color:var(--ink); padding-bottom:1.4rem; }
+.faq-a p{ max-width:56ch; color:var(--papyrus); padding-bottom:1.4rem; }
 
 /* ============================================================
    09 · CONTACT
@@ -1350,7 +1348,7 @@ a.contact-row:hover .v, a.contact-row:focus-visible .v{ color:var(--gold-bright)
 }
 .field textarea{ resize:vertical; min-height:6.5rem; }
 .field input:focus, .field textarea:focus{ outline:0; border-color:var(--gold-bright); }
-.field input:user-invalid, .field textarea:user-invalid{ border-color:#C2705C; }
+.field input:user-invalid, .field textarea:user-invalid{ border-color:var(--oxide); }
 .cform-submit{ justify-self:start; margin-top:.4rem; }
 .cform-note{ font-size:var(--fs-sm); color:var(--papyrus-dim); opacity:.85; max-width:52ch; }
 
