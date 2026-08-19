@@ -18,13 +18,13 @@ const I18N = {
     "meta.description":"An Egypt-based travel house planning private journeys through the Nile Valley, the Western Desert and the Red Sea coast. Turkish, English and German.",
     "skip":"Skip to content",
 
-    "nav.journeys":"Journeys","nav.dest":"Destinations","nav.planning":"Planning",
+    "nav.journeys":"Tours","nav.experience":"Experience","nav.dest":"Destinations","nav.planning":"Planning",
     "nav.about":"About","nav.contact":"Contact","nav.cta":"Plan your trip",
     "nav.menu":"Open menu","nav.close":"Close menu","nav.home":"Yalla Egypt — home",
 
-    "hero.h":"Egypt,<br><em>unhurried.</em>",
-    "hero.sub":"An Egypt-based travel house. We plan private journeys through the Nile Valley, the Western Desert and the Red Sea coast — built around the time you actually have.",
-    "hero.cta1":"Explore journeys","hero.cta2":"Talk to us first",
+    "hero.h":"In the footsteps of the pharaohs —<br>a private door onto<br><em>five thousand years.</em>",
+    "hero.sub":"Away from the crowded tours. Egypt explored with a historian's rigour and a friend's warmth.",
+    "hero.cta1":"Get in touch","hero.cta2":"Explore the tours",
     "hero.pause":"Pause slideshow","hero.play":"Play slideshow",
     "hero.pauseFilm":"Pause film","hero.playFilm":"Play film",
     "hero.prev":"Previous image","hero.next":"Next image",
@@ -50,8 +50,8 @@ const I18N = {
     "s1.body":"Six sites in a day, a guide with a raised umbrella, a departure at seven whether you slept or not. We work the other way round. You tell us how many days you have and what you actually care about — and we build the route from there. Which morning you stand in Karnak before the light gets hard. Which afternoon you spend on the water. Which day you do nothing at all.",
     "s1.body2":"Everything is private. No fixed departures, no shared coaches, no shopping stops.",
 
-    "s2.eye":"Journeys",
-    "s2.lead":"Four routes we know well enough to argue about.",
+    "s2.eye":"Tours",
+    "s2.lead":"Four routes, four thousand years.",
     "s2.days":"days","s2.private":"Private","s2.price":"Price on request",
     "s2.more":"See the route","s2.less":"Close",
     "s2.route":"Route","s2.best":"When to go","s2.pace":"Pace",
@@ -62,14 +62,6 @@ const I18N = {
     "s3.lead":"The places we work in. Most journeys use two or three of them.",
     "s3.hint":"Drag or scroll sideways",
 
-    "s4.eye":"What you can hold us to",
-    "s4.lead":"Four things we put in writing, and mean.",
-    "ap":[
-      {h:"One person, start to finish",p:"The same name answers your first message and your question from the airport. Not a shared inbox."},
-      {h:"Written before it's booked",p:"You get the full route, what's included and what isn't, in writing — before anything is confirmed."},
-      {h:"We'll tell you what to skip",p:"Some sites aren't worth the drive in August. We'd rather say so than sell you the day."},
-      {h:"Turkish, English, German",p:"Planning, guiding and support in all three. Not translated brochures."}
-    ],
 
     "s5.eye":"From first message to landing",
     "s5.lead":"Five steps. You can stop after any of them.",
@@ -138,13 +130,13 @@ const I18N = {
     "meta.description":"Mısır merkezli bir seyahat atölyesi. Nil Vadisi, Batı Çölü ve Kızıldeniz kıyısında özel rotalar planlıyoruz. Türkçe, İngilizce, Almanca.",
     "skip":"İçeriğe geç",
 
-    "nav.journeys":"Rotalar","nav.dest":"Destinasyonlar","nav.planning":"Nasıl işliyor",
+    "nav.journeys":"Turlar","nav.experience":"Deneyim","nav.dest":"Destinasyonlar","nav.planning":"Nasıl işliyor",
     "nav.about":"Hakkımızda","nav.contact":"İletişim","nav.cta":"Rotanı kur",
     "nav.menu":"Menüyü aç","nav.close":"Menüyü kapat","nav.home":"Yalla Egypt — ana sayfa",
 
-    "hero.h":"Mısır,<br><em>acele etmeden.</em>",
-    "hero.sub":"Mısır merkezli bir seyahat atölyesi. Nil Vadisi, Batı Çölü ve Kızıldeniz kıyısında özel rotalar kuruyoruz — elinizdeki gerçek süreye göre.",
-    "hero.cta1":"Rotaları gör","hero.cta2":"Önce konuşalım",
+    "hero.h":"Firavunların izinde,<br>beş bin yıllık bir mirasa açılan<br><em>ayrıcalıklı bir kapı.</em>",
+    "hero.sub":"Kalabalık turların dışında, Mısır'ı bir tarihçi titizliğiyle, bir dostun sıcaklığıyla keşfedin.",
+    "hero.cta1":"Bize Ulaşın","hero.cta2":"Turları Keşfedin",
     "hero.pause":"Slaytları duraklat","hero.play":"Slaytları oynat",
     "hero.pauseFilm":"Filmi duraklat","hero.playFilm":"Filmi oynat",
     "hero.prev":"Önceki görsel","hero.next":"Sonraki görsel",
@@ -170,8 +162,8 @@ const I18N = {
     "s1.body":"Günde altı nokta, şemsiyesini kaldırmış bir rehber, uyusanız da uyumasanız da yedide kalkış. Biz tersinden çalışıyoruz. Kaç gününüz var ve gerçekten neyi merak ediyorsunuz — rotayı buradan kuruyoruz. Karnak'ta hangi sabah, ışık sertleşmeden. Hangi öğleden sonra suda. Hangi gün hiçbir şey yapmadan.",
     "s1.body2":"Her şey özel. Sabit kalkış yok, ortak otobüs yok, alışveriş molası yok.",
 
-    "s2.eye":"Rotalar",
-    "s2.lead":"Üzerine tartışacak kadar iyi bildiğimiz dört rota.",
+    "s2.eye":"Turlar",
+    "s2.lead":"Dört bin yıllık dört rota.",
     "s2.days":"gün","s2.private":"Özel","s2.price":"Fiyat talep üzerine",
     "s2.more":"Rotayı gör","s2.less":"Kapat",
     "s2.route":"Güzergâh","s2.best":"Ne zaman gidilir","s2.pace":"Tempo",
@@ -182,14 +174,6 @@ const I18N = {
     "s3.lead":"Çalıştığımız yerler. Çoğu rota bunlardan iki üçünü kullanıyor.",
     "s3.hint":"Yana sürükleyin veya kaydırın",
 
-    "s4.eye":"Bizi bağlayan şeyler",
-    "s4.lead":"Yazıya döktüğümüz ve arkasında durduğumuz dört şey.",
-    "ap":[
-      {h:"Baştan sona tek kişi",p:"İlk mesajınıza cevap veren isim, havaalanından sorduğunuz soruya da cevap verir. Ortak gelen kutusu değil."},
-      {h:"Onaydan önce yazılı",p:"Rotanın tamamı, neyin dahil olduğu ve olmadığı — hiçbir şey kesinleşmeden önce yazılı olarak elinizde."},
-      {h:"Neyi atlamanız gerektiğini söyleriz",p:"Bazı noktalar ağustosta o yolu hak etmiyor. Günü size satmaktansa bunu söylemeyi tercih ederiz."},
-      {h:"Türkçe, İngilizce, Almanca",p:"Planlama, rehberlik ve destek üçünde de. Çevrilmiş broşür değil."}
-    ],
 
     "s5.eye":"İlk mesajdan inişe kadar",
     "s5.lead":"Beş adım. Her birinin sonunda durabilirsiniz.",
@@ -258,13 +242,13 @@ const I18N = {
     "meta.description":"Ein Reisehaus mit Sitz in Ägypten. Wir planen private Reisen durch das Niltal, die Westliche Wüste und die Küste des Roten Meeres. Türkisch, Englisch, Deutsch.",
     "skip":"Zum Inhalt springen",
 
-    "nav.journeys":"Reisen","nav.dest":"Ziele","nav.planning":"Ablauf",
+    "nav.journeys":"Reisen","nav.experience":"Erlebnis","nav.dest":"Ziele","nav.planning":"Ablauf",
     "nav.about":"Über uns","nav.contact":"Kontakt","nav.cta":"Reise planen",
     "nav.menu":"Menü öffnen","nav.close":"Menü schließen","nav.home":"Yalla Egypt — Startseite",
 
-    "hero.h":"Ägypten,<br><em>ohne Eile.</em>",
-    "hero.sub":"Ein Reisehaus mit Sitz in Ägypten. Wir planen private Reisen durch das Niltal, die Westliche Wüste und die Küste des Roten Meeres — nach der Zeit, die Sie wirklich haben.",
-    "hero.cta1":"Reisen ansehen","hero.cta2":"Erst sprechen",
+    "hero.h":"Auf den Spuren der Pharaonen —<br>eine private Tür zu<br><em>fünf Jahrtausenden.</em>",
+    "hero.sub":"Abseits der überfüllten Touren. Ägypten mit der Sorgfalt eines Historikers und der Wärme eines Freundes.",
+    "hero.cta1":"Kontakt aufnehmen","hero.cta2":"Touren entdecken",
     "hero.pause":"Diashow pausieren","hero.play":"Diashow starten",
     "hero.pauseFilm":"Film pausieren","hero.playFilm":"Film abspielen",
     "hero.prev":"Vorheriges Bild","hero.next":"Nächstes Bild",
@@ -291,7 +275,7 @@ const I18N = {
     "s1.body2":"Alles privat. Keine festen Abfahrten, keine geteilten Busse, keine Einkaufsstopps.",
 
     "s2.eye":"Reisen",
-    "s2.lead":"Vier Routen, die wir gut genug kennen, um über sie zu streiten.",
+    "s2.lead":"Vier Routen, viertausend Jahre.",
     "s2.days":"Tage","s2.private":"Privat","s2.price":"Preis auf Anfrage",
     "s2.more":"Route ansehen","s2.less":"Schließen",
     "s2.route":"Verlauf","s2.best":"Beste Zeit","s2.pace":"Tempo",
@@ -302,14 +286,6 @@ const I18N = {
     "s3.lead":"Die Orte, an denen wir arbeiten. Die meisten Reisen nutzen zwei oder drei davon.",
     "s3.hint":"Seitlich ziehen oder scrollen",
 
-    "s4.eye":"Woran Sie uns messen können",
-    "s4.lead":"Vier Dinge, die wir schriftlich geben — und einhalten.",
-    "ap":[
-      {h:"Eine Person, von Anfang bis Ende",p:"Derselbe Name antwortet auf Ihre erste Nachricht und auf Ihre Frage vom Flughafen. Kein Sammelpostfach."},
-      {h:"Schriftlich vor der Buchung",p:"Die vollständige Route, Inklusiv- und Ausschlussleistungen — schriftlich, bevor irgendetwas bestätigt wird."},
-      {h:"Wir sagen Ihnen, was Sie auslassen sollten",p:"Manche Stätten lohnen die Fahrt im August nicht. Das sagen wir lieber, als Ihnen den Tag zu verkaufen."},
-      {h:"Türkisch, Englisch, Deutsch",p:"Planung, Führung und Betreuung in allen drei Sprachen. Keine übersetzten Broschüren."}
-    ],
 
     "s5.eye":"Von der ersten Nachricht bis zur Landung",
     "s5.lead":"Fünf Schritte. Nach jedem können Sie aufhören.",

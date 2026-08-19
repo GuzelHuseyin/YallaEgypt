@@ -121,15 +121,6 @@ function renderDestinations(){
     </figure>`).join("");
 }
 
-function renderPromises(){
-  $("#promise-grid").innerHTML = t("ap").map((a, i) => `
-    <div class="promise rv">
-      <span class="promise-num">0${i + 1}</span>
-      <h3>${esc(a.h)}</h3>
-      <p>${esc(a.p)}</p>
-    </div>`).join("");
-}
-
 function renderSteps(){
   $("#steps").innerHTML = t("steps").map((s, i) => `
     <li class="step rv">
@@ -518,7 +509,6 @@ function setLang(l){
 
   renderBand();
   renderJourneys();
-  renderPromises();
   renderSteps();
   renderItinerary();
   renderCredentials();

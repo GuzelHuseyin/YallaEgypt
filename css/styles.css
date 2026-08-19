@@ -51,7 +51,11 @@
   --font-edit:    "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --font-ui:      "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
 
-  --fs-hero:  clamp(2.35rem, 7.4vw, 5.5rem);
+  /* The headline is three lines, not two. The scale comes down
+     to match, so the hero still resolves inside one screen on a
+     short laptop instead of pushing the field record below the
+     fold. Only .hero-h consumes this token. */
+  --fs-hero:  clamp(2.05rem, 5.4vw, 4.05rem);
   --fs-h2:    clamp(1.7rem, 3.9vw, 3.15rem);
   --fs-h2-sm: clamp(1.3rem, 2.4vw, 1.95rem);
   --fs-h3:    clamp(1.18rem, 1.9vw, 1.55rem);
@@ -1041,36 +1045,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 
 /* ============================================================
-   04 · PROMISES
-   ============================================================ */
-.promises{ overflow:hidden; }
-.promises-bg{ position:absolute; inset:0; }
-.promises-bg img{ width:100%; height:100%; object-fit:cover; opacity:.22; }
-.promises-bg::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(to right, rgba(11,10,8,.95), rgba(11,10,8,.62));
-}
-.promises .wrap{ position:relative; z-index:2; }
-.promise-grid{
-  display:grid; grid-template-columns:1fr;
-  gap:clamp(1.6rem,3.5vw,3rem);
-  margin-top:clamp(2.2rem,4.5vw,3.4rem);
-}
-@media (min-width:760px){ .promise-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (min-width:1160px){ .promise-grid{ grid-template-columns:repeat(4,1fr); } }
-.promise{ border-top:1px solid var(--hair-gold); padding-top:1.1rem; }
-.promise-num{
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  letter-spacing:var(--ls-ui); color:var(--gold);
-}
-.promise h3{
-  font-family:var(--font-edit); font-weight:500; font-size:1.32rem; line-height:1.24;
-  color:var(--papyrus); margin:.6rem 0 .55rem;
-}
-.promise p{ color:var(--papyrus-dim); font-size:var(--fs-body); }
-
-/* ============================================================
-   05 · PLANNING — the blue section
+   PLANNING — the blue section
    ============================================================ */
 .steps{
   display:grid; grid-template-columns:1fr; gap:1px;
@@ -1393,7 +1368,7 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .nav-cta{ padding:.75rem 1.25rem; }
 }
 
-/* Tablet: the four-up promise grid and five-up steps already
+/* Tablet: the five-up steps already
    reflow above; here the hero stops being cinema-wide. */
 @media (max-width:860px){
   /* The throw keeps its choreography and loses only its reach --
