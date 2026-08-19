@@ -169,6 +169,12 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 .sec--dark .eyebrow, .sec--blue .eyebrow{ color:var(--gold); }
 .sec--dark .eyebrow::after, .sec--blue .eyebrow::after{ background:var(--hair-gold); }
+/* Section numbers. js/main.js writes data-n over the sections that
+   are actually present, so the sequence never shows a gap when one
+   is left out. Kept in CSS content because it is ornament, not
+   copy — nothing here needs translating. */
+.eyebrow[data-n]::before{ content:attr(data-n) " — "; }
+
 .eyebrow--plain{ margin-bottom:1.6rem; }
 .eyebrow--plain::after{ display:none; }
 
@@ -1136,40 +1142,6 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 /* ============================================================
    07 · ABOUT
    ============================================================ */
-.team{
-  display:grid; grid-template-columns:1fr;
-  gap:clamp(1.4rem,3vw,2.4rem);
-  margin-top:clamp(2.4rem,5vw,4rem);
-}
-@media (min-width:660px){ .team{ grid-template-columns:repeat(3,1fr); } }
-.member-media{
-  aspect-ratio:4/5; overflow:hidden;
-  background:var(--papyrus-deep);
-  border:1px solid var(--hair-onPaper);
-  display:grid; place-items:center;
-}
-.member-media img{ width:100%; height:100%; object-fit:cover; }
-.member-slot{
-  display:grid; place-items:center; gap:.9rem;
-  padding:1.5rem; text-align:center;
-  color:var(--umber);
-}
-.member-slot svg{ width:34px; height:34px; color:var(--hair-onPaper); }
-.member-slot span{
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui);
-}
-.member-name{
-  font-family:var(--font-edit); font-weight:500; font-size:1.25rem;
-  color:var(--obsidian); margin-top:1rem;
-}
-.member-role{
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--gold);
-  margin-top:.35rem;
-}
-.member-line{ font-size:var(--fs-sm); color:var(--umber); margin-top:.5rem; max-width:34ch; }
-
 .pull{
   max-width:44rem; margin-top:clamp(3rem,6vw,5rem);
   padding-top:clamp(1.6rem,3vw,2.4rem);
@@ -1185,6 +1157,97 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
   text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
 }
+
+/* ============================================================
+   PHILOSOPHY
+   A pull quote given a section of its own. No new type, colour or
+   spacing tokens — it is the existing .pull at display scale on
+   the sapphire ground, which is why it reads as part of the site
+   rather than as a landing-page insert.
+   ============================================================ */
+.philosophy{ padding-block:clamp(3.6rem,8vw,6.5rem); }
+.philosophy .wrap{ max-width:calc(var(--maxw-narrow) + 8rem); }
+
+/* On the dark ground the quote inverts; everything else is .pull. */
+.pull--hero{ margin-top:0; border-top:0; padding-top:0; max-width:none; }
+.pull--hero blockquote{
+  color:var(--papyrus);
+  font-size:clamp(1.55rem,3.8vw,2.9rem);
+  line-height:1.26;
+  text-wrap:balance;
+}
+.pull--hero figcaption{ color:var(--gold); margin-top:1.8rem; }
+
+.phil-body{
+  margin-top:clamp(1.8rem,3.6vw,2.8rem);
+  padding-top:clamp(1.4rem,2.6vw,2rem);
+  border-top:1px solid var(--hair-gold);
+  max-width:52ch; color:var(--papyrus-dim);
+}
+
+/* ============================================================
+   SAMPLE PROGRAMME
+   A timeline that stays a list: one row per day, the day label in
+   a fixed left column on wide screens and stacked on narrow ones.
+   The hairline down the left is the only ornament.
+   ============================================================ */
+.itin{ margin-top:clamp(2rem,4vw,3rem); }
+.itin-day{
+  display:grid; grid-template-columns:1fr; gap:.5rem 2.4rem;
+  padding:clamp(1.3rem,2.6vw,1.9rem) 0;
+  border-top:1px solid var(--hair-onPaper);
+}
+.itin-day:last-child{ border-bottom:1px solid var(--hair-onPaper); }
+.itin-when{ display:flex; align-items:baseline; gap:.9rem; flex-wrap:wrap; }
+.itin-d{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:600;
+  text-transform:uppercase; letter-spacing:var(--ls-ui);
+  color:var(--lapis); font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.itin-place{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:.2em; color:var(--umber);
+}
+.itin-h{
+  font-family:var(--font-display); font-weight:600;
+  font-size:var(--fs-h3); line-height:1.24; color:var(--ink);
+}
+.itin-p{ margin-top:.5rem; color:var(--umber); max-width:56ch; text-wrap:pretty; }
+
+.itin-foot{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:1.4rem clamp(1.6rem,4vw,3rem);
+  margin-top:clamp(1.8rem,3.4vw,2.6rem);
+}
+.itin-note{
+  font-size:var(--fs-sm); color:var(--umber); font-style:italic;
+  max-width:54ch; text-wrap:pretty;
+}
+
+@media (min-width:820px){
+  .itin-day{ grid-template-columns:11rem 1fr; }
+  .itin-when{ flex-direction:column; gap:.35rem; padding-top:.3rem; }
+}
+
+/* ============================================================
+   OPERATOR FACTS
+   Renders only what CONFIG actually holds, so this block is
+   usually absent before launch and appears without any layout
+   change once the licence and address are filled in.
+   ============================================================ */
+.creds{
+  display:grid; grid-template-columns:1fr; gap:1.1rem 2.4rem;
+  margin-top:clamp(2.2rem,4.5vw,3.4rem);
+  padding-top:clamp(1.4rem,2.6vw,2rem);
+  border-top:1px solid var(--hair-onPaper);
+}
+.creds[hidden]{ display:none; }
+.cred dt{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
+}
+.cred dd{ margin:.3rem 0 0; color:var(--ink); font-variant-numeric:tabular-nums; }
+@media (min-width:700px){ .creds{ grid-template-columns:repeat(3,1fr); } }
 
 /* ============================================================
    08 · FAQ

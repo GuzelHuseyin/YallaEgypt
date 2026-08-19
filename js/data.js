@@ -35,7 +35,24 @@ const CONFIG = {
 
   /* Behaviour flags */
   showPrices:          false, // true -> the price field replaces "price on request"
-  testimonialsAreDemo: true   // true -> the demo-content flag renders under reviews
+
+  /* Reviews are demo content until real ones exist. While this is
+     true the whole reviews section is left out of the page rather
+     than shown behind a "demo content" label: invented praise with
+     a disclaimer under it tells a visitor the company has no
+     customers, which is worse than saying nothing. Drop real
+     quotes into TESTIMONIALS and set this to false to bring the
+     section back. */
+  testimonialsAreDemo: true,
+
+  /* Pre-launch gap markers. The site has fields that only the
+     client can fill — licence number, phone, WhatsApp, office
+     address. With this true they render a visible TBC badge, which
+     is the pre-launch checklist. With it false they are simply
+     omitted, because a customer reading "Licence & registration
+     TBC" learns the company is unlicensed, not that the site is
+     unfinished. Ship with false. */
+  showGaps: false
 };
 
 /* ------------------------------------------------------------
@@ -253,6 +270,87 @@ const TOURS = [
 ];
 
 /* ------------------------------------------------------------
+   SAMPLE PROGRAMME
+   One route, written out hour by hour. Every other section on the
+   page describes how we work; this is the only one that shows it,
+   which is why it earns a section of its own rather than living
+   inside a journey card.
+
+   It deliberately documents the SEVEN-DAY NILE ROUTE that already
+   exists in TOURS ("nile-luxor-aswan"), so the two never drift:
+   tourId below is the link, and js/main.js reads the day count and
+   the route name from that entry rather than repeating them here.
+
+   The content is a real working itinerary, not a brochure. Note
+   what it admits: two mornings with nothing scheduled, one site
+   dropped in summer, and an afternoon that is explicitly free. A
+   sample programme that claims every hour is the thing customers
+   have learned to distrust.
+   ------------------------------------------------------------ */
+const ITINERARY = {
+  tourId: "nile-luxor-aswan",
+  t: {
+    en: {
+      days: [
+        { d:"Day 1", place:"Luxor",   h:"Land, and do nothing",
+          p:"Airport pickup and the east bank hotel. Nothing is scheduled. If you land early enough, the corniche at sunset is a ten-minute walk and costs nothing." },
+        { d:"Day 2", place:"Karnak",  h:"Karnak at opening, then off",
+          p:"At the gate for 06:00, an hour before the coaches. The hypostyle hall takes about ninety minutes properly. Back at the hotel by eleven, out of the heat. The afternoon is yours." },
+        { d:"Day 3", place:"West Bank", h:"The Valley, early",
+          p:"Valley of the Kings before the heat — three tombs included, and we will tell you which third one is worth the extra ticket that day. Hatshepsut's terraces after, then the river." },
+        { d:"Day 4", place:"Esna · Edfu", h:"On the water",
+          p:"Through the Esna lock in the morning. Edfu in the late afternoon, when the light comes in sideways along the pylon. Most of this day is deck and riverbank." },
+        { d:"Day 5", place:"Kom Ombo", h:"Two gods, one temple",
+          p:"An hour at Kom Ombo at dusk — it is small, it is symmetrical, and it does not need longer. The crocodile museum next door takes twenty minutes and is worth them." },
+        { d:"Day 6", place:"Aswan",   h:"Philae, and a felucca",
+          p:"Philae by motorboat in the morning. The afternoon is a felucca around Elephantine with nothing planned at the other end. This is the day people remember." },
+        { d:"Day 7", place:"Aswan",   h:"Abu Simbel, or a slow morning",
+          p:"Either the early run south to Abu Simbel — three hours each way, worth it once — or a slow breakfast and a late flight. We will have told you honestly which suits your group." }
+      ],
+      note:"This is one real route, written out. Yours will not be identical: dates, pace and what you care about change it, and it is rewritten in full before anything is confirmed."
+    },
+    tr: {
+      days: [
+        { d:"1. Gün", place:"Luksor",  h:"İn, ve hiçbir şey yapma",
+          p:"Havaalanı karşılaması ve doğu yakasındaki otel. Programda hiçbir şey yok. Erken indiyseniz gün batımında korniş on dakikalık yürüme mesafesinde ve bedava." },
+        { d:"2. Gün", place:"Karnak",  h:"Açılışta Karnak, sonra çıkış",
+          p:"06:00'da kapıda, otobüslerden bir saat önce. Sütunlu salon düzgün gezilirse doksan dakika. On birde otelde, sıcaktan uzakta. Öğleden sonrası size ait." },
+        { d:"3. Gün", place:"Batı Yakası", h:"Vadi, erkenden",
+          p:"Sıcak basmadan Krallar Vadisi — üç mezar dahil, o gün hangi üçüncü mezarın ekstra bileti hak ettiğini size söyleriz. Ardından Hatşepsut terasları, sonra nehir." },
+        { d:"4. Gün", place:"Esna · Edfu", h:"Suyun üstünde",
+          p:"Sabah Esna kilidinden geçiş. Edfu ikindi vakti, ışık pilonun yanından yatık geldiğinde. Bu günün çoğu güverte ve kıyı." },
+        { d:"5. Gün", place:"Kom Ombo", h:"İki tanrı, tek tapınak",
+          p:"Alacakaranlıkta Kom Ombo'da bir saat — küçük, simetrik, daha fazlasına ihtiyacı yok. Yanındaki timsah müzesi yirmi dakika sürer ve o yirmi dakikayı hak eder." },
+        { d:"6. Gün", place:"Asvan",   h:"Philae ve bir felucca",
+          p:"Sabah motorla Philae. Öğleden sonra Elephantine çevresinde felucca; varışta hiçbir plan yok. İnsanların hatırladığı gün bu." },
+        { d:"7. Gün", place:"Asvan",   h:"Abu Simbel ya da ağır bir sabah",
+          p:"Ya güneye erken kalkış Abu Simbel — gidiş dönüş üçer saat, bir kez değer — ya da geç bir kahvaltı ve geç uçuş. Grubunuza hangisinin uyduğunu size dürüstçe söylemiş oluruz." }
+      ],
+      note:"Bu, yazıya dökülmüş gerçek bir rota. Sizinki aynısı olmayacak: tarihler, tempo ve önemsedikleriniz onu değiştirir; hiçbir şey kesinleşmeden önce baştan yazılır."
+    },
+    de: {
+      days: [
+        { d:"Tag 1", place:"Luxor",    h:"Ankommen, sonst nichts",
+          p:"Abholung am Flughafen, Hotel am Ostufer. Nichts ist geplant. Wer früh genug landet: die Corniche bei Sonnenuntergang liegt zehn Minuten entfernt und kostet nichts." },
+        { d:"Tag 2", place:"Karnak",   h:"Karnak zur Öffnung, dann weg",
+          p:"Um 06:00 am Tor, eine Stunde vor den Bussen. Die Säulenhalle braucht in Ruhe etwa neunzig Minuten. Um elf zurück im Hotel, aus der Hitze. Der Nachmittag gehört Ihnen." },
+        { d:"Tag 3", place:"Westufer", h:"Das Tal, früh",
+          p:"Tal der Könige vor der Hitze — drei Gräber inklusive, und wir sagen Ihnen, welches dritte an diesem Tag das Extraticket wert ist. Danach die Terrassen der Hatschepsut, dann der Fluss." },
+        { d:"Tag 4", place:"Esna · Edfu", h:"Auf dem Wasser",
+          p:"Morgens durch die Schleuse von Esna. Edfu am späten Nachmittag, wenn das Licht seitlich am Pylon entlangfällt. Dieser Tag ist überwiegend Deck und Uferlandschaft." },
+        { d:"Tag 5", place:"Kom Ombo", h:"Zwei Götter, ein Tempel",
+          p:"Eine Stunde in Kom Ombo in der Dämmerung — klein, symmetrisch, mehr braucht es nicht. Das Krokodilmuseum nebenan dauert zwanzig Minuten und lohnt sie." },
+        { d:"Tag 6", place:"Assuan",   h:"Philae und eine Feluke",
+          p:"Vormittags mit dem Boot nach Philae. Nachmittags eine Feluke um Elephantine, ohne Programm am anderen Ende. Das ist der Tag, an den man sich erinnert." },
+        { d:"Tag 7", place:"Assuan",   h:"Abu Simbel — oder ein langsamer Morgen",
+          p:"Entweder die frühe Fahrt nach Süden zu Abu Simbel — drei Stunden pro Richtung, einmal im Leben wert — oder ein spätes Frühstück und ein später Flug. Was zu Ihrer Gruppe passt, haben wir Ihnen vorher ehrlich gesagt." }
+      ],
+      note:"Das ist eine echte Route, ausgeschrieben. Ihre wird nicht identisch sein: Daten, Tempo und Ihre Interessen verändern sie, und sie wird vollständig neu geschrieben, bevor irgendetwas bestätigt wird."
+    }
+  }
+};
+
+/* ------------------------------------------------------------
    DESTINATIONS
    enabled:false is filtered out before render — Siwa has no
    cached image yet (add destinations/siwa-{500,900}.webp first).
@@ -266,20 +364,6 @@ const DESTINATIONS = [
   { name:"Red Sea",    sub:"Marsa Alam · Hurghada", base:"assets/images/destinations/red-sea",    widths:[500,900], enabled:true,  alt:"A shoal of fish over a Red Sea reef" },
   { name:"Alexandria", sub:"Rhakotis",              base:"assets/images/destinations/alexandria", widths:[500,900], enabled:true,  alt:"The Mediterranean shore at Alexandria" },
   { name:"Siwa",       sub:"Ammonium",              base:"assets/images/destinations/siwa",       widths:[500,900], enabled:false, alt:"Mudbrick architecture at Siwa oasis" }
-];
-
-/* ------------------------------------------------------------
-   TEAM
-   Nobody here is real yet, and inventing staff would be worse
-   than an honest blank — but anonymous luxury does not exist,
-   so the section stays and shows its gaps. Fill name / role /
-   line / photo per person; an empty photo renders a marked
-   placeholder tile. Delete a row to show fewer people.
-   ------------------------------------------------------------ */
-const TEAM = [
-  { id:"founder", name:"", role:"", line:"", photo:"" },
-  { id:"guide",   name:"", role:"", line:"", photo:"" },
-  { id:"ops",     name:"", role:"", line:"", photo:"" }
 ];
 
 /* ------------------------------------------------------------

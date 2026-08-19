@@ -42,11 +42,17 @@ function contactChannels(){
 /* ============================================================
    RENDER
    ============================================================ */
+/* A missing value is a gap in the launch checklist, not a claim to
+   put in front of a customer. With CONFIG.showGaps off, an unfilled
+   field is omitted entirely — "Licence & registration TBC" reads as
+   an unlicensed company, which is the opposite of what the line is
+   there to do. Turn showGaps on while building to see the gaps. */
+const gapBadge = () => CONFIG.showGaps ? `<span class="tbc">${esc(t("tbc"))}</span>` : "";
+
 function renderBand(){
   const items = t("trust").map(x => `<li>${esc(x)}</li>`);
-  items.push(CONFIG.licence
-    ? `<li>${esc(t("trust.licence"))} ${esc(CONFIG.licence)}</li>`
-    : `<li>${esc(t("trust.licence"))}<span class="tbc">${esc(t("tbc"))}</span></li>`);
+  if(CONFIG.licence)     items.push(`<li>${esc(t("trust.licence"))} ${esc(CONFIG.licence)}</li>`);
+  else if(CONFIG.showGaps) items.push(`<li>${esc(t("trust.licence"))}${gapBadge()}</li>`);
   $("#band-list").innerHTML = items.join("");
 }
 
@@ -151,21 +157,72 @@ function renderTestimonials(){
   $("#demo-flag").hidden = !CONFIG.testimonialsAreDemo;
 }
 
-function renderTeam(){
-  const slotIcon = `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-      <circle cx="16" cy="11" r="6"/><path d="M4 30c0-6.6 5.4-11 12-11s12 4.4 12 11"/></svg>`;
-  $("#team").innerHTML = TEAM.map(m => {
-    const media = m.photo
-      ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async" width="640" height="800">`
-      : `<div class="member-slot">${slotIcon}<span>${esc(t("s7.slot"))}</span><span class="tbc">${esc(t("tbc"))}</span></div>`;
-    return `
-    <figure class="member rv">
-      <div class="member-media">${media}</div>
-      ${m.name ? `<figcaption class="member-name">${esc(m.name)}</figcaption>` : ""}
-      ${m.role ? `<p class="member-role">${esc(m.role)}</p>` : ""}
-      ${m.line ? `<p class="member-line">${esc(m.line)}</p>` : ""}
-    </figure>`;
-  }).join("");
+/* ============================================================
+   SAMPLE PROGRAMME
+   Reads ITINERARY (js/data.js), which is pinned by tourId to a real
+   entry in TOURS — so the day count and the route name come from
+   the tour rather than being repeated, and the two cannot drift
+   apart when one is edited.
+   ============================================================ */
+function renderItinerary(){
+  const host = $("#itin");
+  if(!host || typeof ITINERARY === "undefined") return;
+  const c = ITINERARY.t[LANG] || ITINERARY.t.en;
+
+  host.innerHTML = c.days.map(d => `
+    <li class="itin-day rv">
+      <div class="itin-when">
+        <span class="itin-d">${esc(d.d)}</span>
+        <span class="itin-place">${esc(d.place)}</span>
+      </div>
+      <div class="itin-body">
+        <h3 class="itin-h">${esc(d.h)}</h3>
+        <p class="itin-p">${esc(d.p)}</p>
+      </div>
+    </li>`).join("");
+
+  $("#itin-note").textContent = c.note;
+
+  // The CTA names the route, so the contact form arrives pre-filled
+  // with the same subject a journey card would send.
+  const tour = typeof TOURS !== "undefined" && TOURS.find(x => x.id === ITINERARY.tourId);
+  if(tour){
+    const name = (tour.t[LANG] || tour.t.en).n;
+    $("#itin-cta")?.setAttribute("data-journey", name);
+  }
+}
+
+/* ============================================================
+   OPERATOR FACTS
+   Only ever renders values CONFIG actually has. An empty licence
+   or address prints nothing rather than a placeholder — see
+   gapBadge above for why.
+   ============================================================ */
+function renderCredentials(){
+  const host = $("#creds");
+  if(!host) return;
+  const rows = [];
+  if(CONFIG.legalName) rows.push([t("foot.reg"),    CONFIG.legalName]);
+  if(CONFIG.licence)   rows.push([t("trust.licence"), CONFIG.licence]);
+  if(CONFIG.address)   rows.push([t("foot.office"),  CONFIG.address]);
+  host.innerHTML = rows.map(([k, v]) =>
+    `<div class="cred"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+  host.hidden = rows.length === 0;
+}
+
+/* ============================================================
+   SECTION NUMBERS
+   The numbers are assigned here, over the sections that are
+   actually in the page, rather than baked into the translated
+   eyebrow strings. Hiding a section (reviews, while they are demo
+   content) therefore renumbers the rest instead of leaving a hole
+   in the sequence, and adding one never means editing three
+   language files.
+   ============================================================ */
+function numberSections(){
+  $$("[data-secnum]")
+    .filter(el => !el.closest("section")?.hidden)
+    .forEach((el, i) => { el.dataset.n = String(i + 1).padStart(2, "0"); });
 }
 
 function renderFaq(){
@@ -173,7 +230,7 @@ function renderFaq(){
     <div class="faq-item">
       <h3>
         <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-${i}">
-          <span>${esc(f.q)}${f.tbc ? `<span class="tbc">${esc(t("tbc"))}</span>` : ""}</span>
+          <span>${esc(f.q)}${f.tbc ? gapBadge() : ""}</span>
           <i class="faq-sign" aria-hidden="true"></i>
         </button>
       </h3>
@@ -185,8 +242,8 @@ function renderFaq(){
 }
 
 function renderContact(){
-  $("#direct-list").innerHTML = contactChannels().map(c => {
-    const badge = c.tbc ? `<span class="tbc">${esc(t("tbc"))}</span>` : "";
+  $("#direct-list").innerHTML = contactChannels().filter(c => !c.tbc || CONFIG.showGaps).map(c => {
+    const badge = c.tbc ? gapBadge() : "";
     const body = `<span class="k">${esc(c.label)}</span><span class="v">${esc(c.text)}${badge}</span>`;
     if(!c.href) return `<li><div class="contact-row">${body}</div></li>`;
     const ext = c.ext ? ` target="_blank" rel="noopener noreferrer"` : "";
@@ -195,14 +252,12 @@ function renderContact(){
 }
 
 function renderFooter(){
-  const tbc = `<span class="tbc">${esc(t("tbc"))}</span>`;
+  const tbc = gapBadge();
   const rows = [`<li><a href="mailto:${CONFIG.email}">${esc(CONFIG.email)}</a></li>`];
-  rows.push(CONFIG.phone
-    ? `<li><a href="tel:${CONFIG.phone.replace(/[^\d+]/g, "")}">${esc(CONFIG.phone)}</a></li>`
-    : `<li>${esc(t("contact.label.phone"))}${tbc}</li>`);
-  rows.push(CONFIG.address
-    ? `<li>${esc(CONFIG.address)}</li>`
-    : `<li>${esc(t("foot.office"))}${tbc}</li>`);
+  if(CONFIG.phone)          rows.push(`<li><a href="tel:${CONFIG.phone.replace(/[^\d+]/g, "")}">${esc(CONFIG.phone)}</a></li>`);
+  else if(CONFIG.showGaps)  rows.push(`<li>${esc(t("contact.label.phone"))}${tbc}</li>`);
+  if(CONFIG.address)        rows.push(`<li>${esc(CONFIG.address)}</li>`);
+  else if(CONFIG.showGaps)  rows.push(`<li>${esc(t("foot.office"))}${tbc}</li>`);
   $("#foot-contact").innerHTML = rows.join("");
 
   const social = [["Instagram", CONFIG.instagram], ["YouTube", CONFIG.youtube], ["TripAdvisor", CONFIG.tripadvisor]]
@@ -210,10 +265,14 @@ function renderFooter(){
     .map(([name, url]) => `<li><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${name}</a></li>`);
   $("#foot-social").innerHTML = social.length
     ? social.join("")
-    : ["Instagram", "YouTube", "TripAdvisor"].map(n => `<li>${n}${tbc}</li>`).join("");
+    : CONFIG.showGaps
+      ? ["Instagram", "YouTube", "TripAdvisor"].map(n => `<li>${n}${tbc}</li>`).join("")
+      : "";
+  // A "Follow" heading over nothing is worse than no column.
+  $("#foot-social").closest(".foot-col").hidden = !social.length && !CONFIG.showGaps;
 
   const reg = [CONFIG.legalName, CONFIG.licence].filter(Boolean).join(" · ");
-  $("#foot-reg").innerHTML = reg ? esc(reg) : `${esc(t("foot.reg"))}${tbc}`;
+  $("#foot-reg").innerHTML = reg ? esc(reg) : (CONFIG.showGaps ? `${esc(t("foot.reg"))}${tbc}` : "");
 }
 
 /* ============================================================
@@ -461,7 +520,8 @@ function setLang(l){
   renderJourneys();
   renderPromises();
   renderSteps();
-  renderTeam();
+  renderItinerary();
+  renderCredentials();
   renderFaq();
   renderContact();
   renderFooter();
@@ -478,7 +538,12 @@ function setLang(l){
    SCROLL / NAV
    ============================================================ */
 function observeReveals(){
-  if(RM || !("IntersectionObserver" in window)){ $(".rv").forEach(e => e.classList.add("in")); return; }
+  // $$ , not $ : this reveals every deferred element at once when
+  // there is nothing to defer to. With $ (querySelector) it threw a
+  // TypeError, which under reduced motion aborted the rest of
+  // setLang — and on a browser without IntersectionObserver left
+  // every .rv element stuck at opacity 0.
+  if(RM || !("IntersectionObserver" in window)){ $$(".rv").forEach(e => e.classList.add("in")); return; }
   const io = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => {
       if(!e.isIntersecting) return;
@@ -631,13 +696,26 @@ function initWhatsApp(){
    ============================================================ */
 buildHero();
 renderDestinations();
-renderTestimonials();
+
+/* Demo reviews are not shown at all. Invented praise behind a
+   "demo content" label tells a visitor the company has no
+   customers — worse than an absent section. Drop real quotes into
+   TESTIMONIALS and set CONFIG.testimonialsAreDemo = false. */
+const reviewsSection = $("#reviews");
+if(CONFIG.testimonialsAreDemo){
+  if(reviewsSection) reviewsSection.hidden = true;
+} else {
+  renderTestimonials();
+  $("#demo-flag")?.remove();
+}
+
 setLang(initialLang());
+numberSections();
 initHeroVideo();
 initGround();
 initMenu();
 initStrip();
-initMarquee();
+if(!CONFIG.testimonialsAreDemo) initMarquee();
 initDisclosures();
 initForm();
 initWhatsApp();

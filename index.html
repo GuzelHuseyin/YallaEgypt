@@ -63,7 +63,16 @@
     { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"Cairo & Giza",
       "description":"Three pyramid fields in chronological order, plus the Grand Egyptian Museum and two mornings in the old city." } },
     { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"The Nile, Luxor to Aswan",
-      "description":"Seven days on the river, taking in Karnak, the Valley of the Kings, Esna, Edfu and Kom Ombo." } },
+      "description":"Seven days on the river, taking in Karnak, the Valley of the Kings, Esna, Edfu and Kom Ombo.",
+      "itinerary": { "@type":"ItemList", "numberOfItems": 7, "itemListElement": [
+        { "@type":"ListItem", "position":1, "item":{ "@type":"City",         "name":"Luxor" } },
+        { "@type":"ListItem", "position":2, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Karnak" } },
+        { "@type":"ListItem", "position":3, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Valley of the Kings" } },
+        { "@type":"ListItem", "position":4, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Edfu" } },
+        { "@type":"ListItem", "position":5, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Kom Ombo" } },
+        { "@type":"ListItem", "position":6, "item":{ "@type":"City",         "name":"Aswan" } },
+        { "@type":"ListItem", "position":7, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Abu Simbel" } }
+      ] } } },
     { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"Abu Simbel & the south",
       "description":"A private run from Aswan to the Sudanese border and back, timed to reach the Abu Simbel facade before the crowds." } },
     { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"Into the Western Desert",
@@ -179,8 +188,8 @@
          these two fingers, and a second pass would composite the
          gold twice and brighten just this pair. -->
     <g id="ye-hand-fore">
-      <rect x="110" y="66"  width="23"  height="109" rx="11.5" transform="rotate(-12 121 175)"/>
-      <rect x="137" y="52"  width="24"  height="123" rx="12"   transform="rotate(-3 149 175)"/>
+      <rect x="110" y="66"  width="23"  height="147" rx="11.5" transform="rotate(-12 121 175)"/>
+      <rect x="137" y="52"  width="24"  height="161" rx="12"   transform="rotate(-3 149 175)"/>
     </g>
 
     <symbol id="ye-mark" viewBox="0 0 400 400">
@@ -380,10 +389,32 @@
   </div>
 </section>
 
+<!-- ===================== PHILOSOPHY ===================== -->
+<!-- Deliberately unnumbered. The numbered sections are the argument
+     in sequence; this is the premise underneath all of them, and it
+     is the only place on the page that says why the company exists.
+     It therefore comes before anything the company sells. -->
+<section class="sec sec--blue philosophy" id="philosophy" data-ground="dark" aria-labelledby="phil-h">
+  <div class="wrap">
+    <h2 id="phil-h" class="sr-only" data-i18n="phil.eye">Our philosophy</h2>
+    <p class="eyebrow"><span data-i18n="phil.eye">Our philosophy</span></p>
+
+    <figure class="pull pull--hero rv">
+      <blockquote data-i18n="phil.quote">Really seeing a place means knowing the stories that belong to it. We don't take you to the pyramids — we take you into the mind of the civilisation that built them.</blockquote>
+      <figcaption>
+        <span class="rule-gold" aria-hidden="true"></span>
+        <span data-i18n="phil.who">Founder, Yalla Egypt</span>
+      </figcaption>
+    </figure>
+
+    <p class="phil-body rv" data-i18n="phil.body">Egypt is not short of monuments, and it is not short of people willing to walk you past them.</p>
+  </div>
+</section>
+
 <!-- ===================== 01 · HOW WE WORK ===================== -->
 <section class="sec sec--paper" data-ground="light" aria-labelledby="s1-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s1.eye">01 — How we work</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s1.eye">01 — How we work</span></p>
     <div class="split">
       <h2 id="s1-h" class="lead rv" data-i18n="s1.lead">Most people see Egypt through a coach window.</h2>
       <div class="split-body">
@@ -397,16 +428,32 @@
 <!-- ===================== 02 · JOURNEYS ===================== -->
 <section class="sec sec--paper sec--tight-top" id="journeys" data-ground="light" aria-labelledby="s2-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s2.eye">02 — Journeys</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s2.eye">02 — Journeys</span></p>
     <h2 id="s2-h" class="lead rv" data-i18n="s2.lead">Four routes we know well enough to argue about.</h2>
     <div id="journeys-list" class="journeys"></div>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE PROGRAMME ===================== -->
+<!-- The only section that shows the work rather than describing it.
+     Rendered from ITINERARY in js/data.js, which is pinned by tourId
+     to the seven-day Nile route in TOURS so the two cannot drift. -->
+<section class="sec sec--paper-deep itin-sec" id="itinerary" data-ground="light" aria-labelledby="s3b-h">
+  <div class="wrap">
+    <p class="eyebrow" data-secnum><span data-i18n="s3b.eye">A week on the Nile</span></p>
+    <h2 id="s3b-h" class="lead rv" data-i18n="s3b.lead">One route, written out hour by hour.</h2>
+    <ol class="itin" id="itin"></ol>
+    <div class="itin-foot">
+      <p class="itin-note rv" id="itin-note"></p>
+      <a class="btn btn--line" href="#contact-form" id="itin-cta" data-i18n="s3b.cta">Ask about this route</a>
+    </div>
   </div>
 </section>
 
 <!-- ===================== 03 · DESTINATIONS ===================== -->
 <section class="sec sec--dark sec--strip" id="destinations" data-ground="dark" aria-labelledby="s3-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s3.eye">03 — Where we work</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s3.eye">03 — Where we work</span></p>
     <h2 id="s3-h" class="lead lead--sm rv" data-i18n="s3.lead">The places we work in. Most journeys use two or three of them.</h2>
   </div>
   <div class="strip" id="strip"></div>
@@ -422,7 +469,7 @@
     <img src="assets/images/misc/approach-bg-1800.webp" alt="" loading="lazy" decoding="async" width="1800" height="1000">
   </div>
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s4.eye">04 — What you can hold us to</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s4.eye">04 — What you can hold us to</span></p>
     <h2 id="s4-h" class="lead rv" data-i18n="s4.lead">Four things we put in writing, and mean.</h2>
     <div class="promise-grid" id="promise-grid"></div>
   </div>
@@ -431,7 +478,7 @@
 <!-- ===================== 05 · PLANNING ===================== -->
 <section class="sec sec--blue" id="planning" data-ground="dark" aria-labelledby="s5-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s5.eye">05 — From first message to landing</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s5.eye">05 — From first message to landing</span></p>
     <h2 id="s5-h" class="lead rv" data-i18n="s5.lead">Five steps. You can stop after any of them.</h2>
     <ol class="steps" id="steps"></ol>
   </div>
@@ -440,7 +487,7 @@
 <!-- ===================== 06 · TESTIMONIALS ===================== -->
 <section class="sec sec--paper-deep sec--short" id="reviews" data-ground="light" aria-labelledby="s6-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s6.eye">06 — In their words</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s6.eye">06 — In their words</span></p>
     <h2 id="s6-h" class="lead lead--sm rv" data-i18n="s6.lead">What people said afterwards.</h2>
   </div>
   <div id="mq-rows"></div>
@@ -456,33 +503,26 @@
 <!-- ===================== 07 · ABOUT ===================== -->
 <section class="sec sec--paper" id="about" data-ground="light" aria-labelledby="s7-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s7.eye">07 — Who you'll be dealing with</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s7.eye">07 — Who you'll be dealing with</span></p>
     <div class="split">
       <h2 id="s7-h" class="lead rv" data-i18n="s7.lead">Luxury isn't bought from a company. It's bought from people.</h2>
       <div class="split-body">
-        <p class="rv" data-i18n="s7.body">Every route on this site is planned and run by the same small group — the people below plan it, meet you at arrivals and answer the phone at eleven at night. Their names, faces and credentials belong here, and they go in before launch.</p>
+        <p class="rv" data-i18n="s7.body">Every route on this site is planned and run by the same small group.</p>
       </div>
     </div>
 
-    <div class="team" id="team"></div>
-
-    <!-- The founding quote from the original brand deck. It only
-         becomes evidence once it carries a name — hence the badge. -->
-    <figure class="pull rv">
-      <blockquote data-i18n="s7.quote">Really seeing a place means knowing the stories that belong to it. We don't take you to the pyramids — we take you into the mind of the civilisation that built them.</blockquote>
-      <figcaption>
-        <span class="rule-gold" aria-hidden="true"></span>
-        <span data-i18n="s7.quoteWho">Founder, Yalla Egypt</span>
-        <span class="tbc" data-i18n="tbc">TBC</span>
-      </figcaption>
-    </figure>
+    <!-- Operator facts. Rendered from CONFIG only when CONFIG has
+         them; an empty licence field prints nothing at all rather
+         than "Licence: TBC", which reads to a customer as a company
+         without a licence. See js/main.js renderCredentials. -->
+    <dl class="creds" id="creds"></dl>
   </div>
 </section>
 
 <!-- ===================== 08 · FAQ ===================== -->
 <section class="sec sec--paper-deep sec--narrow" id="faq" data-ground="light" aria-labelledby="s8-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s8.eye">08 — Before you ask</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s8.eye">08 — Before you ask</span></p>
     <h2 id="s8-h" class="lead rv" data-i18n="s8.lead">The six questions that arrive in almost every first message.</h2>
     <div class="faq" id="faq-list"></div>
   </div>
@@ -491,7 +531,7 @@
 <!-- ===================== 09 · CONTACT ===================== -->
 <section class="sec sec--dark contact" id="contact" data-ground="dark" aria-labelledby="s9-h">
   <div class="wrap">
-    <p class="eyebrow"><span data-i18n="s9.eye">09 — Next step</span></p>
+    <p class="eyebrow" data-secnum><span data-i18n="s9.eye">09 — Next step</span></p>
     <h2 id="s9-h" class="lead rv" data-i18n="s9.q">Tell us when you're free. We'll take it from there.</h2>
 
     <div class="contact-grid">
