@@ -178,18 +178,22 @@ const OPENING = {
 
 /* ------------------------------------------------------------
    HERO STILLS — the cinematic sequence.
-   Coordinates are real. The image/location pairing should be
-   re-verified once owned photography replaces these stand-ins.
+   Coordinates are real, and every entry now matches the photograph
+   actually filed under it. The order is a route, not a gallery:
+   the plateau, then the temple, then the river, then the city,
+   then the coast — arrival through to the slow end of a trip.
+
+   The first three are owned photography. The last two are the
+   only placeholders that survived the cut, regraded to sit in the
+   same warm, low-saturation family as the owned frames; replace
+   them first when the shoot delivers.
    ------------------------------------------------------------ */
 const HERO = [
-  { base:"assets/images/hero/giza-1",   widths:[1200,2000], name:"Giza",    geo:"29.9753°N 31.1376°E", old:"Rostau",          alt:"A lone figure walking below the Great Sphinx at Giza" },
-  { base:"assets/images/hero/luxor-1",  widths:[1200,2000], name:"Luxor",   geo:"25.7188°N 32.6573°E", old:"Waset",           alt:"Colonnade of a temple at Luxor seen from below" },
-  { base:"assets/images/hero/aswan-1",  widths:[1200,2000], name:"Aswan",   geo:"24.0889°N 32.8998°E", old:"Swenett",         alt:"A felucca under sail on the Nile at Aswan" },
-  { base:"assets/images/hero/redsea-1", widths:[1200,2000], name:"Red Sea", geo:"27.9158°N 34.3300°E", old:"Sinai coast",     alt:"Bare mountains meeting the Red Sea" },
-  { base:"assets/images/hero/thebes-1", widths:[1200,2000], name:"Thebes",  geo:"25.7380°N 32.6067°E", old:"West Bank",       alt:"Terraced limestone temple on the Theban west bank" },
-  { base:"assets/images/hero/giza-2",   widths:[1200,2000], name:"Giza",    geo:"29.9792°N 31.1342°E", old:"Plateau",         alt:"Camels crossing the sand below the pyramids" },
-  { base:"assets/images/hero/cairo-1",  widths:[1200,2000], name:"Cairo",   geo:"30.0444°N 31.2357°E", old:"Al-Qahira",       alt:"A sailboat on the Nile with Cairo behind it" },
-  { base:"assets/images/hero/cairo-2",  widths:[1200,2000], name:"Cairo",   geo:"30.0477°N 31.2622°E", old:"Khan el-Khalili", alt:"Narrow lane between market stalls in old Cairo" }
+  { base:"assets/images/hero/giza-1",   widths:[1200,2000], name:"Giza",    geo:"29.9753°N 31.1376°E", old:"Rostau",          alt:"A camel train crossing the sand below the pyramids at Giza" },
+  { base:"assets/images/hero/luxor-1",  widths:[1200,2000], name:"Luxor",   geo:"25.7188°N 32.6573°E", old:"Waset",           alt:"Colossal seated statues along a temple wall at Karnak" },
+  { base:"assets/images/hero/aswan-1",  widths:[1200,2000], name:"Aswan",   geo:"24.0889°N 32.8998°E", old:"Swenett",         alt:"A felucca under sail on the Nile at dusk" },
+  { base:"assets/images/hero/cairo-2",  widths:[1200,2000], name:"Cairo",   geo:"30.0477°N 31.2622°E", old:"Khan el-Khalili", alt:"Narrow lane between market stalls in old Cairo" },
+  { base:"assets/images/hero/redsea-1", widths:[1200,2000], name:"Red Sea", geo:"27.9158°N 34.3300°E", old:"Sinai coast",     alt:"Bare mountains meeting the Red Sea" }
 ];
 
 /* ------------------------------------------------------------
@@ -219,7 +223,7 @@ const TOURS = [
     } },
 
   { id:"luksor-karnak",
-    img:"assets/images/destinations/luxor-900.webp", iw:900, ih:1247,
+    img:"assets/images/tours/luxor-karnak-1100.webp", iw:825, ih:1100,
     t:{
       tr:{ meta:"4 Gün · Luksor", n:"Luksor & Karnak",
            d:"Firavunların açık hava başkentinde; Karnak'ın dev sütunları, Kral Vadisi'nin gizli mezarları." },
@@ -325,13 +329,26 @@ const ITINERARY = {
    DESTINATIONS
    enabled:false is filtered out before render — Siwa has no
    cached image yet (add destinations/siwa-{500,900}.webp first).
+
+   Giza and Luxor are owned photography. The rest are regraded
+   placeholders, and two of them are wrong on the facts rather
+   than merely generic:
+
+     * Abu Simbel shows the colossus at Luxor Temple, not Abu
+       Simbel. The alt text describes only what is in frame, so
+       nothing here claims otherwise, but this is the one card
+       that a real photograph has to replace before launch.
+     * Alexandria is a shoreline that could be almost anywhere.
+
+   Both are still enabled: they are places the company sells, and
+   an empty card would say less than a weak one.
    ------------------------------------------------------------ */
 const DESTINATIONS = [
-  { name:"Giza",       sub:"Rostau",                base:"assets/images/destinations/giza",       widths:[500,900], enabled:true,  alt:"The Great Pyramid rising above the plateau" },
-  { name:"Luxor",      sub:"Waset",                 base:"assets/images/destinations/luxor",      widths:[500,900], enabled:true,  alt:"Visitors dwarfed by temple columns at Luxor" },
-  { name:"Aswan",      sub:"Swenett",               base:"assets/images/destinations/aswan",      widths:[500,900], enabled:true,  alt:"A boat under sail on the Nile near Aswan" },
-  { name:"Cairo",      sub:"Al-Qahira",             base:"assets/images/destinations/cairo",      widths:[500,900], enabled:true,  alt:"A doorway in old Cairo" },
-  { name:"Abu Simbel", sub:"Meha & Ibshek",         base:"assets/images/destinations/abu-simbel", widths:[500,900], enabled:true,  alt:"Colossal seated statue carved from rock" },
+  { name:"Giza",       sub:"Rostau",                base:"assets/images/destinations/giza",       widths:[500,900], enabled:true,  alt:"The pyramid of Khafre with the Sphinx below it" },
+  { name:"Luxor",      sub:"Waset",                 base:"assets/images/destinations/luxor",      widths:[500,900], enabled:true,  alt:"A visitor dwarfed by the painted columns of the hypostyle hall at Karnak" },
+  { name:"Aswan",      sub:"Swenett",               base:"assets/images/destinations/aswan",      widths:[500,900], enabled:true,  alt:"A felucca under sail past the dunes at Aswan" },
+  { name:"Cairo",      sub:"Al-Qahira",             base:"assets/images/destinations/cairo",      widths:[500,900], enabled:true,  alt:"Minarets and domes above the rooftops of old Cairo" },
+  { name:"Abu Simbel", sub:"Meha & Ibshek",         base:"assets/images/destinations/abu-simbel", widths:[500,900], enabled:true,  alt:"A colossal seated statue of Ramesses II against a temple pylon" },
   { name:"Red Sea",    sub:"Marsa Alam · Hurghada", base:"assets/images/destinations/red-sea",    widths:[500,900], enabled:true,  alt:"A shoal of fish over a Red Sea reef" },
   { name:"Alexandria", sub:"Rhakotis",              base:"assets/images/destinations/alexandria", widths:[500,900], enabled:true,  alt:"The Mediterranean shore at Alexandria" },
   { name:"Siwa",       sub:"Ammonium",              base:"assets/images/destinations/siwa",       widths:[500,900], enabled:false, alt:"Mudbrick architecture at Siwa oasis" }

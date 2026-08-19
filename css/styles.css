@@ -889,6 +889,25 @@ ul,ol{ margin:0; padding:0; list-style:none; }
    the page exactly as the light ones did. */
 .sec--paper{ background:var(--obsidian); color:var(--papyrus-dim); }
 .sec--paper-deep{ background:var(--anthracite); color:var(--papyrus-dim); }
+/* A photograph set far enough back to read as ground rather than as
+   an image, masked off at both edges so it never announces where it
+   starts. Section 04 is the only user: five steps of process is the
+   one stretch of the page with nothing to look at, and the frame
+   behind it — a glass on a ledge above the plateau — is the thing
+   the process is for. Keep the opacity low enough that body copy
+   never has to fight it. */
+.sec--plate{ isolation:isolate; }
+.sec--plate::before{
+  content:"";
+  position:absolute; inset:0; z-index:0;
+  background:url("../assets/images/misc/approach-bg-1800.webp") center / cover no-repeat;
+  opacity:.15;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 24%, #000 62%, transparent);
+          mask-image:linear-gradient(to bottom, transparent, #000 24%, #000 62%, transparent);
+  pointer-events:none;
+}
+.sec--plate > .wrap{ position:relative; z-index:1; }
+
 .sec--tight-top{ padding-top:0; }
 .sec--short{ padding-block:clamp(3rem,6vw,5rem); }
 .sec--strip{ padding-bottom:clamp(3rem,6vw,5rem); }
@@ -1480,6 +1499,7 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .sec, .foot{ background:#fff !important; color:#000 !important; padding-block:1.5rem; }
   .hero{ min-height:auto; }
   .hero-stage, .hero-video-slot, .hero-veil, .hero-dim, .hero-gesture, .hero-bloom{ display:none !important; }
+  .sec--plate::before{ display:none !important; }
   .hero-in{ padding-block:0; }
   .hero-h, .hero-sub, .hero-wordmark{ color:#000 !important; text-shadow:none !important; }
   .hero-mark{ color:#000 !important; filter:none !important; }

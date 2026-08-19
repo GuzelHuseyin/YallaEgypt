@@ -3,33 +3,71 @@ Image assets
 
 PROVENANCE
 ----------
-Everything currently in hero/, destinations/, tours/ and misc/ is stock
-photography from Unsplash, pre-cropped server-side to the exact
-dimensions this site uses and cached locally as WebP, so the live site
-never depends on an external image host at request time.
+The set is now mixed. Owned photography carries the page; the stock
+that survived is there because no owned frame covered that slot yet.
 
-These are placeholders. The design audit is blunt about this being the
-single highest-return item on the list: a luxury travel company is sold
-on photographs, and the strongest proof it has is pictures that show it
-was actually there. Owned photography beats stock by a wide margin.
+OWNED (from design/, supplied 19 Aug 2026)
+  hero/giza-1              camel train below the plateau  -- the lead frame
+  hero/luxor-1             the colossi along the Karnak wall
+  hero/aswan-1             a felucca on the Nile at dusk
+  destinations/giza        Khafre with the Sphinx below it
+  destinations/luxor       a figure in the hypostyle hall at Karnak
+  tours/cairo-giza         breakfast on a terrace facing the plateau
+  tours/luxor-karnak       painted capitals seen from below
+  misc/approach-bg         a glass on a ledge above the plateau
+
+STOCK, REGRADED (Unsplash, cached locally as WebP)
+  hero/cairo-2             Khan el-Khalili
+  hero/redsea-1            the Sinai coast
+  destinations/cairo       minarets above old Cairo
+  destinations/aswan       a felucca among the granite islands
+  destinations/abu-simbel  see the warning below
+  destinations/red-sea     a reef
+  destinations/alexandria  a shoreline
+  tours/nile-luxor-aswan   a felucca among the dunes
+  tours/abu-simbel-south   see the warning below
+
+Everything retained was regraded toward the owned photographs --
+saturation pulled back, the sand pushed warm, the black point lifted.
+The placeholder set arrived punchy and HDR-ish, which is the one look
+the design audit explicitly rules out, and it read as a different
+shoot next to the owned frames. The grade is in the build script, not
+baked into a filter: the files on disk are the graded ones.
+
+TWO FILES ARE STILL WRONG ON THE FACTS
+  destinations/abu-simbel and tours/abu-simbel-south are both the
+  colossus at LUXOR TEMPLE, not Abu Simbel. The alt text describes
+  only what is visible so nothing on the page claims otherwise, but
+  this is the first photograph to commission. Before this pass the
+  Abu Simbel tour card carried a photograph of Cairo's mosques, and
+  hero/thebes-1 -- labelled Thebes -- was also Cairo; that frame has
+  been moved to destinations/cairo, where it belongs.
+
+  destinations/alexandria is a shoreline that could be anywhere. It
+  is kept because Alexandria is a place the company sells, not
+  because the picture earns its place.
 
 
 REPLACING THEM
 --------------
 Keep the same filenames and the same width suffixes and nothing else
-has to change — the srcset in js/main.js is built from the "base" path
-and "widths" array in js/data.js.
+has to change -- the srcset in js/main.js is built from the "base"
+path and "widths" array in js/data.js.
 
   hero/           2000px + 1200px, landscape, ~16:10
                   Composed for a heavy bottom gradient: headline and
                   field-record strip sit over the lower third, so keep
-                  the subject in the upper two thirds.
+                  the subject in the upper two thirds. The stage also
+                  runs a slow Ken Burns push to 1.12 and crops with
+                  object-fit:cover, so leave margin on all four edges
+                  and keep the subject near the horizontal centre or
+                  it walks out of frame on a phone.
   destinations/    900px +  500px, portrait, 3:4.1
   tours/          1100px, landscape 4:3 for odd cards,
                   portrait 3:4 for even ones (the layout alternates)
-  misc/           1800px, landscape — sits behind section 04 at 22%
-                  opacity under a dark gradient, so it wants contrast
-                  and shape, not detail
+  misc/           1800px, landscape -- sits behind section 04 at 15%
+                  opacity under a mask that fades both edges, so it
+                  wants contrast and shape, not detail
 
 Two entries are waiting on files:
 
@@ -38,14 +76,14 @@ Two entries are waiting on files:
   * team/ does not exist yet. Create it, add portraits, then fill in
     name / role / line / photo in the TEAM array in js/data.js. Until
     a photo path is set, that person renders as a marked placeholder
-    tile — which is deliberate. Do not put stock faces here.
+    tile -- which is deliberate. Do not put stock faces here.
 
 
 ART DIRECTION (from design/yalla-egypt-tasarim-denetimi.md)
 -----------------------------------------------------------
 Use:     natural light, dawn and dusk, a single human figure for scale,
          documentary framing, texture (limestone, granite, linen,
-         water), interiors — hypostyle halls, hotel rooms, boat decks.
+         water), interiors -- hypostyle halls, hotel rooms, boat decks.
 Avoid:   over-saturated HDR, posed smiling couples, drone shots only,
          empty postcard views, anything that reads as stock.
 
@@ -53,7 +91,17 @@ Each section's image does a specific job: hero = atmosphere,
 journeys = product, destinations = geography, about = people,
 final CTA = desire. Shoot to that list.
 
+The hero is a route, not a gallery: plateau, temple, river, city,
+coast. Keep that order when frames are added or swapped, and keep one
+landmark to one appearance -- the Sphinx and the pyramids are easy to
+repeat by accident across hero, strip and cards.
 
-REGENERATING THE CURRENT SET (same crops and widths)
-----------------------------------------------------
+STILL UNPLACED from the 19 Aug supply: a Sphinx in profile (hazy,
+cluttered foreground, and Giza is already carried by three stronger
+frames) and a rooftop cafe (a good, honest picture that does not read
+as luxury at any crop). Both are in design/ if a slot ever wants them.
+
+
+REGENERATING THE STOCK CROPS (same widths)
+------------------------------------------
   https://images.unsplash.com/photo-{ID}?auto=format&fm=webp&fit=crop&w={W}&h={H}&q={Q}
