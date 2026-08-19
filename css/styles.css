@@ -114,6 +114,11 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   outline-offset:3px;
 }
 [data-ground="dark"] :focus-visible{ outline-color:var(--gold-bright); }
+/* The ground attribute sits on <html> AND on every section, so a
+   dark <html> would otherwise reach into a light section and paint
+   a gold ring on cream. The light rule comes second on purpose:
+   when both match, the nearer ground has to be the one that wins. */
+[data-ground="light"] :focus-visible{ outline-color:var(--sapphire); }
 
 .skip{
   position:fixed; top:0; left:0; z-index:200;
@@ -228,6 +233,11 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .btn--line:hover, .btn--line:focus-visible{ background:var(--obsidian); color:var(--papyrus); border-color:var(--obsidian); }
 [data-ground="dark"] .btn--line{ border-color:var(--gold); color:var(--gold-bright); }
 [data-ground="dark"] .btn--line:hover, [data-ground="dark"] .btn--line:focus-visible{ background:var(--gold); color:var(--obsidian); }
+/* Same leak, and this one was visible: with <html> dark, the CTA in
+   the light sample-programme section rendered gold on cream at
+   about 1.3:1. Restated for light so the nearer ground wins. */
+[data-ground="light"] .btn--line{ border-color:var(--hair-onPaper); color:var(--ink); }
+[data-ground="light"] .btn--line:hover, [data-ground="light"] .btn--line:focus-visible{ background:var(--obsidian); color:var(--papyrus); border-color:var(--obsidian); }
 
 .link-quiet{
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
@@ -924,88 +934,101 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 
 /* ============================================================
-   02 · JOURNEYS
-   The card opens its route in place. It never sends a visitor
-   who asked for detail to a contact form.
+   SIGNATURE ROUTES — the tour cards
+   Four cards in a grid: one column on a phone, two on a tablet,
+   four across on a wide screen. Restraint is the brief, so a card
+   is a hairline box and a photograph — no fill, no heavy shadow at
+   rest. The lift on hover is the only flourish, and it is off under
+   reduced motion with everything else.
+
+   The whole card is clickable through a stretched pseudo-element on
+   the title link, so there is exactly ONE link per card in the
+   accessibility tree. The "see the details" line underneath is
+   decorative and hidden from screen readers, because it would
+   otherwise be read as a second, identical destination.
    ============================================================ */
-.journeys{ margin-top:clamp(2rem,4vw,3.4rem); }
-.journey{
-  display:grid; grid-template-columns:1fr; gap:clamp(1.1rem,2.4vw,2.6rem);
-  padding-block:clamp(2rem,4.5vw,3.6rem);
-  border-top:1px solid var(--hair-onPaper);
-  align-items:start;
+.tours{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1.5rem,3vw,2.1rem);
+  margin-top:clamp(2rem,4vw,3.2rem);
 }
-.journey:last-child{ border-bottom:1px solid var(--hair-onPaper); }
-.j-media{ overflow:hidden; background:var(--papyrus-deep); aspect-ratio:16/10; }
-.j-media img{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
-.journey:hover .j-media img, .journey:focus-within .j-media img{ transform:scale(1.035); }
+@media (min-width:600px){ .tours{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1160px){ .tours{ grid-template-columns:repeat(4,1fr); } }
 
-.j-index{
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+.tcard{
+  position:relative;
+  display:flex; flex-direction:column;
+  min-width:0;                       /* long words must wrap, not push the grid */
+  border:1px solid var(--hair-onPaper);
+  background:var(--papyrus);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease),
+             border-color .5s var(--ease);
+}
+.tcard:hover, .tcard:focus-within{
+  transform:translateY(-4px);
+  border-color:var(--hair-gold);
+  box-shadow:0 18px 40px -24px rgba(11,10,8,.45);
+}
+
+.tcard-media{
+  position:relative;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  background:var(--papyrus-deep);
+}
+.tcard-media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform 1.1s var(--ease);
+}
+.tcard:hover .tcard-media img, .tcard:focus-within .tcard-media img{ transform:scale(1.04); }
+
+.tcard-body{
+  display:flex; flex-direction:column;
+  flex:1;
+  padding:clamp(1.2rem,2.2vw,1.6rem);
+}
+
+/* Number + hairline: the same device the eyebrows use, so the card
+   reads as part of the system rather than as an imported component. */
+.tcard-num{
+  display:flex; align-items:center; gap:.7rem;
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:600;
   letter-spacing:var(--ls-ui); color:var(--gold);
-  display:flex; align-items:center; gap:.8rem; margin-bottom:.9rem;
+  font-variant-numeric:tabular-nums;
 }
-.j-index::after{ content:""; width:34px; height:1px; background:var(--gold); opacity:.55; }
-.j-title{
-  font-family:var(--font-edit); font-weight:500;
-  font-size:var(--fs-h3); line-height:1.14; letter-spacing:-.004em;
-  margin-bottom:.7rem; color:var(--obsidian);
-}
-.j-desc{ max-width:44ch; color:var(--ink); }
-.j-meta{
-  display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin-top:1.2rem;
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
-}
-.j-meta b{ color:var(--obsidian); font-weight:500; }
+.tcard-num::after{ content:""; flex:1; height:1px; background:var(--hair-gold); }
 
-.j-toggle{
-  display:inline-flex; align-items:center; gap:.6rem; margin-top:1.4rem;
+.tcard-meta{
+  margin-top:.9rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui);
-  color:var(--sapphire);
-  border-bottom:1px solid currentColor; padding-bottom:.28rem;
-  transition:color .3s var(--ease);
+  text-transform:uppercase; letter-spacing:.18em; color:var(--umber);
 }
-.j-toggle:hover, .j-toggle:focus-visible{ color:var(--obsidian); }
-.j-toggle i{
-  width:9px; height:9px; position:relative; flex:none;
-  transition:transform .4s var(--ease);
+.tcard-title{
+  margin-top:.5rem;
+  font-family:var(--font-display); font-weight:600;
+  font-size:clamp(1.1rem,1.5vw,1.3rem); line-height:1.24;
+  color:var(--ink);
+  overflow-wrap:anywhere;            /* "Nil'de Lüks Cruise" must never overflow */
 }
-.j-toggle i::before, .j-toggle i::after{
-  content:""; position:absolute; inset:50% 0 auto; height:1px; background:currentColor; transform:translateY(-50%);
-}
-.j-toggle i::after{ transform:translateY(-50%) rotate(90deg); }
-.journey.is-open .j-toggle i{ transform:rotate(45deg); }
+.tcard-title a{ color:inherit; text-decoration:none; }
+/* The stretched hit area. Sits above the media so the whole card is
+   clickable, below nothing else because the card has no other link. */
+.tcard-title a::after{ content:""; position:absolute; inset:0; z-index:1; }
 
-.j-detail{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .45s var(--ease); }
-.journey.is-open .j-detail{ grid-template-rows:1fr; }
-.j-detail-in{ overflow:hidden; }
-.j-detail-pad{
-  margin-top:1.6rem; padding:1.5rem 0 0;
-  border-top:1px solid var(--hair-gold);
+.tcard-desc{
+  margin-top:.75rem;
+  font-size:var(--fs-sm); line-height:1.66; color:var(--umber);
+  text-wrap:pretty;
 }
-.j-dl{ display:grid; gap:1.1rem; }
-@media (min-width:620px){ .j-dl{ grid-template-columns:auto 1fr; gap:1rem 1.6rem; align-items:baseline; } }
-.j-dl dt{
+.tcard-cta{
+  display:inline-flex; align-items:center; gap:.5rem;
+  margin-top:auto; padding-top:1.2rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--umber);
-  white-space:nowrap;
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--sapphire);
 }
-.j-dl dd{ color:var(--ink); max-width:46ch; }
-.j-stops{ display:flex; flex-wrap:wrap; align-items:center; gap:.45rem .7rem; }
-.j-stops li{ display:inline-flex; align-items:center; gap:.7rem; }
-.j-stops li + li::before{ content:""; width:14px; height:1px; background:var(--gold); flex:none; }
-.j-foot{ display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.6rem; margin-top:1.8rem; }
-.j-note{ font-size:var(--fs-sm); color:var(--umber); max-width:40ch; }
-
-@media (min-width:880px){
-  .journey{ grid-template-columns:0.95fr 1.05fr; gap:clamp(2rem,4.5vw,4.5rem); }
-  .journey:nth-child(even) .j-media{ order:2; }
-  .journey:nth-child(even) .j-body{ order:1; }
-  .j-media{ aspect-ratio:4/3; }
-  .journey:nth-child(even) .j-media{ aspect-ratio:3/4; max-height:32rem; }
-}
+.tcard-cta i{ font-style:normal; transition:transform .4s var(--ease); }
+.tcard:hover .tcard-cta i{ transform:translateX(4px); }
 
 /* ============================================================
    03 · DESTINATIONS
@@ -1151,13 +1174,18 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   line-height:1.26;
   text-wrap:balance;
 }
-.pull--hero figcaption{ color:var(--gold); margin-top:1.8rem; }
+/* Opening and closing quotation marks as generated content, so the
+   translated string stays clean and each language still gets a mark
+   that sits correctly against its own punctuation. */
+.pull--hero blockquote::before{ content:"\201C"; }
+.pull--hero blockquote::after{ content:"\201D"; }
 
-.phil-body{
-  margin-top:clamp(1.8rem,3.6vw,2.8rem);
-  padding-top:clamp(1.4rem,2.6vw,2rem);
-  border-top:1px solid var(--hair-gold);
-  max-width:52ch; color:var(--papyrus-dim);
+.pull--hero figcaption{
+  display:block;
+  margin-top:1.6rem;
+  font-family:var(--font-ui); font-weight:600;
+  font-size:var(--fs-sm); letter-spacing:.06em; text-transform:none;
+  color:var(--gold-bright);
 }
 
 /* ============================================================
@@ -1166,13 +1194,36 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
    a fixed left column on wide screens and stacked on narrow ones.
    The hairline down the left is the only ornament.
    ============================================================ */
-.itin{ margin-top:clamp(2rem,4vw,3rem); }
-.itin-day{
-  display:grid; grid-template-columns:1fr; gap:.5rem 2.4rem;
-  padding:clamp(1.3rem,2.6vw,1.9rem) 0;
-  border-top:1px solid var(--hair-onPaper);
+.itin{
+  margin-top:clamp(2rem,4vw,3rem);
+  counter-reset:itin;
 }
-.itin-day:last-child{ border-bottom:1px solid var(--hair-onPaper); }
+/* A vertical timeline at every width. The rail is drawn on the row,
+   not on a spacer column, so the numbers stay locked to the text no
+   matter how far the description wraps on a narrow screen. */
+.itin-day{
+  counter-increment:itin;
+  position:relative;
+  display:grid; grid-template-columns:1fr; gap:.5rem 2.4rem;
+  padding:clamp(1.4rem,2.6vw,2rem) 0 clamp(1.4rem,2.6vw,2rem) 3.9rem;
+}
+.itin-day::before{                 /* the numeral */
+  content:counter(itin);
+  position:absolute; left:0; top:clamp(1.4rem,2.6vw,2rem);
+  width:2.4rem; height:2.4rem;
+  display:grid; place-items:center;
+  border:1px solid var(--gold); border-radius:50%;
+  background:var(--papyrus-deep);
+  font-family:var(--font-display); font-weight:500; font-size:.85rem;
+  color:var(--gold); font-variant-numeric:tabular-nums;
+  z-index:1;
+}
+.itin-day::after{                  /* the rail between numerals */
+  content:""; position:absolute;
+  left:1.2rem; top:calc(clamp(1.4rem,2.6vw,2rem) + 2.4rem);
+  bottom:0; width:1px; background:var(--hair-onPaper);
+}
+.itin-day:last-child::after{ display:none; }
 .itin-when{ display:flex; align-items:baseline; gap:.9rem; flex-wrap:wrap; }
 .itin-d{
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:600;
@@ -1200,7 +1251,7 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 }
 
 @media (min-width:820px){
-  .itin-day{ grid-template-columns:11rem 1fr; }
+  .itin-day{ grid-template-columns:10rem 1fr; padding-left:4.4rem; }
   .itin-when{ flex-direction:column; gap:.35rem; padding-top:.3rem; }
 }
 
@@ -1408,8 +1459,8 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .tm{ white-space:normal; }
   .tm-q{ max-width:26ch; }
 
-  .j-foot{ gap:1rem; }
-  .j-foot .btn{ width:100%; text-align:center; }
+  .itin-foot{ gap:1rem; }
+  .itin-foot .btn{ width:100%; text-align:center; }
   .cform-submit{ justify-self:stretch; text-align:center; }
 
   .foot-bot{ flex-direction:column; align-items:flex-start; }
@@ -1459,5 +1510,5 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .hero-in{ padding-block:0; }
   .hero-h, .hero-sub, .hero-wordmark{ color:#000 !important; text-shadow:none !important; }
   .hero-mark{ color:#000 !important; filter:none !important; }
-  .j-detail, .faq-a{ grid-template-rows:1fr !important; }
+  .faq-a{ grid-template-rows:1fr !important; }
 }

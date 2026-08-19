@@ -193,79 +193,62 @@ const HERO = [
 ];
 
 /* ------------------------------------------------------------
-   JOURNEYS
-   "stops" are proper nouns and stay identical across languages;
-   everything a visitor reads lives in t[lang], so main.js never
-   has to translate anything. Each card opens its route in place —
-   no card may promise detail and deliver a contact form.
+   SIGNATURE ROUTES
+   Four cards, one per route. "meta" is the duration and the base
+   town, shown above the title; everything a visitor reads lives in
+   t[lang], so js/main.js never has to translate anything.
+
+   Each card links straight to the contact section rather than
+   opening its detail in place: the card is the pitch, and the
+   conversation is the next step.
+
+   Source aspect ratios differ on purpose — the card media carries
+   its own aspect-ratio with object-fit:cover, so a portrait and a
+   landscape original both crop correctly into the same grid.
    ------------------------------------------------------------ */
 const TOURS = [
-  { id:"cairo-giza", img:"assets/images/tours/cairo-giza-1100.webp", days:4, price:"€—",
-    stops:["Cairo","Giza","Saqqara","Dahshur"],
+  { id:"kahire-giza",
+    img:"assets/images/tours/cairo-giza-1100.webp", iw:1100, ih:825,
     t:{
-      en:{ n:"Cairo & Giza",
-           d:"Three pyramid fields in chronological order, so the architecture actually makes sense. Plus the Grand Egyptian Museum and two mornings in the old city.",
-           best:"October to April. July and August work if you accept starting at six.",
-           pace:"Two sites a day at most. Early starts, long afternoons off." },
-      tr:{ n:"Kahire & Giza",
-           d:"Üç piramit alanını kronolojik sırayla geziyoruz; mimarinin nasıl geliştiği ancak böyle anlaşılıyor. Büyük Mısır Müzesi ve eski şehirde iki sabah dahil.",
-           best:"Ekim–Nisan arası. Temmuz ve ağustos da olur, altıda kalkmayı kabul ederseniz.",
-           pace:"Günde en fazla iki nokta. Erken çıkış, uzun serbest öğleden sonra." },
-      de:{ n:"Kairo & Gizeh",
-           d:"Drei Pyramidenfelder in chronologischer Reihenfolge — so ergibt die Architektur Sinn. Dazu das Grand Egyptian Museum und zwei Vormittage in der Altstadt.",
-           best:"Oktober bis April. Juli und August gehen auch, wenn Sie um sechs starten.",
-           pace:"Höchstens zwei Stätten am Tag. Früher Aufbruch, langer freier Nachmittag." }
+      tr:{ meta:"3 Gün · Kahire", n:"Kahire & Giza",
+           d:"Son ayakta kalan antik dünya harikası eşliğinde; Sfenks, Mısır Müzesi ve Kahire'nin tarihi çarşıları." },
+      en:{ meta:"3 days · Cairo", n:"Cairo & Giza",
+           d:"The last surviving wonder of the ancient world, with the Sphinx, the Egyptian Museum and the old bazaars of Cairo." },
+      de:{ meta:"3 Tage · Kairo", n:"Kairo & Gizeh",
+           d:"Das letzte erhaltene Weltwunder der Antike, dazu die Sphinx, das Ägyptische Museum und die alten Basare von Kairo." }
     } },
 
-  { id:"nile-luxor-aswan", img:"assets/images/tours/nile-luxor-aswan-1100.webp", days:7, price:"€—",
-    stops:["Luxor","Esna","Edfu","Kom Ombo","Aswan"],
+  { id:"luksor-karnak",
+    img:"assets/images/destinations/luxor-900.webp", iw:900, ih:1247,
     t:{
-      en:{ n:"The Nile, Luxor to Aswan",
-           d:"Seven days on the river. Karnak at opening, the Valley of the Kings before the heat, and long stretches where the only thing to do is watch the bank go past.",
-           best:"October to April. The river is the coolest place in Egypt — though not in August.",
-           pace:"One temple a day, the rest on the water. Nothing before eight after day three." },
-      tr:{ n:"Nil: Luksor'dan Asvan'a",
-           d:"Nehirde yedi gün. Karnak açılışta, Krallar Vadisi sıcak basmadan; aradaki uzun bölümlerde yapılacak tek şey kıyıyı izlemek.",
-           best:"Ekim–Nisan arası. Nehir Mısır'ın en serin yeri — ama ağustosta değil.",
-           pace:"Günde bir tapınak, kalanı suda. Üçüncü günden sonra sekizden önce program yok." },
-      de:{ n:"Der Nil, Luxor bis Assuan",
-           d:"Sieben Tage auf dem Fluss. Karnak zur Öffnung, das Tal der Könige vor der Hitze — und lange Strecken, auf denen man nur das Ufer vorbeiziehen sieht.",
-           best:"Oktober bis April. Der Fluss ist der kühlste Ort Ägyptens — im August aber auch nicht.",
-           pace:"Ein Tempel pro Tag, der Rest auf dem Wasser. Ab Tag drei nichts vor acht." }
+      tr:{ meta:"4 Gün · Luksor", n:"Luksor & Karnak",
+           d:"Firavunların açık hava başkentinde; Karnak'ın dev sütunları, Kral Vadisi'nin gizli mezarları." },
+      en:{ meta:"4 days · Luxor", n:"Luxor & Karnak",
+           d:"The open-air capital of the pharaohs: the great columns of Karnak and the hidden tombs of the Valley of the Kings." },
+      de:{ meta:"4 Tage · Luxor", n:"Luxor & Karnak",
+           d:"Die Freiluft-Hauptstadt der Pharaonen: die gewaltigen Säulen von Karnak und die verborgenen Gräber im Tal der Könige." }
     } },
 
-  { id:"abu-simbel-south", img:"assets/images/tours/abu-simbel-south-1100.webp", days:3, price:"€—",
-    stops:["Aswan","Philae","Abu Simbel"],
+  { id:"nil-cruise",
+    img:"assets/images/tours/nile-luxor-aswan-1100.webp", iw:825, ih:1100,
     t:{
-      en:{ n:"Abu Simbel & the south",
-           d:"Down to the Sudanese border and back. Abu Simbel is a four-hour drive each way — we leave early enough that you have the façade to yourself for a while.",
-           best:"October to March. Aswan in June is 45°C by eleven in the morning.",
-           pace:"One long day, two easy ones. The long day starts at four." },
-      tr:{ n:"Abu Simbel ve güney",
-           d:"Sudan sınırına kadar inip dönüyoruz. Abu Simbel tek yön dört saat; cepheyi bir süre kendinize saklayacak kadar erken çıkıyoruz.",
-           best:"Ekim–Mart arası. Asvan haziranda sabah on birde 45°C.",
-           pace:"Bir uzun gün, iki rahat gün. Uzun gün dörtte başlıyor." },
-      de:{ n:"Abu Simbel & der Süden",
-           d:"Bis zur sudanesischen Grenze und zurück. Abu Simbel liegt vier Fahrstunden entfernt — wir fahren früh genug, dass die Fassade eine Weile Ihnen gehört.",
-           best:"Oktober bis März. Assuan hat im Juni schon um elf Uhr 45 °C.",
-           pace:"Ein langer Tag, zwei ruhige. Der lange beginnt um vier." }
+      tr:{ meta:"7 Gece · Nil", n:"Nil'de Lüks Cruise",
+           d:"Beş yıldızlı bir tekne güvertesinden, nehrin iki yakasındaki tapınakları ve köy hayatını izleyin." },
+      en:{ meta:"7 nights · The Nile", n:"A Luxury Nile Cruise",
+           d:"From the deck of a five-star boat, watch the temples and the village life pass on both banks of the river." },
+      de:{ meta:"7 Nächte · Nil", n:"Luxus-Nilkreuzfahrt",
+           d:"Vom Deck eines Fünf-Sterne-Schiffes ziehen die Tempel und das Dorfleben an beiden Ufern des Flusses vorbei." }
     } },
 
-  { id:"western-desert", img:"assets/images/tours/western-desert-1100.webp", days:3, price:"€—",
-    stops:["Bahariya","Black Desert","White Desert"],
+  { id:"ebu-simbel",
+    img:"assets/images/tours/abu-simbel-south-1100.webp", iw:1100, ih:825,
     t:{
-      en:{ n:"Into the Western Desert",
-           d:"Two nights camping between chalk formations, three hundred kilometres from the nearest town. Not for everyone, and we will say so if we think it is not for you.",
-           best:"November to February only. There is no shade and no phone signal.",
-           pace:"Driving, then stopping, then nothing. Camp is set before sunset." },
-      tr:{ n:"Batı Çölü'ne",
-           d:"Tebeşir oluşumlarının arasında iki gece kamp; en yakın kasabaya üç yüz kilometre. Herkese göre değil — size göre olmadığını düşünürsek bunu söyleriz.",
-           best:"Yalnızca kasım–şubat arası. Ne gölge var ne telefon çekiyor.",
-           pace:"Yol, mola, sonra hiçbir şey. Kamp gün batmadan kuruluyor." },
-      de:{ n:"In die Westliche Wüste",
-           d:"Zwei Nächte zwischen Kreidefelsen, dreihundert Kilometer von der nächsten Stadt. Nicht für jeden — und wir sagen es, wenn wir es für Sie nicht passend halten.",
-           best:"Nur November bis Februar. Es gibt keinen Schatten und keinen Empfang.",
-           pace:"Fahren, halten, dann nichts. Das Camp steht vor Sonnenuntergang." }
+      tr:{ meta:"Günübirlik · Aswan", n:"Ebu Simbel",
+           d:"II. Ramses'in kayalara oyulmuş devasa tapınağı; güneşin doğuşuyla birlikte unutulmaz bir sabah." },
+      en:{ meta:"Day trip · Aswan", n:"Abu Simbel",
+           d:"The colossal temple of Ramesses II cut into the rock face, reached at first light for an unforgettable sunrise." },
+      de:{ meta:"Tagesausflug · Assuan", n:"Abu Simbel",
+           d:"Der kolossale, in den Fels geschlagene Tempel Ramses' II., erreicht im ersten Licht zu einem unvergesslichen Sonnenaufgang." }
     } }
 ];
 
@@ -288,64 +271,52 @@ const TOURS = [
    have learned to distrust.
    ------------------------------------------------------------ */
 const ITINERARY = {
-  tourId: "nile-luxor-aswan",
+  tourId: "nil-cruise",
   t: {
-    en: {
-      days: [
-        { d:"Day 1", place:"Luxor",   h:"Land, and do nothing",
-          p:"Airport pickup and the east bank hotel. Nothing is scheduled. If you land early enough, the corniche at sunset is a ten-minute walk and costs nothing." },
-        { d:"Day 2", place:"Karnak",  h:"Karnak at opening, then off",
-          p:"At the gate for 06:00, an hour before the coaches. The hypostyle hall takes about ninety minutes properly. Back at the hotel by eleven, out of the heat. The afternoon is yours." },
-        { d:"Day 3", place:"West Bank", h:"The Valley, early",
-          p:"Valley of the Kings before the heat — three tombs included, and we will tell you which third one is worth the extra ticket that day. Hatshepsut's terraces after, then the river." },
-        { d:"Day 4", place:"Esna · Edfu", h:"On the water",
-          p:"Through the Esna lock in the morning. Edfu in the late afternoon, when the light comes in sideways along the pylon. Most of this day is deck and riverbank." },
-        { d:"Day 5", place:"Kom Ombo", h:"Two gods, one temple",
-          p:"An hour at Kom Ombo at dusk — it is small, it is symmetrical, and it does not need longer. The crocodile museum next door takes twenty minutes and is worth them." },
-        { d:"Day 6", place:"Aswan",   h:"Philae, and a felucca",
-          p:"Philae by motorboat in the morning. The afternoon is a felucca around Elephantine with nothing planned at the other end. This is the day people remember." },
-        { d:"Day 7", place:"Aswan",   h:"Abu Simbel, or a slow morning",
-          p:"Either the early run south to Abu Simbel — three hours each way, worth it once — or a slow breakfast and a late flight. We will have told you honestly which suits your group." }
-      ],
-      note:"This is one real route, written out. Yours will not be identical: dates, pace and what you care about change it, and it is rewritten in full before anything is confirmed."
-    },
     tr: {
       days: [
-        { d:"1. Gün", place:"Luksor",  h:"İn, ve hiçbir şey yapma",
-          p:"Havaalanı karşılaması ve doğu yakasındaki otel. Programda hiçbir şey yok. Erken indiyseniz gün batımında korniş on dakikalık yürüme mesafesinde ve bedava." },
-        { d:"2. Gün", place:"Karnak",  h:"Açılışta Karnak, sonra çıkış",
-          p:"06:00'da kapıda, otobüslerden bir saat önce. Sütunlu salon düzgün gezilirse doksan dakika. On birde otelde, sıcaktan uzakta. Öğleden sonrası size ait." },
-        { d:"3. Gün", place:"Batı Yakası", h:"Vadi, erkenden",
-          p:"Sıcak basmadan Krallar Vadisi — üç mezar dahil, o gün hangi üçüncü mezarın ekstra bileti hak ettiğini size söyleriz. Ardından Hatşepsut terasları, sonra nehir." },
-        { d:"4. Gün", place:"Esna · Edfu", h:"Suyun üstünde",
-          p:"Sabah Esna kilidinden geçiş. Edfu ikindi vakti, ışık pilonun yanından yatık geldiğinde. Bu günün çoğu güverte ve kıyı." },
-        { d:"5. Gün", place:"Kom Ombo", h:"İki tanrı, tek tapınak",
-          p:"Alacakaranlıkta Kom Ombo'da bir saat — küçük, simetrik, daha fazlasına ihtiyacı yok. Yanındaki timsah müzesi yirmi dakika sürer ve o yirmi dakikayı hak eder." },
-        { d:"6. Gün", place:"Asvan",   h:"Philae ve bir felucca",
-          p:"Sabah motorla Philae. Öğleden sonra Elephantine çevresinde felucca; varışta hiçbir plan yok. İnsanların hatırladığı gün bu." },
-        { d:"7. Gün", place:"Asvan",   h:"Abu Simbel ya da ağır bir sabah",
-          p:"Ya güneye erken kalkış Abu Simbel — gidiş dönüş üçer saat, bir kez değer — ya da geç bir kahvaltı ve geç uçuş. Grubunuza hangisinin uyduğunu size dürüstçe söylemiş oluruz." }
+        { d:"1. Gün", place:"Kahire",    h:"Giza Piramitleri & Sfenks",
+          p:"Varışın ardından, Büyük Piramit'in gölgesinde özel rehberli bir keşif ve Kahire'de karşılama akşam yemeği." },
+        { d:"2. Gün", place:"Kahire",    h:"Mısır Müzesi & Eski Kahire",
+          p:"Tutankhamun hazineleri eşliğinde bir sabah, ardından Kıpti mahallesi ve Han el-Halili çarşısında öğleden sonra." },
+        { d:"3. Gün", place:"Luksor",    h:"Karnak & Luksor Tapınakları",
+          p:"Kısa bir uçuşla Luksor'a geçiş; öğleden sonra Karnak'ın dev sütunlu salonu, akşam ışık gösterisi." },
+        { d:"4. Gün", place:"Batı Kıyı", h:"Kral Vadisi & Nil'de Gemi",
+          p:"Hatşepsut Tapınağı ve kraliyet mezarları sonrası, akşam Nil üzerinde beş yıldızlı gemiye yerleşim." },
+        { d:"5. Gün", place:"Aswan",     h:"Ebu Simbel Günübirlik Gezisi",
+          p:"Şafak vakti yola çıkış; II. Ramses Tapınağı'nda güneşin taş yüzlere vuruşuna tanıklık ederek yolculuğun kapanışı." }
       ],
-      note:"Bu, yazıya dökülmüş gerçek bir rota. Sizinki aynısı olmayacak: tarihler, tempo ve önemsedikleriniz onu değiştirir; hiçbir şey kesinleşmeden önce baştan yazılır."
+      note:"Bu, yazıya dökülmüş gerçek bir program. Sizinki aynısı olmayacak: tarihler, tempo ve önemsedikleriniz onu değiştirir; hiçbir şey kesinleşmeden önce baştan yazılır."
+    },
+    en: {
+      days: [
+        { d:"Day 1", place:"Cairo",     h:"The Pyramids of Giza & the Sphinx",
+          p:"After the arrival transfer, a privately guided walk in the shadow of the Great Pyramid, and a welcome dinner in Cairo." },
+        { d:"Day 2", place:"Cairo",     h:"The Egyptian Museum & Old Cairo",
+          p:"A morning with the treasures of Tutankhamun, then an afternoon in the Coptic quarter and the Khan el-Khalili bazaar." },
+        { d:"Day 3", place:"Luxor",     h:"Karnak & Luxor Temples",
+          p:"A short flight to Luxor; the great hypostyle hall of Karnak in the afternoon, and the sound and light show that evening." },
+        { d:"Day 4", place:"West Bank", h:"Valley of the Kings & boarding",
+          p:"The temple of Hatshepsut and the royal tombs, then boarding a five-star boat on the Nile in the evening." },
+        { d:"Day 5", place:"Aswan",     h:"Abu Simbel day trip",
+          p:"A departure at dawn; the journey closes at the temple of Ramesses II, watching the sun reach the stone faces." }
+      ],
+      note:"This is one real programme, written out. Yours will not be identical: dates, pace and what you care about change it, and it is rewritten in full before anything is confirmed."
     },
     de: {
       days: [
-        { d:"Tag 1", place:"Luxor",    h:"Ankommen, sonst nichts",
-          p:"Abholung am Flughafen, Hotel am Ostufer. Nichts ist geplant. Wer früh genug landet: die Corniche bei Sonnenuntergang liegt zehn Minuten entfernt und kostet nichts." },
-        { d:"Tag 2", place:"Karnak",   h:"Karnak zur Öffnung, dann weg",
-          p:"Um 06:00 am Tor, eine Stunde vor den Bussen. Die Säulenhalle braucht in Ruhe etwa neunzig Minuten. Um elf zurück im Hotel, aus der Hitze. Der Nachmittag gehört Ihnen." },
-        { d:"Tag 3", place:"Westufer", h:"Das Tal, früh",
-          p:"Tal der Könige vor der Hitze — drei Gräber inklusive, und wir sagen Ihnen, welches dritte an diesem Tag das Extraticket wert ist. Danach die Terrassen der Hatschepsut, dann der Fluss." },
-        { d:"Tag 4", place:"Esna · Edfu", h:"Auf dem Wasser",
-          p:"Morgens durch die Schleuse von Esna. Edfu am späten Nachmittag, wenn das Licht seitlich am Pylon entlangfällt. Dieser Tag ist überwiegend Deck und Uferlandschaft." },
-        { d:"Tag 5", place:"Kom Ombo", h:"Zwei Götter, ein Tempel",
-          p:"Eine Stunde in Kom Ombo in der Dämmerung — klein, symmetrisch, mehr braucht es nicht. Das Krokodilmuseum nebenan dauert zwanzig Minuten und lohnt sie." },
-        { d:"Tag 6", place:"Assuan",   h:"Philae und eine Feluke",
-          p:"Vormittags mit dem Boot nach Philae. Nachmittags eine Feluke um Elephantine, ohne Programm am anderen Ende. Das ist der Tag, an den man sich erinnert." },
-        { d:"Tag 7", place:"Assuan",   h:"Abu Simbel — oder ein langsamer Morgen",
-          p:"Entweder die frühe Fahrt nach Süden zu Abu Simbel — drei Stunden pro Richtung, einmal im Leben wert — oder ein spätes Frühstück und ein später Flug. Was zu Ihrer Gruppe passt, haben wir Ihnen vorher ehrlich gesagt." }
+        { d:"Tag 1", place:"Kairo",    h:"Pyramiden von Gizeh & Sphinx",
+          p:"Nach der Ankunft ein privat geführter Rundgang im Schatten der Cheops-Pyramide und ein Willkommensessen in Kairo." },
+        { d:"Tag 2", place:"Kairo",    h:"Ägyptisches Museum & Alt-Kairo",
+          p:"Ein Vormittag bei den Schätzen des Tutanchamun, danach das koptische Viertel und der Basar Chan el-Chalili." },
+        { d:"Tag 3", place:"Luxor",    h:"Karnak- & Luxor-Tempel",
+          p:"Mit einem kurzen Flug nach Luxor; nachmittags die große Säulenhalle von Karnak, abends die Ton- und Lichtshow." },
+        { d:"Tag 4", place:"Westufer", h:"Tal der Könige & Einschiffung",
+          p:"Der Tempel der Hatschepsut und die Königsgräber, am Abend die Einschiffung auf ein Fünf-Sterne-Schiff auf dem Nil." },
+        { d:"Tag 5", place:"Assuan",   h:"Tagesausflug nach Abu Simbel",
+          p:"Aufbruch im Morgengrauen; die Reise endet am Tempel Ramses' II., wenn die Sonne die steinernen Gesichter erreicht." }
       ],
-      note:"Das ist eine echte Route, ausgeschrieben. Ihre wird nicht identisch sein: Daten, Tempo und Ihre Interessen verändern sie, und sie wird vollständig neu geschrieben, bevor irgendetwas bestätigt wird."
+      note:"Das ist ein echtes Programm, ausgeschrieben. Ihres wird nicht identisch sein: Daten, Tempo und Ihre Interessen verändern es, und es wird vollständig neu geschrieben, bevor irgendetwas bestätigt wird."
     }
   }
 };

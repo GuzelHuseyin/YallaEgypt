@@ -56,54 +56,32 @@ function renderBand(){
   $("#band-list").innerHTML = items.join("");
 }
 
+/* ============================================================
+   SIGNATURE ROUTES
+   One card per route. The card is the whole pitch — there is no
+   disclosure to open — and the title link carries the enquiry
+   straight into the contact form with the route already named.
+   ============================================================ */
 function renderJourneys(){
   $("#journeys-list").innerHTML = TOURS.map((tour, i) => {
     const c = tour.t[LANG] || tour.t.en;
-    const id = `jd-${tour.id}`;
-    const portrait = i % 2 === 1;
-    const w = portrait ? 825 : 1100, h = portrait ? 1100 : 825;
-    const price = CONFIG.showPrices ? `<b>${esc(tour.price)}</b>` : esc(t("s2.price"));
     return `
-    <article class="journey rv">
-      <div class="j-media">
-        <img src="${tour.img}" alt="${esc(c.n)}" loading="lazy" decoding="async" width="${w}" height="${h}">
+    <article class="tcard rv">
+      <div class="tcard-media">
+        <img src="${tour.img}" alt="" loading="lazy" decoding="async"
+             width="${tour.iw}" height="${tour.ih}">
       </div>
-      <div class="j-body">
-        <p class="j-index">${String(i + 1).padStart(2, "0")}</p>
-        <h3 class="j-title">${esc(c.n)}</h3>
-        <p class="j-desc">${esc(c.d)}</p>
-        <ul class="j-meta">
-          <li><b>${tour.days}</b> ${esc(t("s2.days"))}</li>
-          <li>${esc(t("s2.private"))}</li>
-          <li>${price}</li>
-        </ul>
-
-        <button class="j-toggle" type="button" aria-expanded="false" aria-controls="${id}"
-                data-journey="${esc(c.n)}">
-          <i aria-hidden="true"></i><span class="j-toggle-label">${esc(t("s2.more"))}</span>
-        </button>
-
-        <div class="j-detail" id="${id}" role="region" aria-label="${esc(c.n)}">
-          <div class="j-detail-in">
-            <div class="j-detail-pad">
-              <dl class="j-dl">
-                <dt>${esc(t("s2.route"))}</dt>
-                <dd><ol class="j-stops">${tour.stops.map(s => `<li>${esc(s)}</li>`).join("")}</ol></dd>
-                <dt>${esc(t("s2.best"))}</dt><dd>${esc(c.best)}</dd>
-                <dt>${esc(t("s2.pace"))}</dt><dd>${esc(c.pace)}</dd>
-              </dl>
-              <div class="j-foot">
-                <a class="btn btn--line j-ask" href="#contact-form" data-journey="${esc(c.n)}">${esc(t("s2.ask"))}</a>
-                <p class="j-note">${esc(t("s2.written"))}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="tcard-body">
+        <p class="tcard-num">${String(i + 1).padStart(2, "0")}</p>
+        <p class="tcard-meta">${esc(c.meta)}</p>
+        <h3 class="tcard-title">
+          <a href="#contact-form" data-journey="${esc(c.n)}">${esc(c.n)}</a>
+        </h3>
+        <p class="tcard-desc">${esc(c.d)}</p>
+        <span class="tcard-cta" aria-hidden="true">${esc(t("s2.cta"))} <i>&rarr;</i></span>
       </div>
     </article>`;
   }).join("");
-
-  $$(".j-detail").forEach(d => { d.inert = true; });
 }
 
 function renderDestinations(){
@@ -420,20 +398,14 @@ function toggleDisclosure(btn, panel, host, openClass, labelEl, labels){
 
 function initDisclosures(){
   document.addEventListener("click", e => {
-    const jt = e.target.closest(".j-toggle");
-    if(jt){
-      const art = jt.closest(".journey");
-      toggleDisclosure(jt, $(`#${jt.getAttribute("aria-controls")}`), art, "is-open",
-                       $(".j-toggle-label", jt), [t("s2.more"), t("s2.less")]);
-      return;
-    }
     const fq = e.target.closest(".faq-q");
     if(fq){
       toggleDisclosure(fq, $(`#${fq.getAttribute("aria-controls")}`), fq.closest(".faq-item"), "is-open");
       return;
     }
-    // "Ask about this journey" — carry the journey into the form
-    const ask = e.target.closest(".j-ask");
+    /* Any link that names a route carries it into the form — the
+       tour cards and the sample-programme CTA both set data-journey. */
+    const ask = e.target.closest("[data-journey]");
     if(ask) prefillJourney(ask.dataset.journey);
   });
 }
