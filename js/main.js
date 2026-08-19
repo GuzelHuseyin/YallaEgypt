@@ -49,13 +49,6 @@ function contactChannels(){
    there to do. Turn showGaps on while building to see the gaps. */
 const gapBadge = () => CONFIG.showGaps ? `<span class="tbc">${esc(t("tbc"))}</span>` : "";
 
-function renderBand(){
-  const items = t("trust").map(x => `<li>${esc(x)}</li>`);
-  if(CONFIG.licence)     items.push(`<li>${esc(t("trust.licence"))} ${esc(CONFIG.licence)}</li>`);
-  else if(CONFIG.showGaps) items.push(`<li>${esc(t("trust.licence"))}${gapBadge()}</li>`);
-  $("#band-list").innerHTML = items.join("");
-}
-
 /* ============================================================
    SIGNATURE ROUTES
    One card per route. The card is the whole pitch — there is no
@@ -479,7 +472,6 @@ function setLang(l){
   });
   $$(".lang button").forEach(b => b.setAttribute("aria-current", String(b.dataset.lang === LANG)));
 
-  renderBand();
   renderJourneys();
   renderSteps();
   renderItinerary();

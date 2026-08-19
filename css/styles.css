@@ -205,7 +205,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   text-transform:uppercase; letter-spacing:.12em; line-height:1.5;
   white-space:nowrap;
 }
-.sec--dark .tbc, .sec--blue .tbc, .band .tbc, .foot .tbc{ color:var(--lapis); }
+.sec--dark .tbc, .sec--blue .tbc, .foot .tbc{ color:var(--lapis); }
 
 .wrap{
   width:100%; max-width:var(--maxw);
@@ -879,30 +879,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 
 /* ============================================================
-   TRUST BAND
-   Short, dense, and directly under the promise — which is where
-   doubt peaks. Everything here is either already claimed
-   elsewhere on the page or visibly marked as outstanding.
-   ============================================================ */
-.band{
-  background:var(--obsidian); color:var(--papyrus-dim);
-  border-top:1px solid var(--hair-gold);
-  border-bottom:1px solid var(--hair-gold);
-  padding-block:clamp(1.1rem,2.4vw,1.7rem);
-}
-.band-list{
-  display:flex; flex-wrap:wrap; align-items:center;
-  gap:.7rem clamp(1.4rem,4vw,3.4rem);
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:.2em;
-}
-.band-list li{ display:inline-flex; align-items:center; gap:.65rem; }
-.band-list li::before{
-  content:""; width:4px; height:4px; flex:none;
-  background:var(--gold); transform:rotate(45deg);
-}
-
-/* ============================================================
    SECTIONS
    ============================================================ */
 .sec{ position:relative; padding-block:var(--sec-y); }
@@ -1451,7 +1427,6 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .record{ margin-top:1.4rem; }
   .record-old{ display:none; }
 
-  .band-list{ letter-spacing:.14em; gap:.55rem 1.2rem; }
 
   /* Long quotes must wrap rather than run off-screen */
   .tm{ white-space:normal; }
@@ -1502,7 +1477,7 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
 @media print{
   .nav, .mmenu, .wa, .skip, .record, .strip-bar, .strip-hint, .mq-foot{ display:none !important; }
   body{ background:#fff; color:#000; }
-  .sec, .foot, .band{ background:#fff !important; color:#000 !important; padding-block:1.5rem; }
+  .sec, .foot{ background:#fff !important; color:#000 !important; padding-block:1.5rem; }
   .hero{ min-height:auto; }
   .hero-stage, .hero-video-slot, .hero-veil, .hero-dim, .hero-gesture, .hero-bloom{ display:none !important; }
   .hero-in{ padding-block:0; }

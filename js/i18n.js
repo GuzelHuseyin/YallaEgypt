@@ -29,12 +29,6 @@ const I18N = {
     "hero.pauseFilm":"Pause film","hero.playFilm":"Play film",
     "hero.prev":"Previous image","hero.next":"Next image",
 
-    "trust":[
-      "Private departures only",
-      "Written route before anything is confirmed",
-      "Turkish · English · German",
-      "Based in Egypt, not resold from abroad"
-    ],
     "trust.licence":"Licence & registration",
 
     "phil.eye":"Our philosophy",
@@ -131,12 +125,6 @@ const I18N = {
     "hero.pauseFilm":"Filmi duraklat","hero.playFilm":"Filmi oynat",
     "hero.prev":"Önceki görsel","hero.next":"Sonraki görsel",
 
-    "trust":[
-      "Yalnızca özel kalkışlar",
-      "Onaydan önce yazılı rota",
-      "Türkçe · İngilizce · Almanca",
-      "Mısır'da yerleşiğiz, aracı değiliz"
-    ],
     "trust.licence":"Lisans & tescil",
 
     "phil.eye":"Felsefemiz",
@@ -233,12 +221,6 @@ const I18N = {
     "hero.pauseFilm":"Film pausieren","hero.playFilm":"Film abspielen",
     "hero.prev":"Vorheriges Bild","hero.next":"Nächstes Bild",
 
-    "trust":[
-      "Ausschließlich private Abfahrten",
-      "Schriftliche Route vor jeder Bestätigung",
-      "Türkisch · Englisch · Deutsch",
-      "Ansässig in Ägypten, nicht weitervermittelt"
-    ],
     "trust.licence":"Lizenz & Registrierung",
 
     "phil.eye":"Unsere Haltung",
