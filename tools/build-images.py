@@ -34,9 +34,10 @@ SRC = {
     "felucca":   "WhatsApp Image 2026-08-19 at 1.43.30 PfM.jpeg",  # the Nile at golden hour
     "wine":      "WhatsApp Image 2026-08-19 at 1.43.30f PM.jpeg",  # a glass against Khafre
     "caravan":   "WhatsApp Image 2026-08-19 at 1.43.3f1 PM.jpeg",  # camel train, backlit
-    "table":     "WhatsApp Image 2026-08-19 at 1.4f3.31 PM.jpeg",  # breakfast facing the plateau
+    "table":     "WhatsApp Image 2026-08-19 at 1.4f3.31 PM.jpeg",  # unused: breakfast facing the plateau
     "sphinx":    "WhatsApp Image 2026d08-19 at 1.43.31 PM.jpeg",   # unused: Sphinx in profile
     "khafre":    "WhatsApp Image f2026-08-19 at 1.43.31 PM.jpeg",  # Khafre with the Sphinx below
+    "crew":      "asd.jpeg",                                       # branded group facing the plateau
 }
 
 
@@ -177,8 +178,16 @@ dest("red-sea", stock("red-sea-900"), dict(ay=0.66, zoom=1.35), STOCK_GRADE)
 dest("alexandria", stock("alexandria-900"), dict(ay=0.60, zoom=1.50), STOCK_GRADE)
 
 # --------------------------------------------------------------- tours
-one("tours/cairo-giza-1100.webp", load("table"), (1100, 825),
-    dict(ax=0.50, ay=0.40), NEW_SOFT)
+# The Giza card is the one slot on the page whose job suits a branded
+# photograph: it sells a route rather than describing a place, and this
+# frame carries both pyramids and the Sphinx, which is exactly what the
+# card's copy promises. The source is 3:2, so a 4:3 window keeps the full
+# height and trims 85px of width from each side — the outer two figures
+# lose an arm's width, which reads as a group continuing past the frame.
+# It replaced the breakfast terrace, which is still in design/ and would
+# suit an "about" or editorial slot if one is ever added.
+one("tours/cairo-giza-1100.webp", load("crew"), (1100, 825),
+    dict(ax=0.50), NEW_SOFT)
 # New file: the Luxor card used to borrow the destination strip's photograph.
 one("tours/luxor-karnak-1100.webp", load("columns"), (825, 1100),
     dict(ax=0.50, ay=0.48), NEW_PLAIN)

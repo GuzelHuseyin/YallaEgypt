@@ -12,7 +12,7 @@ OWNED (from design/, supplied 19 Aug 2026)
   hero/aswan-1             a felucca on the Nile at dusk
   destinations/giza        Khafre with the Sphinx below it
   destinations/luxor       a figure in the hypostyle hall at Karnak
-  tours/cairo-giza         breakfast on a terrace facing the plateau
+  tours/cairo-giza         the branded group facing the plateau (asd.jpeg)
   tours/luxor-karnak       painted capitals seen from below
   misc/approach-bg         a glass on a ledge above the plateau
 
@@ -96,10 +96,19 @@ coast. Keep that order when frames are added or swapped, and keep one
 landmark to one appearance -- the Sphinx and the pyramids are easy to
 repeat by accident across hero, strip and cards.
 
-STILL UNPLACED from the 19 Aug supply: a Sphinx in profile (hazy,
-cluttered foreground, and Giza is already carried by three stronger
-frames) and a rooftop cafe (a good, honest picture that does not read
-as luxury at any crop). Both are in design/ if a slot ever wants them.
+STILL UNPLACED: a Sphinx in profile (hazy, cluttered foreground, and
+Giza is already carried by three stronger frames); a rooftop cafe (a
+good, honest picture that does not read as luxury at any crop); and
+the breakfast terrace facing the plateau, which held tours/cairo-giza
+until asd.jpeg replaced it and would suit an editorial or "about"
+slot if one is ever added. All three are in design/.
+
+One note on asd.jpeg: the logo printed on the shirts is not the mark
+this site uses. The site's #ye-mark is the gold medallion transcribed
+from design/yalla-egypt-logo-3.pdf; the shirts carry a triangle
+pyramid mark with YALLA in navy and EGYPT in orange. At card size the
+difference is easy to miss, but it is a second brand identity living
+on the same page, and worth settling before print or paid social.
 
 
 REGENERATING THE STOCK CROPS (same widths)
