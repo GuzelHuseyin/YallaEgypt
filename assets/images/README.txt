@@ -7,12 +7,12 @@ The set is now mixed. Owned photography carries the page; the stock
 that survived is there because no owned frame covered that slot yet.
 
 OWNED (from design/, supplied 19 Aug 2026)
-  hero/giza-1              camel train below the plateau  -- the lead frame
+  hero/giza-1              the branded group on the plateau (asd.jpeg)
   hero/luxor-1             the colossi along the Karnak wall
   hero/aswan-1             a felucca on the Nile at dusk
   destinations/giza        Khafre with the Sphinx below it
   destinations/luxor       a figure in the hypostyle hall at Karnak
-  tours/cairo-giza         the branded group facing the plateau (asd.jpeg)
+  tours/cairo-giza         breakfast on a terrace facing the plateau
   tours/luxor-karnak       painted capitals seen from below
   misc/approach-bg         a glass on a ledge above the plateau
 
@@ -99,16 +99,25 @@ repeat by accident across hero, strip and cards.
 STILL UNPLACED: a Sphinx in profile (hazy, cluttered foreground, and
 Giza is already carried by three stronger frames); a rooftop cafe (a
 good, honest picture that does not read as luxury at any crop); and
-the breakfast terrace facing the plateau, which held tours/cairo-giza
-until asd.jpeg replaced it and would suit an editorial or "about"
-slot if one is ever added. All three are in design/.
+the camel train, which led the hero until asd.jpeg took the Giza slot
+and now survives only as assets/icons/og-image.jpg. All three are in
+design/. The camel train is the strongest landscape frame in the set
+and is worth a slot if one opens up.
 
-One note on asd.jpeg: the logo printed on the shirts is not the mark
-this site uses. The site's #ye-mark is the gold medallion transcribed
-from design/yalla-egypt-logo-3.pdf; the shirts carry a triangle
-pyramid mark with YALLA in navy and EGYPT in orange. At card size the
-difference is easy to miss, but it is a second brand identity living
-on the same page, and worth settling before print or paid social.
+TWO NOTES ON asd.jpeg, both worth settling before a paid campaign:
+
+  * The logo printed on the shirts is not the mark this site uses.
+    #ye-mark is the gold medallion transcribed from
+    design/yalla-egypt-logo-3.pdf; the shirts carry a triangle pyramid
+    mark with YALLA in navy and EGYPT in orange. That is a second
+    brand identity living on the same page.
+  * It is a five-across composition in a 16:10 slot. On a phone the
+    stage crops to roughly the middle 40% of the width, so two of the
+    five are off-frame. The branding still reads, but the group shot
+    is a desktop and tablet composition; it was graded brighter than
+    the other slides (CREW_HERO in tools/build-images.py) so the
+    shirts survive the veil rather than the veil being lightened for
+    one frame.
 
 
 REGENERATING THE STOCK CROPS (same widths)

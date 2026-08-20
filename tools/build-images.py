@@ -33,11 +33,11 @@ SRC = {
     "rooftop":   "WhatsApp Image 2026-08-19 at 1.43.30 PM.jpeg",   # unused: rooftop cafe
     "felucca":   "WhatsApp Image 2026-08-19 at 1.43.30 PfM.jpeg",  # the Nile at golden hour
     "wine":      "WhatsApp Image 2026-08-19 at 1.43.30f PM.jpeg",  # a glass against Khafre
-    "caravan":   "WhatsApp Image 2026-08-19 at 1.43.3f1 PM.jpeg",  # camel train, backlit
-    "table":     "WhatsApp Image 2026-08-19 at 1.4f3.31 PM.jpeg",  # unused: breakfast facing the plateau
+    "caravan":   "WhatsApp Image 2026-08-19 at 1.43.3f1 PM.jpeg",  # camel train, backlit (now og-image only)
+    "table":     "WhatsApp Image 2026-08-19 at 1.4f3.31 PM.jpeg",  # breakfast facing the plateau
     "sphinx":    "WhatsApp Image 2026d08-19 at 1.43.31 PM.jpeg",   # unused: Sphinx in profile
     "khafre":    "WhatsApp Image f2026-08-19 at 1.43.31 PM.jpeg",  # Khafre with the Sphinx below
-    "crew":      "asd.jpeg",                                       # branded group facing the plateau
+    "crew":      "asd.jpeg",                                       # the branded group on the plateau
 }
 
 
@@ -128,6 +128,12 @@ DEHDR_GRADE = dict(warm=1.9, sat=0.30, contrast=0.94, bright=1.06, lift=0.085)
 # The supplied frames only need the haze pulled out of the flatter ones.
 NEW_SOFT    = dict(warm=0.15, sat=1.03, contrast=1.06, lift=0.012)
 NEW_PLAIN   = dict(warm=0.1,  sat=1.0,  contrast=1.02)
+# The hero veil is heavy — a dark bottom band over the lower 48vh and a
+# radial darkening centred at 38% — and the branded frame carries its
+# subject exactly where that lands. Rather than lighten the veil, which
+# every other slide is composed for, this one frame is graded brighter so
+# it arrives at the same place the others do once the overlay is on top.
+CREW_HERO   = dict(warm=0.15, sat=1.06, contrast=1.10, bright=1.14)
 
 HERO = (2000, 1260), (1200, 760)
 DEST = (900, 1247), (500, 693)
@@ -154,7 +160,13 @@ def one(rel, im, size, crop, gr):
 # crops with object-fit:cover and pushes to scale(1.12), so every crop
 # leaves margin and keeps its subject near the horizontal centre — that is
 # the only part of the frame a phone is guaranteed to show.
-hero("giza-1",  load("caravan"), dict(ax=0.56, ay=0.46), NEW_PLAIN)
+# The Giza slot takes the branded group frame. It goes here rather than in
+# any other slide because it is shot on the plateau, so the slide's name,
+# coordinates and ancient name stay true and the rotation keeps five
+# distinct places. The source is 3:2 against a 16:10 slot, so the window
+# keeps the full width and trims 56px of height — there is almost no room
+# to reposition, which is why the grade above does the work instead.
+hero("giza-1",  load("crew"), dict(ay=0.52), CREW_HERO)
 hero("luxor-1", load("colossi"), dict(ax=0.55, ay=0.40), NEW_PLAIN)
 hero("aswan-1", load("felucca"), dict(ax=0.46, ay=0.48), NEW_SOFT)
 # The last two are the only placeholders that survived the cut.
@@ -178,16 +190,8 @@ dest("red-sea", stock("red-sea-900"), dict(ay=0.66, zoom=1.35), STOCK_GRADE)
 dest("alexandria", stock("alexandria-900"), dict(ay=0.60, zoom=1.50), STOCK_GRADE)
 
 # --------------------------------------------------------------- tours
-# The Giza card is the one slot on the page whose job suits a branded
-# photograph: it sells a route rather than describing a place, and this
-# frame carries both pyramids and the Sphinx, which is exactly what the
-# card's copy promises. The source is 3:2, so a 4:3 window keeps the full
-# height and trims 85px of width from each side — the outer two figures
-# lose an arm's width, which reads as a group continuing past the frame.
-# It replaced the breakfast terrace, which is still in design/ and would
-# suit an "about" or editorial slot if one is ever added.
-one("tours/cairo-giza-1100.webp", load("crew"), (1100, 825),
-    dict(ax=0.50), NEW_SOFT)
+one("tours/cairo-giza-1100.webp", load("table"), (1100, 825),
+    dict(ax=0.50, ay=0.40), NEW_SOFT)
 # New file: the Luxor card used to borrow the destination strip's photograph.
 one("tours/luxor-karnak-1100.webp", load("columns"), (825, 1100),
     dict(ax=0.50, ay=0.48), NEW_PLAIN)
