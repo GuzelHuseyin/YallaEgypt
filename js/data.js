@@ -206,9 +206,10 @@ const HERO = [
    opening its detail in place: the card is the pitch, and the
    conversation is the next step.
 
-   Source aspect ratios differ on purpose — the card media carries
-   its own aspect-ratio with object-fit:cover, so a portrait and a
-   landscape original both crop correctly into the same grid.
+   All four images are 4:3 landscape, because .tcard-media is
+   aspect-ratio:4/3 for every card. A portrait original here does not
+   letterbox — object-fit:cover keeps only the middle 56% of its
+   height, which silently beheads the subject.
    ------------------------------------------------------------ */
 const TOURS = [
   { id:"kahire-giza",
@@ -223,7 +224,7 @@ const TOURS = [
     } },
 
   { id:"luksor-karnak",
-    img:"assets/images/tours/luxor-karnak-1100.webp", iw:825, ih:1100,
+    img:"assets/images/tours/luxor-karnak-1100.webp", iw:1100, ih:825,
     t:{
       tr:{ meta:"4 Gün · Luksor", n:"Luksor & Karnak",
            d:"Firavunların açık hava başkentinde; Karnak'ın dev sütunları, Kral Vadisi'nin gizli mezarları." },
@@ -234,7 +235,7 @@ const TOURS = [
     } },
 
   { id:"nil-cruise",
-    img:"assets/images/tours/nile-luxor-aswan-1100.webp", iw:825, ih:1100,
+    img:"assets/images/tours/nile-luxor-aswan-1100.webp", iw:1100, ih:825,
     t:{
       tr:{ meta:"7 Gece · Nil", n:"Nil'de Lüks Cruise",
            d:"Beş yıldızlı bir tekne güvertesinden, nehrin iki yakasındaki tapınakları ve köy hayatını izleyin." },

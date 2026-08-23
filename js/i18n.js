@@ -118,7 +118,7 @@ const I18N = {
     "skip":"İçeriğe geç",
 
     "nav.journeys":"Turlar","nav.experience":"Deneyim","nav.dest":"Destinasyonlar","nav.planning":"Nasıl işliyor",
-    "nav.about":"Hakkımızda","nav.contact":"İletişim","nav.cta":"Rotanı kur",
+    "nav.about":"Hakkımızda","nav.contact":"İletişim","nav.cta":"Rotanızı kurun",
     "nav.menu":"Menüyü aç","nav.close":"Menüyü kapat","nav.home":"Yalla Egypt — ana sayfa",
 
     "hero.h":"Firavunların izinde,<br>beş bin yıllık bir mirasa açılan<br><em>ayrıcalıklı bir kapı.</em>",
@@ -139,10 +139,10 @@ const I18N = {
 
 
     "s2.eye":"İmza Rotalarımız",
-    "s2.lead":"Dört Bin Yıllık Dört Rota","s2.cta":"Detayları Gör",
+    "s2.lead":"Dört Bin Yıllık Dört Rota","s2.cta":"Detayları Görün",
 
     "s3.eye":"Çalıştığımız yerler",
-    "s3.lead":"Çalıştığımız yerler. Çoğu rota bunlardan iki üçünü kullanıyor.",
+    "s3.lead":"Rotalarımızın geçtiği yerler. Çoğu tur bunlardan iki ya da üçünü birleştirir.",
     "s3.hint":"Yana sürükleyin veya kaydırın",
 
 
@@ -179,12 +179,12 @@ const I18N = {
       {q:"İptal etmek zorunda kalırsak ne oluyor?",
        a:"İptal koşulları, hangi tarihte neyin değiştiğiyle birlikte, siz hiçbir ödeme yapmadan önce teklifinizde açık bir dille yazılıdır. Oteller ve iç hat uçuşlarının kendi koşulları vardır; bunları tek bir rakamın içine gizlemek yerine bize ulaştığı haliyle aktarırız.", tbc:true},
       {q:"Uçuş, otel ve müze girişleri dahil mi?",
-       a:"Uluslararası uçuşlar dahil değil. Geri kalan her şey — oteller, transferler, şoförler, rehberlik, iç hat uçuşları ve giriş biletleri — teklifinizde kalem kalem yazılıdır, hariç olan her şey de adıyla belirtilir. Bir kalem orada yoksa dahil değildir. Asvan'da öğrenmenizindense şimdi sormanızı tercih ederiz.", tbc:true}
+       a:"Uluslararası uçuşlar dahil değil. Geri kalan her şey — oteller, transferler, şoförler, rehberlik, iç hat uçuşları ve giriş biletleri — teklifinizde kalem kalem yazılıdır, hariç olan her şey de adıyla belirtilir. Bir kalem orada yoksa dahil değildir. Asvan'da öğrenmenizdense şimdi sormanızı tercih ederiz.", tbc:true}
     ],
 
     "s9.eye":"Sıradaki adım",
     "s9.q":"Ne zaman müsaitsiniz, söyleyin. Gerisini biz kurarız.",
-    "s9.cta1":"Rotanı kur","s9.cta2":"WhatsApp'tan yazın",
+    "s9.cta1":"Rotanızı kurun","s9.cta2":"WhatsApp'tan yazın",
 
     "contact.direct.eye":"Doğrudan",
     "contact.direct.email":"E-posta gönderin","contact.direct.phone":"Bizi arayın","contact.direct.whatsapp":"WhatsApp'tan yazın",
@@ -198,7 +198,7 @@ const I18N = {
     "contact.form.about":"Konu:",
     "contact.form.sentH":"E-postanız gönderilmeye hazır.",
     "contact.form.sentP":"E-posta uygulamanızı mesaj hazır şekilde açtık. Oradan gönderdiğinizde bize ulaşır. Hiçbir şey açılmadıysa doğrudan bu adrese yazın:",
-    "contact.form.again":"Yeni bir mesaj yaz",
+    "contact.form.again":"Yeni bir mesaj yazın",
 
     "foot.desc":"Mısır merkezli bir seyahat atölyesi. Burada yaşayan insanların kurduğu özel rotalar.",
     "foot.explore":"Keşfet","foot.contact":"İletişim","foot.follow":"Takip et",
@@ -250,7 +250,7 @@ const I18N = {
     "steps":[
       {h:"Sie schreiben",p:"Zeitraum, Anzahl der Tage, wer mitkommt und eine Zeile dazu, was Sie auf keinen Fall verpassen möchten. Das genügt für den Anfang."},
       {h:"Wir fragen nach",p:"Meist innerhalb eines Werktags — und meist mit Fragen statt mit einer Broschüre. Die Fragen sind die eigentliche Arbeit."},
-      {h:"Eine Route, schriftlich",p:"Der vollständige Ablauf, Hotels mit Namen, Inklusiv- und Ausschlussleistungen. Zu diesem Zeitpunkt ist nichts reserviert und nichts bestätigt."},
+      {h:"Eine Route, schriftlich",p:"Der vollständige Ablauf, Hotels mit Namen, und was enthalten ist und was nicht. Zu diesem Zeitpunkt ist nichts reserviert und nichts bestätigt."},
       {h:"Sie ändern sie",p:"Die meisten Routen durchlaufen zwei bis drei Überarbeitungen. Das ist normal und kostet nichts."},
       {h:"Vor Ort",p:"Eine Nummer, in Ihrer Sprache, von der Landung bis zum Abfluggate."}
     ],
@@ -262,17 +262,17 @@ const I18N = {
 
     "s7.eye":"Mit wem Sie es zu tun haben",
     "s7.lead":"Luxus kauft man nicht von einem Unternehmen, sondern von Menschen.",
-    "s7.body":"Jede Route auf dieser Seite wird von derselben kleinen Gruppe geplant und durchgeführt. Wer Ihre erste Nachricht beantwortet, holt Sie auch an der Ankunft ab und geht um elf Uhr nachts ans Telefon. Kein Account Manager, kein Callcenter, und nach der Landung wird nichts an einen fremden Veranstalter übergeben.",
+    "s7.body":"Jede Route auf dieser Seite wird von derselben kleinen Gruppe geplant und durchgeführt. Wer Ihre erste Nachricht beantwortet, holt Sie auch an der Ankunft ab und geht um elf Uhr nachts ans Telefon. Kein Account-Manager, kein Callcenter, und nach der Landung wird nichts an einen fremden Veranstalter übergeben.",
 
     "s8.eye":"Bevor Sie fragen",
     "s8.lead":"Die sechs Fragen aus fast jeder ersten Nachricht.",
     "faq":[
       {q:"Wann sollten wir kommen?",
-       a:"Oktober bis April für alles im Landesinneren — Kairo, Luxor, Assuan, Abu Simbel und die Wüste. Mai bis September ist Oberägypten wirklich heiß: 40 °C und mehr, das heißt Aufbruch bei Sonnenaufgang und Schluss am Mittag. Die Küste des Roten Meeres geht das ganze Jahr."},
+       a:"Oktober bis April für alles im Landesinneren — Kairo, Luxor, Assuan, Abu Simbel und die Wüste. Mai bis September ist Oberägypten wirklich heiß: 40 °C und mehr, das heißt Aufbruch bei Sonnenaufgang und Schluss am Mittag. An der Küste des Roten Meeres ist das ganze Jahr über Saison."},
       {q:"Wie viele Tage brauchen wir?",
        a:"Vier Tage reichen für Kairo und Gizeh ohne Hetze. Für den Nil zwischen Luxor und Assuan rechnen Sie eine Woche dazu. Unter drei Tagen reden wir Ihnen den Flug lieber aus, als Ihnen ein Programm zu verkaufen, das keinen Spaß macht."},
       {q:"Brauchen wir ein Visum?",
-       a:"Die meisten deutschen, österreichischen, schweizerischen, türkischen und EU-Pässe bekommen ein Visum bei Ankunft oder beantragen es vorab online; die Regeln ändern sich. Wir prüfen den aktuellen Stand für Ihren Pass, bevor irgendetwas gebucht wird — verbindlich ist aber immer Ihr eigenes Außenministerium."},
+       a:"Reisende mit deutschem, österreichischem, schweizerischem, türkischem oder einem anderen EU-Pass erhalten das Visum in der Regel bei der Ankunft oder beantragen es vorab online; die Regeln ändern sich. Wir prüfen den aktuellen Stand für Ihren Pass, bevor irgendetwas gebucht wird — verbindlich ist aber immer Ihr eigenes Außenministerium."},
       {q:"Wie und wann wird bezahlt?",
        a:"Eine Anzahlung bestätigt Ihre Termine, der Restbetrag wird vor der Reise fällig. Höhe, Zahlungsplan und akzeptierte Zahlungsarten stehen in Ihrem schriftlichen Angebot, und Sie werden nie um eine Zahlung gebeten, bevor Ihnen dieses Angebot vorliegt. Kartendaten nehmen wir weder im Chat noch am Telefon entgegen.", tbc:true},
       {q:"Was passiert, wenn wir stornieren müssen?",
