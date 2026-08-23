@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B0A08">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
 <!-- ============================================================
      SEO — managed per page for now. If this moves to a framework,
@@ -361,7 +361,7 @@
     <div class="record">
       <span class="record-prog" id="prog" aria-hidden="true"></span>
       <div class="record-l">
-        <span class="record-idx"  id="a-idx">01 / 08</span>
+        <span class="record-idx"  id="a-idx">01 / 05</span>
         <span class="record-name" id="a-name">Giza</span>
         <span class="record-geo"  id="a-geo">29.9753°N 31.1376°E</span>
         <span class="record-old"  id="a-old">Rostau</span>
@@ -530,7 +530,22 @@
           <textarea id="cf-message" name="message" rows="4"></textarea>
         </div>
         <button class="btn btn--gold cform-submit" type="submit" data-i18n="contact.form.submit">Send message</button>
-        <p class="cform-note" data-i18n="contact.form.note">We reply within one business day. This form opens your email client — wire it to a booking backend or form service before launch.</p>
+        <p class="cform-note" data-i18n="contact.form.note">We reply within one business day. Sending opens your email app with the message ready — nothing is sent until you press send there.</p>
+
+        <!-- Post-submit state. The form hands the message to the
+             visitor's mail client, which reports nothing back and on
+             a machine with no mail client does nothing at all — so
+             the outcome is stated here, with the address repeated as
+             the route that works either way. tabindex="-1" so focus
+             can land here when the fields are hidden. -->
+        <div class="cform-sent" id="cform-sent" role="status" tabindex="-1" hidden>
+          <p class="cform-sent-h" data-i18n="contact.form.sentH">Your email is ready to send.</p>
+          <p class="cform-sent-p">
+            <span data-i18n="contact.form.sentP">We've opened your email app with the message filled in. Press send there and it reaches us. If nothing opened, write to us directly at</span>
+            <a id="cform-sent-mail" href="mailto:merhaba@yallaegypt.com">merhaba@yallaegypt.com</a>
+          </p>
+          <button class="ctl-text" id="cform-again" type="button" data-i18n="contact.form.again">Write another message</button>
+        </div>
       </form>
     </div>
   </div>

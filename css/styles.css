@@ -351,6 +351,10 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 
 .burger{ display:none; width:26px; height:16px; position:relative; }
+/* The bars are 26x16 by design, which is well under a thumb. Grow
+   the hit area with a pseudo-element instead of padding: the bars
+   are positioned against this box, so padding would move them. */
+.burger::after{ content:""; position:absolute; inset:-14px -12px; }
 .burger i{
   position:absolute; left:0; right:0; height:1px; background:currentColor;
   transition:transform .4s var(--ease), opacity .25s var(--ease);
@@ -1346,6 +1350,30 @@ a.contact-row:hover .v, a.contact-row:focus-visible .v{ color:var(--gold-bright)
 .field input:user-invalid, .field textarea:user-invalid{ border-color:var(--oxide); }
 .cform-submit{ justify-self:start; margin-top:.4rem; }
 .cform-note{ font-size:var(--fs-sm); color:var(--papyrus-dim); opacity:.85; max-width:52ch; }
+
+/* Post-submit confirmation. Same gold hairline treatment as
+   .cform-about so the outcome reads as part of the form rather
+   than as an alert pasted over it. */
+.cform-sent{
+  padding:1.1rem 1.25rem; border-left:2px solid var(--gold);
+  background:rgba(201,162,75,.07); max-width:52ch;
+}
+.cform-sent[hidden]{ display:none; }
+/* .cform-row and .field carry display:grid / display:flex, which beat
+   the UA rule behind the hidden attribute — so toggling .hidden on
+   them did nothing until this. Scoped to the form rather than set
+   globally, because this is the only place that hides laid-out
+   containers by attribute. */
+.cform [hidden]{ display:none !important; }
+.cform-sent:focus{ outline:none; }
+.cform-sent:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+.cform-sent-h{
+  font-family:var(--font-display); font-size:var(--fs-h3);
+  color:var(--papyrus); margin-bottom:.5rem;
+}
+.cform-sent-p{ font-size:var(--fs-sm); color:var(--papyrus-dim); }
+.cform-sent-p a{ color:var(--gold-bright); text-decoration:underline; text-underline-offset:2px; }
+.cform-sent #cform-again{ margin-top:.5rem; }
 
 /* ============================================================
    FOOTER

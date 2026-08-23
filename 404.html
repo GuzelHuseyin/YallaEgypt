@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-ground="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0A08">
+<!-- A 404 must never be indexed, and never advertise itself as the site. -->
+<meta name="robots" content="noindex, follow">
+<title>Page not found — Yalla Egypt</title>
+
+<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+
+<!-- Reuses the site stylesheet, so this page inherits the palette,
+     the type scale and the fonts rather than defining a second look. -->
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/styles.css">
+<style>
+  /* The only rules this page needs: centre one short message on the
+     standard dark ground. Everything else is a site token. */
+  .nf{ min-height:100svh; display:grid; place-items:center; text-align:center;
+       background:var(--obsidian); color:var(--papyrus-dim); padding:var(--gutter); }
+  .nf-in{ max-width:38rem; display:grid; gap:1.5rem; justify-items:center; }
+  .nf-code{ font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+            text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--gold); }
+  .nf-word{ font-family:var(--font-display); font-size:clamp(1.6rem,4vw,2.4rem); color:var(--papyrus); }
+  .nf p{ font-size:var(--fs-body); }
+</style>
+</head>
+<body>
+<main class="nf">
+  <div class="nf-in">
+    <p class="nf-code">Error 404</p>
+    <p class="nf-word"><span class="brand-yalla">Yalla</span> <span class="brand-egypt">Egypt</span></p>
+    <h1 class="lead">This page doesn't exist.</h1>
+    <p>The link may be out of date, or the address mistyped. Everything we publish lives on one page.</p>
+    <a class="btn btn--gold" href="/">Back to the homepage</a>
+  </div>
+</main>
+</body>
+</html>

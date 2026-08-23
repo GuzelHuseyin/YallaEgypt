@@ -83,7 +83,7 @@ function renderDestinations(){
       <div class="dcard-media">
         <img src="${d.base}-${d.widths.at(-1)}.webp" srcset="${srcset(d.base, d.widths)}"
              sizes="(min-width:900px) 21rem, 76vw" alt="${esc(d.alt)}"
-             loading="lazy" decoding="async" width="900" height="1230">
+             loading="lazy" decoding="async" width="900" height="1247">
       </div>
       <figcaption>
         <span class="dcard-name">${esc(d.name)}</span>
@@ -404,6 +404,10 @@ function initDisclosures(){
 }
 
 function prefillJourney(name){
+  // Coming from a journey card while the confirmation is still on
+  // screen means starting a second enquiry — put the fields back
+  // first, or the route note appears above a hidden form.
+  if($("#cform-sent") && !$("#cform-sent").hidden) resetForm();
   const note = $("#cform-about");
   if(note && name){
     note.textContent = `${t("contact.form.about")} ${name}`;
@@ -618,6 +622,36 @@ function initStrip(){
    message and hands it to the visitor's mail client — which
    genuinely works today. Swap for a POST endpoint at launch.
    ============================================================ */
+/* Handing off to mailto: is silent by design — the browser fires no
+   event for "the mail client opened", and on a desktop with none
+   configured absolutely nothing happens. Without a confirmation the
+   visitor is left looking at a filled-in form wondering whether it
+   sent, which is where enquiries are lost. So the form always states
+   what happened and always repeats the address, which is the one
+   route that still works when mailto: does not. */
+function showSent(){
+  const form = $("#contact-form");
+  const panel = $("#cform-sent");
+  if(!form || !panel) return;
+  $$(".cform-row, .cform-submit, .cform-note, .cform-about, .field", form).forEach(el => { el.hidden = true; });
+  const mail = $("#cform-sent-mail");
+  if(mail){ mail.textContent = CONFIG.email; mail.href = `mailto:${CONFIG.email}`; }
+  panel.hidden = false;
+  // role="status" announces it; focus moves so a keyboard or screen
+  // reader user lands on the outcome rather than on vanished fields.
+  panel.focus({ preventScroll:true });
+}
+
+function resetForm(){
+  const form = $("#contact-form");
+  if(!form) return;
+  $("#cform-sent").hidden = true;
+  $$(".cform-row, .cform-submit, .cform-note, .field", form).forEach(el => { el.hidden = false; });
+  form.reset();
+  $("#cform-about").hidden = true;
+  $("#cf-name")?.focus({ preventScroll:true });
+}
+
 function initForm(){
   const form = $("#contact-form");
   if(!form) return;
@@ -635,7 +669,9 @@ function initForm(){
       "", get("message")
     ].join("\n");
     location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    showSent();
   });
+  $("#cform-again")?.addEventListener("click", resetForm);
 }
 
 function initWhatsApp(){
