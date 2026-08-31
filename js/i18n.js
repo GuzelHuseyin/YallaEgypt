@@ -36,11 +36,45 @@ const I18N = {
     "phil.who":"— The Yalla Egypt founding philosophy",
     "s3b.eye":"Sample programme",
     "s3b.lead":"Five days on the Nile",
-    "s3b.cta":"Ask about this programme",
+    "s3b.cta":"Ask about this programme","s3b.cta2":"See the full programme",
 
 
-    "s2.eye":"Our signature routes",
-    "s2.lead":"Four routes, four thousand years","s2.cta":"See the details",
+    "s2.eye":"Our tours",
+    "s2.lead":"Five routes, from four days to nine","s2.cta":"Explore the tour",
+
+    /* ---- TOUR CATALOGUE + TOUR DETAIL -------------------------
+       Everything a tour SAYS lives in TOURS (js/data.js). These
+       are only the labels the interface puts around it, so a new
+       tour needs nothing here and a fourth language needs this
+       block once rather than once per tour.
+       "tour.waMsg" takes {tour}, replaced with the route name. */
+    "tour.priceAsk":"Price on request",
+    "tour.from":"From","tour.perPerson":"per person","tour.perGroup":"per group",
+    "tour.days":"days","tour.nights":"nights",
+
+    "tour.open":"Explore the tour",
+    "tour.close":"Close","tour.closeAria":"Close this tour and go back to the catalogue",
+    "tour.back":"All tours",
+
+    "tour.overview":"Overview",
+    "tour.highlights":"Tour highlights",
+    "tour.itinerary":"Day by day",
+    "tour.itineraryNote":"Open a day to see what is in it.",
+    "tour.inclusions":"Included, and not included",
+    "tour.included":"What is included",
+    "tour.notIncluded":"Not included",
+    "tour.optional":"Optional experiences",
+    "tour.info":"Tour information",
+    "tour.notes":"Important notes",
+    "tour.destinations":"Destinations","tour.duration":"Duration","tour.price":"Price",
+    "tour.other":"The other routes",
+
+    "tour.cta":"Ask about this tour",
+    "tour.ctaWa":"Ask on WhatsApp",
+    "tour.ctaPlan":"Plan this trip",
+    "tour.ctaLead":"Ask us anything about this route.",
+    "tour.ctaBody":"Tell us your dates and who is travelling. We answer within one business day, in Turkish, English or German — and the first reply is usually questions rather than a brochure.",
+    "tour.waMsg":"Hello Yalla Egypt, I am interested in the {tour} tour. I would like more information.",
 
     "s3.eye":"Where we work",
     "s3.lead":"The places we work in. Most journeys use two or three of them.",
@@ -89,7 +123,9 @@ const I18N = {
 
     "contact.direct.eye":"Direct",
     "contact.direct.email":"Email us","contact.direct.phone":"Call us","contact.direct.whatsapp":"Message us on WhatsApp",
+    "contact.direct.instagram":"Follow us on Instagram",
     "contact.label.email":"Email","contact.label.phone":"Phone","contact.label.whatsapp":"WhatsApp",
+    "contact.label.instagram":"Instagram","contact.instagram.v":"Follow us on Instagram",
 
     "contact.form.eye":"Or write to us",
     "contact.form.name":"Full name","contact.form.email":"Email",
@@ -135,11 +171,39 @@ const I18N = {
     "phil.who":"— Yalla Egypt Kuruluş Felsefesi",
     "s3b.eye":"Örnek Program",
     "s3b.lead":"5 Günlük Nil Yolculuğu",
-    "s3b.cta":"Bu programı sorun",
+    "s3b.cta":"Bu programı sorun","s3b.cta2":"Programın tamamını görün",
 
 
-    "s2.eye":"İmza Rotalarımız",
-    "s2.lead":"Dört Bin Yıllık Dört Rota","s2.cta":"Detayları Görün",
+    "s2.eye":"Turlarımız",
+    "s2.lead":"Beş rota, dört günden dokuz güne","s2.cta":"Turu keşfedin",
+
+    "tour.priceAsk":"Fiyat için bize yazın",
+    "tour.from":"Başlangıç","tour.perPerson":"kişi başı","tour.perGroup":"grup başına",
+    "tour.days":"gün","tour.nights":"gece",
+
+    "tour.open":"Turu keşfedin",
+    "tour.close":"Kapat","tour.closeAria":"Bu turu kapatın ve tur listesine dönün",
+    "tour.back":"Tüm turlar",
+
+    "tour.overview":"Genel bakış",
+    "tour.highlights":"Turun öne çıkanları",
+    "tour.itinerary":"Gün gün program",
+    "tour.itineraryNote":"İçeriğini görmek için bir güne dokunun.",
+    "tour.inclusions":"Dahil olanlar ve olmayanlar",
+    "tour.included":"Dahil olanlar",
+    "tour.notIncluded":"Dahil olmayanlar",
+    "tour.optional":"Opsiyonel deneyimler",
+    "tour.info":"Tur bilgileri",
+    "tour.notes":"Önemli notlar",
+    "tour.destinations":"Destinasyonlar","tour.duration":"Süre","tour.price":"Fiyat",
+    "tour.other":"Diğer rotalar",
+
+    "tour.cta":"Bu turu sorun",
+    "tour.ctaWa":"WhatsApp'tan sorun",
+    "tour.ctaPlan":"Bu rotayı kurun",
+    "tour.ctaLead":"Bu rotayla ilgili aklınıza gelen her şeyi sorun.",
+    "tour.ctaBody":"Tarihlerinizi ve kimlerin geleceğini yazmanız yeterli. Bir iş günü içinde Türkçe, İngilizce ya da Almanca dönüş yaparız — ilk yanıt genellikle broşür değil, sorulardır.",
+    "tour.waMsg":"Merhaba Yalla Egypt, {tour} turuyla ilgileniyorum. Daha fazla bilgi almak istiyorum.",
 
     "s3.eye":"Çalıştığımız yerler",
     "s3.lead":"Rotalarımızın geçtiği yerler. Çoğu tur bunlardan iki ya da üçünü birleştirir.",
@@ -188,7 +252,9 @@ const I18N = {
 
     "contact.direct.eye":"Doğrudan",
     "contact.direct.email":"E-posta gönderin","contact.direct.phone":"Bizi arayın","contact.direct.whatsapp":"WhatsApp'tan yazın",
+    "contact.direct.instagram":"Instagram'da bizi takip edin",
     "contact.label.email":"E-posta","contact.label.phone":"Telefon","contact.label.whatsapp":"WhatsApp",
+    "contact.label.instagram":"Instagram","contact.instagram.v":"Instagram'da bizi takip edin",
 
     "contact.form.eye":"Ya da bize yazın",
     "contact.form.name":"Ad soyad","contact.form.email":"E-posta",
@@ -234,11 +300,39 @@ const I18N = {
     "phil.who":"— Die Gründungsphilosophie von Yalla Egypt",
     "s3b.eye":"Beispielprogramm",
     "s3b.lead":"Fünf Tage am Nil",
-    "s3b.cta":"Nach diesem Programm fragen",
+    "s3b.cta":"Nach diesem Programm fragen","s3b.cta2":"Das vollständige Programm ansehen",
 
 
-    "s2.eye":"Unsere Signature-Routen",
-    "s2.lead":"Vier Routen, viertausend Jahre","s2.cta":"Details ansehen",
+    "s2.eye":"Unsere Reisen",
+    "s2.lead":"Fünf Routen, von vier bis neun Tagen","s2.cta":"Reise ansehen",
+
+    "tour.priceAsk":"Preis auf Anfrage",
+    "tour.from":"Ab","tour.perPerson":"pro Person","tour.perGroup":"pro Gruppe",
+    "tour.days":"Tage","tour.nights":"Nächte",
+
+    "tour.open":"Reise ansehen",
+    "tour.close":"Schließen","tour.closeAria":"Diese Reise schließen und zurück zur Übersicht",
+    "tour.back":"Alle Reisen",
+
+    "tour.overview":"Überblick",
+    "tour.highlights":"Höhepunkte der Reise",
+    "tour.itinerary":"Tag für Tag",
+    "tour.itineraryNote":"Öffnen Sie einen Tag, um zu sehen, was er enthält.",
+    "tour.inclusions":"Inbegriffen und nicht inbegriffen",
+    "tour.included":"Inbegriffen",
+    "tour.notIncluded":"Nicht inbegriffen",
+    "tour.optional":"Optionale Erlebnisse",
+    "tour.info":"Reiseinformationen",
+    "tour.notes":"Wichtige Hinweise",
+    "tour.destinations":"Ziele","tour.duration":"Dauer","tour.price":"Preis",
+    "tour.other":"Die anderen Routen",
+
+    "tour.cta":"Zu dieser Reise anfragen",
+    "tour.ctaWa":"Per WhatsApp fragen",
+    "tour.ctaPlan":"Diese Reise planen",
+    "tour.ctaLead":"Fragen Sie uns alles zu dieser Route.",
+    "tour.ctaBody":"Nennen Sie uns Ihren Zeitraum und wer mitreist. Wir antworten innerhalb eines Werktags auf Türkisch, Englisch oder Deutsch — und die erste Antwort besteht meist aus Fragen, nicht aus einer Broschüre.",
+    "tour.waMsg":"Hallo Yalla Egypt, ich interessiere mich für die Reise {tour}. Ich hätte gern mehr Informationen.",
 
     "s3.eye":"Wo wir arbeiten",
     "s3.lead":"Die Orte, an denen wir arbeiten. Die meisten Reisen nutzen zwei oder drei davon.",
@@ -287,7 +381,9 @@ const I18N = {
 
     "contact.direct.eye":"Direkt",
     "contact.direct.email":"E-Mail schreiben","contact.direct.phone":"Anrufen","contact.direct.whatsapp":"Über WhatsApp schreiben",
+    "contact.direct.instagram":"Folgen Sie uns auf Instagram",
     "contact.label.email":"E-Mail","contact.label.phone":"Telefon","contact.label.whatsapp":"WhatsApp",
+    "contact.label.instagram":"Instagram","contact.instagram.v":"Folgen Sie uns auf Instagram",
 
     "contact.form.eye":"Oder schreiben Sie uns",
     "contact.form.name":"Vollständiger Name","contact.form.email":"E-Mail",

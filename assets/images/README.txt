@@ -15,6 +15,9 @@ OWNED (from design/, supplied 19 Aug 2026)
   tours/cairo-giza         breakfast on a terrace facing the plateau
   tours/luxor-karnak       painted capitals seen from below
   misc/approach-bg         a glass on a ledge above the plateau
+  tours/giza-caravan       the camel train, backlit -- new crop, and
+                           the first slot this frame has held besides
+                           the share card
 
 STOCK, REGRADED (Unsplash, cached locally as WebP)
   hero/cairo-2             Khan el-Khalili
@@ -26,6 +29,8 @@ STOCK, REGRADED (Unsplash, cached locally as WebP)
   destinations/alexandria  a shoreline
   tours/nile-luxor-aswan   a felucca among the dunes
   tours/abu-simbel-south   see the warning below
+  tours/red-sea-coast      the coast, from redsea-1 (new crop)
+  tours/red-sea-reef       the reef, from destinations/red-sea (new crop)
 
 Everything retained was regraded toward the owned photographs --
 saturation pulled back, the sand pushed warm, the black point lifted.
@@ -63,8 +68,9 @@ path and "widths" array in js/data.js.
                   and keep the subject near the horizontal centre or
                   it walks out of frame on a phone.
   destinations/    900px +  500px, portrait, 3:4.1
-  tours/          1100px, landscape 4:3 for odd cards,
-                  portrait 3:4 for even ones (the layout alternates)
+  tours/          1100px, landscape 4:3 -- every card, including the
+                  full-width flagship, crops with object-fit:cover
+                  from a 4:3 box, so a portrait original is beheaded
   misc/           1800px, landscape -- sits behind section 04 at 15%
                   opacity under a mask that fades both edges, so it
                   wants contrast and shape, not detail
@@ -95,6 +101,31 @@ The hero is a route, not a gallery: plateau, temple, river, city,
 coast. Keep that order when frames are added or swapped, and keep one
 landmark to one appearance -- the Sphinx and the pyramids are easy to
 repeat by accident across hero, strip and cards.
+
+THE FIVE TOUR CARDS (js/data.js TOURS, in catalogue order)
+  01 Best of Egypt            tours/giza-caravan     owned
+  02 Egypt Family Holiday     tours/red-sea-coast    stock, regraded
+  03 Hurghada Adventure       tours/red-sea-reef     stock, regraded
+  04 Hurghada & Luxor         tours/luxor-karnak     owned
+  05 Hurghada, Luxor & Cairo  tours/cairo-giza       owned
+
+  The detail view behind each card reuses a hero/ still rather than
+  loading a sixth photograph, so opening a tour usually costs no new
+  image at all: giza-1 for 01, redsea-1 for 02 and 03, luxor-1 for
+  04, cairo-2 for 05. The mapping is the "hero" field on each tour.
+
+  WHAT THESE CARDS ARE STILL OWED. Three of the five routes are
+  built on Hurghada and there is no Hurghada photograph in the set
+  at all -- both sea frames are the Sinai coast and a reef, and
+  neither shows the town, the marina, the desert safari, the ATVs,
+  the Bedouin camp, the dive boat, the islands or a balloon over the
+  West Bank. Those are the shots the catalogue most needs next, and
+  they are the ones a client with boats and 4x4s can supply from a
+  single working week. tours/ wants 1100px, landscape 4:3.
+
+  nile-luxor-aswan-1100.webp is 2.1 MB on disk, roughly ten times
+  every other card, and is no longer referenced by anything. Either
+  rebuild it (python tools/build-images.py tours/nile) or delete it.
 
 STILL UNPLACED: a Sphinx in profile (hazy, cluttered foreground, and
 Giza is already carried by three stronger frames); a rooftop cafe (a

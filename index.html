@@ -60,21 +60,381 @@
   "areaServed": { "@type": "Country", "name": "Egypt" },
   "availableLanguage": ["en", "tr", "de"],
   "makesOffer": [
-    { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"Cairo & Giza",
-      "description":"Three days in Cairo: the last surviving wonder of the ancient world, the Sphinx, the Egyptian Museum and the old bazaars." } },
-    { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"Luxor & Karnak",
-      "description":"Four days in the open-air capital of the pharaohs: the great columns of Karnak and the tombs of the Valley of the Kings." } },
-    { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"A Luxury Nile Cruise",
-      "description":"Seven nights aboard a five-star boat, watching the temples and village life pass on both banks of the river.",
-      "itinerary": { "@type":"ItemList", "numberOfItems": 5, "itemListElement": [
-        { "@type":"ListItem", "position":1, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Pyramids of Giza & the Sphinx" } },
-        { "@type":"ListItem", "position":2, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"The Egyptian Museum & Old Cairo" } },
-        { "@type":"ListItem", "position":3, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Karnak & Luxor Temples" } },
-        { "@type":"ListItem", "position":4, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Valley of the Kings" } },
-        { "@type":"ListItem", "position":5, "item":{ "@type":"LandmarksOrHistoricalBuildings", "name":"Abu Simbel" } }
-      ] } } },
-    { "@type":"Offer", "itemOffered": { "@type":"TouristTrip", "name":"Abu Simbel",
-      "description":"A day trip from Aswan to the colossal rock-cut temple of Ramesses II, reached at first light for the sunrise." } }
+    {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "itemOffered": {
+        "@type": "TouristTrip",
+        "name": "Best of Egypt",
+        "description": "Nine days from Cairo to Abu Simbel: the Giza plateau, the Egyptian museum, Karnak and Luxor Temple, the Valley of the Kings, the Nile between Luxor and Aswan, Philae and Abu Simbel at first light.",
+        "touristType": "Private, guided travel",
+        "provider": {
+          "@type": "TravelAgency",
+          "name": "Yalla Egypt"
+        },
+        "itinerary": {
+          "@type": "ItemList",
+          "numberOfItems": 9,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Arrival in Cairo"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "The Pyramids of Giza and the Sphinx"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "The Egyptian museum and old Cairo"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Karnak and Luxor Temple"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "The Valley of the Kings"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "Along the Nile to Aswan"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "name": "Philae and a felucca at Aswan"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "name": "Abu Simbel at first light"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "name": "Departure"
+            }
+          ],
+          "name": "Best of Egypt — day by day"
+        },
+        "duration": "P9D",
+        "touristDestination": [
+          {
+            "@type": "TouristDestination",
+            "name": "Cairo"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Giza"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Luxor"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Edfu"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Kom Ombo"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Aswan"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Abu Simbel"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "itemOffered": {
+        "@type": "TouristTrip",
+        "name": "Egypt Family Holiday",
+        "description": "Seven days built around one hotel on the Red Sea: a Hurghada city day, an island boat day with snorkelling, a late-afternoon desert safari with a Bedouin dinner, and two days in Luxor for Karnak and the Valley of the Kings.",
+        "touristType": "Private, guided travel",
+        "provider": {
+          "@type": "TravelAgency",
+          "name": "Yalla Egypt"
+        },
+        "itinerary": {
+          "@type": "ItemList",
+          "numberOfItems": 7,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Arrival in Hurghada"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Hurghada town and the sea"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "The island boat day"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Desert safari and a Bedouin evening"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Karnak and Luxor Temple"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "The Valley of the Kings and back to the coast"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "name": "A last morning on the Red Sea"
+            }
+          ],
+          "name": "Egypt Family Holiday — day by day"
+        },
+        "duration": "P7D",
+        "touristDestination": [
+          {
+            "@type": "TouristDestination",
+            "name": "Hurghada"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Giftun"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Luxor"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "itemOffered": {
+        "@type": "TouristTrip",
+        "name": "Hurghada Adventure",
+        "description": "Four days on the Red Sea: the Hurghada city tour, a 4x4 desert safari with quad bikes and a Bedouin camp, a full day of diving, and a boat day out to the islands.",
+        "touristType": "Private, guided travel",
+        "provider": {
+          "@type": "TravelAgency",
+          "name": "Yalla Egypt"
+        },
+        "itinerary": {
+          "@type": "ItemList",
+          "numberOfItems": 4,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Arrival and the Hurghada city tour"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Desert safari and a Bedouin evening"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "A full day of diving on the Red Sea"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "The islands, then departure"
+            }
+          ],
+          "name": "Hurghada Adventure — day by day"
+        },
+        "duration": "P4D",
+        "touristDestination": [
+          {
+            "@type": "TouristDestination",
+            "name": "Hurghada"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Giftun"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "itemOffered": {
+        "@type": "TouristTrip",
+        "name": "Hurghada & Luxor",
+        "description": "Seven days across the Red Sea and ancient Thebes: desert safari, diving and the islands, then Luxor Temple, the Luxor Museum, Karnak, the Valley of the Kings and the Valley of the Queens.",
+        "touristType": "Private, guided travel",
+        "provider": {
+          "@type": "TravelAgency",
+          "name": "Yalla Egypt"
+        },
+        "itinerary": {
+          "@type": "ItemList",
+          "numberOfItems": 7,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Arrival and the Hurghada city tour"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Desert safari and quad bikes"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "A full day of diving on the Red Sea"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "The islands, then the road to Luxor"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Luxor Temple, the Luxor Museum and Karnak"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "The Valley of the Kings and the Valley of the Queens"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "name": "Back to Hurghada"
+            }
+          ],
+          "name": "Hurghada & Luxor — day by day"
+        },
+        "duration": "P7D",
+        "touristDestination": [
+          {
+            "@type": "TouristDestination",
+            "name": "Hurghada"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Giftun"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Luxor"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "itemOffered": {
+        "@type": "TouristTrip",
+        "name": "Hurghada, Luxor & Cairo",
+        "description": "Eight days across the coast, the Nile and the capital: the Eastern Desert, the Valley of the Kings and Karnak, a hot-air balloon over the West Bank at dawn, diving and the Red Sea islands, then the Pyramids of Giza and the new Egyptian museum.",
+        "touristType": "Private, guided travel",
+        "provider": {
+          "@type": "TravelAgency",
+          "name": "Yalla Egypt"
+        },
+        "itinerary": {
+          "@type": "ItemList",
+          "numberOfItems": 8,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Arrival in Hurghada"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "The Eastern Desert"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Luxor: the tombs and the temples"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "A balloon at dawn, then back to the sea"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Diving and snorkelling on the Red Sea"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "The islands, then the journey to Cairo"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "name": "Cairo and the Pyramids"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "name": "Departure from Cairo"
+            }
+          ],
+          "name": "Hurghada, Luxor & Cairo — day by day"
+        },
+        "duration": "P8D",
+        "touristDestination": [
+          {
+            "@type": "TouristDestination",
+            "name": "Hurghada"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Luxor"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Giftun"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Cairo"
+          },
+          {
+            "@type": "TouristDestination",
+            "name": "Giza"
+          }
+        ]
+      }
+    }
   ]
 }
 </script>
@@ -207,6 +567,101 @@
       <use href="#ye-camel" transform="translate(115,230) scale(.55)" stroke="currentColor" stroke-width="3" opacity=".75"/>
       <use href="#ye-camel" transform="translate(165,238) scale(.65)" stroke="currentColor" stroke-width="3" opacity=".9"/>
       <use href="#ye-camel" transform="translate(222,246) scale(.8)"  stroke="currentColor" stroke-width="3"/>
+    </symbol>
+
+    <!-- ========================================================
+         TOUR ICONS
+         One weight, 1.5px, no fill, no rounded corners — the icon
+         rule from the design audit, and the same line language as
+         the mark above. They mark the highlights on a tour detail
+         view and nothing else; they are not decoration and must
+         not spread to the rest of the page.
+
+         Stroke and fill are set in CSS (.thl-i svg) so one rule
+         governs every icon and a symbol never carries its own
+         colour. A tour highlight names its icon by key in
+         js/data.js — { i:"pyramids", h:"..." } — and an unknown
+         key simply renders the label with no icon.
+         ======================================================== -->
+    <symbol id="ti-pyramids" viewBox="0 0 24 24">
+      <path d="M12 6.4 16.6 17.4H7.4Z"/><path d="M8 10.2 11.2 17.4H4.8Z"/>
+      <path d="M16 10.2 19.2 17.4h-6.4Z"/><path d="M2.5 17.4h19"/>
+    </symbol>
+    <symbol id="ti-temple" viewBox="0 0 24 24">
+      <path d="M3 6.6h18"/><path d="M4.2 9.2h15.6"/>
+      <path d="M6.4 9.2v8.6M12 9.2v8.6M17.6 9.2v8.6"/><path d="M3 17.8h18"/>
+    </symbol>
+    <symbol id="ti-tomb" viewBox="0 0 24 24">
+      <path d="M2 18.4 8.4 8l3.6 5 3.6-5 6.4 10.4"/>
+      <path d="M10.1 18.4v-4.2h3.8v4.2"/><path d="M2 18.4h20"/>
+    </symbol>
+    <symbol id="ti-museum" viewBox="0 0 24 24">
+      <path d="M4.6 3.6h14.8v16.8H4.6Z"/><circle cx="12" cy="9.9" r="2.2"/>
+      <path d="M8.4 17.4c0-2 1.6-3.6 3.6-3.6s3.6 1.6 3.6 3.6"/>
+    </symbol>
+    <symbol id="ti-city" viewBox="0 0 24 24">
+      <path d="M2.5 19.4h19"/>
+      <path d="M5.4 19.4v-3.6a3.6 3.6 0 0 1 7.2 0v3.6"/><path d="M9 12.2v-1.6"/>
+      <path d="M16.6 19.4V7.4h2.8v12"/><path d="M16.6 7.4 18 4.8l1.4 2.6"/>
+    </symbol>
+    <symbol id="ti-nile" viewBox="0 0 24 24">
+      <path d="M12 15.4V4.2"/><path d="M12 5.6 18.4 15.4H12Z"/>
+      <path d="M5 15.4h14l-2.2 2.6H7.2Z"/>
+      <path d="M2 20.4c2 1.1 4 1.1 6 0s4-1.1 6 0 4 1.1 6 0"/>
+    </symbol>
+    <symbol id="ti-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12.6" r="4.2"/>
+      <path d="M12 5.4V2.8M4.9 12.6H2.3M21.7 12.6h-2.6M6.9 7.5 5.1 5.7M17.1 7.5l1.8-1.8"/>
+      <path d="M2 19.6h20"/>
+    </symbol>
+    <symbol id="ti-balloon" viewBox="0 0 24 24">
+      <path d="M12 2.8c3.5 0 6.2 2.8 6.2 6.4 0 3.3-3 6-4.6 8.1h-3.2C8.8 15.2 5.8 12.5 5.8 9.2 5.8 5.6 8.5 2.8 12 2.8Z"/>
+      <path d="M12 2.8c-1.9 2-2.7 4.2-2.7 6.4 0 3.3 1.3 6 2.7 8.1 1.4-2.1 2.7-4.8 2.7-8.1 0-2.2-.8-4.4-2.7-6.4Z"/>
+      <path d="M10.4 19.2h3.2v2.4h-3.2Z"/><path d="M10.7 17.3 10.6 19.2M13.3 17.3l.1 1.9"/>
+    </symbol>
+    <symbol id="ti-desert" viewBox="0 0 24 24">
+      <circle cx="7" cy="6.6" r="2.6"/>
+      <path d="M2 16.8c3-4.2 6.6-4.2 9.6 0"/>
+      <path d="M7.6 18.6c3.6-5.6 8.2-5.6 14.4 0"/><path d="M2 18.6h20"/>
+    </symbol>
+    <symbol id="ti-atv" viewBox="0 0 24 24">
+      <circle cx="6" cy="16.4" r="3.2"/><circle cx="18" cy="16.4" r="3.2"/>
+      <path d="M6 13.2h4.2l1.9-3.4h3.4l2.5 3.4"/><path d="M10.1 9.8 8.6 7.4h3.4"/>
+    </symbol>
+    <symbol id="ti-bedouin" viewBox="0 0 24 24">
+      <path d="M12 4.6 3.4 19.4M12 4.6l8.6 14.8"/><path d="M12 4.6V2.8"/>
+      <path d="M9.8 19.4c0-1.7.9-3.1 2.2-3.8 1.3.7 2.2 2.1 2.2 3.8"/>
+      <path d="M2 19.4h20"/>
+    </symbol>
+    <symbol id="ti-dive" viewBox="0 0 24 24">
+      <path d="M8.6 6.4h6v11a3 3 0 0 1-6 0Z"/><path d="M10.4 6.4V4.2h2.4v2.2"/>
+      <path d="M8.6 10.4h6"/>
+      <circle cx="18.6" cy="7.2" r="1.5"/><circle cx="20.8" cy="11.4" r="1"/>
+    </symbol>
+    <symbol id="ti-snorkel" viewBox="0 0 24 24">
+      <path d="M3.4 9.2h10.4v4.2a2.6 2.6 0 0 1-2.6 2.6H6a2.6 2.6 0 0 1-2.6-2.6Z"/>
+      <path d="M3.4 11.4H1.4"/><path d="M13.8 12.2h2.4"/>
+      <path d="M16.6 19.6V9.6a2.1 2.1 0 0 1 4.2 0v1"/>
+    </symbol>
+    <symbol id="ti-island" viewBox="0 0 24 24">
+      <path d="M5.6 17.2c1.4-2 3.4-3 6.4-3s5 1 6.4 3Z"/>
+      <path d="M12 14.2c0-2.6.4-4.4 1.3-5.8"/>
+      <path d="M13.3 8.4c-1.5-1.2-3.2-1.2-4.6 0M13.3 8.4c1.7-1 3.4-.5 4.5.9M13.3 8.4c.3-1.8 1.5-3 3.2-3.4"/>
+      <path d="M2 20.4c2 1.1 4 1.1 6 0s4-1.1 6 0 4 1.1 6 0"/>
+    </symbol>
+    <symbol id="ti-sea" viewBox="0 0 24 24">
+      <path d="M2 8.2c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0"/>
+      <path d="M2 13c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0"/>
+      <path d="M2 17.8c2 1.3 4 1.3 6 0s4-1.3 6 0 4 1.3 6 0"/>
+    </symbol>
+
+    <!-- Instagram, for the contact section. Drawn as line work at
+         the tour icons' weight rather than lifted as a filled
+         brand glyph, so it sits with the rest of the page. -->
+    <symbol id="i-instagram" viewBox="0 0 24 24">
+      <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/>
+      <circle cx="12" cy="12" r="4.1"/>
+      <circle cx="17.2" cy="6.8" r="1.05" fill="currentColor" stroke="none"/>
     </symbol>
 
     <symbol id="ye-mark-compact" viewBox="0 0 64 64">
@@ -419,7 +874,13 @@
     <ol class="itin" id="itin"></ol>
     <div class="itin-foot">
       <p class="itin-note rv" id="itin-note"></p>
-      <a class="btn btn--line" href="#contact-form" id="itin-cta" data-i18n="s3b.cta">Ask about this programme</a>
+      <div class="itin-acts">
+        <a class="btn btn--line" href="#contact-form" id="itin-cta" data-i18n="s3b.cta">Ask about this programme</a>
+        <!-- Opens the tour this sample is drawn from. js/main.js
+             points it at ITINERARY.tourId, so repointing that one
+             field moves both this link and the enquiry above it. -->
+        <a class="link-quiet" href="#tour/best-of-egypt" id="itin-full" data-i18n="s3b.cta2">See the full programme</a>
+      </div>
     </div>
   </div>
 </section>
@@ -598,9 +1059,31 @@
   <span>WhatsApp</span>
 </a>
 
+<!-- ===================== TOUR DETAIL =====================
+     The catalogue cards link to #tour/<id>, and js/tours.js
+     renders the whole route in here: hero, overview, highlights,
+     the day-by-day accordion, what is and is not included, the
+     practical information and the enquiry CTAs.
+
+     It is a full-screen view rather than a separate page because
+     this is a single-page site: one URL, one set of meta tags,
+     one language switch. The hash is the route, so a tour is
+     still linkable, shareable, and answers the back button.
+
+     Empty and hidden until a tour is opened — nothing here costs
+     anything on first paint, and with JavaScript off the cards
+     stay ordinary links to a fragment that simply does nothing.
+     ====================================================== -->
+<div class="tour-panel" id="tour-panel" hidden>
+  <div class="tour-panel-in" id="tour-dialog" role="dialog" aria-modal="true" aria-labelledby="tour-h"></div>
+</div>
+
 <script src="js/data.js" defer></script>
 <script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
+<!-- The tour catalogue and the tour detail view. After main.js:
+     it uses that file's helpers and its i18n state. -->
+<script src="js/tours.js" defer></script>
 <!-- Last: the opening reads the hero stills that main.js renders. -->
 <script src="js/opening.js" defer></script>
 </body>

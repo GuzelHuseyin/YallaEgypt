@@ -16,6 +16,7 @@ set arrived with. See assets/images/README.txt for which files are owned,
 which are stock, and which still need reshooting.
 """
 import os
+import sys
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
 ROOT   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -214,6 +215,29 @@ one("tours/nile-luxor-aswan-1100.webp", stock("aswan-1-2000"),
 one("tours/abu-simbel-south-1100.webp", stock("abu-simbel-900"),
     (1100, 825), dict(ay=0.42), DEHDR_GRADE)
 
+# Three more 4:3 cards, added with the five-tour catalogue. Same ratio and
+# the same grades as the four above — these are new crops of frames the
+# repository already holds, not new photography, which is why no file
+# appears in design/ alongside them.
+#
+# The Red Sea coast and the reef are the only two sea frames in the set and
+# they now carry two different tours, so they are cropped to say different
+# things: the coast card is the place (mountains meeting the water), the
+# reef card is the activity (the wall of coral the diving day is spent on).
+one("tours/red-sea-coast-1100.webp", stock("redsea-1-2000"), (1100, 825),
+    dict(ax=0.52, ay=0.52), SEA_GRADE)
+# The reef original is 900x1247 with the top half open water. The window
+# takes the lower right, where the coral and the anthias are, and accepts a
+# 1.22x upscale — finish() sharpens in proportion, and the alternative is a
+# card that is two thirds empty blue.
+one("tours/red-sea-reef-1100.webp", stock("red-sea-900"), (1100, 825),
+    dict(ax=0.62, ay=0.74), STOCK_GRADE)
+# The camel train: the strongest landscape frame in the supplied set, and
+# until now used only as the share card. It leads the eight-day route,
+# which is the only one of the five that reaches Giza.
+one("tours/giza-caravan-1100.webp", load("caravan"), (1100, 825),
+    dict(ax=0.50, ay=0.54), NEW_PLAIN)
+
 # ---------------------------------------------------------------- misc
 # Sits behind section 04 at 15% opacity: wants shape, not detail.
 one("misc/approach-bg-1800.webp", load("wine"), (1800, 1000),
@@ -225,16 +249,28 @@ OG = grade(crop_ratio(load("caravan"), 1200 / 630, ax=0.56, ay=0.50), **NEW_PLAI
 
 
 if __name__ == "__main__":
+    # With no arguments every asset is rebuilt. With arguments, only the
+    # outputs whose path contains one of them — "python tools/build-images.py
+    # tours/" rebuilds the cards and leaves the rest of the tree untouched,
+    # which keeps a one-card change out of the other forty files.
+    only = sys.argv[1:]
     total = 0
     for _label, im, outs in jobs:
+        if only:
+            outs = [o for o in outs if any(k in o[0] for k in only)]
+            if not outs:
+                continue
         for rel, size in outs:
             _, n = save(finish(im, size), rel, q=86 if size[0] >= 1600 else 84)
             total += n
             print("  %-44s %dx%-5d %7.1f KB" % (rel, size[0], size[1], n / 1024))
 
-    dst = os.path.join(ICONS, "og-image.jpg")
-    finish(OG, (1200, 630)).save(dst, "JPEG", quality=88, optimize=True, progressive=True)
-    n = os.path.getsize(dst)
-    total += n
-    print("  %-44s %dx%-5d %7.1f KB" % ("../icons/og-image.jpg", 1200, 630, n / 1024))
+    # The share card is derived from the hero set, so a partial run has no
+    # business rewriting it.
+    if not only:
+        dst = os.path.join(ICONS, "og-image.jpg")
+        finish(OG, (1200, 630)).save(dst, "JPEG", quality=88, optimize=True, progressive=True)
+        n = os.path.getsize(dst)
+        total += n
+        print("  %-44s %dx%-5d %7.1f KB" % ("../icons/og-image.jpg", 1200, 630, n / 1024))
     print("\n%.2f MB written" % (total / 1024 / 1024))

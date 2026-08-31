@@ -1246,6 +1246,10 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   font-size:var(--fs-sm); color:var(--papyrus-dim); font-style:italic;
   max-width:54ch; text-wrap:pretty;
 }
+/* The enquiry and the link into the full tour, on one line — the
+   same filled-plus-quiet pair the hero uses. */
+.itin-acts{ display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.6rem; }
+.itin-acts [hidden]{ display:none; }
 
 @media (min-width:820px){
   .itin-day{ grid-template-columns:10rem 1fr; padding-left:4.4rem; }
@@ -1291,7 +1295,8 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   content:""; position:absolute; inset:50% 0 auto; height:1px; background:currentColor; transform:translateY(-50%);
 }
 .faq-sign::after{ transform:translateY(-50%) rotate(90deg); }
-.faq-item.is-open .faq-sign{ transform:rotate(45deg); }
+.faq-item.is-open .faq-sign,
+.tday.is-open .faq-sign{ transform:rotate(45deg); }
 .faq-a{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s var(--ease); }
 .faq-item.is-open .faq-a{ grid-template-rows:1fr; }
 .faq-a-in{ overflow:hidden; }
@@ -1320,6 +1325,19 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--gold);
 }
 .contact-row .v{ font-size:var(--fs-lead); color:var(--papyrus); word-break:break-word; }
+/* Only channels that have a mark carry one — at the moment that is
+   Instagram alone. Sized in em so it tracks the value it sits in
+   front of rather than needing a size of its own. */
+.contact-i{
+  display:inline-block; width:1em; height:1em;
+  vertical-align:-.13em; margin-right:.5rem;
+  color:var(--gold);
+}
+.contact-i svg{
+  width:100%; height:100%; display:block;
+  fill:none; stroke:currentColor; stroke-width:1.6;
+}
+a.contact-row:hover .contact-i, a.contact-row:focus-visible .contact-i{ color:var(--gold-bright); }
 a.contact-row{ transition:border-color .3s var(--ease); }
 a.contact-row:hover, a.contact-row:focus-visible{ border-color:var(--gold-bright); }
 a.contact-row:hover .v, a.contact-row:focus-visible .v{ color:var(--gold-bright); }
@@ -1425,7 +1443,388 @@ a.contact-row:hover .v, a.contact-row:focus-visible .v{ color:var(--gold-bright)
   transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s;
 }
 body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
-@media (max-width:900px){ .wa{ display:inline-flex; } }
+/* The floating button and the tour panel's own header CTA are the
+   same affordance at two sizes, so they swap at one breakpoint
+   rather than both being on screen at once. */
+@media (max-width:900px){
+  .wa{ display:inline-flex; }
+  .tour-bar-cta{ display:none; }
+}
+
+/* ============================================================
+   THE TOUR CATALOGUE — additions to the cards above
+   ------------------------------------------------------------
+   The card is unchanged in kind: hairline box, photograph, number,
+   meta, title, description, CTA. Three things are added and
+   nothing is replaced.
+
+     .chip           one shared pill, used by the card's highlight
+                     row AND by the activity row inside an
+                     itinerary day. Hairline gold, square corners,
+                     micro type — the eyebrow's vocabulary at list
+                     scale, so it needs no colour of its own.
+     .tcard-foot     puts the price line and the CTA on one
+                     baseline. The price is here rather than only
+                     in the detail view because silence about
+                     price reads as evasion, not as luxury.
+     .tcard--feature the flagship, full width at the head of the
+                     grid. It spans every column of the existing
+                     1 / 2 / 4 grid, so five cards resolve as
+                     1 + 4 on a wide screen and 1 + 2 + 2 on a
+                     tablet, with no lone card left over.
+   ============================================================ */
+.chip{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  letter-spacing:.06em; line-height:1.5;
+  color:var(--papyrus-dim);
+  border:1px solid var(--hair-gold);
+  padding:.28rem .62rem;
+}
+
+.tcard-hl{ display:flex; flex-wrap:wrap; gap:.4rem .45rem; margin-top:1rem; }
+
+.tcard-foot{
+  display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between;
+  gap:.5rem 1rem;
+  margin-top:auto; padding-top:1.25rem;
+}
+.tcard-foot .tcard-cta{ margin-top:0; padding-top:0; }
+.tcard-price{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:var(--ls-ui);
+  color:var(--papyrus-dim);
+}
+.tcard-price b{ font-weight:600; color:var(--papyrus); }
+
+.tcard--feature{ grid-column:1 / -1; }
+@media (min-width:760px){
+  .tcard--feature{ flex-direction:row; }
+  /* The media stretches to the body's height instead of holding
+     4:3 — a full-width card at 4:3 would be two screens tall. */
+  .tcard--feature .tcard-media{ flex:0 0 46%; aspect-ratio:auto; min-height:22rem; }
+  .tcard--feature .tcard-body{ padding:clamp(1.7rem,3vw,2.8rem); justify-content:center; }
+  .tcard--feature .tcard-title{ font-size:clamp(1.4rem,2.3vw,2rem); }
+  .tcard--feature .tcard-desc{ font-size:var(--fs-body); max-width:54ch; }
+  .tcard--feature .tcard-foot{ margin-top:1.6rem; }
+}
+
+/* ============================================================
+   THE TOUR DETAIL VIEW
+   ------------------------------------------------------------
+   A full-screen panel over the page rather than a second page:
+   this is a single-page site, and a tour is a section of it that
+   happens to be long. #tour/<id> in the hash is the route, so a
+   tour is linkable and the back button works.
+
+   Everything inside is the page's own furniture — .sec grounds
+   alternating obsidian and anthracite, .eyebrow, .lead, .btn,
+   .chip, .cred, the .faq disclosure contract and the sample
+   programme's numeral-and-rail timeline. There is no second
+   design system in here, which is the whole point.
+
+   Scroll is locked on <body> while this is open (js/tours.js),
+   the page behind is inert, and Escape closes.
+   ============================================================ */
+.tour-panel{ position:fixed; inset:0; z-index:80; }
+.tour-panel[hidden]{ display:none; }
+.tour-panel-in{
+  position:absolute; inset:0;
+  overflow-y:auto; overscroll-behavior:contain;
+  background:var(--obsidian); color:var(--papyrus-dim);
+  animation:ye-panel .42s var(--ease) both;
+}
+@keyframes ye-panel{
+  from{ opacity:0; transform:translate3d(0,16px,0); }
+  to  { opacity:1; transform:none; }
+}
+
+/* -- Sticky bar: the way out, and the way to enquire ---------- */
+.tour-bar{
+  position:sticky; top:0; z-index:6;
+  display:flex; align-items:center; gap:clamp(.9rem,2vw,1.6rem);
+  padding:.8rem var(--gutter);
+  background:rgba(11,10,8,.94);
+  background:color-mix(in srgb, var(--obsidian) 92%, transparent);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hair-gold);
+}
+.tour-back{
+  display:inline-flex; align-items:center; gap:.55rem; flex:none;
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:var(--ls-ui);
+  color:var(--papyrus-dim);
+  padding:.5rem 0;
+  transition:color .3s var(--ease);
+}
+.tour-back:hover, .tour-back:focus-visible{ color:var(--gold-bright); }
+.tour-back i{ font-style:normal; transition:transform .35s var(--ease); }
+.tour-back:hover i{ transform:translateX(-3px); }
+.tour-bar-name{
+  min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  font-family:var(--font-display); font-weight:600;
+  font-size:clamp(.8rem,1.1vw,.95rem);
+  letter-spacing:var(--ls-brand); text-transform:uppercase;
+  color:var(--papyrus);
+}
+.tour-bar-cta{ margin-left:auto; flex:none; padding:.7rem 1.25rem; }
+
+/* -- Hero ---------------------------------------------------- */
+.tour-hero{
+  position:relative;
+  min-height:min(72svh, 40rem);
+  display:flex; align-items:flex-end;
+  overflow:hidden;
+  background:var(--anthracite);
+}
+.tour-hero-media{ position:absolute; inset:0; }
+.tour-hero-media img{ width:100%; height:100%; object-fit:cover; }
+/* The type sits in the lower half, and some of these photographs
+   are bright exactly there — the group on the plateau is white
+   shirts in full sun. So the bottom scrim is heavy and reaches
+   nearly half way up, which is what the home page's hero veil
+   does for the same reason. */
+.tour-hero-veil{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom, rgba(11,10,8,.55) 0%, rgba(11,10,8,0) 30%) top / 100% 100% no-repeat,
+    linear-gradient(to top, rgba(11,10,8,.97) 0%, rgba(11,10,8,.92) 20%, rgba(11,10,8,.76) 42%,
+                            rgba(11,10,8,.36) 68%, rgba(11,10,8,.06) 88%, rgba(11,10,8,0) 100%)
+      bottom / 100% 100% no-repeat,
+    rgba(11,10,8,.16);
+}
+/* The eyebrow sits highest in the stack and therefore over the
+   least covered part of the photograph, so it carries the same
+   shadow the home page gives its hero type. Capped in width so
+   its hairline reads as a rule under the label rather than a wire
+   drawn across the picture. */
+.tour-hero-in .eyebrow{
+  max-width:34rem; margin-bottom:clamp(1rem,2vw,1.5rem);
+  color:var(--gold-bright);
+  text-shadow:0 1px 16px rgba(11,10,8,.95), 0 0 34px rgba(11,10,8,.8);
+}
+.tour-facts .cred dt, .tour-facts .cred dd{ text-shadow:0 1px 18px rgba(11,10,8,.8); }
+.tour-hero-in{
+  position:relative; z-index:2;
+  width:100%; max-width:var(--maxw); margin-inline:auto;
+  padding:clamp(4rem,10vw,7rem) var(--gutter) clamp(2rem,4vw,3.2rem);
+}
+.tour-h{
+  font-size:var(--fs-h2); max-width:17ch;
+  color:var(--papyrus);
+  text-shadow:0 2px 40px rgba(11,10,8,.7);
+}
+.tour-tag{
+  max-width:46ch; margin-top:clamp(.8rem,1.6vw,1.15rem);
+  font-family:var(--font-edit); font-style:italic;
+  font-size:var(--fs-lead); line-height:1.5;
+  color:var(--gold-bright);
+  text-shadow:0 1px 24px rgba(11,10,8,.75);
+  text-wrap:pretty;
+}
+/* .cred carries the label/value typography; only the layout
+   differs from the operator facts, so only the layout is new. */
+.tour-facts{
+  display:flex; flex-wrap:wrap;
+  /* Capped to the same width as the eyebrow above it, so the two
+     hairlines stack into one left-hand column instead of drawing
+     two wires across the photograph. */
+  max-width:34rem;
+  gap:.9rem clamp(1.4rem,3.4vw,3rem);
+  margin-top:clamp(1.5rem,3vw,2.2rem);
+  padding-top:clamp(1.1rem,2vw,1.5rem);
+  border-top:1px solid var(--hair-gold);
+}
+.tour-facts .cred dd{ color:var(--papyrus); font-size:var(--fs-sm); }
+.tour-cta-row{
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:.9rem 1.2rem;
+  margin-top:clamp(1.5rem,3vw,2.2rem);
+}
+
+/* -- Overview ------------------------------------------------- */
+.tour-prose p{ max-width:56ch; color:var(--papyrus-dim); text-wrap:pretty; }
+.tour-prose p + p{ margin-top:1.1rem; }
+/* The overview runs as the About section's two-column split: the
+   places on the left as an index, the argument on the right. A
+   single narrow column of prose under a full-width eyebrow left
+   two thirds of the section empty. */
+.tour-where .rule-gold{ margin-bottom:1.4rem; }
+.tour-dest{ display:flex; flex-direction:column; gap:.55rem; }
+.tour-dest li{
+  font-family:var(--font-edit); font-size:1.16rem; font-weight:500;
+  color:var(--papyrus); line-height:1.3;
+}
+.tour-dest li + li{
+  padding-top:.55rem; border-top:1px solid var(--hair-gold);
+}
+
+/* -- Highlights ----------------------------------------------
+   The same one-pixel grid as the planning steps, in gold rather
+   than blue because this section is not the blue one. ---------- */
+.thl-grid{
+  display:grid; grid-template-columns:1fr; gap:1px;
+  margin-top:clamp(2rem,4vw,3rem);
+  background:var(--hair-gold);
+  border:1px solid var(--hair-gold);
+}
+@media (min-width:620px){ .thl-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1040px){ .thl-grid{ grid-template-columns:repeat(4,1fr); } }
+.thl{
+  display:flex; align-items:flex-start; gap:.9rem;
+  background:var(--navy-2);
+  padding:clamp(1.15rem,2vw,1.5rem);
+}
+.thl-i{ flex:none; width:26px; height:26px; color:var(--gold); }
+.thl-i svg{
+  width:100%; height:100%; display:block;
+  fill:none; stroke:currentColor; stroke-width:1.5;
+}
+.thl-t{ font-size:var(--fs-sm); line-height:1.55; color:var(--papyrus); text-wrap:pretty; }
+
+/* -- Day by day ----------------------------------------------
+   The sample programme's timeline, made openable. The disclosure
+   contract is the FAQ's, to the letter: aria-expanded on the
+   button, inert on the panel while closed, 0fr -> 1fr on a grid
+   row so the height animates without a measured pixel value.
+   js/main.js drives both from one delegated handler.
+   ------------------------------------------------------------ */
+.tdays{ margin-top:clamp(1.6rem,3vw,2.4rem); }
+.tdays-note{
+  font-size:var(--fs-sm); color:var(--papyrus-dim); font-style:italic;
+  margin-top:.9rem;
+}
+.tday{ position:relative; padding-left:3.9rem; border-top:1px solid var(--hair-gold); }
+.tday:last-child{ border-bottom:1px solid var(--hair-gold); }
+/* The rail between the numerals, drawn on the row rather than on
+   a spacer column so it stays locked to the text at any width. */
+.tday::after{
+  content:""; position:absolute;
+  left:1.2rem; top:calc(clamp(1.15rem,2.2vw,1.6rem) + 2.4rem);
+  bottom:0; width:1px; background:var(--hair-blue);
+}
+.tday:last-child::after{ display:none; }
+
+.tday-h{ margin:0; font:inherit; }
+.tday-q{
+  display:flex; align-items:flex-start; gap:1.2rem;
+  width:100%; text-align:left;
+  padding:clamp(1.15rem,2.2vw,1.6rem) 0;
+  color:var(--papyrus);
+  transition:color .3s var(--ease);
+}
+.tday-q:hover{ color:var(--gold-bright); }
+.tday-num{
+  position:absolute; left:0; top:clamp(1.15rem,2.2vw,1.6rem);
+  width:2.4rem; height:2.4rem;
+  display:grid; place-items:center;
+  border:1px solid var(--gold); border-radius:50%;
+  background:var(--obsidian);
+  font-family:var(--font-display); font-weight:500; font-size:.85rem;
+  color:var(--gold); font-variant-numeric:tabular-nums;
+  z-index:1;
+}
+.tday.is-open .tday-num{ background:var(--gold); color:var(--obsidian); }
+.tday-t{ flex:1; min-width:0; }
+.tday-when{ display:flex; align-items:baseline; flex-wrap:wrap; gap:.35rem .9rem; }
+.tday-d{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:600;
+  text-transform:uppercase; letter-spacing:var(--ls-ui);
+  color:var(--lapis); font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.tday-place{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:.2em; color:var(--papyrus-dim);
+}
+.tday-title{
+  display:block; margin-top:.4rem;
+  font-family:var(--font-edit); font-weight:500;
+  font-size:1.22rem; line-height:1.3;
+  color:inherit; text-wrap:pretty;
+}
+.tday-q .faq-sign{ margin-top:.55rem; }
+
+.tday-a{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s var(--ease); }
+.tday.is-open .tday-a{ grid-template-rows:1fr; }
+.tday-a-in{ overflow:hidden; }
+.tday-body{ padding-bottom:clamp(1.3rem,2.4vw,1.8rem); }
+.tday-acts{ display:flex; flex-wrap:wrap; gap:.4rem .45rem; }
+.tday-p{ margin-top:1rem; max-width:56ch; color:var(--papyrus-dim); text-wrap:pretty; }
+
+/* -- Included, not included, optional ------------------------- */
+.tcols{
+  display:grid; grid-template-columns:1fr;
+  gap:clamp(2rem,4vw,3.4rem);
+  margin-top:clamp(2rem,4vw,3rem);
+}
+@media (min-width:860px){ .tcols{ grid-template-columns:repeat(3,1fr); align-items:start; } }
+.tcol h4{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:var(--ls-eyebrow);
+  color:var(--gold); margin-bottom:1.3rem;
+}
+.tlist li{
+  position:relative; padding-left:1.6rem;
+  font-size:var(--fs-sm); line-height:1.66; color:var(--papyrus-dim);
+  text-wrap:pretty;
+}
+.tlist li + li{ margin-top:.8rem; }
+/* A hairline dash, not a tick: the site draws with lines. */
+.tlist li::before{
+  content:""; position:absolute; left:0; top:.72em;
+  width:8px; height:1px; background:var(--gold);
+}
+.tlist--out li::before{ background:var(--papyrus-dim); opacity:.45; }
+
+/* -- Tour information + notes ---------------------------------
+   .creds verbatim; only the top margin differs, because here it
+   is the section's own content rather than a footnote to one. */
+.tinfo{ margin-top:clamp(2rem,4vw,3rem); }
+/* A second heading inside a section that already has an eyebrow:
+   the important notes under the tour information, and the other
+   routes under the closing CTA. */
+.tour-sub{ margin-top:clamp(2.4rem,5vw,3.6rem); margin-bottom:0; }
+.tnotes{ margin-top:clamp(1.2rem,2.4vw,1.7rem); }
+.tnotes li{
+  font-size:var(--fs-sm); line-height:1.7; color:var(--papyrus-dim);
+  font-style:italic; max-width:62ch; text-wrap:pretty;
+}
+.tnotes li + li{ margin-top:.9rem; }
+
+/* -- The closing CTA and the other routes --------------------- */
+.tour-final .split-body p{ max-width:52ch; }
+.tour-final .tour-cta-row{ margin-top:clamp(1.6rem,3vw,2.2rem); }
+.tother{
+  display:grid; grid-template-columns:1fr; gap:1px;
+  margin-top:clamp(2.4rem,5vw,3.6rem);
+  background:var(--hair-gold);
+  border:1px solid var(--hair-gold);
+}
+@media (min-width:700px){ .tother{ grid-template-columns:repeat(4,1fr); } }
+.tother a{
+  display:block; background:var(--navy-2);
+  padding:clamp(1rem,1.8vw,1.35rem);
+  transition:background-color .4s var(--ease);
+}
+.tother a:hover, .tother a:focus-visible{ background:var(--sapphire); }
+.tother-m{
+  display:block;
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--gold);
+}
+.tother-n{
+  display:block; margin-top:.4rem;
+  font-family:var(--font-edit); font-size:1.1rem; font-weight:500;
+  color:var(--papyrus); line-height:1.25;
+}
+
+/* While a tour is open the floating WhatsApp is the tour's own —
+   js/tours.js rewrites its target with the route named in the
+   message — so it has to sit above the panel and be visible even
+   when the page behind never left the hero. */
+body.tour-open .wa{
+  z-index:86;
+  opacity:1; visibility:visible; transform:none;
+}
 
 /* ============================================================
    RESPONSIVE
@@ -1480,7 +1879,22 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .tm-q{ max-width:26ch; }
 
   .itin-foot{ gap:1rem; }
+  .itin-acts{ width:100%; gap:1.1rem; }
   .itin-foot .btn{ width:100%; text-align:center; }
+
+  /* Tour detail on a phone. The numeral column comes in so the day
+     titles get their line back, and the enquiry buttons go full
+     width — they are the whole point of the view. */
+  .tour-hero{ min-height:min(64svh, 34rem); }
+  .tour-h{ max-width:14ch; }
+  .tour-cta-row{ width:100%; }
+  .tour-cta-row .btn{ width:100%; text-align:center; }
+  .tour-facts{ gap:.9rem 1.6rem; }
+  .tday{ padding-left:3.2rem; }
+  .tday-num{ width:2.1rem; height:2.1rem; font-size:.78rem; }
+  .tday::after{ left:1.05rem; top:calc(clamp(1.15rem,2.2vw,1.6rem) + 2.1rem); }
+  .tday-q{ gap:.9rem; }
+  .tcard--feature .tcard-foot{ margin-top:1.25rem; }
   .cform-submit{ justify-self:stretch; text-align:center; }
 
   .foot-bot{ flex-direction:column; align-items:flex-start; }
@@ -1501,6 +1915,8 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .ctl{ width:40px; height:40px; }
   .nav-links a, .lang button{ padding-block:.6rem; }
   .faq-q{ padding-block:1.4rem; }
+  .tday-q{ padding-block:1.5rem; }
+  .tour-back{ padding-block:.75rem; }
 }
 
 /* ============================================================
@@ -1517,12 +1933,16 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
   .hero-gesture, .hero-dim{ display:none !important; }
   .hero-lockup{ transform:none !important; filter:none !important; }
   .mq{ overflow-x:auto; }
+  .tour-panel-in{ animation:none !important; transform:none !important; }
   .js .rv{ opacity:1; transform:none; }
   .record-prog{ display:none; }
 }
 
 @media print{
   .nav, .mmenu, .wa, .skip, .record, .strip-bar, .strip-hint, .mq-foot{ display:none !important; }
+  /* A tour is an overlay on a page that is itself printable; the
+     page underneath is what a printer is being asked for. */
+  .tour-panel{ display:none !important; }
   body{ background:#fff; color:#000; }
   .sec, .foot{ background:#fff !important; color:#000 !important; padding-block:1.5rem; }
   .hero{ min-height:auto; }

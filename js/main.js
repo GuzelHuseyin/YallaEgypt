@@ -24,7 +24,16 @@ const t = k => I18N[LANG][k];
    builder returns { href, text, tbc } so the renderer can show
    the affordance, point it somewhere that works, and mark it.
    ============================================================ */
-const waHref  = () => CONFIG.whatsapp ? `https://wa.me/${CONFIG.whatsapp.replace(/\D/g, "")}` : "#contact-form";
+/* An optional message is pre-filled into the chat. The tour views
+   use it to name the route, so the first reply does not have to
+   ask which tour this is — see js/tours.js. With no number
+   configured this still returns the contact form rather than a
+   dead wa.me link, exactly as before. */
+const waHref  = text => {
+  if(!CONFIG.whatsapp) return "#contact-form";
+  const n = CONFIG.whatsapp.replace(/\D/g, "");
+  return text ? `https://wa.me/${n}?text=${encodeURIComponent(text)}` : `https://wa.me/${n}`;
+};
 const waIsSet = () => Boolean(CONFIG.whatsapp);
 
 function contactChannels(){
@@ -35,7 +44,16 @@ function contactChannels(){
       text:CONFIG.phone || t("contact.label.phone"),
       label:t("contact.label.phone"), aria:t("contact.direct.phone"), tbc:!CONFIG.phone, ext:false },
     { key:"whatsapp", href:waHref(), text:t("s9.cta2"),
-      label:t("contact.label.whatsapp"), aria:t("contact.direct.whatsapp"), tbc:!waIsSet(), ext:waIsSet() }
+      label:t("contact.label.whatsapp"), aria:t("contact.direct.whatsapp"), tbc:!waIsSet(), ext:waIsSet() },
+    /* Instagram sits with the direct channels rather than only in
+       the footer, because after WhatsApp it is the thing people
+       check to decide whether a travel company is real. It obeys
+       the same rule as the phone number: no handle in CONFIG, no
+       row — a link to a profile that does not exist is worse than
+       no link at all. */
+    { key:"instagram", href:CONFIG.instagram || null, text:t("contact.instagram.v"),
+      label:t("contact.label.instagram"), aria:t("contact.direct.instagram"),
+      tbc:!CONFIG.instagram, ext:Boolean(CONFIG.instagram), icon:"i-instagram" }
   ];
 }
 
@@ -50,31 +68,15 @@ function contactChannels(){
 const gapBadge = () => CONFIG.showGaps ? `<span class="tbc">${esc(t("tbc"))}</span>` : "";
 
 /* ============================================================
-   SIGNATURE ROUTES
-   One card per route. The card is the whole pitch — there is no
-   disclosure to open — and the title link carries the enquiry
-   straight into the contact form with the route already named.
+   THE TOUR CATALOGUE
+   The cards and the detail view they open are one component and
+   live in js/tours.js, which loads after this file. setLang runs
+   once before that happens, so the call is guarded; tours.js
+   renders itself on boot and answers every later language change
+   through this hook.
    ============================================================ */
-function renderJourneys(){
-  $("#journeys-list").innerHTML = TOURS.map((tour, i) => {
-    const c = tour.t[LANG] || tour.t.en;
-    return `
-    <article class="tcard rv">
-      <div class="tcard-media">
-        <img src="${tour.img}" alt="" loading="lazy" decoding="async"
-             width="${tour.iw}" height="${tour.ih}">
-      </div>
-      <div class="tcard-body">
-        <p class="tcard-num">${String(i + 1).padStart(2, "0")}</p>
-        <p class="tcard-meta">${esc(c.meta)}</p>
-        <h3 class="tcard-title">
-          <a href="#contact-form" data-journey="${esc(c.n)}">${esc(c.n)}</a>
-        </h3>
-        <p class="tcard-desc">${esc(c.d)}</p>
-        <span class="tcard-cta" aria-hidden="true">${esc(t("s2.cta"))} <i>&rarr;</i></span>
-      </div>
-    </article>`;
-  }).join("");
+function renderTours(){
+  if(window.YE_TOURS) window.YE_TOURS.render();
 }
 
 function renderDestinations(){
@@ -145,13 +147,20 @@ function renderItinerary(){
 
   $("#itin-note").textContent = c.note;
 
-  // The CTA names the route, so the contact form arrives pre-filled
-  // with the same subject a journey card would send.
+  // Both links under the programme follow ITINERARY.tourId: the
+  // enquiry names the route so the contact form arrives pre-filled,
+  // and the quiet link opens that tour's full day-by-day. Repoint
+  // tourId and the pair moves with it.
   const tour = typeof TOURS !== "undefined" && TOURS.find(x => x.id === ITINERARY.tourId);
   if(tour){
     const name = (tour.t[LANG] || tour.t.en).n;
     $("#itin-cta")?.setAttribute("data-journey", name);
+    $("#itin-full")?.setAttribute("href", `#tour/${tour.id}`);
   }
+  // No matching tour means no tour to open — better an absent link
+  // than one that opens nothing.
+  const full = $("#itin-full");
+  if(full) full.hidden = !tour;
 }
 
 /* ============================================================
@@ -206,7 +215,10 @@ function renderFaq(){
 function renderContact(){
   $("#direct-list").innerHTML = contactChannels().filter(c => !c.tbc || CONFIG.showGaps).map(c => {
     const badge = c.tbc ? gapBadge() : "";
-    const body = `<span class="k">${esc(c.label)}</span><span class="v">${esc(c.text)}${badge}</span>`;
+    const icon = c.icon
+      ? `<span class="contact-i" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><use href="#${esc(c.icon)}"/></svg></span>`
+      : "";
+    const body = `<span class="k">${esc(c.label)}</span><span class="v">${icon}${esc(c.text)}${badge}</span>`;
     if(!c.href) return `<li><div class="contact-row">${body}</div></li>`;
     const ext = c.ext ? ` target="_blank" rel="noopener noreferrer"` : "";
     return `<li><a class="contact-row" href="${c.href}" aria-label="${esc(c.aria)}"${ext}>${body}</a></li>`;
@@ -391,9 +403,14 @@ function toggleDisclosure(btn, panel, host, openClass, labelEl, labels){
 
 function initDisclosures(){
   document.addEventListener("click", e => {
-    const fq = e.target.closest(".faq-q");
-    if(fq){
-      toggleDisclosure(fq, $(`#${fq.getAttribute("aria-controls")}`), fq.closest(".faq-item"), "is-open");
+    /* One handler, two disclosures: the FAQ answers on the page and
+       the day rows inside a tour detail view. They keep the same
+       contract — aria-expanded on the button, inert on the panel —
+       so the itinerary needed no second mechanism. */
+    const dq = e.target.closest(".faq-q, .tday-q");
+    if(dq){
+      toggleDisclosure(dq, $(`#${dq.getAttribute("aria-controls")}`),
+                       dq.closest(".faq-item, .tday"), "is-open");
       return;
     }
     /* Any link that names a route carries it into the form — the
@@ -476,7 +493,7 @@ function setLang(l){
   });
   $$(".lang button").forEach(b => b.setAttribute("aria-current", String(b.dataset.lang === LANG)));
 
-  renderJourneys();
+  renderTours();
   renderSteps();
   renderItinerary();
   renderCredentials();
