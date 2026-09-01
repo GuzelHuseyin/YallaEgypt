@@ -45,15 +45,21 @@ function contactChannels(){
       label:t("contact.label.phone"), aria:t("contact.direct.phone"), tbc:!CONFIG.phone, ext:false },
     { key:"whatsapp", href:waHref(), text:t("s9.cta2"),
       label:t("contact.label.whatsapp"), aria:t("contact.direct.whatsapp"), tbc:!waIsSet(), ext:waIsSet() },
-    /* Instagram sits with the direct channels rather than only in
-       the footer, because after WhatsApp it is the thing people
-       check to decide whether a travel company is real. It obeys
-       the same rule as the phone number: no handle in CONFIG, no
-       row — a link to a profile that does not exist is worse than
-       no link at all. */
+    /* The social channels sit here rather than in a column of their
+       own: after WhatsApp, Instagram is the thing people check to
+       decide whether a travel company is real, and it belongs with
+       the other ways of reaching us. They obey the same rule as the
+       phone number, so an account that does not exist yet renders
+       nothing at all rather than a dead link. */
     { key:"instagram", href:CONFIG.instagram || null, text:t("contact.instagram.v"),
       label:t("contact.label.instagram"), aria:t("contact.direct.instagram"),
-      tbc:!CONFIG.instagram, ext:Boolean(CONFIG.instagram), icon:"i-instagram" }
+      tbc:!CONFIG.instagram, ext:Boolean(CONFIG.instagram), icon:"i-instagram" },
+    { key:"youtube", href:CONFIG.youtube || null, text:t("contact.youtube.v"),
+      label:"YouTube", aria:t("contact.youtube.v"),
+      tbc:!CONFIG.youtube, ext:Boolean(CONFIG.youtube) },
+    { key:"tripadvisor", href:CONFIG.tripadvisor || null, text:t("contact.tripadvisor.v"),
+      label:"TripAdvisor", aria:t("contact.tripadvisor.v"),
+      tbc:!CONFIG.tripadvisor, ext:Boolean(CONFIG.tripadvisor) }
   ];
 }
 
@@ -233,17 +239,6 @@ function renderFooter(){
   if(CONFIG.address)        rows.push(`<li>${esc(CONFIG.address)}</li>`);
   else if(CONFIG.showGaps)  rows.push(`<li>${esc(t("foot.office"))}${tbc}</li>`);
   $("#foot-contact").innerHTML = rows.join("");
-
-  const social = [["Instagram", CONFIG.instagram], ["YouTube", CONFIG.youtube], ["TripAdvisor", CONFIG.tripadvisor]]
-    .filter(([, url]) => url)
-    .map(([name, url]) => `<li><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${name}</a></li>`);
-  $("#foot-social").innerHTML = social.length
-    ? social.join("")
-    : CONFIG.showGaps
-      ? ["Instagram", "YouTube", "TripAdvisor"].map(n => `<li>${n}${tbc}</li>`).join("")
-      : "";
-  // A "Follow" heading over nothing is worse than no column.
-  $("#foot-social").closest(".foot-col").hidden = !social.length && !CONFIG.showGaps;
 
   const reg = [CONFIG.legalName, CONFIG.licence].filter(Boolean).join(" · ");
   $("#foot-reg").innerHTML = reg ? esc(reg) : (CONFIG.showGaps ? `${esc(t("foot.reg"))}${tbc}` : "");
@@ -677,7 +672,7 @@ function initForm(){
     if(!form.reportValidity()) return;
     const fd = new FormData(form);
     const get = k => (fd.get(k) || "").toString().trim();
-    const subject = `Trip enquiry — ${get("name") || "yallaegypt.com"}`;
+    const subject = `Trip enquiry from ${get("name") || "yallaegypt.com"}`;
     const body = [
       `Name: ${get("name")}`,
       `Email: ${get("email")}`,

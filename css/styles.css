@@ -187,7 +187,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
    are actually present, so the sequence never shows a gap when one
    is left out. Kept in CSS content because it is ornament, not
    copy — nothing here needs translating. */
-.eyebrow[data-n]::before{ content:attr(data-n) " — "; }
+.eyebrow[data-n]::before{ content:attr(data-n); }
 
 .eyebrow--plain{ margin-bottom:1.6rem; }
 .eyebrow--plain::after{ display:none; }
@@ -1402,7 +1402,7 @@ a.contact-row:hover .v, a.contact-row:focus-visible .v{ color:var(--gold-bright)
   padding-block:clamp(3rem,6vw,5rem) clamp(1.4rem,2.5vw,2rem);
 }
 .foot-grid{ display:grid; grid-template-columns:1fr; gap:clamp(2rem,4vw,3rem); }
-@media (min-width:720px){ .foot-grid{ grid-template-columns:1.5fr 1fr 1fr 1fr; } }
+@media (min-width:720px){ .foot-grid{ grid-template-columns:1.6fr 1fr 1fr; } }
 .foot-mark{ width:66px; height:66px; color:var(--gold); }
 .foot-word{
   font-family:var(--font-display); font-weight:600; font-size:1.02rem;

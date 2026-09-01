@@ -29,16 +29,17 @@ const CONFIG = {
   licence:      "",                        // travel agency licence / registration no.
 
   /* Social. Empty entries are dropped from the footer entirely.
-     Instagram is the one channel that also appears in the contact
-     section, because it is the second thing people check after
-     WhatsApp — see renderContact in js/main.js. Empty it and that
-     row disappears with it, exactly like the phone number.
+     The social channels live in the contact section rather than in
+     a column of their own: after WhatsApp, Instagram is the second
+     thing people check to decide whether a travel company is real,
+     and it belongs beside the other ways of reaching us. See
+     contactChannels in js/main.js. Empty a field and its row
+     disappears, exactly like the phone number.
 
-     CONFIRM THE HANDLE BEFORE LAUNCH. The URL below is the
-     obvious guess at the company account and has not been
-     verified; a link to the wrong profile is worse than no link,
-     so check it, correct it, or clear this field. */
-  instagram:    "https://www.instagram.com/yallaegypt/",
+     The Instagram address below is the account confirmed by the
+     client. YouTube and TripAdvisor are not open yet; fill them in
+     and each one appears in the contact list on its own. */
+  instagram:    "https://www.instagram.com/yallaegyptt/",
   youtube:      "",
   tripadvisor:  "",
 
@@ -312,7 +313,7 @@ const TOURS = [
       destinations:["Cairo","Giza","Luxor","Edfu & Kom Ombo","Aswan","Abu Simbel"],
       overview:[
         "Best of Egypt is the complete route: three days in and around Cairo, three in ancient Thebes, and the stretch of river between Luxor and Aswan that shorter itineraries skip. It is built for travellers coming a long way who would rather do this once, properly, than come back for the half they missed.",
-        "The pace is full without being punishing. Sites are visited at the hour they are worth visiting — Giza and Karnak early, Luxor Temple at dusk, Abu Simbel at first light — and the afternoons between them are deliberately open. You travel privately throughout, with a licensed Egyptologist on every guided day, so nothing here runs to a coach timetable."
+        "The pace is full without being punishing. Sites are visited at the hour they are worth visiting: Giza and Karnak early, Luxor Temple at dusk, Abu Simbel at first light. The afternoons between them are deliberately open. You travel privately throughout, with a licensed Egyptologist on every guided day, so nothing here runs to a coach timetable."
       ],
       highlights:[
         { i:"pyramids", h:"The Pyramids of Giza & the Sphinx" },
@@ -330,22 +331,22 @@ const TOURS = [
           p:"You are met inside the terminal and driven to the hotel. Nothing is scheduled beyond dinner: most people reach this airport tired, and the plateau deserves a morning rather than the tail of an afternoon." },
         { d:"Day 2", place:"Giza & Saqqara", h:"The Pyramids of Giza & the Sphinx",
           acts:["The Giza plateau","Inside the Great Pyramid","The Sphinx","Saqqara & Memphis"],
-          p:"An early start, because the first hour on the plateau is the quiet one. The Great Pyramid can be entered on a separate ticket — a stooped climb up a low corridor that not everyone enjoys, and we would rather you decided that in advance. Saqqara and the step pyramid of Djoser in the afternoon, which is where the whole idea begins." },
+          p:"An early start, because the first hour on the plateau is the quiet one. The Great Pyramid can be entered on a separate ticket. It is a stooped climb up a low corridor that not everyone enjoys, and we would rather you decided that in advance. Saqqara and the step pyramid of Djoser in the afternoon, which is where the whole idea begins." },
         { d:"Day 3", place:"Cairo", h:"The museum, and old Cairo",
           acts:["The Egyptian museum","Coptic Cairo","Khan el-Khalili","Free evening"],
-          p:"A morning with the Tutankhamun collection, then the Coptic quarter — the Hanging Church, Ben Ezra — and the Khan el-Khalili at the end of the afternoon, when the light in the lanes is worth the crowds. Which museum you visit depends on what is open on the day, and it is named in your written programme." },
-        { d:"Day 4", place:"Luxor", h:"South to Luxor — Karnak & Luxor Temple",
+          p:"A morning with the Tutankhamun collection, then the Coptic quarter with the Hanging Church and Ben Ezra, and the Khan el-Khalili at the end of the afternoon, when the light in the lanes is worth the crowds. Which museum you visit depends on what is open on the day, and it is named in your written programme." },
+        { d:"Day 4", place:"Luxor", h:"South to Luxor: Karnak & Luxor Temple",
           acts:["Morning flight to Luxor","Karnak Temple","The hypostyle hall","Luxor Temple at dusk"],
           p:"A short flight south. Karnak in the afternoon, and the hypostyle hall, which is the one room in Egypt that photographs do not prepare anyone for. Luxor Temple after sunset, lit, a ten-minute walk from the hotel." },
         { d:"Day 5", place:"West Bank", h:"The Valley of the Kings",
           acts:["Valley of the Kings","Temple of Hatshepsut","Colossi of Memnon","Free afternoon"],
-          p:"The standard ticket covers three tombs; Seti I and Tutankhamun are extra, and we will tell you honestly which are worth it in the month you are travelling. Hatshepsut afterwards, the Colossi on the way back, and the afternoon left free — the West Bank in summer is a morning." },
+          p:"The standard ticket covers three tombs; Seti I and Tutankhamun are extra, and we will tell you honestly which are worth it in the month you are travelling. Hatshepsut afterwards, the Colossi on the way back, and the afternoon left free. In summer the West Bank is a morning." },
         { d:"Day 6", place:"Edfu & Kom Ombo", h:"Along the Nile to Aswan",
           acts:["Esna","The temple of Horus at Edfu","Kom Ombo","Arrive Aswan"],
           p:"The river stretch, with the temples as stops. This route is written for the road, which keeps all three and gives the days back to Luxor and Aswan. If you would rather do this leg on the water, say so early: the boats run on fixed departure days and the rest of the route moves around them." },
         { d:"Day 7", place:"Aswan", h:"Aswan, and the river at its best",
           acts:["Philae Temple","The unfinished obelisk","A felucca at sunset","A Nubian village"],
-          p:"Philae is reached by boat, and it is both the prettiest of the major sites and the least crowded. The afternoon is a felucca around Elephantine Island — no engine, no schedule, and the part of the week most people describe first when they get home." },
+          p:"Philae is reached by boat, and it is both the prettiest of the major sites and the least crowded. The afternoon is a felucca around Elephantine Island: no engine, no schedule, and the part of the week most people describe first when they get home." },
         { d:"Day 8", place:"Abu Simbel", h:"Abu Simbel at first light",
           acts:["Departure before dawn","The temple of Ramesses II","The temple of Nefertari","Back to Aswan"],
           p:"Three hours south in the dark, so that the facade is lit from the front as the sun comes up. It is a long morning and it is the right decision. Back in Aswan by early afternoon, with the evening free." },
@@ -367,21 +368,21 @@ const TOURS = [
         "The Egyptian entry visa and any consular fees",
         "Travel insurance",
         "Meals and drinks not named above",
-        "The extra tickets named in the itinerary — the Great Pyramid interior, Seti I, Nefertari",
+        "The extra tickets named in the itinerary: the Great Pyramid interior, Seti I, Nefertari",
         "Optional experiences, tips, and anything of a personal nature"
       ],
       optional:[
         "A dawn hot-air balloon over the West Bank, confirmed the evening before and weather dependent",
         "The Luxor to Aswan leg by boat over three nights instead of by road in a day",
         "Three or four nights on the Red Sea added to the end of the route",
-        "A second day in Cairo for the Islamic city — the Citadel, Ibn Tulun, al-Muizz street",
+        "A second day in Cairo for the Islamic city: the Citadel, Ibn Tulun, al-Muizz street",
         "Sound and light at Karnak or at Philae"
       ],
       info:[
         ["Duration","9 days / 8 nights"],
         ["Destinations","Cairo · Giza · Luxor · Edfu & Kom Ombo · Aswan · Abu Simbel"],
         ["Travel style","Private, guided, culture-led"],
-        ["Group","Private departures only — your party, your guide, your vehicle"],
+        ["Group","Private departures only. Your party, your guide, your vehicle"],
         ["Activity level","Moderate. Long visits on uneven ground, and early starts on four of the nine days"],
         ["Best for","First visits that need to cover the country, returning travellers filling the gaps, photographers"],
         ["Best months","October to April. May to September works with dawn starts and afternoons indoors"]
@@ -400,7 +401,7 @@ const TOURS = [
       imgAlt:"Giza piramitlerinin önünde kumu geçen bir deve kervanı",
       destinations:["Kahire","Giza","Luksor","Edfu ve Kom Ombo","Asvan","Abu Simbel"],
       overview:[
-        "En İyisiyle Mısır, tam rota: Kahire ve çevresinde üç gün, antik Thebes'te üç gün ve kısa programların atladığı Luksor–Asvan arası nehir bölümü. Uzun yoldan gelen ve bunu bir kez, doğru dürüst yapmak isteyenler için kuruldu.",
+        "En İyisiyle Mısır, tam rota: Kahire ve çevresinde üç gün, antik Thebes'te üç gün ve kısa programların atladığı Luksor ile Asvan arasındaki nehir bölümü. Uzun yoldan gelen ve bunu bir kez, doğru dürüst yapmak isteyenler için kuruldu.",
         "Tempo dolu ama yorucu değil. Her yer, görülmeye değdiği saatte geziliyor: Giza ve Karnak erken, Luksor Tapınağı akşam ışığında, Abu Simbel şafakta. Aradaki öğleden sonraları bilerek boş bırakıldı. Tüm ulaşım özel, rehberli günlerde lisanslı bir Mısırbilimci var; yani burada hiçbir şey otobüs saatine göre işlemiyor."
       ],
       highlights:[
@@ -419,22 +420,22 @@ const TOURS = [
           p:"Sizi terminalin içinde karşılıyor, otele götürüyoruz. Akşam yemeği dışında hiçbir şey planlanmadı: bu havalimanına çoğu insan yorgun iniyor ve plato, bir öğleden sonranın artığını değil, tam bir sabahı hak ediyor." },
         { d:"2. Gün", place:"Giza ve Sakkara", h:"Giza Piramitleri ve Sfenks",
           acts:["Giza platosu","Büyük Piramit'in içi","Sfenks","Sakkara ve Memfis"],
-          p:"Erken başlıyoruz, çünkü platoda sessiz olan ilk saattir. Büyük Piramit'e ayrı biletle girilebiliyor — alçak bir koridorda eğilerek çıkılan, herkesin keyif almadığı bir tırmanış; bunu kapıda değil önceden bilmenizi tercih ederiz. Öğleden sonra Sakkara ve Coser'in Basamaklı Piramidi: fikrin başladığı yer." },
+          p:"Erken başlıyoruz, çünkü platoda sessiz olan ilk saattir. Büyük Piramit'e ayrı biletle girilebiliyor. Alçak bir koridorda eğilerek çıkılan, herkesin keyif almadığı bir tırmanış; bunu kapıda değil önceden bilmenizi tercih ederiz. Öğleden sonra Sakkara ve Coser'in Basamaklı Piramidi: fikrin başladığı yer." },
         { d:"3. Gün", place:"Kahire", h:"Müze ve Eski Kahire",
           acts:["Mısır müzesi","Kıpti Kahire","Han el-Halili","Serbest akşam"],
-          p:"Sabah Tutankhamun koleksiyonu, ardından Kıpti mahalle — Asma Kilise, Ben Ezra — ve öğleden sonranın sonunda, dar sokaklardaki ışık kalabalığa değdiğinde Han el-Halili. Hangi müzeye gidileceği o gün neyin açık olduğuna bağlı ve yazılı programınızda adıyla belirtiliyor." },
-        { d:"4. Gün", place:"Luksor", h:"Güneye, Luksor'a — Karnak ve Luksor Tapınağı",
+          p:"Sabah Tutankhamun koleksiyonu, ardından Kıpti mahallede Asma Kilise ve Ben Ezra. Öğleden sonranın sonunda, dar sokaklardaki ışık kalabalığa değdiğinde Han el-Halili. Hangi müzeye gidileceği o gün neyin açık olduğuna bağlı ve yazılı programınızda adıyla belirtiliyor." },
+        { d:"4. Gün", place:"Luksor", h:"Güneye, Luksor'a: Karnak ve Luksor Tapınağı",
           acts:["Sabah Luksor uçuşu","Karnak Tapınağı","Sütunlu salon","Akşam ışığında Luksor Tapınağı"],
           p:"Kısa bir uçuşla güneye. Öğleden sonra Karnak ve sütunlu salon: Mısır'da fotoğrafın kimseyi hazırlayamadığı tek mekân. Gün battıktan sonra, aydınlatılmış Luksor Tapınağı; otele on dakika yürüme mesafesinde." },
         { d:"5. Gün", place:"Batı Yaka", h:"Kral Vadisi",
           acts:["Kral Vadisi","Hatşepsut Tapınağı","Memnon Kolosları","Serbest öğleden sonra"],
-          p:"Standart bilet üç mezar kapsıyor; I. Seti ve Tutankhamun ayrı biletli ve seyahat ettiğiniz ayda hangisinin değdiğini açıkça söyleriz. Ardından Hatşepsut, dönüşte Kolos'lar ve boş bırakılmış bir öğleden sonra — yazın Batı Yaka bir sabah işidir." },
+          p:"Standart bilet üç mezar kapsıyor; I. Seti ve Tutankhamun ayrı biletli ve seyahat ettiğiniz ayda hangisinin değdiğini açıkça söyleriz. Ardından Hatşepsut, dönüşte Kolos'lar ve boş bırakılmış bir öğleden sonra. Yazın Batı Yaka bir sabah işidir." },
         { d:"6. Gün", place:"Edfu ve Kom Ombo", h:"Nil boyunca Asvan'a",
           acts:["Esna","Edfu'da Horus Tapınağı","Kom Ombo","Asvan'a varış"],
-          p:"Nehir bölümü, tapınaklar durak olarak. Bu rota kara yolu için yazıldı: üç tapınağı da koruyor ve kazanılan günleri Luksor ile Asvan'a geri veriyor. Bu bölümü su üstünde geçmek isterseniz erken söyleyin — gemiler sabit kalkış günlerinde çalışır ve rotanın geri kalanı onlara göre kurulur." },
+          p:"Nehir bölümü, tapınaklar durak olarak. Bu rota kara yolu için yazıldı: üç tapınağı da koruyor ve kazanılan günleri Luksor ile Asvan'a geri veriyor. Bu bölümü su üstünde geçmek isterseniz erken söyleyin. Gemiler sabit kalkış günlerinde çalışır ve rotanın geri kalanı onlara göre kurulur." },
         { d:"7. Gün", place:"Asvan", h:"Asvan ve nehrin en güzel hâli",
           acts:["Philae Tapınağı","Bitmemiş Obelisk","Gün batımında felucca","Nubya köyü"],
-          p:"Philae'ye tekneyle gidiliyor; büyük yerler arasında hem en güzeli hem en az kalabalık olanı. Öğleden sonra Elephantine Adası çevresinde bir felucca — motor yok, program yok; eve dönenlerin ilk anlattığı bölüm genelde burasıdır." },
+          p:"Philae'ye tekneyle gidiliyor; büyük yerler arasında hem en güzeli hem en az kalabalık olanı. Öğleden sonra Elephantine Adası çevresinde bir felucca: motor yok, program yok. Eve dönenlerin ilk anlattığı bölüm genelde burasıdır." },
         { d:"8. Gün", place:"Abu Simbel", h:"Şafak vakti Abu Simbel",
           acts:["Gün doğmadan yola çıkış","II. Ramses Tapınağı","Nefertari Tapınağı","Asvan'a dönüş"],
           p:"Karanlıkta üç saat güneye; böylece güneş doğarken cephe önden aydınlanıyor. Uzun bir sabah ve doğru karar. Öğleden sonranın başında Asvan'da oluyoruz, akşam serbest." },
@@ -456,24 +457,24 @@ const TOURS = [
         "Mısır giriş vizesi ve konsolosluk masrafları",
         "Seyahat sigortası",
         "Yukarıda adı geçmeyen yemek ve içecekler",
-        "Programda belirtilen ek biletler — Büyük Piramit içi, I. Seti, Nefertari",
+        "Programda belirtilen ek biletler: Büyük Piramit içi, I. Seti, Nefertari",
         "Opsiyonel deneyimler, bahşişler ve kişisel harcamalar"
       ],
       optional:[
         "Batı Yaka üzerinde şafak balonu; bir önceki akşam teyit edilir, hava koşullarına bağlıdır",
-        "Luksor–Asvan bölümünün bir gün yerine üç gece gemiyle yapılması",
+        "Luksor ile Asvan arasındaki bölümün bir gün yerine üç gece gemiyle yapılması",
         "Rotanın sonuna eklenen üç ya da dört gece Kızıldeniz",
-        "İslami Kahire için ikinci bir gün — Kale, İbn Tulun, Muiz Sokağı",
+        "İslami Kahire için ikinci bir gün: Kale, İbn Tulun, Muiz Sokağı",
         "Karnak ya da Philae'de ışık ve ses gösterisi"
       ],
       info:[
         ["Süre","9 gün / 8 gece"],
         ["Destinasyonlar","Kahire · Giza · Luksor · Edfu ve Kom Ombo · Asvan · Abu Simbel"],
         ["Seyahat tarzı","Özel, rehberli, kültür ağırlıklı"],
-        ["Grup","Yalnızca özel hareketler — kendi grubunuz, kendi rehberiniz, kendi aracınız"],
+        ["Grup","Yalnızca özel hareketler. Kendi grubunuz, kendi rehberiniz, kendi aracınız"],
         ["Zorluk","Orta. Engebeli zeminde uzun geziler, dokuz günün dördünde erken kalkış"],
         ["Kimler için","Ülkeyi bir seferde görmek isteyen ilk ziyaretçiler, eksik kalanı tamamlayanlar, fotoğrafçılar"],
-        ["En iyi aylar","Ekim–nisan. Mayıs–eylül, şafakta başlayıp öğleden sonra kapalı mekânlarla mümkün"]
+        ["En iyi aylar","Ekim ile nisan arası. Mayıs ile eylül arasında şafakta başlayıp öğleden sonra kapalı mekânlarla mümkün"]
       ],
       notes:[
         "Açılış saatleri, bilet kuralları ve hangi mezarların açık olduğu yıl içinde değişiyor. Yazılı programınız, hiçbir şey rezerve edilmeden önce güncel duruma göre kontrol ediliyor.",
@@ -490,7 +491,7 @@ const TOURS = [
       destinations:["Kairo","Gizeh","Luxor","Edfu & Kom Ombo","Assuan","Abu Simbel"],
       overview:[
         "Das Beste Ägyptens ist die vollständige Route: drei Tage in und um Kairo, drei im alten Theben und jener Flussabschnitt zwischen Luxor und Assuan, den kürzere Programme auslassen. Sie ist für Reisende gebaut, die weit anreisen und das lieber einmal richtig machen, als für die fehlende Hälfte wiederzukommen.",
-        "Das Tempo ist voll, aber nicht zermürbend. Jede Stätte wird zu der Stunde besucht, zu der sie es wert ist: Gizeh und Karnak früh, der Luxor-Tempel in der Dämmerung, Abu Simbel im ersten Licht. Die Nachmittage dazwischen bleiben bewusst offen. Sie reisen durchgehend privat, an jedem geführten Tag mit einem lizenzierten Ägyptologen — hier läuft nichts nach Busfahrplan."
+        "Das Tempo ist voll, aber nicht zermürbend. Jede Stätte wird zu der Stunde besucht, zu der sie es wert ist: Gizeh und Karnak früh, der Luxor-Tempel in der Dämmerung, Abu Simbel im ersten Licht. Die Nachmittage dazwischen bleiben bewusst offen. Sie reisen durchgehend privat, an jedem geführten Tag mit einem lizenzierten Ägyptologen. Hier läuft nichts nach Busfahrplan."
       ],
       highlights:[
         { i:"pyramids", h:"Die Pyramiden von Gizeh & die Sphinx" },
@@ -508,22 +509,22 @@ const TOURS = [
           p:"Wir holen Sie im Terminal ab und bringen Sie ins Hotel. Außer dem Abendessen ist nichts geplant: Die meisten erreichen diesen Flughafen müde, und das Plateau verdient einen Vormittag und nicht den Rest eines Nachmittags." },
         { d:"Tag 2", place:"Gizeh & Sakkara", h:"Die Pyramiden von Gizeh & die Sphinx",
           acts:["Das Plateau von Gizeh","Im Inneren der Cheops-Pyramide","Die Sphinx","Sakkara & Memphis"],
-          p:"Früher Start, denn die erste Stunde auf dem Plateau ist die ruhige. Die Cheops-Pyramide lässt sich mit einem gesonderten Ticket betreten — ein gebückter Aufstieg durch einen niedrigen Gang, der nicht jedem Freude macht; das sollten Sie vorher wissen, nicht am Eingang. Nachmittags Sakkara und die Stufenpyramide des Djoser, wo die ganze Idee beginnt." },
+          p:"Früher Start, denn die erste Stunde auf dem Plateau ist die ruhige. Die Cheops-Pyramide lässt sich mit einem gesonderten Ticket betreten. Es ist ein gebückter Aufstieg durch einen niedrigen Gang, der nicht jedem Freude macht; das sollten Sie vorher wissen, nicht am Eingang. Nachmittags Sakkara und die Stufenpyramide des Djoser, wo die ganze Idee beginnt." },
         { d:"Tag 3", place:"Kairo", h:"Das Museum und Alt-Kairo",
           acts:["Das ägyptische Museum","Koptisches Kairo","Chan el-Chalili","Freier Abend"],
-          p:"Ein Vormittag bei der Tutanchamun-Sammlung, danach das koptische Viertel — die Hängende Kirche, Ben Esra — und am späten Nachmittag der Chan el-Chalili, wenn das Licht in den Gassen die Menge aufwiegt. Welches Museum besucht wird, hängt davon ab, was an dem Tag geöffnet ist, und steht namentlich in Ihrem Programm." },
-        { d:"Tag 4", place:"Luxor", h:"Nach Süden — Karnak & Luxor-Tempel",
+          p:"Ein Vormittag bei der Tutanchamun-Sammlung, danach das koptische Viertel mit der Hängenden Kirche und Ben Esra, und am späten Nachmittag der Chan el-Chalili, wenn das Licht in den Gassen die Menge aufwiegt. Welches Museum besucht wird, hängt davon ab, was an dem Tag geöffnet ist, und steht namentlich in Ihrem Programm." },
+        { d:"Tag 4", place:"Luxor", h:"Nach Süden: Karnak & Luxor-Tempel",
           acts:["Vormittagsflug nach Luxor","Karnak-Tempel","Die Säulenhalle","Luxor-Tempel in der Dämmerung"],
-          p:"Ein kurzer Flug nach Süden. Nachmittags Karnak und die große Säulenhalle — der eine Raum in Ägypten, auf den kein Foto vorbereitet. Nach Sonnenuntergang der beleuchtete Luxor-Tempel, zehn Gehminuten vom Hotel." },
+          p:"Ein kurzer Flug nach Süden. Nachmittags Karnak und die große Säulenhalle, der eine Raum in Ägypten, auf den kein Foto vorbereitet. Nach Sonnenuntergang der beleuchtete Luxor-Tempel, zehn Gehminuten vom Hotel." },
         { d:"Tag 5", place:"Westufer", h:"Das Tal der Könige",
           acts:["Tal der Könige","Tempel der Hatschepsut","Memnonkolosse","Freier Nachmittag"],
-          p:"Das Standardticket umfasst drei Gräber; Sethos I. und Tutanchamun kosten extra, und wir sagen Ihnen offen, welches sich im Monat Ihrer Reise lohnt. Danach Hatschepsut, auf dem Rückweg die Kolosse — und ein bewusst freier Nachmittag: Im Sommer ist das Westufer eine Vormittagssache." },
+          p:"Das Standardticket umfasst drei Gräber; Sethos I. und Tutanchamun kosten extra, und wir sagen Ihnen offen, welches sich im Monat Ihrer Reise lohnt. Danach Hatschepsut, auf dem Rückweg die Kolosse, und ein bewusst freier Nachmittag: Im Sommer ist das Westufer eine Vormittagssache." },
         { d:"Tag 6", place:"Edfu & Kom Ombo", h:"Den Nil entlang nach Assuan",
           acts:["Esna","Der Horus-Tempel von Edfu","Kom Ombo","Ankunft in Assuan"],
-          p:"Der Flussabschnitt, mit den Tempeln als Stationen. Diese Route ist für die Straße geschrieben: Sie behält alle drei und gibt die gewonnenen Tage an Luxor und Assuan zurück. Wenn Sie diesen Abschnitt lieber auf dem Wasser zurücklegen, sagen Sie es früh — die Schiffe fahren an festen Tagen, und die übrige Route ordnet sich ihnen unter." },
+          p:"Der Flussabschnitt, mit den Tempeln als Stationen. Diese Route ist für die Straße geschrieben: Sie behält alle drei und gibt die gewonnenen Tage an Luxor und Assuan zurück. Wenn Sie diesen Abschnitt lieber auf dem Wasser zurücklegen, sagen Sie es früh. Die Schiffe fahren an festen Tagen, und die übrige Route ordnet sich ihnen unter." },
         { d:"Tag 7", place:"Assuan", h:"Assuan, und der Fluss von seiner besten Seite",
           acts:["Philae-Tempel","Der unvollendete Obelisk","Eine Feluke bei Sonnenuntergang","Ein nubisches Dorf"],
-          p:"Philae erreicht man mit dem Boot; es ist zugleich die schönste der großen Stätten und die am wenigsten überlaufene. Nachmittags eine Feluke um die Insel Elephantine — kein Motor, kein Zeitplan, und meist das Erste, wovon zu Hause erzählt wird." },
+          p:"Philae erreicht man mit dem Boot; es ist zugleich die schönste der großen Stätten und die am wenigsten überlaufene. Nachmittags eine Feluke um die Insel Elephantine: kein Motor, kein Zeitplan, und meist das Erste, wovon zu Hause erzählt wird." },
         { d:"Tag 8", place:"Abu Simbel", h:"Abu Simbel im ersten Licht",
           acts:["Abfahrt vor Sonnenaufgang","Der Tempel Ramses II.","Der Tempel der Nefertari","Zurück nach Assuan"],
           p:"Drei Stunden im Dunkeln nach Süden, damit die Fassade von vorn beleuchtet ist, wenn die Sonne aufgeht. Ein langer Vormittag und die richtige Entscheidung. Am frühen Nachmittag zurück in Assuan, der Abend ist frei." },
@@ -545,21 +546,21 @@ const TOURS = [
         "Das ägyptische Einreisevisum und konsularische Gebühren",
         "Reiseversicherung",
         "Nicht genannte Mahlzeiten und Getränke",
-        "Die im Programm genannten Zusatztickets — Inneres der Cheops-Pyramide, Sethos I., Nefertari",
+        "Die im Programm genannten Zusatztickets: Inneres der Cheops-Pyramide, Sethos I., Nefertari",
         "Optionale Erlebnisse, Trinkgelder und persönliche Ausgaben"
       ],
       optional:[
         "Eine Ballonfahrt über dem Westufer im Morgengrauen; am Vorabend bestätigt und wetterabhängig",
-        "Der Abschnitt Luxor–Assuan per Schiff über drei Nächte statt an einem Tag auf der Straße",
+        "Der Abschnitt Luxor bis Assuan per Schiff über drei Nächte statt an einem Tag auf der Straße",
         "Drei oder vier Nächte am Roten Meer am Ende der Route",
-        "Ein zweiter Tag in Kairo für die islamische Stadt — Zitadelle, Ibn Tulun, al-Muizz-Straße",
+        "Ein zweiter Tag in Kairo für die islamische Stadt: Zitadelle, Ibn Tulun, al-Muizz-Straße",
         "Ton- und Lichtshow in Karnak oder auf Philae"
       ],
       info:[
         ["Dauer","9 Tage / 8 Nächte"],
         ["Ziele","Kairo · Gizeh · Luxor · Edfu & Kom Ombo · Assuan · Abu Simbel"],
         ["Reisestil","Privat, geführt, kulturbetont"],
-        ["Gruppe","Ausschließlich private Abreisen — Ihre Gruppe, Ihr Guide, Ihr Fahrzeug"],
+        ["Gruppe","Ausschließlich private Abreisen. Ihre Gruppe, Ihr Guide, Ihr Fahrzeug"],
         ["Anspruch","Mittel. Lange Besichtigungen auf unebenem Boden, an vier von neun Tagen früher Start"],
         ["Geeignet für","Erstbesuche, die das Land abdecken sollen, Wiederkehrende, Fotografierende"],
         ["Beste Monate","Oktober bis April. Mai bis September mit Start im Morgengrauen und Nachmittagen im Innenraum"]
@@ -594,7 +595,7 @@ const TOURS = [
       destinations:["Hurghada","The Red Sea islands","Luxor East Bank","Luxor West Bank"],
       overview:[
         "This is the route we plan most often for families, and it turns on one decision: a single base on the Red Sea rather than a new hotel every night. Children unpack once. The sea is twenty minutes from breakfast. The two Luxor days are the only ones that involve a road, and they sit in the middle of the week, when everybody is rested.",
-        "Everything on land is private, so the day starts when your family starts rather than when a coach fills. Where an activity carries an age or a height limit — the quad bikes, an introductory dive — we say so before you book rather than at the door, and there is always something for whoever cannot join in."
+        "Everything on land is private, so the day starts when your family starts rather than when a coach fills. Where an activity carries an age or a height limit, such as the quad bikes or an introductory dive, we say so before you book rather than at the door, and there is always something for whoever cannot join in."
       ],
       highlights:[
         { i:"sea",     h:"Free beach days on the Red Sea" },
@@ -612,14 +613,14 @@ const TOURS = [
           p:"Twenty minutes from the airport to the hotel. Nothing is planned for the first evening on purpose: with children the first day belongs to the pool and an early night." },
         { d:"Day 2", place:"Hurghada", h:"The town, and the sea",
           acts:["The old town and Sekalla","The fish market","The marina","A free afternoon on the beach"],
-          p:"A short morning in town — the old quarter, the fish market, the marina — and the whole afternoon free. This is the day the week settles down, and it is deliberately the emptiest one." },
+          p:"A short morning in town takes in the old quarter, the fish market and the marina, and the whole afternoon is free. This is the day the week settles down, and it is deliberately the emptiest one." },
         { d:"Day 3", place:"The Red Sea", h:"The island boat day",
           acts:["Boat out to the islands","Two snorkelling stops","Lunch on board","Beach time"],
           p:"Out at nine, back by late afternoon. The snorkelling stops are chosen for shallow, sheltered water rather than for depth, and the crew stays in the water with the children throughout. Anyone who would rather not swim stays on the boat and misses nothing." },
         { d:"Day 4", place:"The Eastern Desert", h:"The desert, late in the day",
           acts:["4x4 desert safari","Camel ride","A Bedouin camp","Dinner under the stars"],
           p:"The desert is a late-afternoon place, not a midday one. Quad bikes are available to the adults and to older children where the operator's age and height limits allow; where they do not, the 4x4 covers the same ground and nobody sits the evening out." },
-        { d:"Day 5", place:"Luxor", h:"To Luxor — Karnak & Luxor Temple",
+        { d:"Day 5", place:"Luxor", h:"To Luxor: Karnak & Luxor Temple",
           acts:["Morning road transfer","Karnak Temple","The Luxor Museum","Luxor Temple after dark"],
           p:"About four hours across the desert road, with a stop. Karnak after lunch, when the hall is at its most theatrical, then the museum, which is small and superbly lit. Luxor Temple lit after dinner is a ten-minute walk from the hotel and the part children tend to remember." },
         { d:"Day 6", place:"West Bank", h:"The Valley of the Kings, then back to the coast",
@@ -630,7 +631,7 @@ const TOURS = [
           p:"One more morning in the water. We hold the transfer as late as your flight allows, and where the hotel will give a late check-out we ask for it as a matter of course rather than as a favour." }
       ],
       included:[
-        "Six nights of accommodation — five on the Red Sea, one in Luxor — on the standard named in your quote",
+        "Six nights of accommodation on the standard named in your quote: five on the Red Sea, one in Luxor",
         "Daily breakfast, and the meals named in the day-by-day above",
         "Airport transfers, the Luxor road transfer, and all private transport on land",
         "A licensed Egyptologist guide on both Luxor days, in Turkish, English or German",
@@ -657,7 +658,7 @@ const TOURS = [
         ["Duration","7 days / 6 nights"],
         ["Destinations","Hurghada · the Red Sea islands · Luxor"],
         ["Travel style","Relaxed and sea-based, with one culture block in the middle"],
-        ["Group","Private on land — your family, your guide, your vehicle. Boats may be shared"],
+        ["Group","Private on land. Your family, your guide, your vehicle. Boats may be shared"],
         ["Activity level","Easy. One long road day and one early start"],
         ["Best for","Families with children, mixed-age groups, and first visits to Egypt"],
         ["Best months","October to May on the coast. The Luxor days are much easier outside July and August"]
@@ -665,7 +666,7 @@ const TOURS = [
       notes:[
         "Water sports carry the operators own age, height and medical limits. We will tell you what they are for your party before you book, not on the jetty.",
         "The Luxor road transfer is about four hours each way. Where a family would rather fly it, connections exist and we will quote them.",
-        "This route is our proposal rather than a fixed departure. The number of nights and the Hurghada to Luxor split are both easy to move — tell us your dates and who is coming and we will rewrite it."
+        "This route is our proposal rather than a fixed departure. The number of nights and the Hurghada to Luxor split are both easy to move. Tell us your dates and who is coming and we will rewrite it."
       ]
     },
 
@@ -678,7 +679,7 @@ const TOURS = [
       destinations:["Hurghada","Kızıldeniz adaları","Luksor Doğu Yaka","Luksor Batı Yaka"],
       overview:[
         "Aileler için en sık kurduğumuz rota bu ve tek bir karar üzerine oturuyor: her gece yeni bir otel yerine Kızıldeniz'de tek bir üs. Çocuklar bavulu bir kez açıyor. Deniz, kahvaltıdan yirmi dakika uzakta. Yol içeren tek bölüm Luksor'daki iki gün ve o da haftanın ortasında, herkes dinlenmişken.",
-        "Karadaki her şey özel; yani gün, otobüs dolduğunda değil sizin aileniz hazır olduğunda başlıyor. Bir aktivitede yaş ya da boy sınırı varsa — ATV, deneme dalışı — bunu kapıda değil rezervasyondan önce söylüyoruz ve katılamayan için her zaman bir alternatif oluyor."
+        "Karadaki her şey özel; yani gün, otobüs dolduğunda değil sizin aileniz hazır olduğunda başlıyor. Bir aktivitede yaş ya da boy sınırı varsa, örneğin ATV ya da deneme dalışında, bunu kapıda değil rezervasyondan önce söylüyoruz ve katılamayan için her zaman bir alternatif oluyor."
       ],
       highlights:[
         { i:"sea",     h:"Kızıldeniz'de serbest plaj günleri" },
@@ -696,14 +697,14 @@ const TOURS = [
           p:"Havalimanından otele yirmi dakika. İlk akşam bilerek boş: çocuklu bir seyahatte ilk gün havuzun ve erken uykunun günüdür." },
         { d:"2. Gün", place:"Hurghada", h:"Şehir ve deniz",
           acts:["Eski şehir ve Sekalla","Balık pazarı","Marina","Serbest öğleden sonra"],
-          p:"Şehirde kısa bir sabah — eski mahalle, balık pazarı, marina — ve tamamen serbest bir öğleden sonra. Haftanın oturduğu gün budur ve bilerek en boş gündür." },
+          p:"Şehirde kısa bir sabah: eski mahalle, balık pazarı ve marina. Ardından tamamen serbest bir öğleden sonra. Haftanın oturduğu gün budur ve bilerek en boş gündür." },
         { d:"3. Gün", place:"Kızıldeniz", h:"Adalara tekne günü",
           acts:["Adalara tekne","İki şnorkel durağı","Teknede öğle yemeği","Plaj zamanı"],
           p:"Dokuzda çıkış, öğleden sonranın sonunda dönüş. Şnorkel durakları derinliğe göre değil, sığ ve korunaklı suya göre seçiliyor; ekip çocuklarla birlikte suda kalıyor. Yüzmek istemeyen teknede kalıyor ve hiçbir şey kaçırmıyor." },
         { d:"4. Gün", place:"Doğu Çölü", h:"Günün sonunda çöl",
           acts:["4x4 çöl safarisi","Deve turu","Bedevi kampı","Yıldızlar altında akşam yemeği"],
-          p:"Çöl öğle vaktinin değil, günün sonunun yeridir. ATV yetişkinler ve işletmecinin yaş–boy sınırlarına uyan büyük çocuklar için var; uymadığında 4x4 aynı araziyi geziyor ve kimse akşamın dışında kalmıyor." },
-        { d:"5. Gün", place:"Luksor", h:"Luksor'a — Karnak ve Luksor Tapınağı",
+          p:"Çöl öğle vaktinin değil, günün sonunun yeridir. ATV yetişkinler ve işletmecinin yaş ve boy sınırlarına uyan büyük çocuklar için var; uymadığında 4x4 aynı araziyi geziyor ve kimse akşamın dışında kalmıyor." },
+        { d:"5. Gün", place:"Luksor", h:"Luksor'a: Karnak ve Luksor Tapınağı",
           acts:["Sabah kara yolu transferi","Karnak Tapınağı","Luksor Müzesi","Karanlıkta Luksor Tapınağı"],
           p:"Çöl yolunda molalı yaklaşık dört saat. Öğleden sonra, salonun en etkileyici olduğu saatte Karnak; ardından küçük ve çok iyi aydınlatılmış müze. Akşam yemeğinden sonra aydınlatılmış Luksor Tapınağı otele on dakika yürüme mesafesinde ve çocukların aklında kalan kısım genelde burası." },
         { d:"6. Gün", place:"Batı Yaka", h:"Kral Vadisi ve kıyıya dönüş",
@@ -714,7 +715,7 @@ const TOURS = [
           p:"Suda bir sabah daha. Transferi uçuşunuzun izin verdiği kadar geç tutuyoruz ve otel geç çıkış veriyorsa bunu bir lütuf gibi değil, olağan bir talep olarak istiyoruz." }
       ],
       included:[
-        "Teklifinizde adı geçen standartta altı gece konaklama — beş gece Kızıldeniz, bir gece Luksor",
+        "Teklifinizde adı geçen standartta altı gece konaklama: beş gece Kızıldeniz, bir gece Luksor",
         "Her gün kahvaltı ve yukarıdaki programda adı geçen öğünler",
         "Havalimanı transferleri, Luksor kara yolu transferi ve karadaki tüm özel ulaşım",
         "Her iki Luksor gününde lisanslı Mısırbilimci rehber; Türkçe, İngilizce ya da Almanca",
@@ -741,28 +742,28 @@ const TOURS = [
         ["Süre","7 gün / 6 gece"],
         ["Destinasyonlar","Hurghada · Kızıldeniz adaları · Luksor"],
         ["Seyahat tarzı","Sakin, deniz merkezli; ortada tek bir kültür bloğu"],
-        ["Grup","Karada özel — kendi aileniz, rehberiniz, aracınız. Tekneler paylaşımlı olabilir"],
+        ["Grup","Karada özel. Kendi aileniz, rehberiniz, aracınız. Tekneler paylaşımlı olabilir"],
         ["Zorluk","Kolay. Bir uzun yol günü ve bir erken kalkış"],
         ["Kimler için","Çocuklu aileler, karma yaş grupları ve Mısır'a ilk gelenler"],
-        ["En iyi aylar","Kıyıda ekim–mayıs. Luksor günleri temmuz ve ağustos dışında çok daha rahat"]
+        ["En iyi aylar","Kıyıda ekim ile mayıs arası. Luksor günleri temmuz ve ağustos dışında çok daha rahat"]
       ],
       notes:[
         "Su sporlarında yaş, boy ve sağlık sınırlarını işletmeciler koyuyor. Bunları iskelede değil, rezervasyondan önce sizin grubunuz için söylüyoruz.",
         "Luksor kara yolu transferi tek yön yaklaşık dört saat. Uçmayı tercih eden aileler için bağlantılar mevcut ve fiyatlandırıyoruz.",
-        "Bu rota sabit bir hareket değil, bizim önerimiz. Gece sayısı ve Hurghada–Luksor dağılımı kolayca değişir; tarihlerinizi ve kimlerin geleceğini yazın, yeniden kuralım."
+        "Bu rota sabit bir hareket değil, bizim önerimiz. Gece sayısı ve Hurghada ile Luksor dağılımı kolayca değişir; tarihlerinizi ve kimlerin geleceğini yazın, yeniden kuralım."
       ]
     },
 
     de:{
       meta:"7 Tage · Hurghada & Luxor",
       n:"Ägypten für Familien",
-      tagline:"Das Rote Meer im Familientempo — und ein großer Tag bei den Pharaonen.",
+      tagline:"Das Rote Meer im Familientempo, und ein großer Tag bei den Pharaonen.",
       d:"Eine Woche um ein einziges Hotel am Roten Meer: ein Bootstag zu den Inseln, ein Nachmittag in der Wüste und zwei Tage in Luxor. Kurze Fahrtage, frühe Abende, nichts, was man aushalten muss.",
       imgAlt:"Küste des Roten Meeres, wo die Wüstenberge auf das Wasser treffen",
       destinations:["Hurghada","Die Inseln im Roten Meer","Luxor Ostufer","Luxor Westufer"],
       overview:[
         "Diese Route planen wir für Familien am häufigsten, und sie hängt an einer Entscheidung: ein fester Standort am Roten Meer statt jede Nacht ein neues Hotel. Die Kinder packen einmal aus. Das Meer liegt zwanzig Minuten hinter dem Frühstück. Nur die beiden Luxor-Tage bedeuten Straße, und sie liegen in der Wochenmitte, wenn alle ausgeruht sind.",
-        "An Land ist alles privat: Der Tag beginnt, wenn Ihre Familie so weit ist, und nicht, wenn ein Bus voll ist. Wo eine Aktivität eine Alters- oder Größengrenze hat — die Quads, ein Schnuppertauchgang — sagen wir das vor der Buchung und nicht am Steg, und für alle, die nicht mitmachen können, gibt es immer etwas anderes."
+        "An Land ist alles privat: Der Tag beginnt, wenn Ihre Familie so weit ist, und nicht, wenn ein Bus voll ist. Wo eine Aktivität eine Alters- oder Größengrenze hat, etwa die Quads oder ein Schnuppertauchgang, sagen wir das vor der Buchung und nicht am Steg, und für alle, die nicht mitmachen können, gibt es immer etwas anderes."
       ],
       highlights:[
         { i:"sea",     h:"Freie Strandtage am Roten Meer" },
@@ -780,14 +781,14 @@ const TOURS = [
           p:"Zwanzig Minuten vom Flughafen zum Hotel. Für den ersten Abend ist bewusst nichts geplant: Mit Kindern gehört der erste Tag dem Pool und einem frühen Abend." },
         { d:"Tag 2", place:"Hurghada", h:"Die Stadt und das Meer",
           acts:["Altstadt und Sekalla","Der Fischmarkt","Die Marina","Ein freier Nachmittag am Strand"],
-          p:"Ein kurzer Vormittag in der Stadt — das alte Viertel, der Fischmarkt, die Marina — und der ganze Nachmittag frei. An diesem Tag kommt die Woche zur Ruhe, und er ist absichtlich der leerste." },
+          p:"Ein kurzer Vormittag in der Stadt: das alte Viertel, der Fischmarkt, die Marina. Der ganze Nachmittag bleibt frei. An diesem Tag kommt die Woche zur Ruhe, und er ist absichtlich der leerste." },
         { d:"Tag 3", place:"Rotes Meer", h:"Der Bootstag zu den Inseln",
           acts:["Mit dem Boot zu den Inseln","Zwei Schnorchelstopps","Mittagessen an Bord","Zeit am Strand"],
           p:"Um neun hinaus, am späten Nachmittag zurück. Die Schnorchelstopps sind nach flachem, geschütztem Wasser ausgesucht und nicht nach Tiefe, und die Crew bleibt durchgehend mit den Kindern im Wasser. Wer lieber nicht schwimmt, bleibt an Bord und verpasst nichts." },
         { d:"Tag 4", place:"Östliche Wüste", h:"Die Wüste am späten Nachmittag",
           acts:["4x4-Wüstensafari","Kamelritt","Ein Beduinencamp","Abendessen unter Sternen"],
           p:"Die Wüste ist ein Ort für den späten Nachmittag, nicht für die Mittagszeit. Quads gibt es für Erwachsene und für ältere Kinder, soweit die Alters- und Größengrenzen des Betreibers es zulassen; sonst fährt der Geländewagen dieselbe Strecke, und niemand sitzt den Abend aus." },
-        { d:"Tag 5", place:"Luxor", h:"Nach Luxor — Karnak & Luxor-Tempel",
+        { d:"Tag 5", place:"Luxor", h:"Nach Luxor: Karnak & Luxor-Tempel",
           acts:["Transfer am Vormittag","Karnak-Tempel","Das Luxor-Museum","Luxor-Tempel nach Einbruch der Dunkelheit"],
           p:"Rund vier Stunden über die Wüstenstraße, mit Pause. Karnak am Nachmittag, wenn die Halle am eindrucksvollsten ist, danach das Museum, klein und hervorragend beleuchtet. Der beleuchtete Luxor-Tempel nach dem Abendessen liegt zehn Gehminuten vom Hotel und bleibt Kindern meist am stärksten in Erinnerung." },
         { d:"Tag 6", place:"Westufer", h:"Das Tal der Könige, dann zurück ans Meer",
@@ -798,7 +799,7 @@ const TOURS = [
           p:"Noch ein Vormittag im Wasser. Wir legen den Transfer so spät, wie Ihr Flug es erlaubt, und wo das Hotel einen späten Check-out gewährt, fragen wir ihn selbstverständlich an." }
       ],
       included:[
-        "Sechs Übernachtungen in der in Ihrem Angebot genannten Kategorie — fünf am Roten Meer, eine in Luxor",
+        "Sechs Übernachtungen in der in Ihrem Angebot genannten Kategorie: fünf am Roten Meer, eine in Luxor",
         "Täglich Frühstück sowie die oben genannten Mahlzeiten",
         "Flughafentransfers, der Transfer nach Luxor und sämtliche private Beförderung an Land",
         "An beiden Luxor-Tagen ein lizenzierter ägyptologischer Guide, auf Türkisch, Englisch oder Deutsch",
@@ -825,7 +826,7 @@ const TOURS = [
         ["Dauer","7 Tage / 6 Nächte"],
         ["Ziele","Hurghada · die Inseln im Roten Meer · Luxor"],
         ["Reisestil","Entspannt und am Meer, mit einem Kulturblock in der Mitte"],
-        ["Gruppe","An Land privat — Ihre Familie, Ihr Guide, Ihr Fahrzeug. Boote können geteilt sein"],
+        ["Gruppe","An Land privat. Ihre Familie, Ihr Guide, Ihr Fahrzeug. Boote können geteilt sein"],
         ["Anspruch","Leicht. Ein langer Fahrtag und ein früher Start"],
         ["Geeignet für","Familien mit Kindern, Gruppen unterschiedlichen Alters, erste Ägyptenreisen"],
         ["Beste Monate","An der Küste Oktober bis Mai. Die Luxor-Tage sind außerhalb von Juli und August deutlich angenehmer"]
@@ -833,7 +834,7 @@ const TOURS = [
       notes:[
         "Bei Wassersport setzen die Betreiber eigene Alters-, Größen- und Gesundheitsgrenzen. Wir nennen sie Ihnen vor der Buchung und nicht am Steg.",
         "Der Transfer nach Luxor dauert etwa vier Stunden je Richtung. Wer lieber fliegt: Es gibt Verbindungen, und wir kalkulieren sie.",
-        "Diese Route ist unser Vorschlag, keine feste Abreise. Nächtezahl und die Aufteilung zwischen Hurghada und Luxor lassen sich leicht ändern — schreiben Sie uns Ihre Termine und wer mitkommt, dann schreiben wir sie neu."
+        "Diese Route ist unser Vorschlag, keine feste Abreise. Nächtezahl und die Aufteilung zwischen Hurghada und Luxor lassen sich leicht ändern. Schreiben Sie uns Ihre Termine und wer mitkommt, dann schreiben wir sie neu."
       ]
     }
 
@@ -860,7 +861,7 @@ const TOURS = [
       imgAlt:"A wall of coral and shoals of orange anthias on a Red Sea reef",
       destinations:["Hurghada","The Eastern Desert","The Red Sea reefs","Giftun and the islands"],
       overview:[
-        "Four days is enough for the Red Sea if the days are built properly. This route gives each of them one thing — the town on the first, the desert on the second, the reef on the third, the islands on the fourth — so nothing is doubled up and no morning starts earlier than it needs to.",
+        "Four days is enough for the Red Sea if the days are built properly. This route gives each of them one thing: the town on the first, the desert on the second, the reef on the third, the islands on the fourth. Nothing is doubled up and no morning starts earlier than it needs to.",
         "It suits a long weekend, an addition to a longer trip, or a first look at Egypt for people who would rather be in the water than in a museum. Diving is the centre of the third day and is run by a certified operator; certification, the medical questionnaire and the minimum age are all settled before you arrive rather than on the jetty."
       ],
       highlights:[
@@ -885,7 +886,7 @@ const TOURS = [
           p:"A full day on the water. Certified divers get two dives; anyone without a certificate can make a supervised introductory dive with an instructor, and anyone who would rather not can snorkel from the same boat. The sites are chosen on the morning by the skipper according to wind and swell, which is the only way this is done properly." },
         { d:"Day 4", place:"Giftun", h:"The islands, then the airport",
           acts:["Morning boat to the islands","Snorkelling","Beach time","Transfer to the airport"],
-          p:"The last morning belongs to the islands — white sand, shallow water and a reef you can swim to from the beach. Back at the marina by mid-afternoon and at the airport with time in hand." }
+          p:"The last morning belongs to the islands: white sand, shallow water and a reef you can swim to from the beach. Back at the marina by mid-afternoon and at the airport with time in hand." }
       ],
       included:[
         "Three nights of accommodation in Hurghada, on the standard named in your quote",
@@ -906,7 +907,7 @@ const TOURS = [
       ],
       optional:[
         "An introductory dive for beginners, subject to a medical questionnaire and a minimum age",
-        "A certification course over the four days, which changes the shape of the week — ask early",
+        "A certification course over the four days, which changes the shape of the week, so ask early",
         "A night dive, where conditions and the operator allow",
         "A private boat rather than a shared one on either water day",
         "A day trip to Luxor, or to Cairo by air"
@@ -923,7 +924,7 @@ const TOURS = [
       notes:[
         "Every water day depends on the weather. Where the sea is closed the day is rearranged rather than cancelled, and nothing is charged twice.",
         "Diving requires a medical questionnaire, and some conditions require a doctor's clearance. Minimum ages and depth limits are set by the operator and by the certifying agency, not by us.",
-        "You should not fly within about 24 hours of a dive. The route puts the islands after the reef and not before for exactly that reason — tell us your flight time and we will check it against your last dive."
+        "You should not fly within about 24 hours of a dive. The route puts the islands after the reef and not before for exactly that reason. Tell us your flight time and we will check it against your last dive."
       ]
     },
 
@@ -981,7 +982,7 @@ const TOURS = [
       ],
       optional:[
         "Yeni başlayanlar için deneme dalışı; sağlık formu ve alt yaş sınırına tabi",
-        "Dört güne yayılan sertifika kursu — haftanın şeklini değiştirir, erken sorun",
+        "Dört güne yayılan sertifika kursu; haftanın şeklini değiştirir, erken sorun",
         "Koşullar ve işletme izin verdiğinde gece dalışı",
         "Su günlerinde paylaşımlı tekne yerine özel tekne",
         "Luksor'a günübirlik gezi ya da uçakla Kahire"
@@ -991,26 +992,26 @@ const TOURS = [
         ["Destinasyonlar","Hurghada · Doğu Çölü · Kızıldeniz resifleri · Giftun"],
         ["Seyahat tarzı","Hareketli. Deniz ve çöl, karada özel"],
         ["Grup","Karada özel. Dalış ve ada tekneleri, özel kiralamadıkça paylaşımlı olabilir"],
-        ["Zorluk","Orta–hareketli. Her iki su günü için yüzme bilmek gerekir"],
+        ["Zorluk","Orta düzeyde hareketli. Her iki su günü için yüzme bilmek gerekir"],
         ["Kimler için","Dalgıçlar ve dalmaya niyetlenenler, uzun hafta sonları, Luksor veya Kahire'ye ek"],
-        ["En iyi aylar","Tüm yıl. Su haziran–ekim arasında en sıcak, rüzgâr ilkbahar ve sonbaharda en hafif"]
+        ["En iyi aylar","Tüm yıl. Su haziran ile ekim arasında en sıcak, rüzgâr ilkbahar ve sonbaharda en hafif"]
       ],
       notes:[
         "Her su günü hava koşullarına bağlı. Deniz kapandığında gün iptal edilmiyor, yeniden kuruluyor ve iki kez ücretlendirilmiyor.",
         "Dalış için sağlık formu gerekiyor; bazı durumlarda doktor onayı isteniyor. Alt yaş sınırlarını ve derinlik limitlerini biz değil, işletme ve sertifika kuruluşu belirliyor.",
-        "Dalıştan sonra yaklaşık 24 saat uçulmaması gerekir. Adaların resiften sonra olmasının sebebi tam olarak budur — uçuş saatinizi bize yazın, son dalışınıza göre kontrol edelim."
+        "Dalıştan sonra yaklaşık 24 saat uçulmaması gerekir. Adaların resiften sonra olmasının sebebi tam olarak budur. Uçuş saatinizi bize yazın, son dalışınıza göre kontrol edelim."
       ]
     },
 
     de:{
       meta:"4 Tage · Hurghada",
       n:"Hurghada-Abenteuer",
-      tagline:"Wüste, Riff und Insel — in vier Tagen.",
+      tagline:"Wüste, Riff und Insel in vier Tagen.",
       d:"Vier Tage am Roten Meer mit je einer Sache pro Tag: die Stadt, eine Wüstennacht bei den Beduinen, ein ganzer Tauchtag und ein Boot hinaus zu den Inseln.",
       imgAlt:"Eine Korallenwand mit Schwärmen orangefarbener Fahnenbarsche am Riff des Roten Meeres",
       destinations:["Hurghada","Die östliche Wüste","Die Riffe des Roten Meeres","Giftun und die Inseln"],
       overview:[
-        "Vier Tage reichen für das Rote Meer, wenn die Tage richtig gebaut sind. Diese Route gibt jedem Tag eine Sache — am ersten die Stadt, am zweiten die Wüste, am dritten das Riff, am vierten die Inseln. Nichts wird doppelt belegt, und kein Morgen beginnt früher als nötig.",
+        "Vier Tage reichen für das Rote Meer, wenn die Tage richtig gebaut sind. Diese Route gibt jedem Tag eine Sache: am ersten die Stadt, am zweiten die Wüste, am dritten das Riff, am vierten die Inseln. Nichts wird doppelt belegt, und kein Morgen beginnt früher als nötig.",
         "Sie passt zu einem langen Wochenende, als Ergänzung einer längeren Reise oder als erster Blick auf Ägypten für alle, die lieber im Wasser als im Museum sind. Das Tauchen bildet die Mitte des dritten Tages und wird von einem zertifizierten Betrieb durchgeführt; Brevet, medizinischer Fragebogen und Mindestalter werden vor Ihrer Ankunft geklärt und nicht am Steg."
       ],
       highlights:[
@@ -1026,16 +1027,16 @@ const TOURS = [
       days:[
         { d:"Tag 1", place:"Hurghada", h:"Ankunft & die Stadt",
           acts:["Flughafentransfer","Check-in im Hotel","Stadtrundgang Hurghada","Ein Abend an der Marina","Abendessen"],
-          p:"Empfang am Flughafen und am frühen Nachmittag im Hotel. Der Stadtrundgang führt durch das alte Viertel, über den Fischmarkt und zur Moschee und endet an der Marina — dort verbringt man den Abend." },
+          p:"Empfang am Flughafen und am frühen Nachmittag im Hotel. Der Stadtrundgang führt durch das alte Viertel, über den Fischmarkt und zur Moschee und endet an der Marina. Dort verbringt man den Abend." },
         { d:"Tag 2", place:"Östliche Wüste", h:"Wüstensafari & ein Beduinenabend",
           acts:["4x4-Wüstensafari","Quads","Kamelritt","Beduinencamp und Abendessen","Sterne"],
           p:"Am späten Nachmittag hinaus in die östliche Wüste, wenn das Licht lohnt und der Boden abgekühlt ist. Die Quad-Etappe läuft auf markierter Strecke, mit einem Guide vorn und einem hinten. Abendessen im Camp und ein Himmel, mit dem Stadtbewohner nicht rechnen." },
         { d:"Tag 3", place:"Rotes Meer", h:"Ein ganzer Tauchtag",
           acts:["Mit dem Boot zu den Riffen","Zwei Tauchgänge für Brevetierte","Ein Schnuppertauchgang für Anfänger","Schnorcheln und Mittagessen an Bord"],
-          p:"Ein ganzer Tag auf dem Wasser. Brevetierte machen zwei Tauchgänge; wer kein Brevet hat, kann mit einem Instructor einen begleiteten Schnuppertauchgang machen, und wer lieber nicht taucht, schnorchelt vom selben Boot. Die Plätze wählt der Skipper am Morgen nach Wind und Welle — anders lässt sich das nicht seriös machen." },
+          p:"Ein ganzer Tag auf dem Wasser. Brevetierte machen zwei Tauchgänge; wer kein Brevet hat, kann mit einem Instructor einen begleiteten Schnuppertauchgang machen, und wer lieber nicht taucht, schnorchelt vom selben Boot. Die Plätze wählt der Skipper am Morgen nach Wind und Welle. Anders lässt sich das nicht seriös machen." },
         { d:"Tag 4", place:"Giftun", h:"Die Inseln, dann der Flughafen",
           acts:["Vormittags mit dem Boot zu den Inseln","Schnorcheln","Zeit am Strand","Transfer zum Flughafen"],
-          p:"Der letzte Vormittag gehört den Inseln — weißer Sand, flaches Wasser und ein Riff, zu dem man vom Strand aus schwimmen kann. Am frühen Nachmittag zurück an der Marina und mit Puffer am Flughafen." }
+          p:"Der letzte Vormittag gehört den Inseln: weißer Sand, flaches Wasser und ein Riff, zu dem man vom Strand aus schwimmen kann. Am frühen Nachmittag zurück an der Marina und mit Puffer am Flughafen." }
       ],
       included:[
         "Drei Übernachtungen in Hurghada in der in Ihrem Angebot genannten Kategorie",
@@ -1056,7 +1057,7 @@ const TOURS = [
       ],
       optional:[
         "Ein Schnuppertauchgang für Anfänger, mit medizinischem Fragebogen und Mindestalter",
-        "Ein Brevetkurs über die vier Tage, der die Woche verändert — bitte früh ansprechen",
+        "Ein Brevetkurs über die vier Tage, der die Woche verändert, bitte früh ansprechen",
         "Ein Nachttauchgang, wo Bedingungen und Betreiber es zulassen",
         "Ein privates statt eines geteilten Bootes an einem der Wassertage",
         "Ein Tagesausflug nach Luxor oder per Flug nach Kairo"
@@ -1073,7 +1074,7 @@ const TOURS = [
       notes:[
         "Jeder Wassertag hängt vom Wetter ab. Wird das Meer gesperrt, wird der Tag umgelegt statt gestrichen, und nichts wird doppelt berechnet.",
         "Tauchen setzt einen medizinischen Fragebogen voraus, manche Vorerkrankungen eine ärztliche Freigabe. Mindestalter und Tiefenlimits legen der Betrieb und der Verband fest, nicht wir.",
-        "Nach einem Tauchgang sollte etwa 24 Stunden nicht geflogen werden. Genau deshalb liegen die Inseln nach dem Riff und nicht davor — nennen Sie uns Ihre Flugzeit, wir prüfen sie gegen den letzten Tauchgang."
+        "Nach einem Tauchgang sollte etwa 24 Stunden nicht geflogen werden. Genau deshalb liegen die Inseln nach dem Riff und nicht davor. Nennen Sie uns Ihre Flugzeit, wir prüfen sie gegen den letzten Tauchgang."
       ]
     }
 
@@ -1101,7 +1102,7 @@ const TOURS = [
       imgAlt:"Painted capitals in the hypostyle hall at Karnak, seen from below",
       destinations:["Hurghada","The Eastern Desert","The Red Sea reefs","Giftun","Luxor East Bank","Luxor West Bank"],
       overview:[
-        "Two halves, deliberately. The first four days are the Red Sea at its best — the town, the desert, a full day's diving and a boat out to the islands. The last three are ancient Thebes, which holds the densest concentration of standing antiquity anywhere in the world.",
+        "Two halves, deliberately. The first four days are the Red Sea at its best: the town, the desert, a full day's diving and a boat out to the islands. The last three are ancient Thebes, which holds the densest concentration of standing antiquity anywhere in the world.",
         "The move between them is made in the evening, so no daylight is spent on the road. You sleep in Luxor and wake up beside Karnak. Everything on land is private and guided; the two boat days may be shared unless you charter."
       ],
       highlights:[
@@ -1126,19 +1127,19 @@ const TOURS = [
           p:"A full day on the water. Certified divers get two dives, beginners can make a supervised introductory dive with an instructor, and anyone who would rather not can snorkel from the same boat. The sites are chosen on the morning according to wind and swell." },
         { d:"Day 4", place:"Giftun, then Luxor", h:"The islands, then the road to Luxor",
           acts:["Morning boat to the islands","Snorkelling and beach time","Evening transfer to Luxor","Hotel check-in in Luxor"],
-          p:"The islands in the morning and back at the marina by mid-afternoon. The road to Luxor is driven in the evening — about four hours across the desert — so the day loses nothing to travel and you wake up on the Nile." },
+          p:"The islands in the morning and back at the marina by mid-afternoon. The road to Luxor is driven in the evening and takes about four hours across the desert, so the day loses nothing to travel and you wake up on the Nile." },
         { d:"Day 5", place:"Luxor", h:"Discover Luxor",
           acts:["Luxor Temple","The Luxor Museum","Karnak Temple","The hypostyle hall at dusk"],
           p:"Luxor Temple first, then the museum, which is small, superbly lit and the best single hour of explanation in Egypt. Karnak in the late afternoon, with the hypostyle hall as the light goes." },
         { d:"Day 6", place:"West Bank", h:"Ancient Egyptian treasures",
           acts:["Valley of the Kings","Valley of the Queens","Temple of Hatshepsut","Colossi of Memnon"],
-          p:"An early start and the whole day on the West Bank. Three tombs on the standard ticket in the Valley of the Kings. Nefertari, in the Valley of the Queens, is a separate, limited and expensive ticket and the finest painted tomb in Egypt — we will tell you whether it is open, and what it costs, before you decide." },
+          p:"An early start and the whole day on the West Bank. Three tombs on the standard ticket in the Valley of the Kings. Nefertari, in the Valley of the Queens, is a separate, limited and expensive ticket and the finest painted tomb in Egypt. We will tell you whether it is open, and what it costs, before you decide." },
         { d:"Day 7", place:"Hurghada", h:"Back to the coast",
           acts:["Morning road transfer","Free time in the city centre","The marina","The last evening"],
-          p:"The road back in the morning, and the rest of the day free in Hurghada — the centre, the marina, the beach, or nothing at all. Where your flight leaves the following day, the last night is added and quoted with it." }
+          p:"The road back in the morning, and the rest of the day free in Hurghada: the centre, the marina, the beach, or nothing at all. Where your flight leaves the following day, the last night is added and quoted with it." }
       ],
       included:[
-        "Six nights of accommodation — three in Hurghada, three in Luxor — on the standard named in your quote",
+        "Six nights of accommodation on the standard named in your quote: three in Hurghada, three in Luxor",
         "Airport transfers, both road transfers between Hurghada and Luxor, and all private transport on land",
         "Daily breakfast, and the meals named in the day-by-day above",
         "A licensed Egyptologist guide on the Luxor days, in Turkish, English or German",
@@ -1172,7 +1173,7 @@ const TOURS = [
       ],
       notes:[
         "The route ends in Hurghada rather than at the airport. Where your flight home leaves the next morning, the extra night and the airport transfer are quoted with it.",
-        "You should not fly within about 24 hours of a dive. The diving day sits on day 3 and the flight home is on day 7 or 8, which leaves a wide margin — but tell us your flight time and we will check it.",
+        "You should not fly within about 24 hours of a dive. The diving day sits on day 3 and the flight home is on day 7 or 8, which leaves a wide margin, but tell us your flight time and we will check it.",
         "Water days depend on the weather. Where the sea is closed the day is rearranged rather than cancelled."
       ]
     },
@@ -1210,20 +1211,20 @@ const TOURS = [
           p:"Suda tam bir gün. Sertifikalı dalgıçlar iki dalış yapıyor, yeni başlayanlar eğitmen eşliğinde deneme dalışı yapabiliyor, dalmak istemeyen aynı tekneden şnorkelle yüzüyor. Noktalar o sabah rüzgâra ve dalgaya göre seçiliyor." },
         { d:"4. Gün", place:"Giftun, ardından Luksor", h:"Adalar ve Luksor yolu",
           acts:["Sabah adalara tekne","Şnorkel ve plaj","Akşam Luksor transferi","Luksor'da otele yerleşme"],
-          p:"Sabah adalar, öğleden sonranın ortasında marinaya dönüş. Luksor yolu akşam sürülüyor — çölde yaklaşık dört saat — böylece gün yola hiçbir şey kaybetmiyor ve Nil kıyısında uyanıyorsunuz." },
+          p:"Sabah adalar, öğleden sonranın ortasında marinaya dönüş. Luksor yolu akşam sürülüyor ve çölde yaklaşık dört saat sürüyor, böylece gün yola hiçbir şey kaybetmiyor ve Nil kıyısında uyanıyorsunuz." },
         { d:"5. Gün", place:"Luksor", h:"Luksor'u keşfedin",
           acts:["Luksor Tapınağı","Luksor Müzesi","Karnak Tapınağı","Akşam ışığında sütunlu salon"],
           p:"Önce Luksor Tapınağı, ardından küçük, çok iyi aydınlatılmış ve Mısır'da tek başına en iyi açıklamayı sunan müze. Öğleden sonranın sonunda Karnak ve ışık çekilirken sütunlu salon." },
         { d:"6. Gün", place:"Batı Yaka", h:"Antik Mısır hazineleri",
           acts:["Kral Vadisi","Kraliçeler Vadisi","Hatşepsut Tapınağı","Memnon Kolosları"],
-          p:"Erken kalkış ve tüm gün Batı Yaka'da. Kral Vadisi'nde standart biletle üç mezar. Kraliçeler Vadisi'ndeki Nefertari ayrı, sınırlı ve pahalı bir bilet ve Mısır'ın en güzel boyalı mezarı — açık olup olmadığını ve fiyatını siz karar vermeden önce söyleriz." },
+          p:"Erken kalkış ve tüm gün Batı Yaka'da. Kral Vadisi'nde standart biletle üç mezar. Kraliçeler Vadisi'ndeki Nefertari ayrı, sınırlı ve pahalı bir bilet ve Mısır'ın en güzel boyalı mezarı. Açık olup olmadığını ve fiyatını siz karar vermeden önce söyleriz." },
         { d:"7. Gün", place:"Hurghada", h:"Kıyıya dönüş",
           acts:["Sabah kara yolu transferi","Şehir merkezinde serbest zaman","Marina","Son akşam"],
-          p:"Sabah dönüş yolu, günün geri kalanı Hurghada'da serbest — merkez, marina, plaj ya da hiçbir şey. Uçuşunuz ertesi güne denk geliyorsa son gece eklenir ve birlikte fiyatlandırılır." }
+          p:"Sabah dönüş yolu, günün geri kalanı Hurghada'da serbest: merkez, marina, plaj ya da hiçbir şey. Uçuşunuz ertesi güne denk geliyorsa son gece eklenir ve birlikte fiyatlandırılır." }
       ],
       included:[
-        "Teklifinizde adı geçen standartta altı gece konaklama — üç gece Hurghada, üç gece Luksor",
-        "Havalimanı transferleri, Hurghada–Luksor arası iki kara yolu transferi ve karadaki tüm özel ulaşım",
+        "Teklifinizde adı geçen standartta altı gece konaklama: üç gece Hurghada, üç gece Luksor",
+        "Havalimanı transferleri, Hurghada ile Luksor arası iki kara yolu transferi ve karadaki tüm özel ulaşım",
         "Her gün kahvaltı ve yukarıdaki programda adı geçen öğünler",
         "Luksor günlerinde lisanslı Mısırbilimci rehber; Türkçe, İngilizce ya da Almanca",
         "Programda yazan tüm ören yeri girişleri",
@@ -1250,9 +1251,9 @@ const TOURS = [
         ["Destinasyonlar","Hurghada · Doğu Çölü · Kızıldeniz resifleri · Giftun · Luksor"],
         ["Seyahat tarzı","Yarısı deniz, yarısı antik. Karada özel ve rehberli"],
         ["Grup","Karada özel. Tekneler, özel kiralanmadıkça paylaşımlı olabilir"],
-        ["Zorluk","Orta–hareketli. Su günleri için yüzme, iki erken kalkış, bir akşam transferi"],
+        ["Zorluk","Orta düzeyde hareketli. Su günleri için yüzme, iki erken kalkış, bir akşam transferi"],
         ["Kimler için","Luksor'u da isteyen dalgıçlar, çiftler ve Mısır'a ikinci kez gelenler"],
-        ["En iyi aylar","Luksor bölümü için ekim–nisan. Kıyı yıl boyu çalışır"]
+        ["En iyi aylar","Luksor bölümü için ekim ile nisan arası. Kıyı yıl boyu çalışır"]
       ],
       notes:[
         "Rota havalimanında değil Hurghada'da bitiyor. Dönüş uçuşunuz ertesi sabahsa ek gece ve havalimanı transferi birlikte fiyatlandırılır.",
@@ -1269,7 +1270,7 @@ const TOURS = [
       imgAlt:"Bemalte Säulenkapitelle in der Säulenhalle von Karnak, von unten gesehen",
       destinations:["Hurghada","Die östliche Wüste","Die Riffe des Roten Meeres","Giftun","Luxor Ostufer","Luxor Westufer"],
       overview:[
-        "Bewusst zwei Hälften. Die ersten vier Tage sind das Rote Meer von seiner besten Seite — die Stadt, die Wüste, ein ganzer Tauchtag und ein Boot zu den Inseln. Die letzten drei sind das alte Theben, wo antike Bauten so dicht stehen wie nirgendwo sonst auf der Welt.",
+        "Bewusst zwei Hälften. Die ersten vier Tage sind das Rote Meer von seiner besten Seite: die Stadt, die Wüste, ein ganzer Tauchtag und ein Boot zu den Inseln. Die letzten drei sind das alte Theben, wo antike Bauten so dicht stehen wie nirgendwo sonst auf der Welt.",
         "Der Wechsel dazwischen findet am Abend statt, sodass kein Tageslicht auf der Straße verloren geht. Sie schlafen in Luxor und wachen neben Karnak auf. An Land ist alles privat und geführt; die beiden Bootstage können geteilt sein, sofern Sie nicht chartern."
       ],
       highlights:[
@@ -1285,7 +1286,7 @@ const TOURS = [
       days:[
         { d:"Tag 1", place:"Hurghada", h:"Ankunft & die Stadt",
           acts:["Flughafentransfer","Check-in im Hotel","Stadtrundgang Hurghada","Ein Abend an der Marina","Abendessen"],
-          p:"Empfang am Flughafen und am frühen Nachmittag im Hotel. Der Stadtrundgang führt durch das alte Viertel, über den Fischmarkt und zur Moschee und endet an der Marina — dort verbringt man den Abend." },
+          p:"Empfang am Flughafen und am frühen Nachmittag im Hotel. Der Stadtrundgang führt durch das alte Viertel, über den Fischmarkt und zur Moschee und endet an der Marina. Dort verbringt man den Abend." },
         { d:"Tag 2", place:"Östliche Wüste", h:"Wüstensafari & die Quad-Etappe",
           acts:["4x4-Wüstensafari","Quads","Beduinencamp und Abendessen","Sterne"],
           p:"Am späten Nachmittag hinaus in die östliche Wüste. Die Quad-Etappe läuft auf markierter Strecke mit einem Guide vorn und einem hinten, und der Abend endet im Beduinencamp mit Abendessen und einem Himmel, mit dem Stadtbewohner nicht rechnen." },
@@ -1294,19 +1295,19 @@ const TOURS = [
           p:"Ein ganzer Tag auf dem Wasser. Brevetierte machen zwei Tauchgänge, Anfänger einen begleiteten Schnuppertauchgang mit Instructor, und wer lieber nicht taucht, schnorchelt vom selben Boot. Die Plätze werden am Morgen nach Wind und Welle gewählt." },
         { d:"Tag 4", place:"Giftun, dann Luxor", h:"Die Inseln, dann die Straße nach Luxor",
           acts:["Vormittags mit dem Boot zu den Inseln","Schnorcheln und Strand","Abendtransfer nach Luxor","Check-in in Luxor"],
-          p:"Vormittags die Inseln, am frühen Nachmittag zurück an der Marina. Die Straße nach Luxor wird am Abend gefahren — rund vier Stunden durch die Wüste — sodass der Tag nichts an die Fahrt verliert und Sie am Nil aufwachen." },
+          p:"Vormittags die Inseln, am frühen Nachmittag zurück an der Marina. Die Straße nach Luxor wird am Abend gefahren und dauert rund vier Stunden durch die Wüste, sodass der Tag nichts an die Fahrt verliert und Sie am Nil aufwachen." },
         { d:"Tag 5", place:"Luxor", h:"Luxor entdecken",
           acts:["Luxor-Tempel","Das Luxor-Museum","Karnak-Tempel","Die Säulenhalle in der Dämmerung"],
           p:"Zuerst der Luxor-Tempel, dann das Museum: klein, hervorragend beleuchtet und die beste einzelne Erklärstunde in Ägypten. Karnak am späten Nachmittag, mit der Säulenhalle, während das Licht geht." },
         { d:"Tag 6", place:"Westufer", h:"Schätze des alten Ägypten",
           acts:["Tal der Könige","Tal der Königinnen","Tempel der Hatschepsut","Memnonkolosse"],
-          p:"Früher Start und der ganze Tag am Westufer. Im Tal der Könige drei Gräber auf dem Standardticket. Nefertari im Tal der Königinnen ist ein gesondertes, limitiertes und teures Ticket und das schönste bemalte Grab Ägyptens — ob es geöffnet ist und was es kostet, sagen wir Ihnen vor Ihrer Entscheidung." },
+          p:"Früher Start und der ganze Tag am Westufer. Im Tal der Könige drei Gräber auf dem Standardticket. Nefertari im Tal der Königinnen ist ein gesondertes, limitiertes und teures Ticket und das schönste bemalte Grab Ägyptens. Ob es geöffnet ist und was es kostet, sagen wir Ihnen vor Ihrer Entscheidung." },
         { d:"Tag 7", place:"Hurghada", h:"Zurück an die Küste",
           acts:["Transfer am Vormittag","Freie Zeit im Stadtzentrum","Die Marina","Der letzte Abend"],
-          p:"Am Vormittag zurück, der Rest des Tages frei in Hurghada — Zentrum, Marina, Strand oder gar nichts. Fliegt Ihr Flug erst am Folgetag, wird die letzte Nacht ergänzt und mit angeboten." }
+          p:"Am Vormittag zurück, der Rest des Tages frei in Hurghada: Zentrum, Marina, Strand oder gar nichts. Fliegt Ihr Flug erst am Folgetag, wird die letzte Nacht ergänzt und mit angeboten." }
       ],
       included:[
-        "Sechs Übernachtungen — drei in Hurghada, drei in Luxor — in der in Ihrem Angebot genannten Kategorie",
+        "Sechs Übernachtungen in der in Ihrem Angebot genannten Kategorie: drei in Hurghada, drei in Luxor",
         "Flughafentransfers, beide Straßentransfers zwischen Hurghada und Luxor und sämtliche private Beförderung an Land",
         "Täglich Frühstück sowie die oben genannten Mahlzeiten",
         "An den Luxor-Tagen ein lizenzierter ägyptologischer Guide, auf Türkisch, Englisch oder Deutsch",
@@ -1340,7 +1341,7 @@ const TOURS = [
       ],
       notes:[
         "Die Route endet in Hurghada und nicht am Flughafen. Fliegt Ihr Rückflug am nächsten Morgen, werden die zusätzliche Nacht und der Flughafentransfer mit angeboten.",
-        "Nach einem Tauchgang sollte etwa 24 Stunden nicht geflogen werden. Der Tauchtag liegt auf Tag 3, der Rückflug auf Tag 7 oder 8 — der Abstand ist groß, nennen Sie uns dennoch Ihre Flugzeit.",
+        "Nach einem Tauchgang sollte etwa 24 Stunden nicht geflogen werden. Der Tauchtag liegt auf Tag 3, der Rückflug auf Tag 7 oder 8. Der Abstand ist groß, nennen Sie uns dennoch Ihre Flugzeit.",
         "Wassertage hängen vom Wetter ab. Wird das Meer gesperrt, wird der Tag umgelegt statt gestrichen."
       ]
     }
@@ -1381,7 +1382,7 @@ const TOURS = [
       destinations:["Hurghada","The Eastern Desert","Luxor East Bank","Luxor West Bank","The Red Sea reefs","Giftun","Cairo & Giza"],
       overview:[
         "This is the longest of the Red Sea routes and the only one that reaches Cairo. It runs coast, river, capital: two days on the sea and in the desert, two in Luxor with a balloon over the West Bank at dawn, back to the water for the diving and the islands, then the road north for the Pyramids and the museum.",
-        "It covers a great deal of ground for eight days, and it does that by travelling at night rather than by cutting visits short. If that is not how you like to travel, say so — the same content stretches comfortably to ten days with two internal flights, and we will quote both side by side."
+        "It covers a great deal of ground for eight days, and it does that by travelling at night rather than by cutting visits short. If that is not how you like to travel, say so. The same content stretches comfortably to ten days with two internal flights, and we will quote both side by side."
       ],
       highlights:[
         { i:"desert",  h:"A 4x4 safari and the quad-bike stage" },
@@ -1401,27 +1402,27 @@ const TOURS = [
         { d:"Day 2", place:"The Eastern Desert", h:"The desert",
           acts:["4x4 desert safari","Quad bikes","A Bedouin camp","Dinner under the stars"],
           p:"Out into the Eastern Desert late in the afternoon, when the light is worth having. The quad stage runs on a marked course with a guide in front and one behind, and the evening ends at the camp with dinner and a sky that people who live in cities do not expect." },
-        { d:"Day 3", place:"Luxor", h:"Luxor — the tombs and the temples",
+        { d:"Day 3", place:"Luxor", h:"Luxor: the tombs and the temples",
           acts:["Early transfer to Luxor","Valley of the Kings","Karnak Temple","The Luxor Museum","Luxor Temple after dark"],
           p:"An early start across the desert road and a full day in Thebes: the royal tombs first, while the valley is still cool, then Karnak, the museum in the afternoon and Luxor Temple lit after dinner. You sleep in Luxor." },
         { d:"Day 4", place:"West Bank, then Hurghada", h:"A balloon at dawn, then back to the sea",
           acts:["Hot-air balloon over the West Bank","Temple of Hatshepsut","Colossi of Memnon","Return to Hurghada"],
-          p:"Up before four for the balloon, which lifts as the sun comes over the eastern hills and puts the whole of Thebes underneath you — the tombs, the temples, the green strip and the desert edge. Hatshepsut and the Colossi afterwards, then the road back to the coast in the afternoon." },
+          p:"Up before four for the balloon, which lifts as the sun comes over the eastern hills and puts the whole of Thebes underneath you: the tombs, the temples, the green strip and the desert edge. Hatshepsut and the Colossi afterwards, then the road back to the coast in the afternoon." },
         { d:"Day 5", place:"The Red Sea", h:"Diving and snorkelling",
           acts:["Boat out to the reefs","Diving for certified divers","An introductory dive for beginners","Snorkelling and lunch on board"],
           p:"A full day on the water. Certified divers dive, beginners can make a supervised introductory dive with an instructor, and everyone else snorkels from the same boat. The sites are chosen on the morning according to wind and swell." },
         { d:"Day 6", place:"Giftun, then the road north", h:"The islands, then the night journey to Cairo",
           acts:["Morning boat to the islands","Snorkelling and beach time","Evening departure for Cairo","Arrive Cairo overnight"],
-          p:"The islands in the morning, then the long road north in the evening. It is a real journey — six hours or so — and it buys the whole of the following day in Cairo. Where you would rather fly it, say so early: the day-by-day does not change, only the way you get there." },
+          p:"The islands in the morning, then the long road north in the evening. It is a real journey of six hours or so, and it buys the whole of the following day in Cairo. Where you would rather fly it, say so early: the day-by-day does not change, only the way you get there." },
         { d:"Day 7", place:"Cairo & Giza", h:"Cairo, and the Pyramids",
           acts:["The Pyramids of Giza and the Sphinx","The new Egyptian museum","City tour","Dinner"],
-          p:"The plateau first thing, while it is still quiet, then the museum at Giza — the Tutankhamun collection together in one building for the first time. The afternoon takes in the city, and dinner is the last evening of the route." },
+          p:"The plateau first thing, while it is still quiet, then the museum at Giza, where the Tutankhamun collection stands together in one building for the first time. The afternoon takes in the city, and dinner is the last evening of the route." },
         { d:"Day 8", place:"Cairo", h:"Departure, and where you go from here",
           acts:["A free morning","Return to Hurghada, or","Continue independently, or","An international departure from Cairo"],
           p:"The route ends in Cairo, and there are three ordinary ways to end it: travel back to Hurghada, carry on under your own arrangements, or fly home from Cairo, which is the country's largest airport and usually the simplest way out. Which of the three we build depends on your flights, and it is settled in writing before anything is booked." }
       ],
       included:[
-        "Seven nights on the route — six in hotels and one overnight road journey between Hurghada and Cairo",
+        "Seven nights on the route: six in hotels and one overnight road journey between Hurghada and Cairo",
         "Airport transfers and all private transport on land, including both Luxor transfers and the journey to Cairo",
         "Daily breakfast, and the meals named in the day-by-day above",
         "A licensed Egyptologist guide on the Luxor and Cairo days, in Turkish, English or German",
@@ -1440,9 +1441,9 @@ const TOURS = [
       optional:[
         "The Hurghada to Cairo leg by air instead of by road, which returns an evening to the route",
         "Saqqara and Memphis added to the Cairo day",
-        "A ninth day in Cairo for the Islamic city — the Citadel, Ibn Tulun, al-Muizz street",
+        "A ninth day in Cairo for the Islamic city: the Citadel, Ibn Tulun, al-Muizz street",
         "Nefertari's tomb in the Valley of the Queens, where it is open",
-        "An onward transfer at the end — back to Hurghada, or to Alexandria or the Sinai"
+        "An onward transfer at the end, back to Hurghada or on to Alexandria or the Sinai"
       ],
       info:[
         ["Duration","8 days / 7 nights"],
@@ -1454,7 +1455,7 @@ const TOURS = [
         ["Best months","October to April"]
       ],
       notes:[
-        "The last day is written around the three endings this route actually supports — back to Hurghada, onward independently, or an international departure from Cairo. Which one applies is settled in writing with your flights before anything is booked.",
+        "The last day is written around the three endings this route actually supports: back to Hurghada, onward independently, or an international departure from Cairo. Which one applies is settled in writing with your flights before anything is booked.",
         "The balloon flies at the operator's discretion and only in the right wind. Where it cannot fly, the morning moves to the West Bank sites and the flight is refunded or rebooked.",
         "You should not fly within about 24 hours of a dive. The diving day sits on day 5 and any flight is on day 8, but tell us your flight time and we will check it.",
         "The overnight road journey to Cairo is long. It is the reason eight days can hold this much, and it is also the first thing we change for anyone who would rather not do it."
@@ -1470,7 +1471,7 @@ const TOURS = [
       destinations:["Hurghada","Doğu Çölü","Luksor Doğu Yaka","Luksor Batı Yaka","Kızıldeniz resifleri","Giftun","Kahire ve Giza"],
       overview:[
         "Kızıldeniz rotalarının en uzunu ve Kahire'ye ulaşan tek olanı. Sırayla kıyı, nehir, başkent: denizde ve çölde iki gün, şafakta balonla Batı Yaka üzerinde iki Luksor günü, dalış ve adalar için suya dönüş, ardından Piramitler ve müze için kuzeye yol.",
-        "Sekiz gün için çok geniş bir alanı kapsıyor ve bunu gezileri kısaltarak değil, geceleri yol alarak yapıyor. Sizin seyahat tarzınız bu değilse söyleyin — aynı içerik iki iç hat uçuşuyla rahatça on güne yayılır; ikisini de yan yana fiyatlandırırız."
+        "Sekiz gün için çok geniş bir alanı kapsıyor ve bunu gezileri kısaltarak değil, geceleri yol alarak yapıyor. Sizin seyahat tarzınız bu değilse söyleyin. Aynı içerik iki iç hat uçuşuyla rahatça on güne yayılır; ikisini de yan yana fiyatlandırırız."
       ],
       highlights:[
         { i:"desert",  h:"4x4 safari ve ATV bölümü" },
@@ -1490,27 +1491,27 @@ const TOURS = [
         { d:"2. Gün", place:"Doğu Çölü", h:"Çöl",
           acts:["4x4 çöl safarisi","ATV","Bedevi kampı","Yıldızlar altında akşam yemeği"],
           p:"Işığın değdiği saatte, öğleden sonranın sonunda Doğu Çölü'ne çıkış. ATV bölümü işaretli parkurda, önde bir ve arkada bir rehberle yapılıyor; akşam kampta yemek ve şehirde yaşayanların beklemediği bir gökyüzüyle bitiyor." },
-        { d:"3. Gün", place:"Luksor", h:"Luksor — mezarlar ve tapınaklar",
+        { d:"3. Gün", place:"Luksor", h:"Luksor: mezarlar ve tapınaklar",
           acts:["Erken Luksor transferi","Kral Vadisi","Karnak Tapınağı","Luksor Müzesi","Karanlıkta Luksor Tapınağı"],
           p:"Çöl yolunda erken bir başlangıç ve Thebes'te dolu bir gün: vadi hâlâ serinken önce kral mezarları, ardından Karnak, öğleden sonra müze ve akşam yemeğinden sonra aydınlatılmış Luksor Tapınağı. Geceyi Luksor'da geçiriyorsunuz." },
         { d:"4. Gün", place:"Batı Yaka, ardından Hurghada", h:"Şafakta balon, sonra denize dönüş",
           acts:["Batı Yaka üzerinde sıcak hava balonu","Hatşepsut Tapınağı","Memnon Kolosları","Hurghada'ya dönüş"],
-          p:"Balon için dörtten önce kalkış; güneş doğu tepelerinden çıkarken havalanıyor ve tüm Thebes'i altınıza seriyor — mezarlar, tapınaklar, yeşil şerit ve çölün kenarı. Ardından Hatşepsut ve Kolos'lar, öğleden sonra kıyıya dönüş." },
+          p:"Balon için dörtten önce kalkış; güneş doğu tepelerinden çıkarken havalanıyor ve tüm Thebes'i altınıza seriyor: mezarlar, tapınaklar, yeşil şerit ve çölün kenarı. Ardından Hatşepsut ve Kolos'lar, öğleden sonra kıyıya dönüş." },
         { d:"5. Gün", place:"Kızıldeniz", h:"Dalış ve şnorkel",
           acts:["Resiflere tekne","Sertifikalı dalgıçlar için dalış","Yeni başlayanlar için deneme dalışı","Şnorkel ve teknede öğle yemeği"],
           p:"Suda tam bir gün. Sertifikalılar dalıyor, yeni başlayanlar eğitmen eşliğinde deneme dalışı yapabiliyor, diğer herkes aynı tekneden şnorkelle yüzüyor. Noktalar o sabah rüzgâra ve dalgaya göre seçiliyor." },
         { d:"6. Gün", place:"Giftun, ardından kuzey yolu", h:"Adalar ve Kahire'ye gece yolculuğu",
           acts:["Sabah adalara tekne","Şnorkel ve plaj","Akşam Kahire'ye hareket","Gece Kahire'ye varış"],
-          p:"Sabah adalar, akşam kuzeye uzun yol. Gerçek bir yolculuk — altı saat kadar — ve karşılığında ertesi günün tamamını Kahire'de kazandırıyor. Uçmayı tercih ederseniz erken söyleyin: program değişmiyor, yalnızca oraya gidiş şekli değişiyor." },
+          p:"Sabah adalar, akşam kuzeye uzun yol. Altı saat kadar süren gerçek bir yolculuk ve karşılığında ertesi günün tamamını Kahire'de kazandırıyor. Uçmayı tercih ederseniz erken söyleyin: program değişmiyor, yalnızca oraya gidiş şekli değişiyor." },
         { d:"7. Gün", place:"Kahire ve Giza", h:"Kahire ve Piramitler",
           acts:["Giza Piramitleri ve Sfenks","Yeni Mısır müzesi","Şehir turu","Akşam yemeği"],
-          p:"Sabahın ilk saatinde, hâlâ sessizken plato; ardından Giza'daki müze — Tutankhamun koleksiyonu ilk kez tek bir binada bir arada. Öğleden sonra şehir, akşam yemeği ise rotanın son akşamı." },
+          p:"Sabahın ilk saatinde, hâlâ sessizken plato; ardından Giza'daki müze. Tutankhamun koleksiyonu ilk kez tek bir binada bir arada. Öğleden sonra şehir, akşam yemeği ise rotanın son akşamı." },
         { d:"8. Gün", place:"Kahire", h:"Dönüş ve buradan sonrası",
           acts:["Serbest sabah","Hurghada'ya dönüş ya da","Kendi planınızla devam ya da","Kahire'den uluslararası çıkış"],
           p:"Rota Kahire'de bitiyor ve bunu bitirmenin üç olağan yolu var: Hurghada'ya geri dönmek, kendi düzenlemelerinizle devam etmek ya da ülkenin en büyük havalimanı olan ve genellikle en pratik çıkışı sunan Kahire'den uçmak. Hangisini kuracağımız uçuşlarınıza bağlı ve hiçbir şey rezerve edilmeden önce yazılı olarak netleşiyor." }
       ],
       included:[
-        "Rota boyunca yedi gece — altısı otelde, biri Hurghada–Kahire arası gece yolculuğunda",
+        "Rota boyunca yedi gece: altısı otelde, biri Hurghada ile Kahire arası gece yolculuğunda",
         "Havalimanı transferleri ve karadaki tüm özel ulaşım; iki Luksor transferi ve Kahire yolculuğu dahil",
         "Her gün kahvaltı ve yukarıdaki programda adı geçen öğünler",
         "Luksor ve Kahire günlerinde lisanslı Mısırbilimci rehber; Türkçe, İngilizce ya da Almanca",
@@ -1527,11 +1528,11 @@ const TOURS = [
         "Yukarıda adı geçmeyen yemekler, opsiyonel deneyimler, bahşişler ve kişisel harcamalar"
       ],
       optional:[
-        "Hurghada–Kahire bölümünün kara yolu yerine uçakla yapılması; rotaya bir akşam geri kazandırır",
+        "Hurghada ile Kahire arasındaki bölümün kara yolu yerine uçakla yapılması; rotaya bir akşam geri kazandırır",
         "Kahire gününe eklenen Sakkara ve Memfis",
-        "İslami Kahire için dokuzuncu bir gün — Kale, İbn Tulun, Muiz Sokağı",
+        "İslami Kahire için dokuzuncu bir gün: Kale, İbn Tulun, Muiz Sokağı",
         "Açık olduğunda Kraliçeler Vadisi'ndeki Nefertari mezarı",
-        "Sonda devam transferi — Hurghada'ya geri, ya da İskenderiye veya Sina'ya"
+        "Sonda devam transferi: Hurghada'ya geri ya da İskenderiye veya Sina'ya"
       ],
       info:[
         ["Süre","8 gün / 7 gece"],
@@ -1540,7 +1541,7 @@ const TOURS = [
         ["Grup","Karada özel. Tekneler, özel kiralanmadıkça paylaşımlı olabilir"],
         ["Zorluk","Hareketli. İki çok erken kalkış ve bir gece yolculuğu"],
         ["Kimler için","Bir haftada ülkenin tamamını görmek isteyenler, ikinci kez gelenler, arkadaş grupları"],
-        ["En iyi aylar","Ekim–nisan"]
+        ["En iyi aylar","Ekim ile nisan arası"]
       ],
       notes:[
         "Son gün, bu rotanın gerçekten desteklediği üç kapanış üzerine yazıldı: Hurghada'ya dönüş, kendi planınızla devam ya da Kahire'den uluslararası çıkış. Hangisinin geçerli olacağı, hiçbir şey rezerve edilmeden önce uçuşlarınızla birlikte yazılı olarak netleşir.",
@@ -1553,13 +1554,13 @@ const TOURS = [
     de:{
       meta:"8 Tage · Küste, Nil & Hauptstadt",
       n:"Hurghada, Luxor & Kairo",
-      tagline:"Küste, Fluss und Hauptstadt — in einer Linie.",
-      d:"Acht Tage quer durch das Land: das Rote Meer und die Wüste, eine Ballonfahrt über dem Westufer im Morgengrauen, Riff und Inseln — und am Ende die Pyramiden.",
+      tagline:"Küste, Fluss und Hauptstadt in einer Linie.",
+      d:"Acht Tage quer durch das Land: das Rote Meer und die Wüste, eine Ballonfahrt über dem Westufer im Morgengrauen, Riff und Inseln, und am Ende die Pyramiden.",
       imgAlt:"Ein Tisch auf einer Terrasse mit Blick auf die Pyramiden von Gizeh",
       destinations:["Hurghada","Die östliche Wüste","Luxor Ostufer","Luxor Westufer","Die Riffe des Roten Meeres","Giftun","Kairo & Gizeh"],
       overview:[
         "Dies ist die längste der Routen am Roten Meer und die einzige, die Kairo erreicht. Sie verläuft Küste, Fluss, Hauptstadt: zwei Tage am Meer und in der Wüste, zwei in Luxor mit einer Ballonfahrt über dem Westufer im Morgengrauen, zurück ans Wasser für Tauchen und Inseln, dann die Straße nach Norden zu den Pyramiden und zum Museum.",
-        "Für acht Tage deckt sie sehr viel ab — und zwar, indem nachts gefahren und nicht bei den Besichtigungen gekürzt wird. Wenn das nicht Ihre Art zu reisen ist, sagen Sie es: Derselbe Inhalt lässt sich mit zwei Inlandsflügen bequem auf zehn Tage strecken, und wir kalkulieren beides nebeneinander."
+        "Für acht Tage deckt sie sehr viel ab, und zwar dadurch, dass nachts gefahren und nicht bei den Besichtigungen gekürzt wird. Wenn das nicht Ihre Art zu reisen ist, sagen Sie es: Derselbe Inhalt lässt sich mit zwei Inlandsflügen bequem auf zehn Tage strecken, und wir kalkulieren beides nebeneinander."
       ],
       highlights:[
         { i:"desert",  h:"Eine 4x4-Safari und die Quad-Etappe" },
@@ -1575,31 +1576,31 @@ const TOURS = [
       days:[
         { d:"Tag 1", place:"Hurghada", h:"Ankunft in Hurghada",
           acts:["Flughafentransfer","Check-in im Hotel","Stadtrundgang Hurghada","Ein Abend an der Marina","Abendessen"],
-          p:"Empfang am Flughafen und am frühen Nachmittag im Hotel. Der Stadtrundgang führt durch das alte Viertel, über den Fischmarkt und zur Moschee und endet an der Marina — dort verbringt man den Abend." },
+          p:"Empfang am Flughafen und am frühen Nachmittag im Hotel. Der Stadtrundgang führt durch das alte Viertel, über den Fischmarkt und zur Moschee und endet an der Marina. Dort verbringt man den Abend." },
         { d:"Tag 2", place:"Östliche Wüste", h:"Die Wüste",
           acts:["4x4-Wüstensafari","Quads","Ein Beduinencamp","Abendessen unter Sternen"],
           p:"Am späten Nachmittag hinaus in die östliche Wüste, wenn das Licht lohnt. Die Quad-Etappe läuft auf markierter Strecke mit einem Guide vorn und einem hinten, und der Abend endet im Camp mit Abendessen und einem Himmel, mit dem Stadtbewohner nicht rechnen." },
-        { d:"Tag 3", place:"Luxor", h:"Luxor — die Gräber und die Tempel",
+        { d:"Tag 3", place:"Luxor", h:"Luxor: die Gräber und die Tempel",
           acts:["Früher Transfer nach Luxor","Tal der Könige","Karnak-Tempel","Das Luxor-Museum","Luxor-Tempel nach Einbruch der Dunkelheit"],
           p:"Früher Start über die Wüstenstraße und ein voller Tag in Theben: zuerst die Königsgräber, solange das Tal noch kühl ist, dann Karnak, nachmittags das Museum und nach dem Abendessen der beleuchtete Luxor-Tempel. Sie übernachten in Luxor." },
         { d:"Tag 4", place:"Westufer, dann Hurghada", h:"Ballon im Morgengrauen, dann zurück ans Meer",
           acts:["Ballonfahrt über dem Westufer","Tempel der Hatschepsut","Memnonkolosse","Rückfahrt nach Hurghada"],
-          p:"Vor vier Uhr auf für den Ballon, der aufsteigt, wenn die Sonne über die östlichen Hügel kommt, und ganz Theben unter Sie legt — Gräber, Tempel, der grüne Streifen und der Rand der Wüste. Danach Hatschepsut und die Kolosse, am Nachmittag zurück an die Küste." },
+          p:"Vor vier Uhr auf für den Ballon, der aufsteigt, wenn die Sonne über die östlichen Hügel kommt, und ganz Theben unter Sie legt: Gräber, Tempel, der grüne Streifen und der Rand der Wüste. Danach Hatschepsut und die Kolosse, am Nachmittag zurück an die Küste." },
         { d:"Tag 5", place:"Rotes Meer", h:"Tauchen und Schnorcheln",
           acts:["Mit dem Boot zu den Riffen","Tauchgänge für Brevetierte","Ein Schnuppertauchgang für Anfänger","Schnorcheln und Mittagessen an Bord"],
           p:"Ein ganzer Tag auf dem Wasser. Brevetierte tauchen, Anfänger können einen begleiteten Schnuppertauchgang machen, alle anderen schnorcheln vom selben Boot. Die Plätze werden am Morgen nach Wind und Welle gewählt." },
         { d:"Tag 6", place:"Giftun, dann nach Norden", h:"Die Inseln, dann die Nachtfahrt nach Kairo",
           acts:["Vormittags mit dem Boot zu den Inseln","Schnorcheln und Strand","Abends Aufbruch nach Kairo","Ankunft in Kairo über Nacht"],
-          p:"Vormittags die Inseln, abends die lange Fahrt nach Norden. Es ist eine echte Reise — etwa sechs Stunden — und sie kauft den ganzen folgenden Tag in Kairo. Wenn Sie lieber fliegen, sagen Sie es früh: Das Programm ändert sich nicht, nur der Weg dorthin." },
+          p:"Vormittags die Inseln, abends die lange Fahrt nach Norden. Es ist eine echte Reise von etwa sechs Stunden, und sie kauft den ganzen folgenden Tag in Kairo. Wenn Sie lieber fliegen, sagen Sie es früh: Das Programm ändert sich nicht, nur der Weg dorthin." },
         { d:"Tag 7", place:"Kairo & Gizeh", h:"Kairo und die Pyramiden",
           acts:["Die Pyramiden von Gizeh und die Sphinx","Das neue ägyptische Museum","Stadtrundfahrt","Abendessen"],
-          p:"Zuerst das Plateau, solange es noch ruhig ist, dann das Museum in Gizeh — die Tutanchamun-Sammlung erstmals gemeinsam in einem Haus. Der Nachmittag gehört der Stadt, und das Abendessen ist der letzte Abend der Route." },
+          p:"Zuerst das Plateau, solange es noch ruhig ist, dann das Museum in Gizeh, wo die Tutanchamun-Sammlung erstmals gemeinsam in einem Haus steht. Der Nachmittag gehört der Stadt, und das Abendessen ist der letzte Abend der Route." },
         { d:"Tag 8", place:"Kairo", h:"Abreise, und wie es weitergeht",
           acts:["Ein freier Vormittag","Zurück nach Hurghada, oder","Auf eigene Faust weiter, oder","Internationale Abreise ab Kairo"],
-          p:"Die Route endet in Kairo, und es gibt drei gängige Arten, sie zu beenden: zurück nach Hurghada reisen, auf eigene Faust weiterziehen oder ab Kairo nach Hause fliegen — der größte Flughafen des Landes und meist der einfachste Weg hinaus. Welche der drei wir bauen, hängt von Ihren Flügen ab und wird schriftlich geklärt, bevor irgendetwas gebucht wird." }
+          p:"Die Route endet in Kairo, und es gibt drei gängige Arten, sie zu beenden: zurück nach Hurghada reisen, auf eigene Faust weiterziehen oder ab Kairo nach Hause fliegen, dem größten Flughafen des Landes und meist dem einfachsten Weg hinaus. Welche der drei wir bauen, hängt von Ihren Flügen ab und wird schriftlich geklärt, bevor irgendetwas gebucht wird." }
       ],
       included:[
-        "Sieben Nächte auf der Route — sechs im Hotel und eine Nachtfahrt zwischen Hurghada und Kairo",
+        "Sieben Nächte auf der Route: sechs im Hotel und eine Nachtfahrt zwischen Hurghada und Kairo",
         "Flughafentransfers und sämtliche private Beförderung an Land, einschließlich beider Luxor-Transfers und der Fahrt nach Kairo",
         "Täglich Frühstück sowie die oben genannten Mahlzeiten",
         "An den Tagen in Luxor und Kairo ein lizenzierter ägyptologischer Guide, auf Türkisch, Englisch oder Deutsch",
@@ -1616,11 +1617,11 @@ const TOURS = [
         "Nicht genannte Mahlzeiten, optionale Erlebnisse, Trinkgelder und persönliche Ausgaben"
       ],
       optional:[
-        "Der Abschnitt Hurghada–Kairo per Flug statt auf der Straße, was der Route einen Abend zurückgibt",
+        "Der Abschnitt Hurghada bis Kairo per Flug statt auf der Straße, was der Route einen Abend zurückgibt",
         "Sakkara und Memphis, ergänzt am Kairo-Tag",
-        "Ein neunter Tag in Kairo für die islamische Stadt — Zitadelle, Ibn Tulun, al-Muizz-Straße",
+        "Ein neunter Tag in Kairo für die islamische Stadt: Zitadelle, Ibn Tulun, al-Muizz-Straße",
         "Das Grab der Nefertari im Tal der Königinnen, sofern geöffnet",
-        "Ein Anschlusstransfer am Ende — zurück nach Hurghada oder nach Alexandria oder auf den Sinai"
+        "Ein Anschlusstransfer am Ende, zurück nach Hurghada oder nach Alexandria oder auf den Sinai"
       ],
       info:[
         ["Dauer","8 Tage / 7 Nächte"],
@@ -1634,8 +1635,8 @@ const TOURS = [
       notes:[
         "Der letzte Tag ist um die drei Enden herum geschrieben, die diese Route tatsächlich trägt: zurück nach Hurghada, auf eigene Faust weiter, oder internationale Abreise ab Kairo. Welches gilt, wird schriftlich mit Ihren Flügen geklärt, bevor gebucht wird.",
         "Der Ballon startet nach Ermessen des Betreibers und nur bei passendem Wind. Wenn er nicht fliegen kann, verschiebt sich der Morgen auf die Stätten des Westufers, und die Fahrt wird erstattet oder neu gelegt.",
-        "Nach einem Tauchgang sollte etwa 24 Stunden nicht geflogen werden. Der Tauchtag liegt auf Tag 5, ein Flug auf Tag 8 — nennen Sie uns dennoch Ihre Flugzeit.",
-        "Die Nachtfahrt nach Kairo ist lang. Sie ist der Grund, warum acht Tage so viel tragen — und zugleich das Erste, was wir für alle ändern, die sie lieber vermeiden."
+        "Nach einem Tauchgang sollte etwa 24 Stunden nicht geflogen werden. Der Tauchtag liegt auf Tag 5, ein Flug auf Tag 8. Nennen Sie uns dennoch Ihre Flugzeit.",
+        "Die Nachtfahrt nach Kairo ist lang. Sie ist der Grund, warum acht Tage so viel tragen, und zugleich das Erste, was wir für alle ändern, die sie lieber vermeiden."
       ]
     }
 
@@ -1747,13 +1748,13 @@ const DESTINATIONS = [
    CONFIG.testimonialsAreDemo to false.
    ------------------------------------------------------------ */
 const TESTIMONIALS = [
-  { q:"They moved two days around when my flight changed. No fuss.",        who:"Demo — Name, City" },
-  { q:"We asked for less walking. The whole route was rebuilt.",            who:"Demo — Name, City" },
-  { q:"Someone answered at eleven at night, in Turkish.",                   who:"Demo — Name, City" },
-  { q:"The driver waited three hours at the airport. Never mentioned it.",  who:"Demo — Name, City" },
-  { q:"Karnak at seven in the morning was the right call.",                 who:"Demo — Name, City" },
-  { q:"Prices were the same at the end as at the beginning.",               who:"Demo — Name, City" },
-  { q:"Our guide knew when to stop talking.",                               who:"Demo — Name, City" },
-  { q:"They told us one site was not worth the drive. It was not.",         who:"Demo — Name, City" },
-  { q:"Two kids, seven days, nobody cried. Including us.",                  who:"Demo — Name, City" }
+  { q:"They moved two days around when my flight changed. No fuss.",        who:"Demo, Name, City" },
+  { q:"We asked for less walking. The whole route was rebuilt.",            who:"Demo, Name, City" },
+  { q:"Someone answered at eleven at night, in Turkish.",                   who:"Demo, Name, City" },
+  { q:"The driver waited three hours at the airport. Never mentioned it.",  who:"Demo, Name, City" },
+  { q:"Karnak at seven in the morning was the right call.",                 who:"Demo, Name, City" },
+  { q:"Prices were the same at the end as at the beginning.",               who:"Demo, Name, City" },
+  { q:"Our guide knew when to stop talking.",                               who:"Demo, Name, City" },
+  { q:"They told us one site was not worth the drive. It was not.",         who:"Demo, Name, City" },
+  { q:"Two kids, seven days, nobody cried. Including us.",                  who:"Demo, Name, City" }
 ];
