@@ -233,8 +233,10 @@ const HERO = [
                 #tour/<id>, which is what a shared link carries
      featured   full-width card at the head of the catalogue
      days       shown as "N days", and used in the JSON-LD
-     nights     hotel nights; see each tour's "included" line
-                where a night is spent travelling instead
+     nights     the nights of the trip. Where one of them is
+                spent travelling rather than in a hotel — the
+                sleeper train on tours 1 and 2 — the tour's
+                "included" line splits the number out in words
      img        the 4:3 catalogue card (see .tcard-media)
      hero       the detail view's banner. These point at the hero
                 stills the home page already loads, so opening a
@@ -320,68 +322,82 @@ const TOURS = [
      "optional" and nowhere else — not in destinations, not in
      highlights, and not in the JSON-LD in index.html.
      ========================================================== */
-  { id:"best-of-egypt", featured:true, days:9, nights:8,
+  { id:"best-of-egypt", featured:true, days:8, nights:7,
     img:"assets/images/tours/giza-caravan-1100.webp", iw:1100, ih:825,
     hero:{ base:"assets/images/hero/giza-1", widths:[1200,2000], w:2000, h:1260 },
     price:{ from:null, currency:"EUR", per:"person" },
     t:{
 
     en:{
-      meta:"9 days · Cairo, Luxor & Aswan",
+      meta:"8 days · Cairo, Aswan & Luxor",
       n:"Best of Egypt",
-      tagline:"Four thousand years, in the order they were built.",
-      d:"Cairo, Luxor and Aswan in one line: the plateau at Giza, the hypostyle hall at Karnak, the royal tombs, and the river that runs between them. Our fullest route.",
+      tagline:"Cairo, the night train south, and the Nile from Aswan to Luxor.",
+      d:"Eight days from the Pyramids to the Valley of the Kings: Giza and the Grand Egyptian Museum, the sleeper train to Aswan, a felucca and the crocodile temple at Kom Ombo, and three nights in Luxor.",
       imgAlt:"A camel train crossing the sand in front of the pyramids at Giza",
-      destinations:["Cairo","Giza","Luxor","Edfu & Kom Ombo","Aswan","Abu Simbel"],
+      destinations:["Cairo","Giza","Aswan","Kom Ombo","Luxor"],
       overview:[
-        "Best of Egypt is the complete route: three days in and around Cairo, three in ancient Thebes, and the stretch of river between Luxor and Aswan that shorter itineraries skip. It is built for travellers coming a long way who would rather do this once, properly, than come back for the half they missed.",
-        "The pace is full without being punishing. Sites are visited at the hour they are worth visiting: Giza and Karnak early, Luxor Temple at dusk, Abu Simbel at first light. The afternoons between them are deliberately open. You travel privately throughout, with a licensed Egyptologist on every guided day, so nothing here runs to a coach timetable."
+        "Best of Egypt runs the country north to south, in the order it is easiest to travel. Two days for Cairo and Giza, the sleeper train overnight to Aswan, two days on the river there, then a felucca and Kom Ombo on the road into Luxor and three nights among the temples and tombs of ancient Thebes. One direction, no backtracking, and a flight home from Cairo at the end of it.",
+        "The free time is part of the plan rather than what is left of it: a whole free day in Aswan, a free afternoon in Luxor, and evenings that belong to you. What is scheduled is scheduled properly — a Nubian family's kitchen on a river island, lunch with a family on the West Bank, tea at a village project run by the people who live around it — and the rest is deliberately open."
       ],
       highlights:[
-        { i:"pyramids", h:"The Pyramids of Giza & the Sphinx" },
-        { i:"museum",   h:"The Tutankhamun collection, in one room" },
-        { i:"city",     h:"Coptic Cairo & the Khan el-Khalili bazaar" },
-        { i:"temple",   h:"Karnak & Luxor Temples" },
+        { i:"pyramids", h:"The Great Pyramid of Giza & the Sphinx" },
+        { i:"museum",   h:"The Grand Egyptian Museum" },
+        { i:"island",   h:"A Nubian village on a Nile island" },
+        { i:"nile",     h:"A felucca under sail, with lunch on board" },
+        { i:"temple",   h:"Kom Ombo, the temple of the crocodile god" },
         { i:"tomb",     h:"The Valley of the Kings" },
-        { i:"nile",     h:"The river between Luxor and Aswan" },
-        { i:"sun",      h:"Abu Simbel at first light" },
-        { i:"balloon",  h:"A dawn balloon over the West Bank (optional)" }
+        { i:"temple",   h:"Karnak and the great hypostyle hall" },
+        { i:"city",     h:"A bicycle ride through a West Bank village" }
       ],
       days:[
         { d:"Day 1", place:"Cairo", h:"Arrival in Cairo",
-          acts:["Airport transfer","Hotel check-in","An easy first evening","Welcome dinner"],
-          p:"You are met inside the terminal and driven to the hotel. Nothing is scheduled beyond dinner: most people reach this airport tired, and the plateau deserves a morning rather than the tail of an afternoon." },
-        { d:"Day 2", place:"Giza & Saqqara", h:"The Pyramids of Giza & the Sphinx",
-          acts:["The Giza plateau","Inside the Great Pyramid","The Sphinx","Saqqara & Memphis"],
-          p:"An early start, because the first hour on the plateau is the quiet one. The Great Pyramid can be entered on a separate ticket. It is a stooped climb up a low corridor that not everyone enjoys, and we would rather you decided that in advance. Saqqara and the step pyramid of Djoser in the afternoon, which is where the whole idea begins." },
-        { d:"Day 3", place:"Cairo", h:"The museum, and old Cairo",
-          acts:["The Egyptian museum","Coptic Cairo","Khan el-Khalili","Free evening"],
-          p:"A morning with the Tutankhamun collection, then the Coptic quarter with the Hanging Church and Ben Ezra, and the Khan el-Khalili at the end of the afternoon, when the light in the lanes is worth the crowds. Which museum you visit depends on what is open on the day, and it is named in your written programme." },
-        { d:"Day 4", place:"Luxor", h:"South to Luxor: Karnak & Luxor Temple",
-          acts:["Morning flight to Luxor","Karnak Temple","The hypostyle hall","Luxor Temple at dusk"],
-          p:"A short flight south. Karnak in the afternoon, and the hypostyle hall, which is the one room in Egypt that photographs do not prepare anyone for. Luxor Temple after sunset, lit, a ten-minute walk from the hotel." },
-        { d:"Day 5", place:"West Bank", h:"The Valley of the Kings",
-          acts:["Valley of the Kings","Temple of Hatshepsut","Colossi of Memnon","Free afternoon"],
-          p:"The standard ticket covers three tombs; Seti I and Tutankhamun are extra, and we will tell you honestly which are worth it in the month you are travelling. Hatshepsut afterwards, the Colossi on the way back, and the afternoon left free. In summer the West Bank is a morning." },
-        { d:"Day 6", place:"Edfu & Kom Ombo", h:"Along the Nile to Aswan",
-          acts:["Esna","The temple of Horus at Edfu","Kom Ombo","Arrive Aswan"],
-          p:"The river stretch, with the temples as stops. This route is written for the road, which keeps all three and gives the days back to Luxor and Aswan. If you would rather do this leg on the water, say so early: the boats run on fixed departure days and the rest of the route moves around them." },
-        { d:"Day 7", place:"Aswan", h:"Aswan, and the river at its best",
-          acts:["Philae Temple","The unfinished obelisk","A felucca at sunset","A Nubian village"],
-          p:"Philae is reached by boat, and it is both the prettiest of the major sites and the least crowded. The afternoon is a felucca around Elephantine Island: no engine, no schedule, and the part of the week most people describe first when they get home." },
-        { d:"Day 8", place:"Abu Simbel", h:"Abu Simbel at first light",
-          acts:["Departure before dawn","The temple of Ramesses II","The temple of Nefertari","Back to Aswan"],
-          p:"Three hours south in the dark, so that the facade is lit from the front as the sun comes up. It is a long morning and it is the right decision. Back in Aswan by early afternoon, with the evening free." },
-        { d:"Day 9", place:"Aswan or Cairo", h:"Departure",
-          acts:["Free morning","Transfer to the airport","Optional Cairo connection"],
-          p:"Most people fly home through Cairo, and the connection is simpler than it looks on paper. With an evening flight we hold the room and fill the day. If you would rather finish on the Red Sea, that is a common ending to this route and we will quote it." }
+          acts:["Arrive at any time","Evening welcome meeting","Meet your leader","Optional dinner together"],
+          p:"Arrive whenever your flight lands. Nothing is scheduled before the welcome meeting in the evening, where you meet your leader and the others travelling with you, and most people go out to dinner together afterwards. If this is your first time in Egypt, book an airport transfer in advance rather than arranging one on the concourse. There is also an optional Islamic and Coptic Cairo tour at 10:00 for anyone who adds a night beforehand.",
+          stay:"Cosmopolitan Cairo Hotel",
+          meals:[] },
+        { d:"Day 2", place:"Cairo/Aswān", h:"Giza, the museum, and the night train south",
+          acts:["The Great Pyramid of Giza","The Great Sphinx","Grand Egyptian Museum","The sleeper train to Aswan"],
+          p:"The Great Pyramid and the Sphinx in the morning, while the plateau is still cool, then a guided visit to the Grand Egyptian Museum — the collection that took twenty years to build a home for. In the evening you board the overnight sleeper train south, two berths to a cabin, with dinner served on board and breakfast before Aswan.",
+          stay:"Overnight sleeper train",
+          meals:["Breakfast","Dinner"] },
+        { d:"Day 3", place:"Aswān", h:"Into Aswan, and a Nubian village on the river",
+          acts:["Free morning","The souk and the corniche","Aga Khan Mausoleum & Kitchener Island","Dinner with a Nubian family"],
+          p:"The train reaches Aswan in the morning, occasionally late, which is worth knowing in advance rather than worrying about on the day. The morning is yours for the souk or a walk along the corniche. In the afternoon a boat carries on past the Aga Khan Mausoleum and Kitchener Island to one of the river islands, where you visit a Nubian village and sit down to a home-cooked dinner with a local family.",
+          stay:"Obelisk Hotel Aswan",
+          meals:["Breakfast","Dinner"] },
+        { d:"Day 4", place:"Aswān", h:"A free day in Aswan",
+          acts:["Nothing scheduled","Abu Simbel (optional)","The Unfinished Obelisk & High Dam (optional)","The Nubian Museum (optional)"],
+          p:"Nothing is planned today. The long option is Abu Simbel, three hours south, and it is worth booking before you travel rather than the night before. Closer to hand there is a half day covering the Unfinished Obelisk, the High Dam and Philae Temple, and there is the Nubian Museum, which is the one indoor hour that explains most of what you have already seen here.",
+          stay:"Obelisk Hotel Aswan",
+          meals:["Breakfast"] },
+        { d:"Day 5", place:"Aswān/Luxor", h:"A felucca, Kom Ombo, and on to Luxor",
+          acts:["Felucca to Aswan Bridge","Lunch on board","The temple at Kom Ombo","Dinner at the Luxor market"],
+          p:"The morning is spent under sail: a felucca down to Aswan Bridge, lunch served on board, and no engine the whole way. A private vehicle takes over from there for Kom Ombo, where the temple stands right at the water's edge and is divided between two gods — one of them a crocodile, and the mummified ones are still on site. Into Luxor in the evening, and dinner at the market.",
+          stay:"Emilio Hotel Luxor or similar",
+          meals:["Breakfast","Lunch","Dinner"] },
+        { d:"Day 6", place:"Luxor", h:"The Valley of the Kings and the West Bank",
+          acts:["Valley of the Kings","Temple of Hatshepsut","Colossi of Memnon","Lunch with a local family","An alabaster workshop"],
+          p:"An early crossing to the West Bank for the Valley of the Kings. Bring 300 EGP in cash if you want to take a camera in — the photo permit is bought at the gate. Hatshepsut's terraced temple and the Colossi of Memnon follow, then lunch cooked at home by a family on the West Bank and a stop at an alabaster workshop on the way back into town. The afternoon is free.",
+          stay:"Emilio Hotel Luxor or similar",
+          meals:["Breakfast","Lunch"] },
+        { d:"Day 7", place:"Luxor", h:"Karnak, and a village on the West Bank",
+          acts:["Karnak Temple","The local ferry across","A cycle through the village","The Funtasia Project Centre","Free time at the bazaar"],
+          p:"Karnak in the morning, while the hypostyle hall is still cool and half empty. Afterwards the local ferry across the river, where a student guide leads a ride through the village by bicycle, and tea at the Funtasia Project Centre, a Planeterra project run by and for the people who live around it. The rest of the day is yours; the bazaar is best walked slowly.",
+          stay:"Emilio Hotel Luxor or similar",
+          meals:["Breakfast"] },
+        { d:"Day 8", place:"Luxor/Cairo", h:"North to Cairo, and departure",
+          acts:["Morning flight to Cairo","The trip ends at the airport","Memphis & Saqqara (optional)","Onward flights after 14:00"],
+          p:"A morning flight north, and the trip ends when you land at Cairo International. Do not book an onward flight before 14:00, and if you are staying on in Egypt, book the extra nights before you travel rather than at the desk. There is an optional Memphis and Saqqara excursion that leaves from the airport at about 10:30 and finishes at the group hotel in the afternoon; if you are flying home the same day, that means a departure after 18:00.",
+          stay:"",
+          meals:["Breakfast"] }
       ],
       included:[
-        "Eight nights of accommodation on the standard named in your quote",
-        "Daily breakfast, and the meals named in the day-by-day above",
-        "Airport transfers and all private transport inside Egypt",
-        "The internal flights on the itinerary",
-        "A licensed Egyptologist guide on every guided day, in Turkish, English or German",
+        "Seven nights: six in the hotels named in the day-by-day above, and one in a twin-berth cabin on the sleeper train",
+        "The meals named in the day-by-day above",
+        "The overnight sleeper train from Cairo to Aswan",
+        "The internal flight from Luxor to Cairo",
+        "A tour leader for the whole trip, and licensed local guides at the sites",
+        "All transport on the itinerary, including the felucca to Aswan Bridge",
         "Entrance to every site listed in the itinerary",
         "One local contact, reachable at any hour from landing to departure"
       ],
@@ -389,88 +405,106 @@ const TOURS = [
         "International flights to and from Egypt",
         "The Egyptian entry visa and any consular fees",
         "Travel insurance",
+        "Airport transfers, unless arranged in advance",
         "Meals and drinks not named above",
-        "The extra tickets named in the itinerary: the Great Pyramid interior, Seti I, Nefertari",
-        "Optional experiences, tips, and anything of a personal nature"
+        "The 300 EGP camera permit at the Valley of the Kings",
+        "Optional excursions, tips, and anything of a personal nature"
       ],
       optional:[
-        "A dawn hot-air balloon over the West Bank, confirmed the evening before and weather dependent",
-        "The Luxor to Aswan leg by boat over three nights instead of by road in a day",
-        "Three or four nights on the Red Sea added to the end of the route",
-        "A second day in Cairo for the Islamic city: the Citadel, Ibn Tulun, al-Muizz street",
-        "Sound and light at Karnak or at Philae"
+        "Abu Simbel from Aswan on the free day, best booked before you travel",
+        "A half day covering the Unfinished Obelisk, the High Dam and Philae Temple",
+        "The Nubian Museum in Aswan",
+        "Islamic and Coptic Cairo on the first morning, with an extra night in Cairo beforehand",
+        "Memphis and Saqqara on the last day, straight from the airport"
       ],
       info:[
-        ["Duration","9 days / 8 nights"],
-        ["Destinations","Cairo · Giza · Luxor · Edfu & Kom Ombo · Aswan · Abu Simbel"],
-        ["Travel style","Private, guided, culture-led"],
-        ["Group","Private departures only. Your party, your guide, your vehicle"],
-        ["Activity level","Moderate. Long visits on uneven ground, and early starts on four of the nine days"],
-        ["Best for","First visits that need to cover the country, returning travellers filling the gaps, photographers"],
-        ["Best months","October to April. May to September works with dawn starts and afternoons indoors"]
+        ["Duration","8 days / 7 nights"],
+        ["Destinations","Cairo · Giza · Aswan · Kom Ombo · Luxor"],
+        ["Travel style","Culture-led, with the free time built in rather than left over"],
+        ["Group","Small group with a tour leader throughout. The same route runs as a private departure on request"],
+        ["Activity level","Moderate. Long visits on uneven ground, one night on a train, and two early starts"],
+        ["Best for","First visits that want the whole country in one line, and travellers who would rather not drive it themselves"],
+        ["Best months","October to April. May to September works with early starts and afternoons indoors"]
       ],
       notes:[
+        "Trains in Egypt occasionally run late. Day three is written with that in mind: nothing is scheduled before the afternoon.",
+        "A camera permit in the Valley of the Kings costs 300 EGP, is bought at the gate and is payable in cash. Phones are free.",
+        "Abu Simbel is an optional excursion on the free Aswan day rather than a scheduled one, and places go early. Arrange it before you travel.",
         "Opening hours, ticket rules and which tombs are open change through the year. Your written programme is checked against the current position before anything is booked.",
-        "The balloon, the felucca and the Abu Simbel road all depend on weather and on the operators own safety calls. Where something cannot run we rearrange the day rather than drop it."
+        "The trip ends at Cairo airport on the morning of day eight. Book onward flights after 14:00, or after 18:00 if you take the Memphis and Saqqara excursion."
       ]
     },
 
     tr:{
-      meta:"9 Gün · Kahire, Luksor ve Asvan",
+      meta:"8 Gün · Kahire, Asvan ve Luksor",
       n:"En İyisiyle Mısır",
-      tagline:"Dört bin yıl, inşa edildiği sırayla.",
-      d:"Kahire, Luksor ve Asvan tek bir hatta: Giza platosu, Karnak'ın sütunlu salonu, kral mezarları ve aralarından geçen nehir. En kapsamlı rotamız.",
+      tagline:"Kahire, güneye gece treni ve Asvan'dan Luksor'a Nil.",
+      d:"Piramitlerden Kral Vadisi'ne sekiz gün: Giza ve Büyük Mısır Müzesi, Asvan'a gece treni, bir felucca ve Kom Ombo'daki timsah tapınağı, ardından Luksor'da üç gece.",
       imgAlt:"Giza piramitlerinin önünde kumu geçen bir deve kervanı",
-      destinations:["Kahire","Giza","Luksor","Edfu ve Kom Ombo","Asvan","Abu Simbel"],
+      destinations:["Kahire","Giza","Asvan","Kom Ombo","Luksor"],
       overview:[
-        "En İyisiyle Mısır, tam rota: Kahire ve çevresinde üç gün, antik Thebes'te üç gün ve kısa programların atladığı Luksor ile Asvan arasındaki nehir bölümü. Uzun yoldan gelen ve bunu bir kez, doğru dürüst yapmak isteyenler için kuruldu.",
-        "Tempo dolu ama yorucu değil. Her yer, görülmeye değdiği saatte geziliyor: Giza ve Karnak erken, Luksor Tapınağı akşam ışığında, Abu Simbel şafakta. Aradaki öğleden sonraları bilerek boş bırakıldı. Tüm ulaşım özel, rehberli günlerde lisanslı bir Mısırbilimci var; yani burada hiçbir şey otobüs saatine göre işlemiyor."
+        "En İyisiyle Mısır, ülkeyi kuzeyden güneye, en kolay gezilebilecek sırayla kat ediyor. Kahire ve Giza için iki gün, gece treniyle Asvan'a geçiş, orada nehir kıyısında iki gün, sonra Luksor yolunda felucca ve Kom Ombo, ardından antik Thebes'in tapınakları ve mezarları arasında üç gece. Tek yön, geri dönüş yok ve sonunda Kahire'den dönüş uçuşu.",
+        "Boş zaman, artakalan değil planın parçası: Asvan'da tam bir serbest gün, Luksor'da serbest bir öğleden sonra ve size ait akşamlar. Planlanan şeyler ise gerçekten planlanmış — nehir adasında bir Nubya ailesinin mutfağı, Batı Yaka'da bir ailenin evinde öğle yemeği, orada yaşayanların yürüttüğü bir köy projesinde çay — gerisi bilerek açık bırakıldı."
       ],
       highlights:[
-        { i:"pyramids", h:"Giza Piramitleri ve Sfenks" },
-        { i:"museum",   h:"Tutankhamun koleksiyonu, tek bir salonda" },
-        { i:"city",     h:"Kıpti Kahire ve Han el-Halili çarşısı" },
-        { i:"temple",   h:"Karnak ve Luksor Tapınakları" },
+        { i:"pyramids", h:"Giza'nın Büyük Piramidi ve Sfenks" },
+        { i:"museum",   h:"Büyük Mısır Müzesi" },
+        { i:"island",   h:"Nil adasında bir Nubya köyü" },
+        { i:"nile",     h:"Yelken açmış bir felucca, teknede öğle yemeği" },
+        { i:"temple",   h:"Kom Ombo, timsah tanrının tapınağı" },
         { i:"tomb",     h:"Kral Vadisi" },
-        { i:"nile",     h:"Luksor ile Asvan arasındaki nehir" },
-        { i:"sun",      h:"Şafak vakti Abu Simbel" },
-        { i:"balloon",  h:"Batı Yaka üzerinde şafak balonu (opsiyonel)" }
+        { i:"temple",   h:"Karnak ve dev sütunlu salon" },
+        { i:"city",     h:"Batı Yaka'da bisikletle bir köy turu" }
       ],
       days:[
         { d:"1. Gün", place:"Kahire", h:"Kahire'ye varış",
-          acts:["Havalimanı karşılama","Otele yerleşme","Sakin bir ilk akşam","Karşılama yemeği"],
-          p:"Sizi terminalin içinde karşılıyor, otele götürüyoruz. Akşam yemeği dışında hiçbir şey planlanmadı: bu havalimanına çoğu insan yorgun iniyor ve plato, bir öğleden sonranın artığını değil, tam bir sabahı hak ediyor." },
-        { d:"2. Gün", place:"Giza ve Sakkara", h:"Giza Piramitleri ve Sfenks",
-          acts:["Giza platosu","Büyük Piramit'in içi","Sfenks","Sakkara ve Memfis"],
-          p:"Erken başlıyoruz, çünkü platoda sessiz olan ilk saattir. Büyük Piramit'e ayrı biletle girilebiliyor. Alçak bir koridorda eğilerek çıkılan, herkesin keyif almadığı bir tırmanış; bunu kapıda değil önceden bilmenizi tercih ederiz. Öğleden sonra Sakkara ve Coser'in Basamaklı Piramidi: fikrin başladığı yer." },
-        { d:"3. Gün", place:"Kahire", h:"Müze ve Eski Kahire",
-          acts:["Mısır müzesi","Kıpti Kahire","Han el-Halili","Serbest akşam"],
-          p:"Sabah Tutankhamun koleksiyonu, ardından Kıpti mahallede Asma Kilise ve Ben Ezra. Öğleden sonranın sonunda, dar sokaklardaki ışık kalabalığa değdiğinde Han el-Halili. Hangi müzeye gidileceği o gün neyin açık olduğuna bağlı ve yazılı programınızda adıyla belirtiliyor." },
-        { d:"4. Gün", place:"Luksor", h:"Güneye, Luksor'a: Karnak ve Luksor Tapınağı",
-          acts:["Sabah Luksor uçuşu","Karnak Tapınağı","Sütunlu salon","Akşam ışığında Luksor Tapınağı"],
-          p:"Kısa bir uçuşla güneye. Öğleden sonra Karnak ve sütunlu salon: Mısır'da fotoğrafın kimseyi hazırlayamadığı tek mekân. Gün battıktan sonra, aydınlatılmış Luksor Tapınağı; otele on dakika yürüme mesafesinde." },
-        { d:"5. Gün", place:"Batı Yaka", h:"Kral Vadisi",
-          acts:["Kral Vadisi","Hatşepsut Tapınağı","Memnon Kolosları","Serbest öğleden sonra"],
-          p:"Standart bilet üç mezar kapsıyor; I. Seti ve Tutankhamun ayrı biletli ve seyahat ettiğiniz ayda hangisinin değdiğini açıkça söyleriz. Ardından Hatşepsut, dönüşte Kolos'lar ve boş bırakılmış bir öğleden sonra. Yazın Batı Yaka bir sabah işidir." },
-        { d:"6. Gün", place:"Edfu ve Kom Ombo", h:"Nil boyunca Asvan'a",
-          acts:["Esna","Edfu'da Horus Tapınağı","Kom Ombo","Asvan'a varış"],
-          p:"Nehir bölümü, tapınaklar durak olarak. Bu rota kara yolu için yazıldı: üç tapınağı da koruyor ve kazanılan günleri Luksor ile Asvan'a geri veriyor. Bu bölümü su üstünde geçmek isterseniz erken söyleyin. Gemiler sabit kalkış günlerinde çalışır ve rotanın geri kalanı onlara göre kurulur." },
-        { d:"7. Gün", place:"Asvan", h:"Asvan ve nehrin en güzel hâli",
-          acts:["Philae Tapınağı","Bitmemiş Obelisk","Gün batımında felucca","Nubya köyü"],
-          p:"Philae'ye tekneyle gidiliyor; büyük yerler arasında hem en güzeli hem en az kalabalık olanı. Öğleden sonra Elephantine Adası çevresinde bir felucca: motor yok, program yok. Eve dönenlerin ilk anlattığı bölüm genelde burasıdır." },
-        { d:"8. Gün", place:"Abu Simbel", h:"Şafak vakti Abu Simbel",
-          acts:["Gün doğmadan yola çıkış","II. Ramses Tapınağı","Nefertari Tapınağı","Asvan'a dönüş"],
-          p:"Karanlıkta üç saat güneye; böylece güneş doğarken cephe önden aydınlanıyor. Uzun bir sabah ve doğru karar. Öğleden sonranın başında Asvan'da oluyoruz, akşam serbest." },
-        { d:"9. Gün", place:"Asvan ya da Kahire", h:"Dönüş",
-          acts:["Serbest sabah","Havalimanı transferi","Opsiyonel Kahire bağlantısı"],
-          p:"Çoğu kişi Kahire aktarmalı dönüyor ve bağlantı kâğıt üzerinde göründüğünden kolay. Akşam uçuşunda odayı tutar, günü doldururuz. Rotayı Kızıldeniz'de bitirmek isterseniz bu sık tercih edilen bir kapanış; fiyatlandırıp sunarız." }
+          acts:["İstediğiniz saatte varış","Akşam karşılama toplantısı","Rehberinizle tanışma","Opsiyonel ortak akşam yemeği"],
+          p:"Uçağınız kaçta inerse insin. Akşamki karşılama toplantısından önce hiçbir şey planlanmadı; orada rehberinizle ve sizinle birlikte seyahat edecek kişilerle tanışıyorsunuz ve çoğu kişi ardından birlikte yemeğe çıkıyor. Mısır'a ilk kez geliyorsanız havalimanı transferini terminalde ayarlamak yerine önceden ayırtın. Bir gece önceden gelenler için saat 10:00'da başlayan opsiyonel bir İslami ve Kıpti Kahire turu da var.",
+          stay:"Cosmopolitan Cairo Hotel",
+          meals:[] },
+        { d:"2. Gün", place:"Kahire/Asvan", h:"Giza, müze ve güneye gece treni",
+          acts:["Giza'nın Büyük Piramidi","Büyük Sfenks","Büyük Mısır Müzesi","Asvan'a gece treni"],
+          p:"Sabah, plato henüz serinken Büyük Piramit ve Sfenks; ardından rehberli olarak Büyük Mısır Müzesi — kendine bir ev bulması yirmi yıl süren koleksiyon. Akşam güneye giden gece trenine biniyorsunuz: kabin başına iki kuşet, trende akşam yemeği ve Asvan'dan önce kahvaltı.",
+          stay:"Gece treni, kuşetli kabin",
+          meals:["Kahvaltı","Akşam yemeği"] },
+        { d:"3. Gün", place:"Asvan", h:"Asvan'a varış ve nehirde bir Nubya köyü",
+          acts:["Serbest sabah","Çarşı ve kordon","Ağa Han Türbesi ve Kitchener Adası","Nubyalı bir ailede akşam yemeği"],
+          p:"Tren sabah Asvan'a varıyor; zaman zaman geç kalabiliyor ve bunu o gün endişelenmek yerine önceden bilmek daha iyi. Sabah, çarşı ya da nehir kıyısında bir yürüyüş için serbest. Öğleden sonra tekne Ağa Han Türbesi ve Kitchener Adası'nın yanından geçerek nehir adalarından birine ulaşıyor; orada bir Nubya köyünü geziyor ve bir ailenin evinde ev yemeği sofrasına oturuyorsunuz.",
+          stay:"Obelisk Hotel Aswan",
+          meals:["Kahvaltı","Akşam yemeği"] },
+        { d:"4. Gün", place:"Asvan", h:"Asvan'da serbest gün",
+          acts:["Program yok","Abu Simbel (opsiyonel)","Bitmemiş Obelisk ve Baraj (opsiyonel)","Nubya Müzesi (opsiyonel)"],
+          p:"Bugün hiçbir şey planlanmadı. Uzun seçenek Abu Simbel: üç saat güneyde ve bir gece önceden değil, seyahatten önce ayırtmakta fayda var. Daha yakında Bitmemiş Obelisk, Yüksek Baraj ve Philae Tapınağı'nı kapsayan yarım günlük bir tur var; bir de Nubya Müzesi, burada gördüklerinizin çoğunu açıklayan tek kapalı mekân saati.",
+          stay:"Obelisk Hotel Aswan",
+          meals:["Kahvaltı"] },
+        { d:"5. Gün", place:"Asvan/Luksor", h:"Felucca, Kom Ombo ve Luksor yolu",
+          acts:["Asvan Köprüsü'ne felucca","Teknede öğle yemeği","Kom Ombo Tapınağı","Luksor çarşısında akşam yemeği"],
+          p:"Sabah yelken altında geçiyor: Asvan Köprüsü'ne kadar bir felucca, teknede öğle yemeği ve yol boyunca motor sesi yok. Oradan özel araçla Kom Ombo'ya devam ediyoruz; tapınak tam suyun kıyısında duruyor ve iki tanrı arasında bölüşülmüş — biri timsah, mumyalanmış olanları hâlâ yerinde. Akşam Luksor'a varış ve çarşıda akşam yemeği.",
+          stay:"Emilio Hotel Luxor ya da benzeri",
+          meals:["Kahvaltı","Öğle yemeği","Akşam yemeği"] },
+        { d:"6. Gün", place:"Luksor", h:"Kral Vadisi ve Batı Yaka",
+          acts:["Kral Vadisi","Hatşepsut Tapınağı","Memnon Kolosları","Bir ailede öğle yemeği","Kaymaktaşı atölyesi"],
+          p:"Erkenden Batı Yaka'ya geçip Kral Vadisi'ne. Fotoğraf makinesiyle girmek isterseniz yanınızda 300 EGP nakit bulundurun; izin belgesi kapıda alınıyor. Ardından Hatşepsut'un teraslı tapınağı ve Memnon Kolosları, sonra Batı Yaka'da bir ailenin evinde pişmiş öğle yemeği ve dönüş yolunda bir kaymaktaşı atölyesi. Öğleden sonra serbest.",
+          stay:"Emilio Hotel Luxor ya da benzeri",
+          meals:["Kahvaltı","Öğle yemeği"] },
+        { d:"7. Gün", place:"Luksor", h:"Karnak ve Batı Yaka'da bir köy",
+          acts:["Karnak Tapınağı","Karşıya vapur","Bisikletle köy turu","Funtasia Proje Merkezi","Çarşıda serbest zaman"],
+          p:"Sabah Karnak; sütunlu salon henüz serin ve yarı boş. Ardından yerel vapurla karşıya geçiyoruz: öğrenci bir rehber eşliğinde bisikletle köy turu ve Funtasia Proje Merkezi'nde çay — çevresinde yaşayanlar tarafından, onlar için yürütülen bir Planeterra projesi. Günün kalanı size ait; çarşı yavaş yürünürse daha iyi.",
+          stay:"Emilio Hotel Luxor ya da benzeri",
+          meals:["Kahvaltı"] },
+        { d:"8. Gün", place:"Luksor/Kahire", h:"Kuzeye, Kahire'ye ve dönüş",
+          acts:["Sabah Kahire uçuşu","Tur havalimanında sona erer","Memfis ve Sakkara (opsiyonel)","14:00 sonrası bağlantı uçuşu"],
+          p:"Sabah kuzeye bir uçuş ve tur, Kahire Uluslararası Havalimanı'na inişle sona eriyor. Bağlantı uçuşunuzu 14:00'ten önceye almayın; Mısır'da kalacaksanız ek geceleri resepsiyonda değil, seyahatten önce ayırtın. Havalimanından yaklaşık 10:30'da kalkıp öğleden sonra grup otelinde biten opsiyonel bir Memfis ve Sakkara turu var; aynı gün dönüyorsanız bu, 18:00'den sonraki bir uçuş demek.",
+          stay:"",
+          meals:["Kahvaltı"] }
       ],
       included:[
-        "Teklifinizde adı geçen standartta sekiz gece konaklama",
-        "Her gün kahvaltı ve yukarıdaki programda adı geçen öğünler",
-        "Havalimanı transferleri ve Mısır içindeki tüm özel ulaşım",
-        "Programdaki iç hat uçuşları",
-        "Rehberli her günde lisanslı Mısırbilimci rehber; Türkçe, İngilizce ya da Almanca",
+        "Yedi gece: altısı yukarıdaki programda adı geçen otellerde, biri gece treninde iki kuşetli kabinde",
+        "Yukarıdaki programda adı geçen öğünler",
+        "Kahire'den Asvan'a gece treni",
+        "Luksor'dan Kahire'ye iç hat uçuşu",
+        "Tur boyunca bir tur lideri ve ören yerlerinde lisanslı yerel rehberler",
+        "Programdaki tüm ulaşım ve Asvan Köprüsü'ne felucca",
         "Programda yazan tüm ören yeri girişleri",
         "İnişten dönüşe kadar her saat ulaşabileceğiniz tek bir yerel irtibat"
       ],
@@ -478,118 +512,140 @@ const TOURS = [
         "Mısır'a gidiş ve dönüş uluslararası uçuşlar",
         "Mısır giriş vizesi ve konsolosluk masrafları",
         "Seyahat sigortası",
+        "Önceden ayarlanmadıysa havalimanı transferleri",
         "Yukarıda adı geçmeyen yemek ve içecekler",
-        "Programda belirtilen ek biletler: Büyük Piramit içi, I. Seti, Nefertari",
-        "Opsiyonel deneyimler, bahşişler ve kişisel harcamalar"
+        "Kral Vadisi'nde 300 EGP fotoğraf izni",
+        "Opsiyonel turlar, bahşişler ve kişisel harcamalar"
       ],
       optional:[
-        "Batı Yaka üzerinde şafak balonu; bir önceki akşam teyit edilir, hava koşullarına bağlıdır",
-        "Luksor ile Asvan arasındaki bölümün bir gün yerine üç gece gemiyle yapılması",
-        "Rotanın sonuna eklenen üç ya da dört gece Kızıldeniz",
-        "İslami Kahire için ikinci bir gün: Kale, İbn Tulun, Muiz Sokağı",
-        "Karnak ya da Philae'de ışık ve ses gösterisi"
+        "Serbest günde Asvan'dan Abu Simbel; seyahatten önce ayırtmak en iyisi",
+        "Bitmemiş Obelisk, Yüksek Baraj ve Philae Tapınağı'nı kapsayan yarım gün",
+        "Asvan'da Nubya Müzesi",
+        "İlk sabah İslami ve Kıpti Kahire; öncesinde Kahire'de bir ek gece gerekir",
+        "Son gün, doğrudan havalimanından Memfis ve Sakkara"
       ],
       info:[
-        ["Süre","9 gün / 8 gece"],
-        ["Destinasyonlar","Kahire · Giza · Luksor · Edfu ve Kom Ombo · Asvan · Abu Simbel"],
-        ["Seyahat tarzı","Özel, rehberli, kültür ağırlıklı"],
-        ["Grup","Yalnızca özel hareketler. Kendi grubunuz, kendi rehberiniz, kendi aracınız"],
-        ["Zorluk","Orta. Engebeli zeminde uzun geziler, dokuz günün dördünde erken kalkış"],
-        ["Kimler için","Ülkeyi bir seferde görmek isteyen ilk ziyaretçiler, eksik kalanı tamamlayanlar, fotoğrafçılar"],
-        ["En iyi aylar","Ekim ile nisan arası. Mayıs ile eylül arasında şafakta başlayıp öğleden sonra kapalı mekânlarla mümkün"]
+        ["Süre","8 gün / 7 gece"],
+        ["Destinasyonlar","Kahire · Giza · Asvan · Kom Ombo · Luksor"],
+        ["Seyahat tarzı","Kültür ağırlıklı; boş zaman artakalan değil, planın parçası"],
+        ["Grup","Tur boyunca tur liderli küçük grup. Aynı rota talep üzerine özel hareket olarak da düzenlenir"],
+        ["Zorluk","Orta. Engebeli zeminde uzun geziler, trende bir gece ve iki erken kalkış"],
+        ["Kimler için","Ülkeyi tek bir hatta görmek isteyen ilk ziyaretçiler ve bu yolu kendisi sürmek istemeyenler"],
+        ["En iyi aylar","Ekim ile nisan arası. Mayıs ile eylül arasında erken kalkış ve kapalı mekânlı öğleden sonralarla mümkün"]
       ],
       notes:[
+        "Mısır'da trenler zaman zaman geç kalıyor. Üçüncü gün buna göre yazıldı: öğleden sonraya kadar hiçbir şey planlanmadı.",
+        "Kral Vadisi'nde fotoğraf makinesi izni 300 EGP, kapıda ve nakit alınıyor. Telefonlar ücretsiz.",
+        "Abu Simbel programa dahil değil, Asvan'daki serbest günün opsiyonel turu; kontenjan erken doluyor, seyahatten önce ayarlayın.",
         "Açılış saatleri, bilet kuralları ve hangi mezarların açık olduğu yıl içinde değişiyor. Yazılı programınız, hiçbir şey rezerve edilmeden önce güncel duruma göre kontrol ediliyor.",
-        "Balon, felucca ve Abu Simbel yolu hava koşullarına ve işletmecilerin kendi güvenlik kararlarına bağlı. Bir şey yapılamadığında günü iptal etmiyor, yeniden kuruyoruz."
+        "Tur, sekizinci günün sabahı Kahire havalimanında sona eriyor. Dönüş uçuşunuzu 14:00'ten sonraya, Memfis ve Sakkara turunu alacaksanız 18:00'den sonraya alın."
       ]
     },
 
     de:{
-      meta:"9 Tage · Kairo, Luxor & Assuan",
+      meta:"8 Tage · Kairo, Assuan & Luxor",
       n:"Das Beste Ägyptens",
-      tagline:"Viertausend Jahre, in der Reihenfolge ihrer Entstehung.",
-      d:"Kairo, Luxor und Assuan in einer Linie: das Plateau von Gizeh, die Säulenhalle von Karnak, die Königsgräber und der Fluss dazwischen. Unsere umfassendste Route.",
+      tagline:"Kairo, der Nachtzug nach Süden und der Nil von Assuan bis Luxor.",
+      d:"Acht Tage von den Pyramiden bis ins Tal der Könige: Gizeh und das Grand Egyptian Museum, der Nachtzug nach Assuan, eine Feluke und der Krokodiltempel von Kom Ombo, dazu drei Nächte in Luxor.",
       imgAlt:"Eine Kamelkarawane zieht vor den Pyramiden von Gizeh durch den Sand",
-      destinations:["Kairo","Gizeh","Luxor","Edfu & Kom Ombo","Assuan","Abu Simbel"],
+      destinations:["Kairo","Gizeh","Assuan","Kom Ombo","Luxor"],
       overview:[
-        "Das Beste Ägyptens ist die vollständige Route: drei Tage in und um Kairo, drei im alten Theben und jener Flussabschnitt zwischen Luxor und Assuan, den kürzere Programme auslassen. Sie ist für Reisende gebaut, die weit anreisen und das lieber einmal richtig machen, als für die fehlende Hälfte wiederzukommen.",
-        "Das Tempo ist voll, aber nicht zermürbend. Jede Stätte wird zu der Stunde besucht, zu der sie es wert ist: Gizeh und Karnak früh, der Luxor-Tempel in der Dämmerung, Abu Simbel im ersten Licht. Die Nachmittage dazwischen bleiben bewusst offen. Sie reisen durchgehend privat, an jedem geführten Tag mit einem lizenzierten Ägyptologen. Hier läuft nichts nach Busfahrplan."
+        "Das Beste Ägyptens durchquert das Land von Norden nach Süden, in der Reihenfolge, in der es sich am leichtesten bereisen lässt. Zwei Tage für Kairo und Gizeh, über Nacht mit dem Schlafwagen nach Assuan, dort zwei Tage am Fluss, dann eine Feluke und Kom Ombo auf dem Weg nach Luxor und drei Nächte zwischen den Tempeln und Gräbern des alten Theben. Eine Richtung, kein Zurück, und am Ende der Rückflug ab Kairo.",
+        "Die freie Zeit ist Teil des Plans und nicht das, was übrig bleibt: ein ganzer freier Tag in Assuan, ein freier Nachmittag in Luxor und Abende, die Ihnen gehören. Was geplant ist, ist richtig geplant — die Küche einer nubischen Familie auf einer Nilinsel, das Mittagessen bei einer Familie am Westufer, Tee in einem Dorfprojekt, das von den Menschen vor Ort geführt wird. Der Rest bleibt bewusst offen."
       ],
       highlights:[
-        { i:"pyramids", h:"Die Pyramiden von Gizeh & die Sphinx" },
-        { i:"museum",   h:"Die Tutanchamun-Sammlung, in einem Raum" },
-        { i:"city",     h:"Das koptische Kairo & der Basar Chan el-Chalili" },
-        { i:"temple",   h:"Karnak- & Luxor-Tempel" },
+        { i:"pyramids", h:"Die Cheops-Pyramide von Gizeh & die Sphinx" },
+        { i:"museum",   h:"Das Grand Egyptian Museum" },
+        { i:"island",   h:"Ein nubisches Dorf auf einer Nilinsel" },
+        { i:"nile",     h:"Eine Feluke unter Segeln, mit Mittagessen an Bord" },
+        { i:"temple",   h:"Kom Ombo, der Tempel des Krokodilgottes" },
         { i:"tomb",     h:"Das Tal der Könige" },
-        { i:"nile",     h:"Der Fluss zwischen Luxor und Assuan" },
-        { i:"sun",      h:"Abu Simbel im ersten Licht" },
-        { i:"balloon",  h:"Eine Ballonfahrt über dem Westufer im Morgengrauen (optional)" }
+        { i:"temple",   h:"Karnak und die große Säulenhalle" },
+        { i:"city",     h:"Mit dem Rad durch ein Dorf am Westufer" }
       ],
       days:[
         { d:"Tag 1", place:"Kairo", h:"Ankunft in Kairo",
-          acts:["Flughafentransfer","Check-in im Hotel","Ein ruhiger erster Abend","Willkommensessen"],
-          p:"Wir holen Sie im Terminal ab und bringen Sie ins Hotel. Außer dem Abendessen ist nichts geplant: Die meisten erreichen diesen Flughafen müde, und das Plateau verdient einen Vormittag und nicht den Rest eines Nachmittags." },
-        { d:"Tag 2", place:"Gizeh & Sakkara", h:"Die Pyramiden von Gizeh & die Sphinx",
-          acts:["Das Plateau von Gizeh","Im Inneren der Cheops-Pyramide","Die Sphinx","Sakkara & Memphis"],
-          p:"Früher Start, denn die erste Stunde auf dem Plateau ist die ruhige. Die Cheops-Pyramide lässt sich mit einem gesonderten Ticket betreten. Es ist ein gebückter Aufstieg durch einen niedrigen Gang, der nicht jedem Freude macht; das sollten Sie vorher wissen, nicht am Eingang. Nachmittags Sakkara und die Stufenpyramide des Djoser, wo die ganze Idee beginnt." },
-        { d:"Tag 3", place:"Kairo", h:"Das Museum und Alt-Kairo",
-          acts:["Das ägyptische Museum","Koptisches Kairo","Chan el-Chalili","Freier Abend"],
-          p:"Ein Vormittag bei der Tutanchamun-Sammlung, danach das koptische Viertel mit der Hängenden Kirche und Ben Esra, und am späten Nachmittag der Chan el-Chalili, wenn das Licht in den Gassen die Menge aufwiegt. Welches Museum besucht wird, hängt davon ab, was an dem Tag geöffnet ist, und steht namentlich in Ihrem Programm." },
-        { d:"Tag 4", place:"Luxor", h:"Nach Süden: Karnak & Luxor-Tempel",
-          acts:["Vormittagsflug nach Luxor","Karnak-Tempel","Die Säulenhalle","Luxor-Tempel in der Dämmerung"],
-          p:"Ein kurzer Flug nach Süden. Nachmittags Karnak und die große Säulenhalle, der eine Raum in Ägypten, auf den kein Foto vorbereitet. Nach Sonnenuntergang der beleuchtete Luxor-Tempel, zehn Gehminuten vom Hotel." },
-        { d:"Tag 5", place:"Westufer", h:"Das Tal der Könige",
-          acts:["Tal der Könige","Tempel der Hatschepsut","Memnonkolosse","Freier Nachmittag"],
-          p:"Das Standardticket umfasst drei Gräber; Sethos I. und Tutanchamun kosten extra, und wir sagen Ihnen offen, welches sich im Monat Ihrer Reise lohnt. Danach Hatschepsut, auf dem Rückweg die Kolosse, und ein bewusst freier Nachmittag: Im Sommer ist das Westufer eine Vormittagssache." },
-        { d:"Tag 6", place:"Edfu & Kom Ombo", h:"Den Nil entlang nach Assuan",
-          acts:["Esna","Der Horus-Tempel von Edfu","Kom Ombo","Ankunft in Assuan"],
-          p:"Der Flussabschnitt, mit den Tempeln als Stationen. Diese Route ist für die Straße geschrieben: Sie behält alle drei und gibt die gewonnenen Tage an Luxor und Assuan zurück. Wenn Sie diesen Abschnitt lieber auf dem Wasser zurücklegen, sagen Sie es früh. Die Schiffe fahren an festen Tagen, und die übrige Route ordnet sich ihnen unter." },
-        { d:"Tag 7", place:"Assuan", h:"Assuan, und der Fluss von seiner besten Seite",
-          acts:["Philae-Tempel","Der unvollendete Obelisk","Eine Feluke bei Sonnenuntergang","Ein nubisches Dorf"],
-          p:"Philae erreicht man mit dem Boot; es ist zugleich die schönste der großen Stätten und die am wenigsten überlaufene. Nachmittags eine Feluke um die Insel Elephantine: kein Motor, kein Zeitplan, und meist das Erste, wovon zu Hause erzählt wird." },
-        { d:"Tag 8", place:"Abu Simbel", h:"Abu Simbel im ersten Licht",
-          acts:["Abfahrt vor Sonnenaufgang","Der Tempel Ramses II.","Der Tempel der Nefertari","Zurück nach Assuan"],
-          p:"Drei Stunden im Dunkeln nach Süden, damit die Fassade von vorn beleuchtet ist, wenn die Sonne aufgeht. Ein langer Vormittag und die richtige Entscheidung. Am frühen Nachmittag zurück in Assuan, der Abend ist frei." },
-        { d:"Tag 9", place:"Assuan oder Kairo", h:"Abreise",
-          acts:["Freier Vormittag","Transfer zum Flughafen","Optionale Kairo-Verbindung"],
-          p:"Die meisten fliegen über Kairo zurück, und die Verbindung ist einfacher, als sie auf dem Papier aussieht. Bei einem Abendflug halten wir das Zimmer und füllen den Tag. Wenn Sie am Roten Meer enden möchten: ein häufiger Abschluss dieser Route, den wir Ihnen gern kalkulieren." }
+          acts:["Ankunft zu jeder Zeit","Willkommenstreffen am Abend","Ihre Reiseleitung kennenlernen","Optionales gemeinsames Abendessen"],
+          p:"Kommen Sie an, wann immer Ihr Flug landet. Vor dem Willkommenstreffen am Abend ist nichts geplant; dort lernen Sie Ihre Reiseleitung und die anderen Mitreisenden kennen, und die meisten gehen anschließend gemeinsam essen. Wenn Sie zum ersten Mal in Ägypten sind, buchen Sie den Flughafentransfer vorab und nicht erst in der Ankunftshalle. Für alle, die eine Nacht früher anreisen, gibt es zusätzlich eine optionale Tour durch das islamische und koptische Kairo, Beginn um 10:00 Uhr.",
+          stay:"Cosmopolitan Cairo Hotel",
+          meals:[] },
+        { d:"Tag 2", place:"Kairo/Assuan", h:"Gizeh, das Museum und der Nachtzug nach Süden",
+          acts:["Die Cheops-Pyramide","Die Große Sphinx","Grand Egyptian Museum","Der Nachtzug nach Assuan"],
+          p:"Am Vormittag die Cheops-Pyramide und die Sphinx, solange das Plateau noch kühl ist, danach eine Führung durch das Grand Egyptian Museum — jene Sammlung, für die zwanzig Jahre lang ein Haus gebaut wurde. Am Abend steigen Sie in den Nachtzug nach Süden: zwei Betten je Abteil, Abendessen an Bord und Frühstück vor Assuan.",
+          stay:"Nachtzug, Schlafwagenabteil",
+          meals:["Frühstück","Abendessen"] },
+        { d:"Tag 3", place:"Assuan", h:"Ankunft in Assuan und ein nubisches Dorf am Fluss",
+          acts:["Freier Vormittag","Souk und Corniche","Aga-Khan-Mausoleum & Kitchener-Insel","Abendessen bei einer nubischen Familie"],
+          p:"Der Zug erreicht Assuan am Vormittag, gelegentlich mit Verspätung, was man besser vorher weiß, als sich am Tag selbst darüber zu ärgern. Der Vormittag gehört Ihnen, für den Souk oder einen Spaziergang an der Corniche. Am Nachmittag fährt ein Boot am Aga-Khan-Mausoleum und an der Kitchener-Insel vorbei zu einer der Nilinseln; dort besuchen Sie ein nubisches Dorf und essen bei einer Familie zu Hause.",
+          stay:"Obelisk Hotel Aswan",
+          meals:["Frühstück","Abendessen"] },
+        { d:"Tag 4", place:"Assuan", h:"Ein freier Tag in Assuan",
+          acts:["Nichts geplant","Abu Simbel (optional)","Unvollendeter Obelisk & Staudamm (optional)","Das Nubische Museum (optional)"],
+          p:"Heute ist nichts geplant. Die lange Variante ist Abu Simbel, drei Stunden südlich, und sie sollte vor der Reise gebucht werden und nicht am Abend davor. Näher liegen ein halber Tag mit dem Unvollendeten Obelisken, dem Hochdamm und dem Philae-Tempel sowie das Nubische Museum, jene eine Stunde im Innenraum, die das meiste von dem erklärt, was Sie hier schon gesehen haben.",
+          stay:"Obelisk Hotel Aswan",
+          meals:["Frühstück"] },
+        { d:"Tag 5", place:"Assuan/Luxor", h:"Eine Feluke, Kom Ombo und weiter nach Luxor",
+          acts:["Feluke bis zur Assuan-Brücke","Mittagessen an Bord","Der Tempel von Kom Ombo","Abendessen auf dem Markt von Luxor"],
+          p:"Der Vormittag vergeht unter Segeln: mit der Feluke bis zur Assuan-Brücke, Mittagessen an Bord und die ganze Strecke ohne Motor. Von dort übernimmt ein privates Fahrzeug bis Kom Ombo, wo der Tempel unmittelbar am Wasser steht und zwischen zwei Göttern geteilt ist — einer davon ein Krokodil, und die mumifizierten liegen noch vor Ort. Am Abend Ankunft in Luxor und Abendessen auf dem Markt.",
+          stay:"Emilio Hotel Luxor oder ähnlich",
+          meals:["Frühstück","Mittagessen","Abendessen"] },
+        { d:"Tag 6", place:"Luxor", h:"Das Tal der Könige und das Westufer",
+          acts:["Tal der Könige","Tempel der Hatschepsut","Memnonkolosse","Mittagessen bei einer Familie","Eine Alabasterwerkstatt"],
+          p:"Früh über den Fluss ans Westufer, ins Tal der Könige. Nehmen Sie 300 EGP in bar mit, wenn Sie eine Kamera hineinnehmen möchten — die Fotoerlaubnis wird am Eingang gekauft. Danach der Terrassentempel der Hatschepsut und die Memnonkolosse, anschließend ein zu Hause gekochtes Mittagessen bei einer Familie am Westufer und auf dem Rückweg ein Halt in einer Alabasterwerkstatt. Der Nachmittag ist frei.",
+          stay:"Emilio Hotel Luxor oder ähnlich",
+          meals:["Frühstück","Mittagessen"] },
+        { d:"Tag 7", place:"Luxor", h:"Karnak und ein Dorf am Westufer",
+          acts:["Karnak-Tempel","Mit der Fähre hinüber","Mit dem Rad durchs Dorf","Das Funtasia-Projektzentrum","Freie Zeit im Basar"],
+          p:"Am Vormittag Karnak, solange die Säulenhalle noch kühl und halb leer ist. Danach mit der örtlichen Fähre über den Fluss: eine Radtour durch das Dorf mit einem studentischen Guide und Tee im Funtasia-Projektzentrum, einem Planeterra-Projekt, das von den Menschen der Umgebung und für sie geführt wird. Der Rest des Tages gehört Ihnen; den Basar geht man am besten langsam.",
+          stay:"Emilio Hotel Luxor oder ähnlich",
+          meals:["Frühstück"] },
+        { d:"Tag 8", place:"Luxor/Kairo", h:"Nach Norden nach Kairo, und Abreise",
+          acts:["Vormittagsflug nach Kairo","Die Reise endet am Flughafen","Memphis & Sakkara (optional)","Anschlussflüge ab 14:00 Uhr"],
+          p:"Ein Flug am Vormittag nach Norden, und die Reise endet mit der Landung in Kairo International. Buchen Sie keinen Anschlussflug vor 14:00 Uhr, und wenn Sie in Ägypten bleiben, buchen Sie die zusätzlichen Nächte vor der Reise und nicht erst an der Rezeption. Es gibt einen optionalen Ausflug nach Memphis und Sakkara, der gegen 10:30 Uhr am Flughafen startet und am Nachmittag am Gruppenhotel endet; wer am selben Tag heimfliegt, sollte dafür einen Abflug nach 18:00 Uhr wählen.",
+          stay:"",
+          meals:["Frühstück"] }
       ],
       included:[
-        "Acht Übernachtungen in der in Ihrem Angebot genannten Kategorie",
-        "Täglich Frühstück sowie die oben genannten Mahlzeiten",
-        "Flughafentransfers und sämtliche private Beförderung innerhalb Ägyptens",
-        "Die Inlandsflüge des Programms",
-        "An jedem geführten Tag ein lizenzierter ägyptologischer Guide, auf Türkisch, Englisch oder Deutsch",
+        "Sieben Nächte: sechs in den oben im Tagesprogramm genannten Hotels und eine im Zweibettabteil des Nachtzugs",
+        "Die oben im Tagesprogramm genannten Mahlzeiten",
+        "Der Nachtzug von Kairo nach Assuan",
+        "Der Inlandsflug von Luxor nach Kairo",
+        "Eine Reiseleitung für die gesamte Reise und lizenzierte örtliche Guides an den Stätten",
+        "Sämtliche Beförderung des Programms, einschließlich der Feluke bis zur Assuan-Brücke",
         "Eintritt zu allen im Programm genannten Stätten",
-        "Ein örtlicher Ansprechpartner, rund um die Uhr erreichbar"
+        "Ein örtlicher Ansprechpartner, von der Landung bis zur Abreise rund um die Uhr erreichbar"
       ],
       notIncluded:[
         "Internationale Flüge nach und von Ägypten",
         "Das ägyptische Einreisevisum und konsularische Gebühren",
         "Reiseversicherung",
+        "Flughafentransfers, sofern nicht vorab vereinbart",
         "Nicht genannte Mahlzeiten und Getränke",
-        "Die im Programm genannten Zusatztickets: Inneres der Cheops-Pyramide, Sethos I., Nefertari",
-        "Optionale Erlebnisse, Trinkgelder und persönliche Ausgaben"
+        "Die Fotoerlaubnis von 300 EGP im Tal der Könige",
+        "Optionale Ausflüge, Trinkgelder und persönliche Ausgaben"
       ],
       optional:[
-        "Eine Ballonfahrt über dem Westufer im Morgengrauen; am Vorabend bestätigt und wetterabhängig",
-        "Der Abschnitt Luxor bis Assuan per Schiff über drei Nächte statt an einem Tag auf der Straße",
-        "Drei oder vier Nächte am Roten Meer am Ende der Route",
-        "Ein zweiter Tag in Kairo für die islamische Stadt: Zitadelle, Ibn Tulun, al-Muizz-Straße",
-        "Ton- und Lichtshow in Karnak oder auf Philae"
+        "Abu Simbel ab Assuan am freien Tag, am besten vor der Reise gebucht",
+        "Ein halber Tag mit dem Unvollendeten Obelisken, dem Hochdamm und dem Philae-Tempel",
+        "Das Nubische Museum in Assuan",
+        "Islamisches und koptisches Kairo am ersten Vormittag, mit einer zusätzlichen Nacht in Kairo davor",
+        "Memphis und Sakkara am letzten Tag, direkt vom Flughafen aus"
       ],
       info:[
-        ["Dauer","9 Tage / 8 Nächte"],
-        ["Ziele","Kairo · Gizeh · Luxor · Edfu & Kom Ombo · Assuan · Abu Simbel"],
-        ["Reisestil","Privat, geführt, kulturbetont"],
-        ["Gruppe","Ausschließlich private Abreisen. Ihre Gruppe, Ihr Guide, Ihr Fahrzeug"],
-        ["Anspruch","Mittel. Lange Besichtigungen auf unebenem Boden, an vier von neun Tagen früher Start"],
-        ["Geeignet für","Erstbesuche, die das Land abdecken sollen, Wiederkehrende, Fotografierende"],
-        ["Beste Monate","Oktober bis April. Mai bis September mit Start im Morgengrauen und Nachmittagen im Innenraum"]
+        ["Dauer","8 Tage / 7 Nächte"],
+        ["Ziele","Kairo · Gizeh · Assuan · Kom Ombo · Luxor"],
+        ["Reisestil","Kulturbetont, mit eingeplanter statt übrig gebliebener freier Zeit"],
+        ["Gruppe","Kleine Gruppe mit durchgehender Reiseleitung. Dieselbe Route auf Wunsch auch als private Abreise"],
+        ["Anspruch","Mittel. Lange Besichtigungen auf unebenem Boden, eine Nacht im Zug und zwei frühe Starts"],
+        ["Geeignet für","Erstbesuche, die das Land in einer Linie sehen wollen, und alle, die diese Strecke nicht selbst fahren möchten"],
+        ["Beste Monate","Oktober bis April. Mai bis September mit frühen Starts und Nachmittagen im Innenraum"]
       ],
       notes:[
+        "Züge in Ägypten haben gelegentlich Verspätung. Tag drei ist darauf ausgelegt: vor dem Nachmittag ist nichts geplant.",
+        "Die Fotoerlaubnis im Tal der Könige kostet 300 EGP, wird am Eingang gekauft und ist bar zu zahlen. Handys sind frei.",
+        "Abu Simbel ist ein optionaler Ausflug am freien Tag in Assuan und nicht Teil des Programms. Die Plätze sind früh vergeben, planen Sie ihn vor der Reise ein.",
         "Öffnungszeiten, Ticketregeln und die Frage, welche Gräber geöffnet sind, ändern sich im Jahresverlauf. Ihr schriftliches Programm wird vor jeder Buchung gegen den aktuellen Stand geprüft.",
-        "Ballon, Feluke und die Straße nach Abu Simbel hängen vom Wetter und von den Sicherheitsentscheidungen der Betreiber ab. Was nicht stattfinden kann, wird umgelegt und nicht gestrichen."
+        "Die Reise endet am Vormittag des achten Tages am Flughafen Kairo. Buchen Sie Anschlussflüge nach 14:00 Uhr, bei Teilnahme am Ausflug nach Memphis und Sakkara nach 18:00 Uhr."
       ]
     }
 
@@ -606,261 +662,351 @@ const TOURS = [
      week ends on the beach, which is the shape the card and the
      Red Sea photograph are selling.
      ========================================================== */
-  { id:"egypt-family-holiday", days:7, nights:6,
+  { id:"egypt-family-holiday", days:9, nights:8,
     img:"assets/images/tours/red-sea-coast-1100.webp", iw:1100, ih:825,
     hero:{ base:"assets/images/hero/redsea-1", widths:[1200,2000], w:2000, h:1260 },
     price:{ from:null, currency:"EUR", per:"person" },
     t:{
 
     en:{
-      meta:"7 days · Hurghada & Luxor",
+      meta:"9 days · Cairo, Aswan, Luxor & Hurghada",
       n:"Egypt Family Holiday",
-      tagline:"The Red Sea at a family's pace, and one great day among the pharaohs.",
-      d:"A week built around one hotel on the Red Sea: an island boat day, an afternoon in the desert, and two days in Luxor. Short travel days, early nights, nothing that has to be endured.",
+      tagline:"The whole country first, and the Red Sea to finish.",
+      d:"Nine days built for families: the Pyramids and the Grand Egyptian Museum, the sleeper train south, Aswan and Luxor with a family kitchen in each, then two all-inclusive nights on the Red Sea.",
       imgAlt:"Red Sea coastline where the desert mountains meet the water",
-      destinations:["Hurghada","The Red Sea islands","Luxor East Bank","Luxor West Bank"],
+      destinations:["Cairo","Giza","Aswan","Luxor","Hurghada","The Red Sea"],
       overview:[
-        "This is the route we plan most often for families, and it turns on one decision: a single base on the Red Sea rather than a new hotel every night. Children unpack once. The sea is twenty minutes from breakfast. The two Luxor days are the only ones that involve a road, and they sit in the middle of the week, when everybody is rested.",
-        "Everything on land is private, so the day starts when your family starts rather than when a coach fills. Where an activity carries an age or a height limit, such as the quad bikes or an introductory dive, we say so before you book rather than at the door, and there is always something for whoever cannot join in."
+        "This is the route for families who want to see the country properly and still come home rested. The culture is front-loaded, while everybody is fresh: Giza and the Grand Egyptian Museum on day two, the sleeper train south, Philae and a felucca at Aswan, then Karnak and the Valley of the Kings. The last three days are on the Red Sea, all-inclusive, with nothing scheduled at all.",
+        "It is built around the things children actually remember rather than the things brochures list — koshary in a Cairo restaurant, a night on a train, dinner in a Nubian village, lunch cooked by a family on the West Bank, and water shallow enough to stand up in. There are two whole free days in the middle of it, and where an activity carries an age or a health limit we say so before you book rather than at the jetty."
       ],
       highlights:[
-        { i:"sea",     h:"Free beach days on the Red Sea" },
-        { i:"island",  h:"A boat day out to the islands" },
-        { i:"snorkel", h:"Snorkelling in shallow, sheltered water" },
-        { i:"desert",  h:"A desert safari late in the day" },
-        { i:"bedouin", h:"Dinner and stars at a Bedouin camp" },
-        { i:"city",    h:"Hurghada old town and the marina" },
-        { i:"temple",  h:"Karnak and Luxor Temple" },
-        { i:"tomb",    h:"The Valley of the Kings" }
+        { i:"pyramids", h:"The Pyramids of Giza & the Great Sphinx" },
+        { i:"museum",   h:"The Grand Egyptian Museum" },
+        { i:"nile",     h:"A felucca on the Nile at sunset" },
+        { i:"bedouin",  h:"Dinner with a family in a Nubian village" },
+        { i:"temple",   h:"Karnak and the Avenue of Sphinxes" },
+        { i:"tomb",     h:"The Valley of the Kings, and three tombs" },
+        { i:"sea",      h:"Two all-inclusive nights on the Red Sea" },
+        { i:"snorkel",  h:"Snorkelling on the reef (optional)" }
       ],
       days:[
-        { d:"Day 1", place:"Hurghada", h:"Arrival in Hurghada",
-          acts:["Airport transfer","Hotel check-in","An easy first evening","Dinner"],
-          p:"Twenty minutes from the airport to the hotel. Nothing is planned for the first evening on purpose: with children the first day belongs to the pool and an early night." },
-        { d:"Day 2", place:"Hurghada", h:"The town, and the sea",
-          acts:["The old town and Sekalla","The fish market","The marina","A free afternoon on the beach"],
-          p:"A short morning in town takes in the old quarter, the fish market and the marina, and the whole afternoon is free. This is the day the week settles down, and it is deliberately the emptiest one." },
-        { d:"Day 3", place:"The Red Sea", h:"The island boat day",
-          acts:["Boat out to the islands","Two snorkelling stops","Lunch on board","Beach time"],
-          p:"Out at nine, back by late afternoon. The snorkelling stops are chosen for shallow, sheltered water rather than for depth, and the crew stays in the water with the children throughout. Anyone who would rather not swim stays on the boat and misses nothing." },
-        { d:"Day 4", place:"The Eastern Desert", h:"The desert, late in the day",
-          acts:["4x4 desert safari","Camel ride","A Bedouin camp","Dinner under the stars"],
-          p:"The desert is a late-afternoon place, not a midday one. Quad bikes are available to the adults and to older children where the operator's age and height limits allow; where they do not, the 4x4 covers the same ground and nobody sits the evening out." },
-        { d:"Day 5", place:"Luxor", h:"To Luxor: Karnak & Luxor Temple",
-          acts:["Morning road transfer","Karnak Temple","The Luxor Museum","Luxor Temple after dark"],
-          p:"About four hours across the desert road, with a stop. Karnak after lunch, when the hall is at its most theatrical, then the museum, which is small and superbly lit. Luxor Temple lit after dinner is a ten-minute walk from the hotel and the part children tend to remember." },
-        { d:"Day 6", place:"West Bank", h:"The Valley of the Kings, then back to the coast",
-          acts:["Valley of the Kings","Temple of Hatshepsut","Colossi of Memnon","Return to Hurghada"],
-          p:"An early start, three tombs, and out of the valley before the heat. Hatshepsut and the Colossi on the way, then the road back to the sea in the afternoon. It is the one long day of the week and it is placed where a family can absorb it." },
-        { d:"Day 7", place:"Hurghada", h:"A last morning on the Red Sea",
-          acts:["Free morning","Late check-out where possible","Airport transfer"],
-          p:"One more morning in the water. We hold the transfer as late as your flight allows, and where the hotel will give a late check-out we ask for it as a matter of course rather than as a favour." }
+        { d:"Day 1", place:"Cairo", h:"Arrival in Cairo",
+          acts:["Arrive at any time","Welcome meeting at 5 pm","Coptic Cairo or the markets","Optional dinner together"],
+          p:"The only fixed point today is the welcome meeting at five. Arrive earlier and there is time for the markets, or for Coptic Cairo, where the Hanging Church and the Ben Ezra Synagogue stand a few minutes' walk apart. Afterwards most people go out to dinner with the leader. If you have a spare morning, Saqqara and Memphis, or the National Museum of Egyptian Civilisation with its Royal Mummy Room, both run as optional excursions.",
+          stay:"Pyramids Park Hotel or similar",
+          meals:["Dinner"] },
+        { d:"Day 2", place:"Cairo", h:"Giza, the museum, and the night train south",
+          acts:["The Giza plateau","The Great Sphinx","Koshary for lunch","Grand Egyptian Museum","The sleeper train to Aswan"],
+          p:"Out to Giza in the morning for the long view across the plateau and a walk up to the Great Sphinx, then koshary at a local restaurant — lentils, rice, pasta and fried onions, and the one Egyptian dish children reliably finish. The Grand Egyptian Museum follows in the afternoon. In the evening you board the overnight sleeper train to Aswan. Going inside the Great Pyramid of Cheops, or the smaller pyramid of Menkaure, is a separate ticket bought on the day.",
+          stay:"Overnight sleeper train",
+          meals:["Breakfast","Dinner"] },
+        { d:"Day 3", place:"Aswan", h:"Philae, and dinner in a Nubian village",
+          acts:["Arrive in Aswan","Drop the bags at the hotel","Philae Temple on Agilkia Island","A free afternoon","Dinner with a Nubian family"],
+          p:"The train arrives in the morning. Bags go to the hotel and a boat takes you out to Agilkia Island for Philae, the temple of Isis, which was cut into pieces and moved here block by block when the dam went up. The afternoon is free. In the evening you cross to a Nubian village for dinner with a family at home — the houses are painted, the walk to them is short, and it is usually the evening children talk about afterwards.",
+          stay:"Obelisk Hotel or similar",
+          meals:["Breakfast","Dinner"] },
+        { d:"Day 4", place:"Aswan", h:"A free day, and a felucca at sunset",
+          acts:["Nothing scheduled","Abu Simbel (optional)","The Unfinished Obelisk (optional)","A felucca at sunset","Dinner in town"],
+          p:"The day is yours. Abu Simbel is the long option, three hours south and back by mid-afternoon; the Unfinished Obelisk is the short one, still lying in the granite quarry where it cracked. Either way the evening is a felucca on the Nile as the sun goes down — no engine, no schedule, and the water is usually flat. Dinner afterwards at a restaurant in town.",
+          stay:"Obelisk Hotel or similar",
+          meals:["Breakfast","Dinner"] },
+        { d:"Day 5", place:"Luxor", h:"North to Luxor, and Karnak",
+          acts:["Road transfer to Luxor","The Avenue of Sphinxes","The Great Temple of Amun","Animal Care in Egypt","Karnak sound and light (optional)"],
+          p:"The road north to Luxor, and then Karnak: the Avenue of Sphinxes, the Great Temple of Amun, and a hypostyle hall that no photograph has ever managed. Later there is a visit to Animal Care in Egypt, a working veterinary clinic and an Intrepid Foundation partner, which treats the horses and donkeys the town runs on. The sound and light show at Karnak is an optional extra in the evening.",
+          stay:"Pyramisa Isis Hotel or similar",
+          meals:["Breakfast"] },
+        { d:"Day 6", place:"Luxor", h:"The Valley of the Kings",
+          acts:["Valley of the Kings","Entry to three tombs","Lunch with a local family","A free afternoon","A sunrise balloon (optional)"],
+          p:"An early crossing to the Valley of the Kings, where the standard ticket covers three tombs; the tomb of Tutankhamun is a separate ticket if you want it. Afterwards, lunch cooked at home by a family, and a free afternoon. Anyone who wants to see the valley from above can book the sunrise balloon — it means a very early start, and everyone who does it says the same thing about the light.",
+          stay:"Pyramisa Isis Hotel or similar",
+          meals:["Breakfast","Lunch"] },
+        { d:"Day 7", place:"Hurghada", h:"Across to the Red Sea",
+          acts:["Road transfer to Hurghada","All-inclusive check-in","The pool and the beach","Hurghada Museum (optional)"],
+          p:"Across to the coast, and into a beachfront all-inclusive hotel for two nights. Nothing is planned from here on. The pool and the beach are the point, and for anyone who wants an hour indoors, the Hurghada Museum is close by and small enough to see properly.",
+          stay:"AMC Royal Hotel or similar",
+          meals:["Breakfast","Lunch","Dinner"] },
+        { d:"Day 8", place:"Hurghada", h:"A free day on the Red Sea",
+          acts:["Nothing scheduled","Snorkelling trip (optional)","The beach and the pool","A last dinner together"],
+          p:"A free day. The optional trip is snorkelling on the reef, either joining a shared boat or taking one privately, and the water here is shallow, warm and clear enough that children who have never snorkelled before usually take to it in ten minutes. The group gathers for a last dinner in the evening.",
+          stay:"AMC Royal Hotel or similar",
+          meals:["Breakfast","Lunch","Dinner"] },
+        { d:"Day 9", place:"Hurghada", h:"Departure",
+          acts:["Breakfast","The trip ends","Extra nights (optional)","Group transfer to Cairo (optional)"],
+          p:"The trip ends after breakfast. Extra nights and airport transfers can both be arranged in advance rather than on the morning, and there is an optional group transfer to Cairo that leaves at around nine and arrives at about three in the afternoon.",
+          stay:"",
+          meals:["Breakfast"] }
       ],
       included:[
-        "Six nights of accommodation on the standard named in your quote: five on the Red Sea, one in Luxor",
-        "Daily breakfast, and the meals named in the day-by-day above",
-        "Airport transfers, the Luxor road transfer, and all private transport on land",
-        "A licensed Egyptologist guide on both Luxor days, in Turkish, English or German",
-        "Entrance to every site listed in the itinerary",
-        "The island boat day with lunch and snorkelling equipment, and the desert evening with dinner",
+        "Eight nights: seven in the hotels named in the day-by-day above, and one in a cabin on the sleeper train",
+        "The meals named in the day-by-day above, including every meal at the all-inclusive hotel",
+        "The overnight sleeper train from Cairo to Aswan",
+        "All road transport on the itinerary, including Luxor to Hurghada",
+        "A tour leader for the whole trip, and licensed local guides at the sites",
+        "Entrance to every site listed in the itinerary, including three tombs in the Valley of the Kings",
+        "The felucca at Aswan, and the two meals cooked by local families",
         "One local contact, reachable at any hour"
       ],
       notIncluded:[
         "International flights to and from Egypt",
         "The Egyptian entry visa and any consular fees",
         "Travel insurance",
+        "Airport transfers, unless arranged in advance",
         "Meals and drinks not named above",
-        "Optional experiences and any extra tomb tickets",
-        "Tips, and anything of a personal nature"
+        "The extra tickets named in the itinerary: inside the Great Pyramid, the third pyramid, the tomb of Tutankhamun",
+        "Optional excursions, tips, and anything of a personal nature"
       ],
       optional:[
-        "A dawn hot-air balloon over the West Bank on the Luxor morning, weather dependent",
-        "Quad bikes on the desert afternoon, where age and height limits allow",
-        "An introductory dive for beginners, subject to a medical questionnaire and a minimum age",
-        "A glass-bottom boat for children who would rather look than swim",
-        "A day in Cairo by air, added at either end of the week"
+        "Saqqara and Memphis, or the National Museum of Egyptian Civilisation and the Royal Mummy Room, on the first day",
+        "Inside the Great Pyramid of Cheops, or the third pyramid of Menkaure, at Giza",
+        "Abu Simbel or the Unfinished Obelisk on the free day in Aswan",
+        "The sound and light show at Karnak",
+        "The tomb of Tutankhamun, and a sunrise balloon over the Valley of the Kings",
+        "A snorkelling trip on the Red Sea, on a shared boat or a private one",
+        "A group transfer from Hurghada to Cairo on the last day, leaving at around 9 am"
       ],
       info:[
-        ["Duration","7 days / 6 nights"],
-        ["Destinations","Hurghada · the Red Sea islands · Luxor"],
-        ["Travel style","Relaxed and sea-based, with one culture block in the middle"],
-        ["Group","Private on land. Your family, your guide, your vehicle. Boats may be shared"],
-        ["Activity level","Easy. One long road day and one early start"],
+        ["Duration","9 days / 8 nights"],
+        ["Destinations","Cairo · Giza · Aswan · Luxor · Hurghada"],
+        ["Travel style","Family-paced, culture first and the beach last"],
+        ["Group","Small group with a tour leader throughout. The same route runs as a private departure on request"],
+        ["Activity level","Easy to moderate. Two long road days, one night on a train, and early starts in Luxor"],
         ["Best for","Families with children, mixed-age groups, and first visits to Egypt"],
-        ["Best months","October to May on the coast. The Luxor days are much easier outside July and August"]
+        ["Best months","October to April. July and August are hard work in Luxor and perfectly fine on the coast"]
       ],
       notes:[
-        "Water sports carry the operators own age, height and medical limits. We will tell you what they are for your party before you book, not on the jetty.",
-        "The Luxor road transfer is about four hours each way. Where a family would rather fly it, connections exist and we will quote them.",
-        "This route is our proposal rather than a fixed departure. The number of nights and the Hurghada to Luxor split are both easy to move. Tell us your dates and who is coming and we will rewrite it."
+        "Trains in Egypt occasionally run late. Day three is written with that in mind, and the afternoon has room in it.",
+        "Cabins on the sleeper train are twin-berth. Families are put together where the carriage layout allows, and we confirm that before you book rather than on the platform.",
+        "The Red Sea hotel is all-inclusive, which is why days seven and eight carry all three meals. Everywhere else, the meals in the day-by-day are the meals included.",
+        "Water activities carry the operator's own age, height and health limits. We will tell you what they are for your party before you book, not on the jetty.",
+        "Optional excursions are arranged and paid for locally unless we say otherwise. Abu Simbel and the balloon are both worth booking before you travel."
       ]
     },
 
     tr:{
-      meta:"7 Gün · Hurghada ve Luksor",
+      meta:"9 Gün · Kahire, Asvan, Luksor ve Hurghada",
       n:"Ailece Mısır Tatili",
-      tagline:"Kızıldeniz'de aile temposu ve firavunlarla geçen tek bir büyük gün.",
-      d:"Kızıldeniz'de tek bir otel çevresinde kurulmuş bir hafta: adalara tekne günü, çölde bir öğleden sonra ve Luksor'da iki gün. Kısa yol günleri, erken akşamlar, katlanılacak hiçbir şey yok.",
+      tagline:"Önce ülkenin tamamı, sonra kapanış için Kızıldeniz.",
+      d:"Aileler için kurulmuş dokuz gün: Piramitler ve Büyük Mısır Müzesi, güneye gece treni, her birinde bir aile sofrası olan Asvan ve Luksor, ardından Kızıldeniz'de her şey dahil iki gece.",
       imgAlt:"Çöl dağlarının denizle buluştuğu Kızıldeniz kıyısı",
-      destinations:["Hurghada","Kızıldeniz adaları","Luksor Doğu Yaka","Luksor Batı Yaka"],
+      destinations:["Kahire","Giza","Asvan","Luksor","Hurghada","Kızıldeniz"],
       overview:[
-        "Aileler için en sık kurduğumuz rota bu ve tek bir karar üzerine oturuyor: her gece yeni bir otel yerine Kızıldeniz'de tek bir üs. Çocuklar bavulu bir kez açıyor. Deniz, kahvaltıdan yirmi dakika uzakta. Yol içeren tek bölüm Luksor'daki iki gün ve o da haftanın ortasında, herkes dinlenmişken.",
-        "Karadaki her şey özel; yani gün, otobüs dolduğunda değil sizin aileniz hazır olduğunda başlıyor. Bir aktivitede yaş ya da boy sınırı varsa, örneğin ATV ya da deneme dalışında, bunu kapıda değil rezervasyondan önce söylüyoruz ve katılamayan için her zaman bir alternatif oluyor."
+        "Bu rota, ülkeyi doğru dürüst görmek ama eve dinlenmiş dönmek isteyen aileler için. Kültür kısmı öne alındı, herkes zindeyken: ikinci gün Giza ve Büyük Mısır Müzesi, ardından güneye gece treni, Asvan'da Philae ve felucca, sonra Karnak ve Kral Vadisi. Son üç gün Kızıldeniz'de, her şey dahil ve hiçbir program olmadan geçiyor.",
+        "Program, broşürlerin sıraladıklarına değil çocukların gerçekten hatırladıklarına göre kuruldu: Kahire'de bir lokantada koshary, trende bir gece, Nubya köyünde akşam yemeği, Batı Yaka'da bir ailenin evinde öğle yemeği ve ayakta durulabilecek kadar sığ bir deniz. Ortasında iki tam serbest gün var; bir aktivitede yaş ya da sağlık sınırı varsa bunu iskelede değil, rezervasyondan önce söylüyoruz."
       ],
       highlights:[
-        { i:"sea",     h:"Kızıldeniz'de serbest plaj günleri" },
-        { i:"island",  h:"Adalara tekne günü" },
-        { i:"snorkel", h:"Sığ ve korunaklı suda şnorkelle yüzme" },
-        { i:"desert",  h:"Günün sonunda çöl safarisi" },
-        { i:"bedouin", h:"Bedevi kampında akşam yemeği ve yıldızlar" },
-        { i:"city",    h:"Hurghada eski şehir ve marina" },
-        { i:"temple",  h:"Karnak ve Luksor Tapınağı" },
-        { i:"tomb",    h:"Kral Vadisi" }
+        { i:"pyramids", h:"Giza Piramitleri ve Büyük Sfenks" },
+        { i:"museum",   h:"Büyük Mısır Müzesi" },
+        { i:"nile",     h:"Gün batımında Nil'de felucca" },
+        { i:"bedouin",  h:"Nubya köyünde bir ailede akşam yemeği" },
+        { i:"temple",   h:"Karnak ve Sfenksler Yolu" },
+        { i:"tomb",     h:"Kral Vadisi ve üç mezar" },
+        { i:"sea",      h:"Kızıldeniz'de her şey dahil iki gece" },
+        { i:"snorkel",  h:"Resifte şnorkelle yüzme (opsiyonel)" }
       ],
       days:[
-        { d:"1. Gün", place:"Hurghada", h:"Hurghada'ya varış",
-          acts:["Havalimanı transferi","Otele yerleşme","Sakin bir ilk akşam","Akşam yemeği"],
-          p:"Havalimanından otele yirmi dakika. İlk akşam bilerek boş: çocuklu bir seyahatte ilk gün havuzun ve erken uykunun günüdür." },
-        { d:"2. Gün", place:"Hurghada", h:"Şehir ve deniz",
-          acts:["Eski şehir ve Sekalla","Balık pazarı","Marina","Serbest öğleden sonra"],
-          p:"Şehirde kısa bir sabah: eski mahalle, balık pazarı ve marina. Ardından tamamen serbest bir öğleden sonra. Haftanın oturduğu gün budur ve bilerek en boş gündür." },
-        { d:"3. Gün", place:"Kızıldeniz", h:"Adalara tekne günü",
-          acts:["Adalara tekne","İki şnorkel durağı","Teknede öğle yemeği","Plaj zamanı"],
-          p:"Dokuzda çıkış, öğleden sonranın sonunda dönüş. Şnorkel durakları derinliğe göre değil, sığ ve korunaklı suya göre seçiliyor; ekip çocuklarla birlikte suda kalıyor. Yüzmek istemeyen teknede kalıyor ve hiçbir şey kaçırmıyor." },
-        { d:"4. Gün", place:"Doğu Çölü", h:"Günün sonunda çöl",
-          acts:["4x4 çöl safarisi","Deve turu","Bedevi kampı","Yıldızlar altında akşam yemeği"],
-          p:"Çöl öğle vaktinin değil, günün sonunun yeridir. ATV yetişkinler ve işletmecinin yaş ve boy sınırlarına uyan büyük çocuklar için var; uymadığında 4x4 aynı araziyi geziyor ve kimse akşamın dışında kalmıyor." },
-        { d:"5. Gün", place:"Luksor", h:"Luksor'a: Karnak ve Luksor Tapınağı",
-          acts:["Sabah kara yolu transferi","Karnak Tapınağı","Luksor Müzesi","Karanlıkta Luksor Tapınağı"],
-          p:"Çöl yolunda molalı yaklaşık dört saat. Öğleden sonra, salonun en etkileyici olduğu saatte Karnak; ardından küçük ve çok iyi aydınlatılmış müze. Akşam yemeğinden sonra aydınlatılmış Luksor Tapınağı otele on dakika yürüme mesafesinde ve çocukların aklında kalan kısım genelde burası." },
-        { d:"6. Gün", place:"Batı Yaka", h:"Kral Vadisi ve kıyıya dönüş",
-          acts:["Kral Vadisi","Hatşepsut Tapınağı","Memnon Kolosları","Hurghada'ya dönüş"],
-          p:"Erken kalkış, üç mezar ve sıcak basmadan vadiden çıkış. Yolda Hatşepsut ve Kolos'lar, ardından öğleden sonra denize dönüş. Haftanın tek uzun günü ve bir ailenin kaldırabileceği yere yerleştirildi." },
-        { d:"7. Gün", place:"Hurghada", h:"Kızıldeniz'de son bir sabah",
-          acts:["Serbest sabah","Mümkünse geç çıkış","Havalimanı transferi"],
-          p:"Suda bir sabah daha. Transferi uçuşunuzun izin verdiği kadar geç tutuyoruz ve otel geç çıkış veriyorsa bunu bir lütuf gibi değil, olağan bir talep olarak istiyoruz." }
+        { d:"1. Gün", place:"Kahire", h:"Kahire'ye varış",
+          acts:["İstediğiniz saatte varış","17:00'de karşılama toplantısı","Kıpti Kahire ya da çarşılar","Opsiyonel ortak akşam yemeği"],
+          p:"Bugünün tek sabit noktası saat beşteki karşılama toplantısı. Erken gelirseniz çarşılara ya da Kıpti Kahire'ye vakit kalıyor; Asma Kilise ile Ben Ezra Sinagogu birbirine birkaç dakika yürüme mesafesinde. Toplantının ardından çoğu kişi rehberle birlikte yemeğe çıkıyor. Boş bir sabahınız varsa Sakkara ve Memfis ya da Mısır Medeniyeti Ulusal Müzesi ile Kraliyet Mumyaları Salonu opsiyonel tur olarak düzenleniyor.",
+          stay:"Pyramids Park Hotel ya da benzeri",
+          meals:["Akşam yemeği"] },
+        { d:"2. Gün", place:"Kahire", h:"Giza, müze ve güneye gece treni",
+          acts:["Giza platosu","Büyük Sfenks","Öğle yemeğinde koshary","Büyük Mısır Müzesi","Asvan'a gece treni"],
+          p:"Sabah Giza'ya: plato boyunca uzanan manzara ve Büyük Sfenks'e kadar bir yürüyüş. Ardından yerel bir lokantada koshary — mercimek, pirinç, makarna ve kızarmış soğan; çocukların tabağını güvenilir biçimde bitirdiği tek Mısır yemeği. Öğleden sonra Büyük Mısır Müzesi. Akşam Asvan'a giden gece trenine biniyorsunuz. Keops'un Büyük Piramidi'ne ya da daha küçük Mikerinos Piramidi'ne girmek, o gün alınan ayrı bir bilet.",
+          stay:"Gece treni, kuşetli kabin",
+          meals:["Kahvaltı","Akşam yemeği"] },
+        { d:"3. Gün", place:"Asvan", h:"Philae ve Nubya köyünde akşam yemeği",
+          acts:["Asvan'a varış","Bavulları otele bırakma","Agilkia Adası'nda Philae Tapınağı","Serbest öğleden sonra","Nubyalı bir ailede akşam yemeği"],
+          p:"Tren sabah varıyor. Bavullar otele gidiyor, tekne sizi Agilkia Adası'na, İsis'in tapınağı Philae'ye götürüyor: baraj yükselince parçalara ayrılıp taş taş buraya taşınmış bir yapı. Öğleden sonra serbest. Akşam bir Nubya köyüne geçip bir ailenin evinde yemeğe oturuyorsunuz — evler boyalı, yol kısa ve çocukların sonradan en çok anlattığı akşam genelde bu.",
+          stay:"Obelisk Hotel ya da benzeri",
+          meals:["Kahvaltı","Akşam yemeği"] },
+        { d:"4. Gün", place:"Asvan", h:"Serbest gün ve gün batımında felucca",
+          acts:["Program yok","Abu Simbel (opsiyonel)","Bitmemiş Obelisk (opsiyonel)","Gün batımında felucca","Şehirde akşam yemeği"],
+          p:"Gün size ait. Uzun seçenek Abu Simbel: üç saat güneyde ve öğleden sonranın ortasında dönüş. Kısa seçenek Bitmemiş Obelisk; çatladığı granit ocağında hâlâ olduğu gibi duruyor. Hangisi olursa olsun akşam, güneş batarken Nil'de bir felucca demek: motor yok, program yok ve su genelde ayna gibi. Ardından şehirde bir lokantada akşam yemeği.",
+          stay:"Obelisk Hotel ya da benzeri",
+          meals:["Kahvaltı","Akşam yemeği"] },
+        { d:"5. Gün", place:"Luksor", h:"Kuzeye, Luksor'a ve Karnak",
+          acts:["Luksor'a kara yolu transferi","Sfenksler Yolu","Amon'un Büyük Tapınağı","Animal Care in Egypt","Karnak ışık ve ses gösterisi (opsiyonel)"],
+          p:"Kuzeye, Luksor yoluna; ardından Karnak: Sfenksler Yolu, Amon'un Büyük Tapınağı ve hiçbir fotoğrafın altından kalkamadığı sütunlu salon. Günün ilerleyen saatinde Animal Care in Egypt ziyareti var: şehrin ayakta durmasını sağlayan at ve eşeklere bakan, faal bir veteriner kliniği ve bir Intrepid Foundation ortağı. Karnak'taki ışık ve ses gösterisi akşam için opsiyonel bir ek.",
+          stay:"Pyramisa Isis Hotel ya da benzeri",
+          meals:["Kahvaltı"] },
+        { d:"6. Gün", place:"Luksor", h:"Kral Vadisi",
+          acts:["Kral Vadisi","Üç mezara giriş","Bir ailede öğle yemeği","Serbest öğleden sonra","Şafakta balon (opsiyonel)"],
+          p:"Erkenden Kral Vadisi'ne geçiyoruz; standart bilet üç mezarı kapsıyor, Tutankhamun'un mezarı isterseniz ayrı biletli. Ardından bir ailenin evinde pişmiş öğle yemeği ve serbest bir öğleden sonra. Vadiyi yukarıdan görmek isteyenler şafak balonunu ayırtabilir — çok erken kalkmak gerekiyor ve bunu yapan herkes ışık için aynı şeyi söylüyor.",
+          stay:"Pyramisa Isis Hotel ya da benzeri",
+          meals:["Kahvaltı","Öğle yemeği"] },
+        { d:"7. Gün", place:"Hurghada", h:"Kızıldeniz'e geçiş",
+          acts:["Hurghada'ya kara yolu transferi","Her şey dahil otele yerleşme","Havuz ve plaj","Hurghada Müzesi (opsiyonel)"],
+          p:"Kıyıya geçiş ve iki gecelik, plaj cephesinde her şey dahil bir otel. Buradan sonrası için hiçbir şey planlanmadı. Mesele havuz ve plaj; kapalı mekânda bir saat geçirmek isteyenler için Hurghada Müzesi yakında ve doğru dürüst gezilecek kadar küçük.",
+          stay:"AMC Royal Hotel ya da benzeri",
+          meals:["Kahvaltı","Öğle yemeği","Akşam yemeği"] },
+        { d:"8. Gün", place:"Hurghada", h:"Kızıldeniz'de serbest gün",
+          acts:["Program yok","Şnorkel turu (opsiyonel)","Plaj ve havuz","Birlikte son akşam yemeği"],
+          p:"Serbest gün. Opsiyonel tur resifte şnorkelle yüzmek; ister paylaşımlı bir tekneye katılın ister özel tutun. Buradaki su sığ, ılık ve daha önce hiç şnorkel takmamış çocukların on dakikada alıştığı kadar berrak. Akşam grup, son bir yemekte bir araya geliyor.",
+          stay:"AMC Royal Hotel ya da benzeri",
+          meals:["Kahvaltı","Öğle yemeği","Akşam yemeği"] },
+        { d:"9. Gün", place:"Hurghada", h:"Dönüş",
+          acts:["Kahvaltı","Turun sonu","Ek geceler (opsiyonel)","Kahire'ye grup transferi (opsiyonel)"],
+          p:"Tur kahvaltıdan sonra sona eriyor. Ek geceler ve havalimanı transferleri o sabah değil, önceden ayarlanabiliyor. Ayrıca yaklaşık dokuzda kalkıp öğleden sonra üç gibi varan, Kahire'ye opsiyonel bir grup transferi var.",
+          stay:"",
+          meals:["Kahvaltı"] }
       ],
       included:[
-        "Teklifinizde adı geçen standartta altı gece konaklama: beş gece Kızıldeniz, bir gece Luksor",
-        "Her gün kahvaltı ve yukarıdaki programda adı geçen öğünler",
-        "Havalimanı transferleri, Luksor kara yolu transferi ve karadaki tüm özel ulaşım",
-        "Her iki Luksor gününde lisanslı Mısırbilimci rehber; Türkçe, İngilizce ya da Almanca",
-        "Programda yazan tüm ören yeri girişleri",
-        "Öğle yemeği ve şnorkel ekipmanıyla ada tekne günü; akşam yemeğiyle çöl akşamı",
+        "Sekiz gece: yedisi yukarıdaki programda adı geçen otellerde, biri gece treninde kuşetli kabinde",
+        "Yukarıdaki programda adı geçen öğünler; her şey dahil oteldeki tüm öğünler buna dahil",
+        "Kahire'den Asvan'a gece treni",
+        "Luksor'dan Hurghada'ya olan bölüm dahil, programdaki tüm kara yolu ulaşımı",
+        "Tur boyunca bir tur lideri ve ören yerlerinde lisanslı yerel rehberler",
+        "Kral Vadisi'ndeki üç mezar dahil, programda yazan tüm ören yeri girişleri",
+        "Asvan'da felucca ve yerel ailelerin hazırladığı iki öğün",
         "Her saat ulaşabileceğiniz tek bir yerel irtibat"
       ],
       notIncluded:[
         "Mısır'a gidiş ve dönüş uluslararası uçuşlar",
         "Mısır giriş vizesi ve konsolosluk masrafları",
         "Seyahat sigortası",
+        "Önceden ayarlanmadıysa havalimanı transferleri",
         "Yukarıda adı geçmeyen yemek ve içecekler",
-        "Opsiyonel deneyimler ve ek mezar biletleri",
-        "Bahşişler ve kişisel harcamalar"
+        "Programda belirtilen ek biletler: Büyük Piramit içi, üçüncü piramit, Tutankhamun'un mezarı",
+        "Opsiyonel turlar, bahşişler ve kişisel harcamalar"
       ],
       optional:[
-        "Luksor sabahında Batı Yaka üzerinde şafak balonu, hava koşullarına bağlı",
-        "Çöl öğleden sonrasında ATV; yaş ve boy sınırlarının izin verdiği ölçüde",
-        "Yeni başlayanlar için deneme dalışı; sağlık formu ve alt yaş sınırına tabi",
-        "Yüzmek yerine bakmayı tercih eden çocuklar için cam tabanlı tekne",
-        "Haftanın başına ya da sonuna uçakla eklenen bir Kahire günü"
+        "İlk gün Sakkara ve Memfis ya da Mısır Medeniyeti Ulusal Müzesi ile Kraliyet Mumyaları Salonu",
+        "Giza'da Keops'un Büyük Piramidi'nin ya da üçüncü piramit Mikerinos'un içi",
+        "Asvan'daki serbest günde Abu Simbel ya da Bitmemiş Obelisk",
+        "Karnak'ta ışık ve ses gösterisi",
+        "Tutankhamun'un mezarı ve Kral Vadisi üzerinde şafak balonu",
+        "Kızıldeniz'de paylaşımlı ya da özel tekneyle şnorkel turu",
+        "Son gün Hurghada'dan Kahire'ye, yaklaşık 09:00'da kalkan grup transferi"
       ],
       info:[
-        ["Süre","7 gün / 6 gece"],
-        ["Destinasyonlar","Hurghada · Kızıldeniz adaları · Luksor"],
-        ["Seyahat tarzı","Sakin, deniz merkezli; ortada tek bir kültür bloğu"],
-        ["Grup","Karada özel. Kendi aileniz, rehberiniz, aracınız. Tekneler paylaşımlı olabilir"],
-        ["Zorluk","Kolay. Bir uzun yol günü ve bir erken kalkış"],
+        ["Süre","9 gün / 8 gece"],
+        ["Destinasyonlar","Kahire · Giza · Asvan · Luksor · Hurghada"],
+        ["Seyahat tarzı","Aile temposu; önce kültür, sonunda plaj"],
+        ["Grup","Tur boyunca tur liderli küçük grup. Aynı rota talep üzerine özel hareket olarak da düzenlenir"],
+        ["Zorluk","Kolay-orta. İki uzun yol günü, trende bir gece ve Luksor'da erken kalkışlar"],
         ["Kimler için","Çocuklu aileler, karma yaş grupları ve Mısır'a ilk gelenler"],
-        ["En iyi aylar","Kıyıda ekim ile mayıs arası. Luksor günleri temmuz ve ağustos dışında çok daha rahat"]
+        ["En iyi aylar","Ekim ile nisan arası. Temmuz ve ağustos Luksor'da zorlu, kıyıda gayet iyi"]
       ],
       notes:[
-        "Su sporlarında yaş, boy ve sağlık sınırlarını işletmeciler koyuyor. Bunları iskelede değil, rezervasyondan önce sizin grubunuz için söylüyoruz.",
-        "Luksor kara yolu transferi tek yön yaklaşık dört saat. Uçmayı tercih eden aileler için bağlantılar mevcut ve fiyatlandırıyoruz.",
-        "Bu rota sabit bir hareket değil, bizim önerimiz. Gece sayısı ve Hurghada ile Luksor dağılımı kolayca değişir; tarihlerinizi ve kimlerin geleceğini yazın, yeniden kuralım."
+        "Mısır'da trenler zaman zaman geç kalıyor. Üçüncü gün buna göre yazıldı ve öğleden sonrada pay bırakıldı.",
+        "Gece treninde kabinler iki kuşetli. Vagon düzeni izin verdiği ölçüde aileler bir araya yerleştiriliyor ve bunu peronda değil, rezervasyondan önce teyit ediyoruz.",
+        "Kızıldeniz'deki otel her şey dahil; yedinci ve sekizinci günün üç öğün taşımasının nedeni bu. Diğer her yerde programda yazan öğünler, dahil olan öğünlerdir.",
+        "Su aktivitelerinde yaş, boy ve sağlık sınırlarını işletmeciler koyuyor. Bunları iskelede değil, rezervasyondan önce sizin grubunuz için söylüyoruz.",
+        "Aksi belirtilmedikçe opsiyonel turlar yerinde ayarlanıp ödeniyor. Abu Simbel ve balon, seyahatten önce ayırtmaya değer."
       ]
     },
 
     de:{
-      meta:"7 Tage · Hurghada & Luxor",
+      meta:"9 Tage · Kairo, Assuan, Luxor & Hurghada",
       n:"Ägypten für Familien",
-      tagline:"Das Rote Meer im Familientempo, und ein großer Tag bei den Pharaonen.",
-      d:"Eine Woche um ein einziges Hotel am Roten Meer: ein Bootstag zu den Inseln, ein Nachmittag in der Wüste und zwei Tage in Luxor. Kurze Fahrtage, frühe Abende, nichts, was man aushalten muss.",
+      tagline:"Erst das ganze Land, zum Abschluss das Rote Meer.",
+      d:"Neun Tage für Familien: die Pyramiden und das Grand Egyptian Museum, der Nachtzug nach Süden, Assuan und Luxor mit je einem Essen bei einer Familie, danach zwei All-inclusive-Nächte am Roten Meer.",
       imgAlt:"Küste des Roten Meeres, wo die Wüstenberge auf das Wasser treffen",
-      destinations:["Hurghada","Die Inseln im Roten Meer","Luxor Ostufer","Luxor Westufer"],
+      destinations:["Kairo","Gizeh","Assuan","Luxor","Hurghada","Das Rote Meer"],
       overview:[
-        "Diese Route planen wir für Familien am häufigsten, und sie hängt an einer Entscheidung: ein fester Standort am Roten Meer statt jede Nacht ein neues Hotel. Die Kinder packen einmal aus. Das Meer liegt zwanzig Minuten hinter dem Frühstück. Nur die beiden Luxor-Tage bedeuten Straße, und sie liegen in der Wochenmitte, wenn alle ausgeruht sind.",
-        "An Land ist alles privat: Der Tag beginnt, wenn Ihre Familie so weit ist, und nicht, wenn ein Bus voll ist. Wo eine Aktivität eine Alters- oder Größengrenze hat, etwa die Quads oder ein Schnuppertauchgang, sagen wir das vor der Buchung und nicht am Steg, und für alle, die nicht mitmachen können, gibt es immer etwas anderes."
+        "Diese Route ist für Familien, die das Land wirklich sehen und trotzdem erholt heimkommen wollen. Die Kultur steht am Anfang, solange alle frisch sind: Gizeh und das Grand Egyptian Museum am zweiten Tag, der Nachtzug nach Süden, Philae und eine Feluke in Assuan, dann Karnak und das Tal der Könige. Die letzten drei Tage liegen am Roten Meer, all inclusive und ohne jedes Programm.",
+        "Gebaut ist sie um das, woran Kinder sich tatsächlich erinnern, und nicht um das, was in Prospekten steht: Koschari in einem Lokal in Kairo, eine Nacht im Zug, Abendessen in einem nubischen Dorf, ein Mittagessen bei einer Familie am Westufer und Wasser, in dem man stehen kann. In der Mitte liegen zwei ganze freie Tage, und wo eine Aktivität eine Alters- oder Gesundheitsgrenze hat, sagen wir das vor der Buchung und nicht am Steg."
       ],
       highlights:[
-        { i:"sea",     h:"Freie Strandtage am Roten Meer" },
-        { i:"island",  h:"Ein Bootstag zu den Inseln" },
-        { i:"snorkel", h:"Schnorcheln im flachen, geschützten Wasser" },
-        { i:"desert",  h:"Eine Wüstensafari am späten Nachmittag" },
-        { i:"bedouin", h:"Abendessen und Sterne im Beduinencamp" },
-        { i:"city",    h:"Die Altstadt von Hurghada und die Marina" },
-        { i:"temple",  h:"Karnak- und Luxor-Tempel" },
-        { i:"tomb",    h:"Das Tal der Könige" }
+        { i:"pyramids", h:"Die Pyramiden von Gizeh & die Große Sphinx" },
+        { i:"museum",   h:"Das Grand Egyptian Museum" },
+        { i:"nile",     h:"Eine Feluke auf dem Nil bei Sonnenuntergang" },
+        { i:"bedouin",  h:"Abendessen bei einer Familie im nubischen Dorf" },
+        { i:"temple",   h:"Karnak und die Sphingenallee" },
+        { i:"tomb",     h:"Das Tal der Könige und drei Gräber" },
+        { i:"sea",      h:"Zwei All-inclusive-Nächte am Roten Meer" },
+        { i:"snorkel",  h:"Schnorcheln am Riff (optional)" }
       ],
       days:[
-        { d:"Tag 1", place:"Hurghada", h:"Ankunft in Hurghada",
-          acts:["Flughafentransfer","Check-in im Hotel","Ein ruhiger erster Abend","Abendessen"],
-          p:"Zwanzig Minuten vom Flughafen zum Hotel. Für den ersten Abend ist bewusst nichts geplant: Mit Kindern gehört der erste Tag dem Pool und einem frühen Abend." },
-        { d:"Tag 2", place:"Hurghada", h:"Die Stadt und das Meer",
-          acts:["Altstadt und Sekalla","Der Fischmarkt","Die Marina","Ein freier Nachmittag am Strand"],
-          p:"Ein kurzer Vormittag in der Stadt: das alte Viertel, der Fischmarkt, die Marina. Der ganze Nachmittag bleibt frei. An diesem Tag kommt die Woche zur Ruhe, und er ist absichtlich der leerste." },
-        { d:"Tag 3", place:"Rotes Meer", h:"Der Bootstag zu den Inseln",
-          acts:["Mit dem Boot zu den Inseln","Zwei Schnorchelstopps","Mittagessen an Bord","Zeit am Strand"],
-          p:"Um neun hinaus, am späten Nachmittag zurück. Die Schnorchelstopps sind nach flachem, geschütztem Wasser ausgesucht und nicht nach Tiefe, und die Crew bleibt durchgehend mit den Kindern im Wasser. Wer lieber nicht schwimmt, bleibt an Bord und verpasst nichts." },
-        { d:"Tag 4", place:"Östliche Wüste", h:"Die Wüste am späten Nachmittag",
-          acts:["4x4-Wüstensafari","Kamelritt","Ein Beduinencamp","Abendessen unter Sternen"],
-          p:"Die Wüste ist ein Ort für den späten Nachmittag, nicht für die Mittagszeit. Quads gibt es für Erwachsene und für ältere Kinder, soweit die Alters- und Größengrenzen des Betreibers es zulassen; sonst fährt der Geländewagen dieselbe Strecke, und niemand sitzt den Abend aus." },
-        { d:"Tag 5", place:"Luxor", h:"Nach Luxor: Karnak & Luxor-Tempel",
-          acts:["Transfer am Vormittag","Karnak-Tempel","Das Luxor-Museum","Luxor-Tempel nach Einbruch der Dunkelheit"],
-          p:"Rund vier Stunden über die Wüstenstraße, mit Pause. Karnak am Nachmittag, wenn die Halle am eindrucksvollsten ist, danach das Museum, klein und hervorragend beleuchtet. Der beleuchtete Luxor-Tempel nach dem Abendessen liegt zehn Gehminuten vom Hotel und bleibt Kindern meist am stärksten in Erinnerung." },
-        { d:"Tag 6", place:"Westufer", h:"Das Tal der Könige, dann zurück ans Meer",
-          acts:["Tal der Könige","Tempel der Hatschepsut","Memnonkolosse","Rückfahrt nach Hurghada"],
-          p:"Früher Start, drei Gräber und aus dem Tal heraus, bevor die Hitze kommt. Unterwegs Hatschepsut und die Kolosse, am Nachmittag zurück ans Meer. Es ist der eine lange Tag der Woche und liegt dort, wo eine Familie ihn verkraftet." },
-        { d:"Tag 7", place:"Hurghada", h:"Ein letzter Morgen am Roten Meer",
-          acts:["Freier Vormittag","Später Check-out, wo möglich","Flughafentransfer"],
-          p:"Noch ein Vormittag im Wasser. Wir legen den Transfer so spät, wie Ihr Flug es erlaubt, und wo das Hotel einen späten Check-out gewährt, fragen wir ihn selbstverständlich an." }
+        { d:"Tag 1", place:"Kairo", h:"Ankunft in Kairo",
+          acts:["Ankunft zu jeder Zeit","Willkommenstreffen um 17 Uhr","Koptisches Kairo oder die Märkte","Optionales gemeinsames Abendessen"],
+          p:"Der einzige feste Punkt heute ist das Willkommenstreffen um fünf. Wer früher ankommt, hat Zeit für die Märkte oder für das koptische Kairo, wo die Hängende Kirche und die Ben-Esra-Synagoge nur wenige Gehminuten auseinanderliegen. Danach gehen die meisten mit der Reiseleitung essen. Wer einen Vormittag übrig hat: Sakkara und Memphis oder das Nationalmuseum der Ägyptischen Zivilisation mit seinem Saal der königlichen Mumien werden beide als optionale Ausflüge angeboten.",
+          stay:"Pyramids Park Hotel oder ähnlich",
+          meals:["Abendessen"] },
+        { d:"Tag 2", place:"Kairo", h:"Gizeh, das Museum und der Nachtzug nach Süden",
+          acts:["Das Plateau von Gizeh","Die Große Sphinx","Koschari zu Mittag","Grand Egyptian Museum","Der Nachtzug nach Assuan"],
+          p:"Am Vormittag hinaus nach Gizeh, für den weiten Blick über das Plateau und einen Gang hinauf zur Großen Sphinx, danach Koschari in einem einheimischen Lokal — Linsen, Reis, Nudeln und geröstete Zwiebeln, das eine ägyptische Gericht, das Kinder zuverlässig aufessen. Am Nachmittag folgt das Grand Egyptian Museum. Am Abend steigen Sie in den Nachtzug nach Assuan. Das Innere der Cheops-Pyramide oder der kleineren Mykerinos-Pyramide ist ein gesondertes Ticket, das vor Ort gekauft wird.",
+          stay:"Nachtzug, Schlafwagenabteil",
+          meals:["Frühstück","Abendessen"] },
+        { d:"Tag 3", place:"Assuan", h:"Philae und Abendessen im nubischen Dorf",
+          acts:["Ankunft in Assuan","Gepäck ins Hotel","Philae-Tempel auf der Insel Agilkia","Freier Nachmittag","Abendessen bei einer nubischen Familie"],
+          p:"Der Zug kommt am Vormittag an. Das Gepäck geht ins Hotel, und ein Boot bringt Sie zur Insel Agilkia zum Philae-Tempel, dem Heiligtum der Isis, das beim Bau des Staudamms zerlegt und Block für Block hierher versetzt wurde. Der Nachmittag ist frei. Am Abend geht es hinüber in ein nubisches Dorf, zum Essen bei einer Familie zu Hause — die Häuser sind bemalt, der Weg dorthin ist kurz, und es ist meist der Abend, von dem Kinder später erzählen.",
+          stay:"Obelisk Hotel oder ähnlich",
+          meals:["Frühstück","Abendessen"] },
+        { d:"Tag 4", place:"Assuan", h:"Ein freier Tag und eine Feluke bei Sonnenuntergang",
+          acts:["Nichts geplant","Abu Simbel (optional)","Der Unvollendete Obelisk (optional)","Feluke bei Sonnenuntergang","Abendessen in der Stadt"],
+          p:"Der Tag gehört Ihnen. Abu Simbel ist die lange Variante, drei Stunden südlich und am frühen Nachmittag zurück; der Unvollendete Obelisk ist die kurze und liegt noch immer im Granitbruch, in dem er zerbrach. So oder so gehört der Abend einer Feluke auf dem Nil, während die Sonne untergeht: kein Motor, kein Zeitplan, und das Wasser meist spiegelglatt. Danach Abendessen in einem Lokal in der Stadt.",
+          stay:"Obelisk Hotel oder ähnlich",
+          meals:["Frühstück","Abendessen"] },
+        { d:"Tag 5", place:"Luxor", h:"Nach Norden nach Luxor, und Karnak",
+          acts:["Fahrt nach Luxor","Die Sphingenallee","Der Große Amun-Tempel","Animal Care in Egypt","Ton- und Lichtshow in Karnak (optional)"],
+          p:"Die Straße nach Norden bis Luxor, danach Karnak: die Sphingenallee, der Große Amun-Tempel und eine Säulenhalle, an der bisher jedes Foto gescheitert ist. Später steht ein Besuch bei Animal Care in Egypt an, einer arbeitenden Tierklinik und Partnerin der Intrepid Foundation, die die Pferde und Esel behandelt, von denen die Stadt lebt. Die Ton- und Lichtshow in Karnak ist am Abend optional zubuchbar.",
+          stay:"Pyramisa Isis Hotel oder ähnlich",
+          meals:["Frühstück"] },
+        { d:"Tag 6", place:"Luxor", h:"Das Tal der Könige",
+          acts:["Tal der Könige","Eintritt in drei Gräber","Mittagessen bei einer Familie","Freier Nachmittag","Ballonfahrt bei Sonnenaufgang (optional)"],
+          p:"Früh hinüber ins Tal der Könige, wo das Standardticket drei Gräber umfasst; das Grab des Tutanchamun ist ein gesondertes Ticket, wenn Sie es sehen möchten. Danach ein zu Hause gekochtes Mittagessen bei einer Familie und ein freier Nachmittag. Wer das Tal von oben sehen will, kann die Ballonfahrt bei Sonnenaufgang buchen — sie bedeutet einen sehr frühen Start, und alle, die sie machen, sagen dasselbe über das Licht.",
+          stay:"Pyramisa Isis Hotel oder ähnlich",
+          meals:["Frühstück","Mittagessen"] },
+        { d:"Tag 7", place:"Hurghada", h:"Hinüber ans Rote Meer",
+          acts:["Fahrt nach Hurghada","Check-in im All-inclusive-Hotel","Pool und Strand","Museum von Hurghada (optional)"],
+          p:"Hinüber an die Küste und für zwei Nächte in ein All-inclusive-Hotel direkt am Strand. Von hier an ist nichts mehr geplant. Pool und Strand sind der Punkt, und wer eine Stunde im Innenraum möchte: Das Museum von Hurghada liegt nah und ist klein genug, um es wirklich anzusehen.",
+          stay:"AMC Royal Hotel oder ähnlich",
+          meals:["Frühstück","Mittagessen","Abendessen"] },
+        { d:"Tag 8", place:"Hurghada", h:"Ein freier Tag am Roten Meer",
+          acts:["Nichts geplant","Schnorchelausflug (optional)","Strand und Pool","Ein letztes gemeinsames Abendessen"],
+          p:"Ein freier Tag. Der optionale Ausflug ist Schnorcheln am Riff, entweder auf einem geteilten Boot oder privat. Das Wasser hier ist flach, warm und klar genug, dass Kinder, die noch nie geschnorchelt haben, es meist in zehn Minuten begreifen. Am Abend kommt die Gruppe zu einem letzten gemeinsamen Essen zusammen.",
+          stay:"AMC Royal Hotel oder ähnlich",
+          meals:["Frühstück","Mittagessen","Abendessen"] },
+        { d:"Tag 9", place:"Hurghada", h:"Abreise",
+          acts:["Frühstück","Die Reise endet","Zusätzliche Nächte (optional)","Gruppentransfer nach Kairo (optional)"],
+          p:"Die Reise endet nach dem Frühstück. Zusätzliche Nächte und Flughafentransfers lassen sich beide vorab vereinbaren und nicht erst am Morgen. Außerdem gibt es einen optionalen Gruppentransfer nach Kairo, der gegen neun Uhr abfährt und am Nachmittag gegen drei ankommt.",
+          stay:"",
+          meals:["Frühstück"] }
       ],
       included:[
-        "Sechs Übernachtungen in der in Ihrem Angebot genannten Kategorie: fünf am Roten Meer, eine in Luxor",
-        "Täglich Frühstück sowie die oben genannten Mahlzeiten",
-        "Flughafentransfers, der Transfer nach Luxor und sämtliche private Beförderung an Land",
-        "An beiden Luxor-Tagen ein lizenzierter ägyptologischer Guide, auf Türkisch, Englisch oder Deutsch",
-        "Eintritt zu allen im Programm genannten Stätten",
-        "Der Bootstag mit Mittagessen und Schnorchelausrüstung sowie der Wüstenabend mit Abendessen",
+        "Acht Nächte: sieben in den oben im Tagesprogramm genannten Hotels und eine im Schlafwagenabteil",
+        "Die oben im Tagesprogramm genannten Mahlzeiten, einschließlich sämtlicher Mahlzeiten im All-inclusive-Hotel",
+        "Der Nachtzug von Kairo nach Assuan",
+        "Sämtliche Straßenbeförderung des Programms, einschließlich Luxor bis Hurghada",
+        "Eine Reiseleitung für die gesamte Reise und lizenzierte örtliche Guides an den Stätten",
+        "Eintritt zu allen im Programm genannten Stätten, einschließlich dreier Gräber im Tal der Könige",
+        "Die Feluke in Assuan und die beiden von Familien gekochten Mahlzeiten",
         "Ein örtlicher Ansprechpartner, rund um die Uhr erreichbar"
       ],
       notIncluded:[
         "Internationale Flüge nach und von Ägypten",
         "Das ägyptische Einreisevisum und konsularische Gebühren",
         "Reiseversicherung",
+        "Flughafentransfers, sofern nicht vorab vereinbart",
         "Nicht genannte Mahlzeiten und Getränke",
-        "Optionale Erlebnisse und zusätzliche Grabtickets",
-        "Trinkgelder und persönliche Ausgaben"
+        "Die im Programm genannten Zusatztickets: Inneres der Cheops-Pyramide, dritte Pyramide, Grab des Tutanchamun",
+        "Optionale Ausflüge, Trinkgelder und persönliche Ausgaben"
       ],
       optional:[
-        "Eine Ballonfahrt über dem Westufer am Luxor-Morgen, wetterabhängig",
-        "Quads am Wüstennachmittag, soweit Alters- und Größengrenzen es zulassen",
-        "Ein Schnuppertauchgang, mit medizinischem Fragebogen und Mindestalter",
-        "Ein Glasbodenboot für Kinder, die lieber schauen als schwimmen",
-        "Ein Tag in Kairo per Flug, am Anfang oder Ende der Woche"
+        "Sakkara und Memphis oder das Nationalmuseum der Ägyptischen Zivilisation mit dem Saal der königlichen Mumien, am ersten Tag",
+        "Das Innere der Cheops-Pyramide oder der dritten Pyramide des Mykerinos in Gizeh",
+        "Abu Simbel oder der Unvollendete Obelisk am freien Tag in Assuan",
+        "Die Ton- und Lichtshow in Karnak",
+        "Das Grab des Tutanchamun und eine Ballonfahrt über dem Tal der Könige bei Sonnenaufgang",
+        "Ein Schnorchelausflug am Roten Meer, auf einem geteilten oder einem privaten Boot",
+        "Ein Gruppentransfer von Hurghada nach Kairo am letzten Tag, Abfahrt gegen 9 Uhr"
       ],
       info:[
-        ["Dauer","7 Tage / 6 Nächte"],
-        ["Ziele","Hurghada · die Inseln im Roten Meer · Luxor"],
-        ["Reisestil","Entspannt und am Meer, mit einem Kulturblock in der Mitte"],
-        ["Gruppe","An Land privat. Ihre Familie, Ihr Guide, Ihr Fahrzeug. Boote können geteilt sein"],
-        ["Anspruch","Leicht. Ein langer Fahrtag und ein früher Start"],
-        ["Geeignet für","Familien mit Kindern, Gruppen unterschiedlichen Alters, erste Ägyptenreisen"],
-        ["Beste Monate","An der Küste Oktober bis Mai. Die Luxor-Tage sind außerhalb von Juli und August deutlich angenehmer"]
+        ["Dauer","9 Tage / 8 Nächte"],
+        ["Ziele","Kairo · Gizeh · Assuan · Luxor · Hurghada"],
+        ["Reisestil","Familientempo, erst die Kultur und zum Schluss der Strand"],
+        ["Gruppe","Kleine Gruppe mit durchgehender Reiseleitung. Dieselbe Route auf Wunsch auch als private Abreise"],
+        ["Anspruch","Leicht bis mittel. Zwei lange Fahrtage, eine Nacht im Zug und frühe Starts in Luxor"],
+        ["Geeignet für","Familien mit Kindern, Gruppen unterschiedlichen Alters und erste Ägyptenreisen"],
+        ["Beste Monate","Oktober bis April. Juli und August sind in Luxor anstrengend und an der Küste völlig unproblematisch"]
       ],
       notes:[
-        "Bei Wassersport setzen die Betreiber eigene Alters-, Größen- und Gesundheitsgrenzen. Wir nennen sie Ihnen vor der Buchung und nicht am Steg.",
-        "Der Transfer nach Luxor dauert etwa vier Stunden je Richtung. Wer lieber fliegt: Es gibt Verbindungen, und wir kalkulieren sie.",
-        "Diese Route ist unser Vorschlag, keine feste Abreise. Nächtezahl und die Aufteilung zwischen Hurghada und Luxor lassen sich leicht ändern. Schreiben Sie uns Ihre Termine und wer mitkommt, dann schreiben wir sie neu."
+        "Züge in Ägypten haben gelegentlich Verspätung. Tag drei ist darauf ausgelegt, und der Nachmittag hat Luft.",
+        "Die Abteile im Nachtzug haben zwei Betten. Familien werden zusammengelegt, soweit der Wagen es zulässt, und wir bestätigen das vor der Buchung und nicht auf dem Bahnsteig.",
+        "Das Hotel am Roten Meer ist all inclusive; deshalb tragen Tag sieben und acht alle drei Mahlzeiten. Überall sonst sind die im Tagesprogramm genannten Mahlzeiten die inbegriffenen.",
+        "Bei Wasseraktivitäten setzen die Betreiber eigene Alters-, Größen- und Gesundheitsgrenzen. Wir nennen sie Ihnen für Ihre Gruppe vor der Buchung und nicht am Steg.",
+        "Optionale Ausflüge werden vor Ort gebucht und bezahlt, sofern nicht anders angegeben. Abu Simbel und die Ballonfahrt lohnt es sich vor der Reise zu buchen."
       ]
     }
 
@@ -1676,65 +1822,70 @@ const TOURS = [
    as the bridge into the detail views: the CTA underneath opens
    the full itinerary of the tour it is drawn from.
 
-   It documents the SPINE OF "best-of-egypt" — Cairo, Cairo,
-   Luxor, the West Bank, Abu Simbel — so the two can never drift:
-   tourId below is the link, and js/main.js reads the route name
-   from that entry rather than repeating it here. Repoint tourId
-   at another tour and the CTA follows it.
+   It documents the SPINE OF "best-of-egypt" — Giza, Aswan, the
+   free day, the felucca and Kom Ombo, Luxor — so the two can
+   never drift: tourId below is the link, and js/main.js reads the
+   route name from that entry rather than repeating it here.
+   Repoint tourId at another tour and the CTA follows it.
+
+   It is a condensation and not a copy: the eight days of the tour
+   are five here, the arrival day and the departure day are left
+   out, and Abu Simbel appears as what it is on that route — an
+   optional excursion on the free day, not a scheduled one.
 
    The content is a real working itinerary, not a brochure. Note
-   what it admits: two mornings with nothing scheduled, one site
-   dropped in summer, and an afternoon that is explicitly free. A
-   sample programme that claims every hour is the thing customers
-   have learned to distrust.
+   what it admits: a whole day with nothing scheduled, an optional
+   that is named as optional, and a free afternoon. A sample
+   programme that claims every hour is the thing customers have
+   learned to distrust.
    ------------------------------------------------------------ */
 const ITINERARY = {
   tourId: "best-of-egypt",
   t: {
     tr: {
       days: [
-        { d:"1. Gün", place:"Kahire",    h:"Giza Piramitleri & Sfenks",
-          p:"Varışın ardından, Büyük Piramit'in gölgesinde özel rehberli bir keşif ve Kahire'de karşılama akşam yemeği." },
-        { d:"2. Gün", place:"Kahire",    h:"Mısır Müzesi & Eski Kahire",
-          p:"Tutankhamun hazineleri eşliğinde bir sabah, ardından Kıpti mahallesi ve Han el-Halili çarşısında öğleden sonra." },
-        { d:"3. Gün", place:"Luksor",    h:"Karnak & Luksor Tapınakları",
-          p:"Kısa bir uçuşla Luksor'a geçiş; öğleden sonra Karnak'ın dev sütunlu salonu, akşam ışık gösterisi." },
-        { d:"4. Gün", place:"Batı Kıyı", h:"Kral Vadisi & Nil'de Gemi",
-          p:"Hatşepsut Tapınağı ve kraliyet mezarları sonrası, akşam Nil üzerinde beş yıldızlı gemiye yerleşim." },
-        { d:"5. Gün", place:"Aswan",     h:"Ebu Simbel Günübirlik Gezisi",
-          p:"Şafak vakti yola çıkış; II. Ramses Tapınağı'nda güneşin taş yüzlere vuruşuna tanıklık ederek yolculuğun kapanışı." }
+        { d:"1. Gün", place:"Kahire", h:"Giza, Sfenks ve Büyük Mısır Müzesi",
+          p:"Plato henüz serinken Büyük Piramit ve Sfenks, öğleden sonra Büyük Mısır Müzesi ve akşam güneye giden gece treni." },
+        { d:"2. Gün", place:"Asvan",  h:"Trenden iner inmez nehre",
+          p:"Çarşıda serbest bir sabah; öğleden sonra Ağa Han Türbesi'nin yanından geçen tekneyle bir nehir adasına ve bir Nubya ailesinin evinde akşam yemeği." },
+        { d:"3. Gün", place:"Asvan",  h:"Serbest gün, isterseniz Abu Simbel",
+          p:"Program yok. Abu Simbel üç saat güneyde ve erken kalkmaya değer; kısa hâli Bitmemiş Obelisk, Yüksek Baraj ve Philae." },
+        { d:"4. Gün", place:"Kom Ombo", h:"Felucca ve timsah tapınağı",
+          p:"Asvan Köprüsü'ne kadar yelken altında, teknede öğle yemeğiyle; ardından suyun kıyısındaki Kom Ombo ve hâlâ yerinde duran mumyalanmış timsahlar." },
+        { d:"5. Gün", place:"Luksor", h:"Kral Vadisi ve Karnak",
+          p:"Sıcak basmadan vadide üç mezar, Batı Yaka'da bir ailenin evinde öğle yemeği ve kapanışta Karnak'ın dev sütunlu salonu." }
       ],
       note:"Bu, yazıya dökülmüş gerçek bir program. Sizinki aynısı olmayacak: tarihler, tempo ve önemsedikleriniz onu değiştirir; hiçbir şey kesinleşmeden önce baştan yazılır."
     },
     en: {
       days: [
-        { d:"Day 1", place:"Cairo",     h:"The Pyramids of Giza & the Sphinx",
-          p:"After the arrival transfer, a privately guided walk in the shadow of the Great Pyramid, and a welcome dinner in Cairo." },
-        { d:"Day 2", place:"Cairo",     h:"The Egyptian Museum & Old Cairo",
-          p:"A morning with the treasures of Tutankhamun, then an afternoon in the Coptic quarter and the Khan el-Khalili bazaar." },
-        { d:"Day 3", place:"Luxor",     h:"Karnak & Luxor Temples",
-          p:"A short flight to Luxor; the great hypostyle hall of Karnak in the afternoon, and the sound and light show that evening." },
-        { d:"Day 4", place:"West Bank", h:"Valley of the Kings & boarding",
-          p:"The temple of Hatshepsut and the royal tombs, then boarding a five-star boat on the Nile in the evening." },
-        { d:"Day 5", place:"Aswan",     h:"Abu Simbel day trip",
-          p:"A departure at dawn; the journey closes at the temple of Ramesses II, watching the sun reach the stone faces." }
+        { d:"Day 1", place:"Cairo", h:"Giza, the Sphinx & the Grand Egyptian Museum",
+          p:"The Great Pyramid and the Sphinx while the plateau is still cool, the Grand Egyptian Museum in the afternoon, and the sleeper train south that evening." },
+        { d:"Day 2", place:"Aswan", h:"Off the night train, onto the river",
+          p:"A free morning in the souk, then a boat past the Aga Khan Mausoleum to a river island, and dinner cooked at home by a Nubian family." },
+        { d:"Day 3", place:"Aswan", h:"A free day, and Abu Simbel if you want it",
+          p:"Nothing scheduled. Abu Simbel is three hours south and worth the early start; the short version is the Unfinished Obelisk, the High Dam and Philae." },
+        { d:"Day 4", place:"Kom Ombo", h:"A felucca, then the crocodile temple",
+          p:"Under sail as far as Aswan Bridge with lunch on board, then Kom Ombo, where the temple stands at the water's edge and the mummified crocodiles are still on site." },
+        { d:"Day 5", place:"Luxor", h:"The Valley of the Kings & Karnak",
+          p:"Three tombs in the valley before the heat, lunch with a family on the West Bank, and the great hypostyle hall at Karnak to close." }
       ],
       note:"This is one real programme, written out. Yours will not be identical: dates, pace and what you care about change it, and it is rewritten in full before anything is confirmed."
     },
     de: {
       days: [
-        { d:"Tag 1", place:"Kairo",    h:"Pyramiden von Gizeh & Sphinx",
-          p:"Nach der Ankunft ein privat geführter Rundgang im Schatten der Cheops-Pyramide und ein Willkommensessen in Kairo." },
-        { d:"Tag 2", place:"Kairo",    h:"Ägyptisches Museum & Alt-Kairo",
-          p:"Ein Vormittag bei den Schätzen des Tutanchamun, danach das koptische Viertel und der Basar Chan el-Chalili." },
-        { d:"Tag 3", place:"Luxor",    h:"Karnak- & Luxor-Tempel",
-          p:"Mit einem kurzen Flug nach Luxor; nachmittags die große Säulenhalle von Karnak, abends die Ton- und Lichtshow." },
-        { d:"Tag 4", place:"Westufer", h:"Tal der Könige & Einschiffung",
-          p:"Der Tempel der Hatschepsut und die Königsgräber, am Abend die Einschiffung auf ein Fünf-Sterne-Schiff auf dem Nil." },
-        { d:"Tag 5", place:"Assuan",   h:"Tagesausflug nach Abu Simbel",
-          p:"Aufbruch im Morgengrauen; die Reise endet am Tempel Ramses' II., wenn die Sonne die steinernen Gesichter erreicht." }
+        { d:"Tag 1", place:"Kairo", h:"Gizeh, die Sphinx & das Grand Egyptian Museum",
+          p:"Die Cheops-Pyramide und die Sphinx, solange das Plateau kühl ist, am Nachmittag das Grand Egyptian Museum und am Abend der Nachtzug nach Süden." },
+        { d:"Tag 2", place:"Assuan", h:"Aus dem Nachtzug an den Fluss",
+          p:"Ein freier Vormittag im Souk, danach mit dem Boot am Aga-Khan-Mausoleum vorbei zu einer Nilinsel und Abendessen bei einer nubischen Familie zu Hause." },
+        { d:"Tag 3", place:"Assuan", h:"Ein freier Tag, und Abu Simbel, wenn Sie mögen",
+          p:"Nichts geplant. Abu Simbel liegt drei Stunden südlich und ist den frühen Start wert; die kurze Fassung sind der Unvollendete Obelisk, der Hochdamm und Philae." },
+        { d:"Tag 4", place:"Kom Ombo", h:"Eine Feluke, dann der Krokodiltempel",
+          p:"Unter Segeln bis zur Assuan-Brücke, mit Mittagessen an Bord, danach Kom Ombo, wo der Tempel am Wasser steht und die mumifizierten Krokodile noch vor Ort liegen." },
+        { d:"Tag 5", place:"Luxor", h:"Das Tal der Könige & Karnak",
+          p:"Drei Gräber im Tal, bevor die Hitze kommt, Mittagessen bei einer Familie am Westufer und zum Abschluss die große Säulenhalle von Karnak." }
       ],
-      note:"Das ist ein echtes Programm, ausgeschrieben. Ihres wird nicht identisch sein: Daten, Tempo und Ihre Interessen verändern es, und es wird vollständig neu geschrieben, bevor irgendetwas bestätigt wird."
+      note:"Das ist ein echtes Programm, ausgeschrieben. Ihres wird nicht identisch sein: Termine, Tempo und Ihre Schwerpunkte verändern es, und es wird vollständig neu geschrieben, bevor irgendetwas bestätigt wird."
     }
   }
 };
