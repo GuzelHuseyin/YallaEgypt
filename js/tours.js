@@ -237,6 +237,39 @@
       <ul class="thl-grid rv">${cells}</ul>`);
   }
 
+  /* WHERE YOU SLEEP AND WHAT YOU EAT
+     The two questions a day-by-day is actually read for, and the
+     two a paragraph is the wrong shape to answer. They are a
+     .cred label/value pair — the same component the tour hero and
+     the information block use — so a day gains a small table and
+     the page gains no new typography.
+
+     Both fields are optional per day, and the block is drawn only
+     for a day that carries at least one of them. A tour whose
+     days predate the fields renders exactly as it did before,
+     rather than gaining a row that says "no meals included" about
+     a day nobody has checked. Within a tour that does carry them:
+
+       stay:""        the tour ends that day — the row is dropped
+                      rather than printed empty
+       meals:[]       nothing is included — said in words, because
+                      a missing line reads as an oversight
+     ------------------------------------------------------------ */
+  function dayFactsHTML(d){
+    const hasStay  = typeof d.stay === "string";
+    const hasMeals = Array.isArray(d.meals);
+    if(!hasStay && !hasMeals) return "";
+
+    const rows = [];
+    if(hasStay && d.stay) rows.push([t("tour.stay"), d.stay]);
+    if(hasMeals) rows.push([t("tour.meals"),
+      d.meals.length ? d.meals.join(" · ") : t("tour.mealsNone")]);
+    if(!rows.length) return "";
+
+    return `<dl class="tday-facts">${rows.map(([k, v]) =>
+      `<div class="cred"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
+  }
+
   /* The day rows use the FAQ's disclosure contract exactly: a
      button carrying aria-expanded, a panel carrying inert while
      it is closed, and .is-open on the row. js/main.js toggles
@@ -269,6 +302,7 @@
             <div class="tday-body">
               ${acts ? `<ul class="tday-acts">${acts}</ul>` : ""}
               <p class="tday-p">${esc(d.p)}</p>
+              ${dayFactsHTML(d)}
             </div>
           </div>
         </div>

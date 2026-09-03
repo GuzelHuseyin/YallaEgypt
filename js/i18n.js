@@ -58,6 +58,12 @@ const I18N = {
     "tour.highlights":"Tour highlights",
     "tour.itinerary":"Day by day",
     "tour.itineraryNote":"Open a day to see what is in it.",
+    /* The two facts a day is judged on once the reading is done.
+       A day carrying neither field prints no row at all — see
+       itineraryHTML in js/tours.js. */
+    "tour.stay":"Accommodation",
+    "tour.meals":"Meals included",
+    "tour.mealsNone":"No meals included",
     "tour.inclusions":"Included, and not included",
     "tour.included":"What is included",
     "tour.notIncluded":"Not included",
@@ -185,6 +191,9 @@ const I18N = {
     "tour.highlights":"Turun öne çıkanları",
     "tour.itinerary":"Gün gün program",
     "tour.itineraryNote":"İçeriğini görmek için bir güne dokunun.",
+    "tour.stay":"Konaklama",
+    "tour.meals":"Dahil öğünler",
+    "tour.mealsNone":"Öğün dahil değil",
     "tour.inclusions":"Dahil olanlar ve olmayanlar",
     "tour.included":"Dahil olanlar",
     "tour.notIncluded":"Dahil olmayanlar",
@@ -312,6 +321,9 @@ const I18N = {
     "tour.highlights":"Höhepunkte der Reise",
     "tour.itinerary":"Tag für Tag",
     "tour.itineraryNote":"Öffnen Sie einen Tag, um zu sehen, was er enthält.",
+    "tour.stay":"Unterkunft",
+    "tour.meals":"Inbegriffene Mahlzeiten",
+    "tour.mealsNone":"Keine Mahlzeiten inbegriffen",
     "tour.inclusions":"Inbegriffen und nicht inbegriffen",
     "tour.included":"Inbegriffen",
     "tour.notIncluded":"Nicht inbegriffen",

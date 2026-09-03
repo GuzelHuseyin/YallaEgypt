@@ -1732,6 +1732,22 @@ body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
 .tday-acts{ display:flex; flex-wrap:wrap; gap:.4rem .45rem; }
 .tday-p{ margin-top:1rem; max-width:56ch; color:var(--papyrus-dim); text-wrap:pretty; }
 
+/* Where you sleep and what you eat, under the paragraph. .cred
+   verbatim — the label/value pair the tour hero and the tour
+   information block already use — on a hairline that separates
+   the facts from the prose without adding a second rule weight.
+   It is set to the paragraph's own measure so the two edges line
+   up, and only tours that carry the fields draw it at all. */
+.tday-facts{
+  display:grid; grid-template-columns:1fr; gap:.85rem 2.4rem;
+  max-width:56ch;
+  margin-top:clamp(1.1rem,2.2vw,1.5rem);
+  padding-top:clamp(.9rem,1.8vw,1.25rem);
+  border-top:1px solid var(--hair-gold);
+}
+.tday-facts .cred dd{ font-size:var(--fs-sm); }
+@media (min-width:560px){ .tday-facts{ grid-template-columns:repeat(2,1fr); } }
+
 /* -- Included, not included, optional ------------------------- */
 .tcols{
   display:grid; grid-template-columns:1fr;

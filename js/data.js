@@ -267,19 +267,37 @@ const HERO = [
      temple, tomb, museum, city, nile, sun, balloon, desert, atv,
      bedouin, dive, snorkel, island, sea.
 
-   DAYS are the itinerary. Each is { d, place, h, acts[], p }:
-   the day label, where it happens, its title, the four or five
-   things it contains as a chip row, and one honest paragraph.
+   DAYS are the itinerary. Each is
+   { d, place, h, acts[], p, stay, meals[] }: the day label, where
+   it happens, its title, the four or five things it contains as a
+   chip row, one honest paragraph, and the two facts a day-by-day
+   is actually read for.
+
+     stay    the hotel for THAT NIGHT, named, with "or similar"
+             while the booking is a proposal rather than held.
+             "" on a day the tour ends, and the row is dropped
+             rather than printed empty.
+     meals[] the meals actually included, in the order they are
+             eaten, written in the language of the block they sit
+             in. An empty array is not the same as a missing one:
+             [] prints "no meals included", which is a fact, and
+             a day with neither field prints no table at all.
+
+     Both are optional per day. Tours 3, 4 and 5 predate them and
+     render exactly as they did before — see dayFactsHTML in
+     js/tours.js. Fill them in there and the table appears; no
+     markup, no CSS, no i18n key.
 
    WHAT IS AND IS NOT CONFIRMED
+     Tours 1 and 2 now follow a day-by-day the client supplied:
+     the route, the per-day meals and the hotels are theirs, and
+     the wording around them is ours. The hotels carry "or
+     similar" because the bookings are not held.
+
      Tours 3, 4 and 5 follow the day structure the client has
-     confirmed. Tours 1 and 2 are composed by us from the same
-     operational parts — the Hurghada city tour, the desert
-     safari, the diving and island days, the Luxor and Cairo
-     sites — and their day counts and hotel splits are a proposal
-     the client has still to sign off. Nothing in either is
-     invented out of nothing, but do not treat those two as
-     confirmed until they come back from the client.
+     confirmed, but carry no per-day hotel or meal data yet.
+     Nothing in them is invented out of nothing; they are simply
+     older, and the two fields above are what they are missing.
 
      Tour 5's eighth day is written from the three endings the
      client did confirm — back to Hurghada, onward independently,
@@ -292,11 +310,15 @@ const TOURS = [
 
   /* ==========================================================
      01 · BEST OF EGYPT — the flagship
-     Composed by us, not supplied: it takes the four legacy
-     signature routes (Cairo & Giza, Luxor & Karnak, the Nile,
-     Abu Simbel) and runs them as one line, which is what the
-     client asked the reference operator's own listing to be
-     matched against for depth of information.
+     Supplied by the client, day by day, with the hotels and the
+     meals named. Eight days: Cairo and Giza, the night train
+     south, two nights in Aswan, the felucca and Kom Ombo, three
+     nights in Luxor, and a morning flight back to Cairo.
+
+     Abu Simbel is NOT on this route any more. It is an optional
+     excursion on the free Aswan day, and it is named as one in
+     "optional" and nowhere else — not in destinations, not in
+     highlights, and not in the JSON-LD in index.html.
      ========================================================== */
   { id:"best-of-egypt", featured:true, days:9, nights:8,
     img:"assets/images/tours/giza-caravan-1100.webp", iw:1100, ih:825,
@@ -575,10 +597,14 @@ const TOURS = [
 
   /* ==========================================================
      02 · EGYPT FAMILY HOLIDAY
-     Composed by us from confirmed parts. The shape — one base on
-     the coast, a single culture block in the middle of the week
-     — is the proposal; the day count and the Hurghada / Luxor
-     hotel split still need the client's sign-off.
+     Supplied by the client, day by day, with the hotels and the
+     meals named. Nine days, and no longer a single base on the
+     coast: Cairo and Giza, the night train, two nights in Aswan,
+     two in Luxor, then two all-inclusive nights in Hurghada.
+
+     The culture is front-loaded while everyone is fresh and the
+     week ends on the beach, which is the shape the card and the
+     Red Sea photograph are selling.
      ========================================================== */
   { id:"egypt-family-holiday", days:7, nights:6,
     img:"assets/images/tours/red-sea-coast-1100.webp", iw:1100, ih:825,
