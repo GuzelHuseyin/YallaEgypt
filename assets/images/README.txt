@@ -27,8 +27,6 @@ STOCK, REGRADED (Unsplash, cached locally as WebP)
   destinations/abu-simbel  see the warning below
   destinations/red-sea     a reef
   destinations/alexandria  a shoreline
-  tours/nile-luxor-aswan   a felucca among the dunes
-  tours/abu-simbel-south   see the warning below
   tours/red-sea-coast      the coast, from redsea-1 (new crop)
   tours/red-sea-reef       the reef, from destinations/red-sea (new crop)
 
@@ -39,14 +37,12 @@ the design audit explicitly rules out, and it read as a different
 shoot next to the owned frames. The grade is in the build script, not
 baked into a filter: the files on disk are the graded ones.
 
-TWO FILES ARE STILL WRONG ON THE FACTS
-  destinations/abu-simbel and tours/abu-simbel-south are both the
-  colossus at LUXOR TEMPLE, not Abu Simbel. The alt text describes
-  only what is visible so nothing on the page claims otherwise, but
-  this is the first photograph to commission. Before this pass the
-  Abu Simbel tour card carried a photograph of Cairo's mosques, and
-  hero/thebes-1 -- labelled Thebes -- was also Cairo; that frame has
-  been moved to destinations/cairo, where it belongs.
+ONE FILE IS STILL WRONG ON THE FACTS
+  destinations/abu-simbel is the colossus at LUXOR TEMPLE, not Abu
+  Simbel. The alt text describes only what is visible so nothing on
+  the page claims otherwise, but this is the first photograph to
+  commission. hero/thebes-1 -- labelled Thebes -- was also Cairo;
+  that frame has been moved to destinations/cairo, where it belongs.
 
   destinations/alexandria is a shoreline that could be anywhere. It
   is kept because Alexandria is a place the company sells, not
@@ -75,14 +71,10 @@ path and "widths" array in js/data.js.
                   opacity under a mask that fades both edges, so it
                   wants contrast and shape, not detail
 
-Two entries are waiting on files:
+One entry is waiting on files:
 
   * Siwa is defined in js/data.js DESTINATIONS with enabled:false.
     Add destinations/siwa-500.webp and siwa-900.webp, flip it to true.
-  * team/ does not exist yet. Create it, add portraits, then fill in
-    name / role / line / photo in the TEAM array in js/data.js. Until
-    a photo path is set, that person renders as a marked placeholder
-    tile -- which is deliberate. Do not put stock faces here.
 
 
 ART DIRECTION (from design/yalla-egypt-tasarim-denetimi.md)
@@ -122,10 +114,6 @@ THE FIVE TOUR CARDS (js/data.js TOURS, in catalogue order)
   West Bank. Those are the shots the catalogue most needs next, and
   they are the ones a client with boats and 4x4s can supply from a
   single working week. tours/ wants 1100px, landscape 4:3.
-
-  nile-luxor-aswan-1100.webp is 2.1 MB on disk, roughly ten times
-  every other card, and is no longer referenced by anything. Either
-  rebuild it (python tools/build-images.py tours/nile) or delete it.
 
 STILL UNPLACED: a Sphinx in profile (hazy, cluttered foreground, and
 Giza is already carried by three stronger frames); a rooftop cafe (a

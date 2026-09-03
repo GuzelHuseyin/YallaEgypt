@@ -37,7 +37,6 @@
 
   /* -- Blue: sparing, and specific ---------------------------- */
   --sapphire:      #1C3A63;   /* dark blue tone, subtle use */
-  --sapphire-2:    #3A6EA5;   /* timeline elements, hover glow */
   --lapis:         #7FB0E0;   /* timeline numerals and indices */
 
   /* -- Text ---------------------------------------------------- */
@@ -119,11 +118,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   outline:2px solid var(--gold-bright);
   outline-offset:3px;
 }
-[data-ground="dark"] :focus-visible{ outline-color:var(--gold-bright); }
-/* The ground attribute sits on <html> AND on every section, so a
-   dark <html> would otherwise reach into a light section and paint
-   a gold ring on cream. The light rule comes second on purpose:
-   when both match, the nearer ground has to be the one that wins. */
 
 .skip{
   position:fixed; top:0; left:0; z-index:200;
@@ -150,15 +144,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
    never body copy. Jost carries everything that has to be read
    at length — which is what keeps the site legible.
    ============================================================ */
-.display{
-  font-family:var(--font-display);
-  font-weight:600;
-  font-size:var(--fs-h2);
-  line-height:1.14;
-  letter-spacing:.03em;
-  text-transform:uppercase;
-  text-wrap:balance;
-}
 .lead{
   font-family:var(--font-edit);
   font-weight:400;
@@ -167,22 +152,20 @@ ul,ol{ margin:0; padding:0; list-style:none; }
   letter-spacing:-.004em;
   max-width:20ch;
   text-wrap:balance;
+  color:var(--papyrus);
 }
 .lead--sm{ font-size:var(--fs-h2-sm); max-width:28ch; }
-.lead{ color:var(--papyrus); }
 
 .eyebrow{
   display:flex; align-items:center; gap:1rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
   text-transform:uppercase; letter-spacing:var(--ls-eyebrow); line-height:1.4;
-  color:var(--papyrus-dim);
+  color:var(--gold);
   margin-bottom:clamp(1.4rem,3vw,2.4rem);
 }
 .eyebrow::after{
   content:""; flex:1; height:1px; background:var(--hair-gold);
 }
-.eyebrow{ color:var(--gold); }
-.eyebrow::after{ background:var(--hair-gold); }
 /* Section numbers. js/main.js writes data-n over the sections that
    are actually present, so the sequence never shows a gap when one
    is left out. Kept in CSS content because it is ornament, not
@@ -912,7 +895,6 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 .sec--plate > .wrap{ position:relative; z-index:1; }
 
-.sec--tight-top{ padding-top:0; }
 .sec--short{ padding-block:clamp(3rem,6vw,5rem); }
 .sec--strip{ padding-bottom:clamp(3rem,6vw,5rem); }
 .sec--narrow .wrap{ max-width:calc(var(--maxw-narrow) + var(--gutter) * 2); }

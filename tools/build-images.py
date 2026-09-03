@@ -193,27 +193,11 @@ dest("alexandria", stock("alexandria-900"), dict(ay=0.60, zoom=1.50), STOCK_GRAD
 # --------------------------------------------------------------- tours
 one("tours/cairo-giza-1100.webp", load("table"), (1100, 825),
     dict(ax=0.50, ay=0.40), NEW_SOFT)
-# Every tour card renders at aspect-ratio:4/3 (see .tcard-media), so
-# both of these are built landscape. They were 825x1100 portrait, which
-# object-fit:cover then centre-cropped to the middle 56% of the height —
-# that is what sliced the felucca's sail and hull off the Nile card and
-# hid the river almost entirely.
+# Every tour card renders at aspect-ratio:4/3 (see .tcard-media), so this
+# is built landscape. It was 825x1100 portrait, which object-fit:cover
+# then centre-cropped to the middle 56% of the height.
 one("tours/luxor-karnak-1100.webp", load("columns"), (1100, 825),
     dict(ax=0.50, ay=0.45), NEW_PLAIN)
-# Recomposed from the full 2000px frame rather than the pre-cut 825px
-# one, which had already lost the boat. The window keeps the whole
-# vessel with headroom for the card's 1.04 hover zoom, sets the hull
-# near the lower-left third, and holds a real band of river across the
-# bottom — the river being the one thing this card has to say. Same
-# photograph as destinations/aswan, but a wide landscape crop against
-# that card's tall one; the alternative source for either is markedly
-# worse.
-one("tours/nile-luxor-aswan-1100.webp", stock("aswan-1-2000"),
-    (1100, 825), dict(ax=0.385, ay=0.458, zoom=1.0909), SEA_GRADE)
-# Was a photograph of Cairo's mosques on the Abu Simbel card. Ramesside
-# statuary is at least the right subject; a real Abu Simbel frame is still owed.
-one("tours/abu-simbel-south-1100.webp", stock("abu-simbel-900"),
-    (1100, 825), dict(ay=0.42), DEHDR_GRADE)
 
 # Three more 4:3 cards, added with the five-tour catalogue. Same ratio and
 # the same grades as the four above — these are new crops of frames the

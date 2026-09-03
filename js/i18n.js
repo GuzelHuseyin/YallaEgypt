@@ -51,9 +51,7 @@ const I18N = {
     "tour.priceAsk":"Price on request",
     "tour.from":"From","tour.perPerson":"per person","tour.perGroup":"per group",
     "tour.days":"days","tour.nights":"nights",
-
-    "tour.open":"Explore the tour",
-    "tour.close":"Close","tour.closeAria":"Close this tour and go back to the catalogue",
+    "tour.closeAria":"Close this tour and go back to the catalogue",
     "tour.back":"All tours",
 
     "tour.overview":"Overview",
@@ -71,7 +69,6 @@ const I18N = {
 
     "tour.cta":"Ask about this tour",
     "tour.ctaWa":"Ask on WhatsApp",
-    "tour.ctaPlan":"Plan this trip",
     "tour.ctaLead":"Ask us anything about this route.",
     "tour.ctaBody":"Tell us your dates and who is travelling. We answer within one business day, in Turkish, English or German. The first reply is usually questions rather than a brochure.",
     "tour.waMsg":"Hello Yalla Egypt, I am interested in the {tour} tour. I would like more information.",
@@ -119,7 +116,7 @@ const I18N = {
 
     "s9.eye":"Next step",
     "s9.q":"Tell us when you're free. We'll take it from there.",
-    "s9.cta1":"Plan your trip","s9.cta2":"Message on WhatsApp",
+    "s9.cta2":"Message on WhatsApp",
 
     "contact.direct.eye":"Direct",
     "contact.direct.email":"Email us","contact.direct.phone":"Call us","contact.direct.whatsapp":"Message us on WhatsApp",
@@ -181,9 +178,7 @@ const I18N = {
     "tour.priceAsk":"Fiyat için bize yazın",
     "tour.from":"Başlangıç","tour.perPerson":"kişi başı","tour.perGroup":"grup başına",
     "tour.days":"gün","tour.nights":"gece",
-
-    "tour.open":"Turu keşfedin",
-    "tour.close":"Kapat","tour.closeAria":"Bu turu kapatın ve tur listesine dönün",
+    "tour.closeAria":"Bu turu kapatın ve tur listesine dönün",
     "tour.back":"Tüm turlar",
 
     "tour.overview":"Genel bakış",
@@ -201,7 +196,6 @@ const I18N = {
 
     "tour.cta":"Bu turu sorun",
     "tour.ctaWa":"WhatsApp'tan sorun",
-    "tour.ctaPlan":"Bu rotayı kurun",
     "tour.ctaLead":"Bu rotayla ilgili aklınıza gelen her şeyi sorun.",
     "tour.ctaBody":"Tarihlerinizi ve kimlerin geleceğini yazmanız yeterli. Bir iş günü içinde Türkçe, İngilizce ya da Almanca dönüş yaparız. İlk yanıt genellikle broşür değil, sorulardır.",
     "tour.waMsg":"Merhaba Yalla Egypt, {tour} turuyla ilgileniyorum. Daha fazla bilgi almak istiyorum.",
@@ -249,7 +243,7 @@ const I18N = {
 
     "s9.eye":"Sıradaki adım",
     "s9.q":"Ne zaman müsaitsiniz, söyleyin. Gerisini biz kurarız.",
-    "s9.cta1":"Rotanızı kurun","s9.cta2":"WhatsApp'tan yazın",
+    "s9.cta2":"WhatsApp'tan yazın",
 
     "contact.direct.eye":"Doğrudan",
     "contact.direct.email":"E-posta gönderin","contact.direct.phone":"Bizi arayın","contact.direct.whatsapp":"WhatsApp'tan yazın",
@@ -311,9 +305,7 @@ const I18N = {
     "tour.priceAsk":"Preis auf Anfrage",
     "tour.from":"Ab","tour.perPerson":"pro Person","tour.perGroup":"pro Gruppe",
     "tour.days":"Tage","tour.nights":"Nächte",
-
-    "tour.open":"Reise ansehen",
-    "tour.close":"Schließen","tour.closeAria":"Diese Reise schließen und zurück zur Übersicht",
+    "tour.closeAria":"Diese Reise schließen und zurück zur Übersicht",
     "tour.back":"Alle Reisen",
 
     "tour.overview":"Überblick",
@@ -331,7 +323,6 @@ const I18N = {
 
     "tour.cta":"Zu dieser Reise anfragen",
     "tour.ctaWa":"Per WhatsApp fragen",
-    "tour.ctaPlan":"Diese Reise planen",
     "tour.ctaLead":"Fragen Sie uns alles zu dieser Route.",
     "tour.ctaBody":"Nennen Sie uns Ihren Zeitraum und wer mitreist. Wir antworten innerhalb eines Werktags auf Türkisch, Englisch oder Deutsch. Die erste Antwort besteht meist aus Fragen, nicht aus einer Broschüre.",
     "tour.waMsg":"Hallo Yalla Egypt, ich interessiere mich für die Reise {tour}. Ich hätte gern mehr Informationen.",
@@ -379,7 +370,7 @@ const I18N = {
 
     "s9.eye":"Nächster Schritt",
     "s9.q":"Sagen Sie uns, wann Sie Zeit haben. Den Rest übernehmen wir.",
-    "s9.cta1":"Reise planen","s9.cta2":"Über WhatsApp schreiben",
+    "s9.cta2":"Über WhatsApp schreiben",
 
     "contact.direct.eye":"Direkt",
     "contact.direct.email":"E-Mail schreiben","contact.direct.phone":"Anrufen","contact.direct.whatsapp":"Über WhatsApp schreiben",

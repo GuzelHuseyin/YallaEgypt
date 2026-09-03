@@ -372,9 +372,8 @@
     if(typeof observeReveals === "function") observeReveals();
   }
 
-  function open(tour, isFirst){
-    const wasOpen = openId !== null;
-    if(!wasOpen){
+  function open(tour){
+    if(openId === null){
       lastFocus = document.activeElement;
       PANEL.hidden = false;
       document.body.classList.add("tour-open");
@@ -385,7 +384,7 @@
     paint(tour);
     DIALOG.scrollTop = 0;
     retargetWhatsApp(tour);
-    if(!isFirst || !wasOpen) DIALOG.focus({ preventScroll:true });
+    DIALOG.focus({ preventScroll:true });
     const live = $("#live");
     if(live) live.textContent = copy(tour).n;
   }
@@ -439,7 +438,7 @@
   function route(){
     const m = /^#tour\/([A-Za-z0-9_-]+)$/.exec(location.hash || "");
     const tour = m && byId(m[1]);
-    if(tour) open(tour, false);
+    if(tour) open(tour);
     else close();
   }
 
@@ -481,9 +480,7 @@
         const tour = byId(openId);
         if(tour){ paint(tour); retargetWhatsApp(tour); }
       }
-    },
-    open(id){ const x = byId(id); if(x) location.hash = "#tour/" + x.id; },
-    close: requestClose
+    }
   };
 
   renderCatalogue();

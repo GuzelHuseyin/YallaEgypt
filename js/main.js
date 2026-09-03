@@ -388,12 +388,11 @@ function applyVideoLabel(){
    Same contract: aria-expanded on the trigger, inert on the
    panel while closed, so it leaves the tab order too.
    ============================================================ */
-function toggleDisclosure(btn, panel, host, openClass, labelEl, labels){
+function toggleDisclosure(btn, panel, host, openClass){
   const open = btn.getAttribute("aria-expanded") !== "true";
   btn.setAttribute("aria-expanded", String(open));
   host.classList.toggle(openClass, open);
   panel.inert = !open;
-  if(labelEl && labels) labelEl.textContent = open ? labels[1] : labels[0];
 }
 
 function initDisclosures(){
@@ -531,9 +530,7 @@ function initGround(){
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(!e.isIntersecting) return;
-      const g = e.target.dataset.ground || "light";
-      document.documentElement.dataset.ground = g;
-      nav.classList.toggle("on-paper", g === "light");
+      document.documentElement.dataset.ground = e.target.dataset.ground || "dark";
     });
   }, { rootMargin:"-70px 0px -88% 0px" });
   $$("main [data-ground], footer[data-ground]").forEach(s => io.observe(s));
