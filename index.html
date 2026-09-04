@@ -935,9 +935,13 @@
     <div class="mq-row"><div class="mq mq-l"><div class="mq-track"></div></div></div>
   </div>
   <div class="wrap mq-foot">
-    <button id="mq-toggle" class="ctl-text" type="button" aria-pressed="false">
-      <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><rect x="1" width="3" height="10"/><rect x="6" width="3" height="10"/></svg>
-      <span class="mq-toggle-label">Pause testimonials</span>
+    <!-- Icon only, the same .ctl control the hero slideshow uses: both
+         glyphs sit in the DOM and CSS swaps them on .is-paused, and the
+         name is carried by aria-label rather than by visible text. -->
+    <button id="mq-toggle" class="ctl" type="button" aria-pressed="false"
+            data-i18n-aria="mq.pause" aria-label="Pause testimonials">
+      <svg class="i-pause" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2.5" y="1.5" width="2.4" height="9"/><rect x="7.1" y="1.5" width="2.4" height="9"/></svg>
+      <svg class="i-play"  viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4l7-4.2-7-4.2Z"/></svg>
     </button>
   </div>
 </section>

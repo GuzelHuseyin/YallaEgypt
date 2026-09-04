@@ -494,7 +494,10 @@ let mqPaused = false;
 function syncMqToggle(){
   const b = $("#mq-toggle");
   if(!b) return;
-  $(".mq-toggle-label", b).textContent = t(mqPaused ? "mq.play" : "mq.pause");
+  /* Icon-only control: the label lives in aria-label, not on screen.
+     This runs after setLang's data-i18n-aria pass, so it is the one
+     that decides — and it names the ACTION, which flips with state. */
+  b.setAttribute("aria-label", t(mqPaused ? "mq.play" : "mq.pause"));
   b.setAttribute("aria-pressed", String(mqPaused));
   b.classList.toggle("is-paused", mqPaused);
 }
