@@ -51,15 +51,6 @@ const CONFIG = {
      Fill the numbers in first, then flip this. */
   showPrices:          false, // true -> a tour's price.from replaces "price on request"
 
-  /* Reviews are demo content until real ones exist. While this is
-     true the whole reviews section is left out of the page rather
-     than shown behind a "demo content" label: invented praise with
-     a disclaimer under it tells a visitor the company has no
-     customers, which is worse than saying nothing. Drop real
-     quotes into TESTIMONIALS and set this to false to bring the
-     section back. */
-  testimonialsAreDemo: true,
-
   /* Pre-launch gap markers. The site has fields that only the
      client can fill — licence number, phone, WhatsApp, office
      address. With this true they render a visible TBC badge, which
@@ -1924,9 +1915,13 @@ const DESTINATIONS = [
 
    Every name, rating and sentence below is invented. Nothing here
    may be quoted in marketing, screenshots or advertising until it
-   is replaced by genuine feedback. While CONFIG.testimonialsAreDemo
-   is true the section carries a visible "demo content" badge, so a
-   visitor is never told these are real.
+   is replaced by genuine feedback.
+
+   THE PAGE ITSELF NO LONGER SAYS SO. The visible "demo content"
+   badge that used to sit under the rows has been removed for the
+   client presentation, so this comment is now the only marker that
+   these are placeholders. Replace them before the site is put in
+   front of real customers.
 
    TO GO LIVE WITH REAL REVIEWS
      1. Replace the entries below one for one. Keep the shape:
@@ -1936,9 +1931,8 @@ const DESTINATIONS = [
             r:5,                        // 1-5, drives the stars
             q:{ en:"…", tr:"…", de:"…" } }   // the review itself
 
-     2. Set CONFIG.testimonialsAreDemo = false. That removes the
-        badge and nothing else — the section, the marquee and the
-        layout are identical either way.
+     2. Nothing else has to change: the section, the marquee and
+        the layout do not care whether the quotes are real.
 
    WHY THE NAME AND THE RATING SIT OUTSIDE q
      A person's name and the number of stars they gave do not get
@@ -1948,10 +1942,10 @@ const DESTINATIONS = [
      opinion, phrased the way that language would phrase it.
 
    HOW THEY ARE SPREAD OVER THE THREE ROWS
-     js/main.js cuts this list into three consecutive blocks of
-     four, so row 1 gets 1-4, row 2 gets 5-8 and row 3 gets 9-12
-     and no row repeats another row's cards. Keep the list a
-     multiple of three and every row stays even.
+     js/main.js cuts this list into MQ_ROWS consecutive blocks, so
+     no row ever repeats another row's cards. At two rows that is
+     1-6 and 7-12. Keep the list a multiple of MQ_ROWS and every
+     row stays even.
    ------------------------------------------------------------ */
 const TESTIMONIALS = [
   /* ---- row 1 ---- */

@@ -112,8 +112,9 @@ function renderSteps(){
 /* ============================================================
    REVIEWS — the three-row marquee
    ------------------------------------------------------------
-   Reads TESTIMONIALS (js/data.js), which is demo content until
-   the client supplies real reviews; see the banner on that array.
+   Reads TESTIMONIALS (js/data.js). That array is still placeholder
+   copy — the banner above it says so and says how to swap it — but
+   nothing on the rendered page announces that to a visitor.
 
    THE SEAMLESS LOOP IS ARITHMETIC, NOT A TRICK
      Each track holds its cards TWICE, and the keyframe travels
@@ -128,10 +129,11 @@ function renderSteps(){
      Raise it if the cards are ever made much narrower.
 
    DIRECTION
-     Rows 1 and 3 travel right, row 2 travels left, which is what
+     Odd rows travel right, even rows travel left, which is what
      gives the block its layered feel. mqR / mqL in css/styles.css
      are the two halves of that, and the row index picks between
-     them — so adding a fourth row needs no new CSS.
+     them — so changing MQ_ROWS needs no new CSS, only a matching
+     number of skeleton rows in index.html.
 
    STARS
      Drawn from the sprite rather than set as the ★ character:
@@ -140,8 +142,8 @@ function renderSteps(){
      rating is also announced in words for screen readers, since
      five little shapes tell them nothing.
    ============================================================ */
-const MQ_ROWS = 3;
-const MQ_REPEAT = 3;
+const MQ_ROWS = 2;
+const MQ_REPEAT = 2;
 
 function renderTestimonials(){
   const host = $("#mq-rows");
@@ -182,8 +184,6 @@ function renderTestimonials(){
             </div>`;
   }).join("");
 
-  const flag = $("#demo-flag");
-  if(flag) flag.hidden = !CONFIG.testimonialsAreDemo;
 }
 
 /* ============================================================
@@ -250,10 +250,9 @@ function renderCredentials(){
    SECTION NUMBERS
    The numbers are assigned here, over the sections that are
    actually in the page, rather than baked into the translated
-   eyebrow strings. Hiding a section (reviews, while they are demo
-   content) therefore renumbers the rest instead of leaving a hole
-   in the sequence, and adding one never means editing three
-   language files.
+   eyebrow strings. Hiding a section therefore renumbers the rest
+   instead of leaving a hole in the sequence, and adding one never
+   means editing three language files.
    ============================================================ */
 function numberSections(){
   $$("[data-secnum]")
@@ -772,12 +771,8 @@ function initWhatsApp(){
 buildHero();
 renderDestinations();
 
-/* The reviews band renders either way. While CONFIG.testimonialsAreDemo
-   is true it carries a visible "demo content" badge under it, so nothing
-   invented is ever passed off as a real customer; set that flag to false
-   once genuine quotes are in TESTIMONIALS and the badge is the only thing
-   that changes. renderTestimonials() itself runs from setLang, because the
-   quotes are translated. */
+/* renderTestimonials() runs from setLang rather than here, because the
+   review quotes are translated and have to be redrawn on every switch. */
 setLang(initialLang());
 numberSections();
 initHeroVideo();

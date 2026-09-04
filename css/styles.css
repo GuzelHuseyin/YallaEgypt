@@ -1110,25 +1110,27 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 }
 .mq-row{
   border-top:1px solid var(--hair-gold);
-  padding-block:clamp(1rem,2vw,1.5rem);
-  /* The tallest card measures 277px across every breakpoint tested, so a
-     row that reserves 17.5rem is never shorter than what lands in it.
-     index.html ships three empty rows with this same height, which is what
-     makes filling them in cost nothing in layout shift. */
-  min-height:17.5rem;
+  padding-block:clamp(.7rem,1.3vw,.95rem);
+  /* Re-measured after the cards were tightened. The tallest row is 220px,
+     on a narrow screen where the longest German quote wraps furthest; a
+     row that reserves 13.75rem is therefore never shorter than what lands
+     in it at any width. index.html ships its empty rows at this same
+     height, which is what makes filling them in cost nothing in layout
+     shift — check both numbers again if the quotes are ever replaced. */
+  min-height:13.75rem;
 }
 .mq-row:last-child{ border-bottom:1px solid var(--hair-gold); }
 
 /* The margin keeps the first row's hairline off the section heading,
    which the rows would otherwise run straight into. The height is
    reserved on .mq-row above rather than guessed here. */
-#mq-rows{ margin-top:clamp(1.9rem,4vw,3rem); }
+#mq-rows{ margin-top:clamp(1.3rem,2.6vw,2rem); }
 
 .mq-track{
   display:flex; align-items:stretch;       /* every card in a row, one height */
-  gap:clamp(.85rem,1.7vw,1.25rem);
+  gap:clamp(.7rem,1.3vw,.95rem);
   width:max-content;
-  padding-inline:clamp(.85rem,1.7vw,1.25rem);
+  padding-inline:clamp(.7rem,1.3vw,.95rem);
   will-change:transform;
 }
 .mq-r .mq-track{ animation:mqR 82s linear infinite; }
@@ -1144,10 +1146,14 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 /* -- the card ------------------------------------------------ */
 .tm{
   flex:0 0 auto;
-  width:clamp(15.5rem,68vw,20rem);
-  display:flex; flex-direction:column; gap:.9rem;
+  /* Narrow enough to fit more of them on screen, wide enough that the
+     longest quote still breaks over four or five lines rather than a
+     dozen — past about 15rem the line count, not the width, is what
+     sets the height of the whole band. */
+  width:clamp(14.5rem,62vw,17.5rem);
+  display:flex; flex-direction:column; gap:.6rem;
   margin:0;
-  padding:clamp(1.15rem,2.3vw,1.5rem);
+  padding:clamp(.9rem,1.7vw,1.15rem);
   border:1px solid var(--hair-gold);
   background:var(--anthracite);
   transition:border-color .45s var(--ease), background-color .45s var(--ease),
@@ -1160,9 +1166,9 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
   box-shadow:0 18px 40px -24px rgba(0,0,0,.7);
 }
 
-.tm-stars{ display:flex; align-items:center; gap:.2rem; }
+.tm-stars{ display:flex; align-items:center; gap:.16rem; }
 .tm-star{
-  width:.85rem; height:.85rem; flex:none; display:block;
+  width:.72rem; height:.72rem; flex:none; display:block;
   fill:none; stroke:var(--gold); stroke-width:1.6;
   stroke-linejoin:round; opacity:.32;
 }
@@ -1172,22 +1178,21 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 .tm-q p{
   margin:0;
   font-family:var(--font-edit); font-weight:500;
-  font-size:1.04rem; line-height:1.5;
+  font-size:.94rem; line-height:1.44;
   color:var(--papyrus); text-wrap:pretty;
 }
 
 .tm-who{
-  display:flex; align-items:center; gap:.7rem;
+  display:flex; align-items:center; gap:.55rem;
   margin-top:auto;                         /* name sits on the card's floor */
-  padding-top:.15rem;
   font-style:normal;
 }
 /* The same circle the itinerary numerals and the step numbers use. */
 .tm-av{
-  width:2.1rem; height:2.1rem; flex:none;
+  width:1.7rem; height:1.7rem; flex:none;
   display:grid; place-items:center;
   border:1px solid var(--gold); border-radius:50%;
-  font-family:var(--font-display); font-weight:500; font-size:.82rem;
+  font-family:var(--font-display); font-weight:500; font-size:.7rem;
   color:var(--gold);
 }
 .tm-name{
@@ -1198,17 +1203,8 @@ body.mq-paused .mq-track{ animation-play-state:paused; }
 
 .mq-foot{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
-  gap:.8rem 1.5rem; margin-top:1.3rem;
+  gap:.8rem 1.5rem; margin-top:1rem;
 }
-
-/* The demo badge. It is a label on the content, not a decoration:
-   while the reviews are placeholders this is what says so. */
-.flag{
-  display:inline-flex; align-items:center; gap:.6rem;
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--papyrus-dim);
-}
-.flag::before{ content:""; width:5px; height:5px; background:var(--gold); transform:rotate(45deg); }
 
 /* ============================================================
    07 · ABOUT
