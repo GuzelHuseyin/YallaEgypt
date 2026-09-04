@@ -47,7 +47,11 @@ const I18N = {
        are only the labels the interface puts around it, so a new
        tour needs nothing here and a fourth language needs this
        block once rather than once per tour.
-       "tour.waMsg" takes {tour}, replaced with the route name. */
+       "tour.waMsg" takes {tour}, replaced with the route name;
+       "wa.msg" is the general version the floating button and the
+       contact row use when no single tour is on screen. Both are
+       pre-filled into WhatsApp, so they are written as something a
+       visitor would actually send, in their own language. */
     "tour.priceAsk":"Price on request",
     "tour.from":"From","tour.perPerson":"per person","tour.perGroup":"per group",
     "tour.days":"days","tour.nights":"nights",
@@ -78,6 +82,7 @@ const I18N = {
     "tour.ctaLead":"Ask us anything about this route.",
     "tour.ctaBody":"Tell us your dates and who is travelling. We answer within one business day, in Turkish, English or German. The first reply is usually questions rather than a brochure.",
     "tour.waMsg":"Hello Yalla Egypt, I am interested in the {tour} tour. I would like more information.",
+    "wa.msg":"Hello Yalla Egypt, I would like more information about your tours.",
 
     "s3.eye":"Where we work",
     "s3.lead":"The places we work in. Most journeys use two or three of them.",
@@ -174,7 +179,7 @@ const I18N = {
     "phil.quote":"Bir yeri gerçekten görmek, oraya ait hikâyeleri bilmekten geçer. Biz sizi sadece piramitlere değil, onları inşa eden uygarlığın zihnine götürüyoruz.",
     "phil.who":"Yalla Egypt Kuruluş Felsefesi",
     "s3b.eye":"Örnek Program",
-    "s3b.lead":"5 Günlük Nil Yolculuğu",
+    "s3b.lead":"Nil'de beş gün",
     "s3b.cta":"Bu programı sorun","s3b.cta2":"Programın tamamını görün",
 
 
@@ -208,6 +213,7 @@ const I18N = {
     "tour.ctaLead":"Bu rotayla ilgili aklınıza gelen her şeyi sorun.",
     "tour.ctaBody":"Tarihlerinizi ve kimlerin geleceğini yazmanız yeterli. Bir iş günü içinde Türkçe, İngilizce ya da Almanca dönüş yaparız. İlk yanıt genellikle broşür değil, sorulardır.",
     "tour.waMsg":"Merhaba Yalla Egypt, {tour} turuyla ilgileniyorum. Daha fazla bilgi almak istiyorum.",
+    "wa.msg":"Merhaba Yalla Egypt, turlarınız hakkında daha fazla bilgi almak istiyorum.",
 
     "s3.eye":"Çalıştığımız yerler",
     "s3.lead":"Rotalarımızın geçtiği yerler. Çoğu tur bunlardan iki ya da üçünü birleştirir.",
@@ -338,6 +344,7 @@ const I18N = {
     "tour.ctaLead":"Fragen Sie uns alles zu dieser Route.",
     "tour.ctaBody":"Nennen Sie uns Ihren Zeitraum und wer mitreist. Wir antworten innerhalb eines Werktags auf Türkisch, Englisch oder Deutsch. Die erste Antwort besteht meist aus Fragen, nicht aus einer Broschüre.",
     "tour.waMsg":"Hallo Yalla Egypt, ich interessiere mich für die Reise {tour}. Ich hätte gern mehr Informationen.",
+    "wa.msg":"Hallo Yalla Egypt, ich hätte gern mehr Informationen zu Ihren Reisen.",
 
     "s3.eye":"Wo wir arbeiten",
     "s3.lead":"Die Orte, an denen wir arbeiten. Die meisten Reisen nutzen zwei oder drei davon.",

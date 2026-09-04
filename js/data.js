@@ -21,7 +21,7 @@
 const CONFIG = {
   /* Contact. whatsapp takes digits only, international format,
      no plus sign and no spaces — that is what wa.me expects. */
-  whatsapp:     "",                        // e.g. "201001234567"
+  whatsapp:     "905523981104",            // +90 552 398 11 04
   phone:        "",                        // e.g. "+20 100 123 4567"
   email:        "merhaba@yallaegypt.com",  // confirm the mailbox is live before launch
   address:      "",                        // office address, one line
@@ -355,22 +355,22 @@ const TOURS = [
           p:"Arrive whenever your flight lands. Nothing is scheduled before the welcome meeting in the evening, where you meet your leader and the others travelling with you, and most people go out to dinner together afterwards. If this is your first time in Egypt, book an airport transfer in advance rather than arranging one on the concourse. There is also an optional Islamic and Coptic Cairo tour at 10:00 for anyone who adds a night beforehand.",
           stay:"Cosmopolitan Cairo Hotel",
           meals:[] },
-        { d:"Day 2", place:"Cairo/Aswān", h:"Giza, the museum, and the night train south",
+        { d:"Day 2", place:"Cairo/Aswan", h:"Giza, the museum, and the night train south",
           acts:["The Great Pyramid of Giza","The Great Sphinx","Grand Egyptian Museum","The sleeper train to Aswan"],
           p:"The Great Pyramid and the Sphinx in the morning, while the plateau is still cool, then a guided visit to the Grand Egyptian Museum — the collection that took twenty years to build a home for. In the evening you board the overnight sleeper train south, two berths to a cabin, with dinner served on board and breakfast before Aswan.",
           stay:"Overnight sleeper train",
           meals:["Breakfast","Dinner"] },
-        { d:"Day 3", place:"Aswān", h:"Into Aswan, and a Nubian village on the river",
+        { d:"Day 3", place:"Aswan", h:"Into Aswan, and a Nubian village on the river",
           acts:["Free morning","The souk and the corniche","Aga Khan Mausoleum & Kitchener Island","Dinner with a Nubian family"],
           p:"The train reaches Aswan in the morning, occasionally late, which is worth knowing in advance rather than worrying about on the day. The morning is yours for the souk or a walk along the corniche. In the afternoon a boat carries on past the Aga Khan Mausoleum and Kitchener Island to one of the river islands, where you visit a Nubian village and sit down to a home-cooked dinner with a local family.",
           stay:"Obelisk Hotel Aswan",
           meals:["Breakfast","Dinner"] },
-        { d:"Day 4", place:"Aswān", h:"A free day in Aswan",
+        { d:"Day 4", place:"Aswan", h:"A free day in Aswan",
           acts:["Nothing scheduled","Abu Simbel (optional)","The Unfinished Obelisk & High Dam (optional)","The Nubian Museum (optional)"],
           p:"Nothing is planned today. The long option is Abu Simbel, three hours south, and it is worth booking before you travel rather than the night before. Closer to hand there is a half day covering the Unfinished Obelisk, the High Dam and Philae Temple, and there is the Nubian Museum, which is the one indoor hour that explains most of what you have already seen here.",
           stay:"Obelisk Hotel Aswan",
           meals:["Breakfast"] },
-        { d:"Day 5", place:"Aswān/Luxor", h:"A felucca, Kom Ombo, and on to Luxor",
+        { d:"Day 5", place:"Aswan/Luxor", h:"A felucca, Kom Ombo, and on to Luxor",
           acts:["Felucca to Aswan Bridge","Lunch on board","The temple at Kom Ombo","Dinner at the Luxor market"],
           p:"The morning is spent under sail: a felucca down to Aswan Bridge, lunch served on board, and no engine the whole way. A private vehicle takes over from there for Kom Ombo, where the temple stands right at the water's edge and is divided between two gods — one of them a crocodile, and the mummified ones are still on site. Into Luxor in the evening, and dinner at the market.",
           stay:"Emilio Hotel Luxor or similar",
@@ -458,8 +458,8 @@ const TOURS = [
       ],
       days:[
         { d:"1. Gün", place:"Kahire", h:"Kahire'ye varış",
-          acts:["İstediğiniz saatte varış","Akşam karşılama toplantısı","Rehberinizle tanışma","Opsiyonel ortak akşam yemeği"],
-          p:"Uçağınız kaçta inerse insin. Akşamki karşılama toplantısından önce hiçbir şey planlanmadı; orada rehberinizle ve sizinle birlikte seyahat edecek kişilerle tanışıyorsunuz ve çoğu kişi ardından birlikte yemeğe çıkıyor. Mısır'a ilk kez geliyorsanız havalimanı transferini terminalde ayarlamak yerine önceden ayırtın. Bir gece önceden gelenler için saat 10:00'da başlayan opsiyonel bir İslami ve Kıpti Kahire turu da var.",
+          acts:["İstediğiniz saatte varış","Akşam karşılama toplantısı","Tur liderinizle tanışma","Opsiyonel ortak akşam yemeği"],
+          p:"Uçağınız kaçta inerse insin. Akşamki karşılama toplantısından önce hiçbir şey planlanmadı; orada tur lideriniz ve sizinle birlikte seyahat edecek kişilerle tanışıyorsunuz ve çoğu kişi ardından birlikte yemeğe çıkıyor. Mısır'a ilk kez geliyorsanız havalimanı transferini terminalde ayarlamak yerine önceden ayırtın. Bir gece önceden gelenler için saat 10:00'da başlayan opsiyonel bir İslami ve Kıpti Kahire turu da var.",
           stay:"Cosmopolitan Cairo Hotel",
           meals:[] },
         { d:"2. Gün", place:"Kahire/Asvan", h:"Giza, müze ve güneye gece treni",
@@ -806,7 +806,7 @@ const TOURS = [
       days:[
         { d:"1. Gün", place:"Kahire", h:"Kahire'ye varış",
           acts:["İstediğiniz saatte varış","17:00'de karşılama toplantısı","Kıpti Kahire ya da çarşılar","Opsiyonel ortak akşam yemeği"],
-          p:"Bugünün tek sabit noktası saat beşteki karşılama toplantısı. Erken gelirseniz çarşılara ya da Kıpti Kahire'ye vakit kalıyor; Asma Kilise ile Ben Ezra Sinagogu birbirine birkaç dakika yürüme mesafesinde. Toplantının ardından çoğu kişi rehberle birlikte yemeğe çıkıyor. Boş bir sabahınız varsa Sakkara ve Memfis ya da Mısır Medeniyeti Ulusal Müzesi ile Kraliyet Mumyaları Salonu opsiyonel tur olarak düzenleniyor.",
+          p:"Bugünün tek sabit noktası saat beşteki karşılama toplantısı. Erken gelirseniz çarşılara ya da Kıpti Kahire'ye vakit kalıyor; Asma Kilise ile Ben Ezra Sinagogu birbirine birkaç dakika yürüme mesafesinde. Toplantının ardından çoğu kişi tur lideriyle birlikte yemeğe çıkıyor. Boş bir sabahınız varsa Sakkara ve Memfis ya da Mısır Medeniyeti Ulusal Müzesi ile Kraliyet Mumyaları Salonu opsiyonel tur olarak düzenleniyor.",
           stay:"Pyramids Park Hotel ya da benzeri",
           meals:["Akşam yemeği"] },
         { d:"2. Gün", place:"Kahire", h:"Giza, müze ve güneye gece treni",
@@ -940,7 +940,7 @@ const TOURS = [
           meals:["Frühstück","Abendessen"] },
         { d:"Tag 5", place:"Luxor", h:"Nach Norden nach Luxor, und Karnak",
           acts:["Fahrt nach Luxor","Die Sphingenallee","Der Große Amun-Tempel","Animal Care in Egypt","Ton- und Lichtshow in Karnak (optional)"],
-          p:"Die Straße nach Norden bis Luxor, danach Karnak: die Sphingenallee, der Große Amun-Tempel und eine Säulenhalle, an der bisher jedes Foto gescheitert ist. Später steht ein Besuch bei Animal Care in Egypt an, einer arbeitenden Tierklinik und Partnerin der Intrepid Foundation, die die Pferde und Esel behandelt, von denen die Stadt lebt. Die Ton- und Lichtshow in Karnak ist am Abend optional zubuchbar.",
+          p:"Die Straße nach Norden bis Luxor, danach Karnak: die Sphingenallee, der Große Amun-Tempel und eine Säulenhalle, an der bisher jedes Foto gescheitert ist. Später steht ein Besuch bei Animal Care in Egypt an, einer arbeitenden Tierklinik und Partnerin der Intrepid Foundation, die sich um die Pferde und Esel kümmert, von denen die Stadt lebt. Die Ton- und Lichtshow in Karnak ist am Abend optional zubuchbar.",
           stay:"Pyramisa Isis Hotel oder ähnlich",
           meals:["Frühstück"] },
         { d:"Tag 6", place:"Luxor", h:"Das Tal der Könige",
@@ -1298,7 +1298,7 @@ const TOURS = [
           acts:["Boat out to the reefs","Two dives for certified divers","An introductory dive for beginners","Snorkelling and lunch on board"],
           p:"A full day on the water. Certified divers get two dives, beginners can make a supervised introductory dive with an instructor, and anyone who would rather not can snorkel from the same boat. The sites are chosen on the morning according to wind and swell." },
         { d:"Day 4", place:"Giftun, then Luxor", h:"The islands, then the road to Luxor",
-          acts:["Morning boat to the islands","Snorkelling and beach time","Evening transfer to Luxor","Hotel check-in in Luxor"],
+          acts:["Morning boat to the islands","Snorkelling and beach time","Evening transfer to Luxor","Check-in at the Luxor hotel"],
           p:"The islands in the morning and back at the marina by mid-afternoon. The road to Luxor is driven in the evening and takes about four hours across the desert, so the day loses nothing to travel and you wake up on the Nile." },
         { d:"Day 5", place:"Luxor", h:"Discover Luxor",
           acts:["Luxor Temple","The Luxor Museum","Karnak Temple","The hypostyle hall at dusk"],

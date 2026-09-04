@@ -1412,25 +1412,55 @@ a.contact-row:hover .v, a.contact-row:focus-visible .v{ color:var(--gold-bright)
 .foot-top:hover, .foot-top:focus-visible{ color:var(--gold-bright); }
 
 /* Floating WhatsApp — mobile only, and only past the hero */
+/* FLOATING WHATSAPP
+   The gold pill of .btn--gold at button scale, pinned bottom right —
+   no new colour, no new type, and the same hover the solid buttons
+   use. It is on every width: on a phone it is the primary way people
+   start a conversation, and on a desktop it is the only affordance
+   that follows the page down.
+
+   It appears once the hero is behind you (body.past-hero) rather than
+   over the first screen, which is the site's own rule for anything
+   that floats. bottom uses env(safe-area-inset-bottom) so it clears
+   the home indicator on an iPhone. */
 .wa{
   position:fixed; z-index:75;
-  right:1rem; bottom:calc(1rem + env(safe-area-inset-bottom));
-  display:none; align-items:center; gap:.5rem;
+  right:clamp(1rem, 2.5vw, 2rem);
+  bottom:calc(clamp(1rem, 2.5vw, 2rem) + env(safe-area-inset-bottom));
+  display:inline-flex; align-items:center; gap:.5rem;
   background:var(--gold); color:var(--obsidian);
+  border:1px solid var(--gold);
   padding:.75rem 1.05rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
   text-transform:uppercase; letter-spacing:var(--ls-ui);
   box-shadow:0 6px 26px rgba(11,10,8,.45);
   opacity:0; visibility:hidden; transform:translateY(10px);
-  transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s;
+  transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s,
+             background-color .35s var(--ease), border-color .35s var(--ease);
 }
 body.past-hero .wa{ opacity:1; visibility:visible; transform:none; }
-/* The floating button and the tour panel's own header CTA are the
-   same affordance at two sizes, so they swap at one breakpoint
-   rather than both being on screen at once. */
+.wa:hover, .wa:focus-visible{ background:var(--gold-bright); border-color:var(--gold-bright); }
+
+/* NOTHING MAY SIT ON TOP OF ANYTHING ELSE
+   The two full-screen surfaces on this site both live BELOW the
+   button's layer, so each one has to stand it down explicitly.
+
+   1. The mobile menu (.mmenu, z-index 65) covers the page but not
+      this, so without the rule below the pill floats over the open
+      menu — the one real collision on the site. */
+body.menu-open .wa{
+  opacity:0; visibility:hidden; transform:translateY(10px); pointer-events:none;
+}
+
+/* 2. The tour panel carries its own WhatsApp button in the tour bar
+      at desktop widths. Below 901px that bar CTA is dropped and the
+      floating one takes over, so the two are never on screen
+      together — they are the same affordance at two sizes. */
 @media (max-width:900px){
-  .wa{ display:inline-flex; }
   .tour-bar-cta{ display:none; }
+}
+@media (min-width:901px){
+  body.tour-open .wa{ display:none; }
 }
 
 /* ============================================================

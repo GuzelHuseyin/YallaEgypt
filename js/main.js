@@ -43,7 +43,7 @@ function contactChannels(){
     { key:"phone", href:CONFIG.phone ? `tel:${CONFIG.phone.replace(/[^\d+]/g, "")}` : null,
       text:CONFIG.phone || t("contact.label.phone"),
       label:t("contact.label.phone"), aria:t("contact.direct.phone"), tbc:!CONFIG.phone, ext:false },
-    { key:"whatsapp", href:waHref(), text:t("s9.cta2"),
+    { key:"whatsapp", href:waHref(t("wa.msg")), text:t("s9.cta2"),
       label:t("contact.label.whatsapp"), aria:t("contact.direct.whatsapp"), tbc:!waIsSet(), ext:waIsSet() },
     /* The social channels sit here rather than in a column of their
        own: after WhatsApp, Instagram is the thing people check to
@@ -487,6 +487,7 @@ function setLang(l){
   });
   $$(".lang button").forEach(b => b.setAttribute("aria-current", String(b.dataset.lang === LANG)));
 
+  initWhatsApp();
   renderTours();
   renderSteps();
   renderItinerary();
@@ -683,11 +684,26 @@ function initForm(){
   $("#cform-again")?.addEventListener("click", resetForm);
 }
 
+/* The floating button. With a number configured it opens wa.me in a
+   new tab with a message already written; without one it still falls
+   back to the contact form rather than shipping a dead link.
+
+   The message is the one in the language on screen, so setLang calls
+   this again on every switch — before renderTours(), because while a
+   tour is open js/tours.js retargets this same button at that route
+   and its version has to be the one that survives. */
 function initWhatsApp(){
   const fab = $("#wa");
   if(!fab) return;
-  fab.href = waHref();
-  if(waIsSet()){ fab.target = "_blank"; fab.rel = "noopener noreferrer"; }
+  fab.href = waHref(t("wa.msg"));
+  fab.setAttribute("aria-label", t("contact.direct.whatsapp"));
+  if(waIsSet()){
+    fab.target = "_blank"; fab.rel = "noopener noreferrer";
+    fab.removeAttribute("data-journey"); fab.removeAttribute("data-tour-exit");
+  } else {
+    fab.removeAttribute("target"); fab.removeAttribute("rel");
+    fab.setAttribute("data-tour-exit", "");
+  }
 }
 
 /* ============================================================

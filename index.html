@@ -862,8 +862,8 @@
 <!-- ===================== TOURS ===================== -->
 <section class="sec sec--paper" id="journeys" data-ground="dark" aria-labelledby="s2-h">
   <div class="wrap">
-    <p class="eyebrow" data-secnum><span data-i18n="s2.eye">Our signature routes</span></p>
-    <h2 id="s2-h" class="lead rv" data-i18n="s2.lead">Four routes, four thousand years</h2>
+    <p class="eyebrow" data-secnum><span data-i18n="s2.eye">Our tours</span></p>
+    <h2 id="s2-h" class="lead rv" data-i18n="s2.lead">Five routes, from four days to nine</h2>
     <div id="journeys-list" class="tours"></div>
   </div>
 </section>
@@ -935,7 +935,7 @@
     <div class="split">
       <h2 id="s7-h" class="lead rv" data-i18n="s7.lead">Luxury isn't bought from a company. It's bought from people.</h2>
       <div class="split-body">
-        <p class="rv" data-i18n="s7.body">Every route on this site is planned and run by the same small group.</p>
+        <p class="rv" data-i18n="s7.body">Every route on this site is planned and run by the same small group. The person who answers your first message is the person who meets you at arrivals, and the person who picks up at eleven at night. No account manager, no call centre, and nothing handed to a third-party operator once you land.</p>
       </div>
     </div>
 
@@ -1031,7 +1031,7 @@
       <nav class="foot-col" aria-label="Explore">
         <h3 data-i18n="foot.explore">Explore</h3>
         <ul>
-          <li><a href="#journeys"     data-i18n="nav.journeys">Journeys</a></li>
+          <li><a href="#journeys"     data-i18n="nav.journeys">Tours</a></li>
           <li><a href="#destinations" data-i18n="nav.dest">Destinations</a></li>
           <li><a href="#planning"     data-i18n="nav.planning">Planning</a></li>
           <li><a href="#about"        data-i18n="nav.about">About</a></li>
@@ -1052,9 +1052,15 @@
   </div>
 </footer>
 
-<!-- Floating WhatsApp, mobile only. main.js points it at the real
-     number once CONFIG.whatsapp is filled; until then it opens the
-     contact form rather than shipping a dead wa.me link. -->
+<!-- Floating WhatsApp, every width. js/main.js gives it the wa.me
+     link and a message already written in the language on screen
+     (I18N "wa.msg"), and rewrites both on every language switch;
+     js/tours.js retargets it at the open route while a tour is up.
+     With CONFIG.whatsapp empty it falls back to the contact form
+     rather than shipping a dead wa.me link. It stands down while
+     the mobile menu is open and, at desktop widths, while a tour
+     panel is showing its own WhatsApp button — see .wa in
+     css/styles.css. -->
 <a class="wa" id="wa" href="#contact-form" aria-label="WhatsApp">
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.8-2.7-1.1-4.4-3.9-4.5-4-.1-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5.1.3.7 1.2 1.5 1.9 1 .9 1.8 1.1 2 1.2.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.1Z"/></svg>
   <span>WhatsApp</span>
