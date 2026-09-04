@@ -109,22 +109,81 @@ function renderSteps(){
     </li>`).join("");
 }
 
+/* ============================================================
+   REVIEWS — the three-row marquee
+   ------------------------------------------------------------
+   Reads TESTIMONIALS (js/data.js), which is demo content until
+   the client supplies real reviews; see the banner on that array.
+
+   THE SEAMLESS LOOP IS ARITHMETIC, NOT A TRICK
+     Each track holds its cards TWICE, and the keyframe travels
+     exactly 50% of the track. At the end of a cycle the second
+     copy sits precisely where the first one started, so the reset
+     is invisible — there is no jump to hide because nothing moves
+     at the wrap.
+
+     REPEAT exists only to make one copy wider than the widest
+     viewport. Four cards would leave a gap on a desktop screen
+     halfway through the cycle; four repeated three times cannot.
+     Raise it if the cards are ever made much narrower.
+
+   DIRECTION
+     Rows 1 and 3 travel right, row 2 travels left, which is what
+     gives the block its layered feel. mqR / mqL in css/styles.css
+     are the two halves of that, and the row index picks between
+     them — so adding a fourth row needs no new CSS.
+
+   STARS
+     Drawn from the sprite rather than set as the ★ character:
+     ★ is absent from all three of the site's font subsets and
+     would fall back to a system glyph of a different weight. The
+     rating is also announced in words for screen readers, since
+     five little shapes tell them nothing.
+   ============================================================ */
+const MQ_ROWS = 3;
+const MQ_REPEAT = 3;
+
 function renderTestimonials(){
-  const card = x => `
-    <blockquote class="tm">
-      <span class="tm-stars" aria-hidden="true">★★★★★</span>
-      <span class="sr-only">Rated 5 out of 5.</span>
-      <p class="tm-q">${esc(x.q)}</p>
-      <footer class="tm-who">${esc(x.who)}</footer>
-    </blockquote>`;
-  const rows = [TESTIMONIALS.slice(0, 3), TESTIMONIALS.slice(3, 6), TESTIMONIALS.slice(6, 9)];
-  $("#mq-rows").innerHTML = rows.map((row, i) => {
-    // Tripled then doubled: the track has to be twice its visible
-    // width for the -50% keyframe to loop without a jump.
-    const set = row.concat(row, row).map(card).join("");
-    return `<div class="mq-row"><div class="mq ${i % 2 ? "mq-r" : "mq-l"}"><div class="mq-track">${set}${set}</div></div></div>`;
+  const host = $("#mq-rows");
+  if(!host || typeof TESTIMONIALS === "undefined" || !TESTIMONIALS.length) return;
+
+  const stars = r => Array.from({ length:5 }, (_, i) =>
+    `<svg class="tm-star${i < r ? " is-on" : ""}" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>`).join("");
+
+  const card = x => {
+    /* The quote carries one string per language; fall back to English
+       rather than rendering an empty card if a language is missing. */
+    const q = (x.q && (x.q[LANG] || x.q.en)) || "";
+    const initial = (x.n || "?").trim().charAt(0).toUpperCase();
+    return `
+    <figure class="tm">
+      <div class="tm-stars">
+        ${stars(x.r)}
+        <span class="sr-only">${esc(t("s6.rated").replace("{n}", x.r))}</span>
+      </div>
+      <blockquote class="tm-q"><p>${esc(q)}</p></blockquote>
+      <figcaption class="tm-who">
+        <span class="tm-av" aria-hidden="true">${esc(initial)}</span>
+        <span class="tm-name">${esc(x.n)}</span>
+      </figcaption>
+    </figure>`;
+  };
+
+  /* Consecutive blocks, so no row shows another row's cards. */
+  const per = Math.ceil(TESTIMONIALS.length / MQ_ROWS);
+  const rows = Array.from({ length:MQ_ROWS }, (_, i) =>
+    TESTIMONIALS.slice(i * per, (i + 1) * per)).filter(r => r.length);
+
+  host.innerHTML = rows.map((row, i) => {
+    const one = Array(MQ_REPEAT).fill(row).flat().map(card).join("");
+    const dir = i % 2 ? "mq-l" : "mq-r";      // right, left, right
+    return `<div class="mq-row">
+              <div class="mq ${dir}"><div class="mq-track">${one}${one}</div></div>
+            </div>`;
   }).join("");
-  $("#demo-flag").hidden = !CONFIG.testimonialsAreDemo;
+
+  const flag = $("#demo-flag");
+  if(flag) flag.hidden = !CONFIG.testimonialsAreDemo;
 }
 
 /* ============================================================
@@ -489,6 +548,7 @@ function setLang(l){
 
   initWhatsApp();
   renderTours();
+  renderTestimonials();
   renderSteps();
   renderItinerary();
   renderCredentials();
@@ -712,25 +772,19 @@ function initWhatsApp(){
 buildHero();
 renderDestinations();
 
-/* Demo reviews are not shown at all. Invented praise behind a
-   "demo content" label tells a visitor the company has no
-   customers — worse than an absent section. Drop real quotes into
-   TESTIMONIALS and set CONFIG.testimonialsAreDemo = false. */
-const reviewsSection = $("#reviews");
-if(CONFIG.testimonialsAreDemo){
-  if(reviewsSection) reviewsSection.hidden = true;
-} else {
-  renderTestimonials();
-  $("#demo-flag")?.remove();
-}
-
+/* The reviews band renders either way. While CONFIG.testimonialsAreDemo
+   is true it carries a visible "demo content" badge under it, so nothing
+   invented is ever passed off as a real customer; set that flag to false
+   once genuine quotes are in TESTIMONIALS and the badge is the only thing
+   that changes. renderTestimonials() itself runs from setLang, because the
+   quotes are translated. */
 setLang(initialLang());
 numberSections();
 initHeroVideo();
 initGround();
 initMenu();
 initStrip();
-if(!CONFIG.testimonialsAreDemo) initMarquee();
+initMarquee();
 initDisclosures();
 initForm();
 initWhatsApp();

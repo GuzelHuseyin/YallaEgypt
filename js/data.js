@@ -1920,18 +1920,100 @@ const DESTINATIONS = [
 ];
 
 /* ------------------------------------------------------------
-   DEMO REVIEWS — not real, and must not be used in marketing.
-   Swap this array 1:1 for genuine reviews, then set
-   CONFIG.testimonialsAreDemo to false.
+   DEMO REVIEWS — PLACEHOLDER CONTENT, NOT REAL CUSTOMERS
+
+   Every name, rating and sentence below is invented. Nothing here
+   may be quoted in marketing, screenshots or advertising until it
+   is replaced by genuine feedback. While CONFIG.testimonialsAreDemo
+   is true the section carries a visible "demo content" badge, so a
+   visitor is never told these are real.
+
+   TO GO LIVE WITH REAL REVIEWS
+     1. Replace the entries below one for one. Keep the shape:
+
+          { n:"Reviewer name",          // shown, and its first
+                                        // letter becomes the avatar
+            r:5,                        // 1-5, drives the stars
+            q:{ en:"…", tr:"…", de:"…" } }   // the review itself
+
+     2. Set CONFIG.testimonialsAreDemo = false. That removes the
+        badge and nothing else — the section, the marquee and the
+        layout are identical either way.
+
+   WHY THE NAME AND THE RATING SIT OUTSIDE q
+     A person's name and the number of stars they gave do not get
+     translated, so they are written once. Only the sentence has a
+     per-language version, and those are written natural in each
+     language rather than translated word for word — the same
+     opinion, phrased the way that language would phrase it.
+
+   HOW THEY ARE SPREAD OVER THE THREE ROWS
+     js/main.js cuts this list into three consecutive blocks of
+     four, so row 1 gets 1-4, row 2 gets 5-8 and row 3 gets 9-12
+     and no row repeats another row's cards. Keep the list a
+     multiple of three and every row stays even.
    ------------------------------------------------------------ */
 const TESTIMONIALS = [
-  { q:"They moved two days around when my flight changed. No fuss.",        who:"Demo, Name, City" },
-  { q:"We asked for less walking. The whole route was rebuilt.",            who:"Demo, Name, City" },
-  { q:"Someone answered at eleven at night, in Turkish.",                   who:"Demo, Name, City" },
-  { q:"The driver waited three hours at the airport. Never mentioned it.",  who:"Demo, Name, City" },
-  { q:"Karnak at seven in the morning was the right call.",                 who:"Demo, Name, City" },
-  { q:"Prices were the same at the end as at the beginning.",               who:"Demo, Name, City" },
-  { q:"Our guide knew when to stop talking.",                               who:"Demo, Name, City" },
-  { q:"They told us one site was not worth the drive. It was not.",         who:"Demo, Name, City" },
-  { q:"Two kids, seven days, nobody cried. Including us.",                  who:"Demo, Name, City" }
+  /* ---- row 1 ---- */
+  { n:"Elif Yıldırım", r:5, q:{
+    en:"Our guide in Luxor answered every question my father had, and he had a lot of them. We were never once made to hurry.",
+    tr:"Luksor'daki rehberimiz babamın bütün sorularını yanıtladı, ki az soru sormadı. Hiçbir yerde acele ettirilmedik.",
+    de:"Unser Guide in Luxor hat meinem Vater jede Frage beantwortet, und er hatte viele. Gehetzt wurden wir kein einziges Mal." } },
+
+  { n:"Michael Brandt", r:5, q:{
+    en:"Standing at Giza before the coaches arrived made the whole difference. Worth every minute of the early alarm.",
+    tr:"Giza'ya otobüsler gelmeden varmak her şeyi değiştirdi. Erken kalkmaya fazlasıyla değdi.",
+    de:"Vor den Reisebussen in Gizeh zu stehen, hat den entscheidenden Unterschied gemacht. Der frühe Wecker hat sich gelohnt." } },
+
+  { n:"Sarah Whitfield", r:4, q:{
+    en:"The planning was faultless and the guides were excellent. One hotel was a little tired, and they moved us the next day without being asked twice.",
+    tr:"Planlama kusursuzdu, rehberler çok iyiydi. Bir otel biraz yorgundu; ikinci kez söylememize gerek kalmadan ertesi gün bizi başka yere aldılar.",
+    de:"Die Planung war tadellos und die Guides hervorragend. Ein Hotel war etwas in die Jahre gekommen — wir wurden am nächsten Tag umquartiert, ohne zweimal fragen zu müssen." } },
+
+  { n:"Burak Demir", r:5, q:{
+    en:"I wrote at midnight expecting an answer in the morning. Someone replied within ten minutes, in my own language.",
+    tr:"Gece yarısı yazdım, sabaha cevap beklerken on dakika içinde kendi dilimde dönüş aldım.",
+    de:"Ich schrieb um Mitternacht und rechnete mit einer Antwort am Morgen. Nach zehn Minuten kam sie, in meiner eigenen Sprache." } },
+
+  /* ---- row 2 ---- */
+  { n:"Katharina Vogel", r:5, q:{
+    en:"The evening on the Nile was the quietest hour of our year. No engine, no schedule, just the water.",
+    tr:"Nil'de geçirdiğimiz akşam, yılımızın en sakin saatiydi. Motor yok, program yok, sadece su.",
+    de:"Der Abend auf dem Nil war die ruhigste Stunde unseres Jahres. Kein Motor, kein Zeitplan, nur das Wasser." } },
+
+  { n:"James Holloway", r:5, q:{
+    en:"Nine days, four cities, and not one transfer went wrong. Someone had clearly thought the whole thing through in advance.",
+    tr:"Dokuz gün, dört şehir ve tek bir transfer bile aksamadı. Belli ki her ayrıntı önceden düşünülmüş.",
+    de:"Neun Tage, vier Städte, und kein einziger Transfer ging schief. Da hatte offensichtlich jemand vorher mitgedacht." } },
+
+  { n:"Ayşe Kaya", r:4, q:{
+    en:"Luxor in August is hard work and they said so before we booked. We went anyway, and they built each day around the heat.",
+    tr:"Ağustosta Luksor zorlu ve bunu rezervasyondan önce söylediler. Yine de gittik; günleri sıcağa göre kurdular.",
+    de:"Luxor im August ist anstrengend, und das haben sie vor der Buchung gesagt. Wir sind trotzdem gefahren, und sie haben jeden Tag um die Hitze herum geplant." } },
+
+  { n:"Thomas Reinhardt", r:5, q:{
+    en:"We saw the Valley of the Kings before the heat, then ate lunch with a family on the West Bank. That lunch is what my children still talk about.",
+    tr:"Kral Vadisi'ni sıcak basmadan gezdik, ardından Batı Yaka'da bir ailenin evinde öğle yemeği yedik. Çocuklarımın hâlâ anlattığı şey o yemek.",
+    de:"Wir haben das Tal der Könige vor der Hitze gesehen und danach bei einer Familie am Westufer zu Mittag gegessen. Von diesem Essen erzählen meine Kinder bis heute." } },
+
+  /* ---- row 3 ---- */
+  { n:"Zeynep Arslan", r:5, q:{
+    en:"The price we were quoted at the start was the price we paid at the end. Nothing appeared afterwards.",
+    tr:"Başta verilen fiyat, sonunda ödediğimiz fiyattı. Sonradan tek bir kalem bile eklenmedi.",
+    de:"Der Preis vom Anfang war der Preis am Ende. Nachträglich kam nichts mehr dazu." } },
+
+  { n:"Daniel Fischer", r:5, q:{
+    en:"Two hours in the Grand Egyptian Museum with someone who knew what to skip. That alone is worth paying for.",
+    tr:"Büyük Mısır Müzesi'nde, neyi atlamak gerektiğini bilen biriyle iki saat. Tek başına parasını hak ediyor.",
+    de:"Zwei Stunden im Grand Egyptian Museum mit jemandem, der wusste, was man auslassen kann. Allein dafür zahlt man gern." } },
+
+  { n:"Claire Bennett", r:5, q:{
+    en:"My flight was cancelled and the whole itinerary was rebuilt overnight. I never had to ask for anything twice.",
+    tr:"Uçuşum iptal oldu ve bütün program bir gecede yeniden kuruldu. Hiçbir şeyi iki kez sormam gerekmedi.",
+    de:"Mein Flug fiel aus, und das gesamte Programm wurde über Nacht neu gebaut. Ich musste nie zweimal um etwas bitten." } },
+
+  { n:"Mert Özkan", r:4, q:{
+    en:"The sleeper train is not luxury and nobody pretended otherwise. It was clean, it left on time, and we woke up in Aswan.",
+    tr:"Gece treni lüks değil ve kimse öyleymiş gibi anlatmadı. Temizdi, saatinde kalktı ve Asvan'da uyandık.",
+    de:"Der Nachtzug ist kein Luxus, und niemand hat etwas anderes behauptet. Er war sauber, fuhr pünktlich, und wir sind in Assuan aufgewacht." } }
 ];

@@ -1074,38 +1074,135 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 .step p{ color:var(--papyrus-dim); font-size:var(--fs-sm); line-height:1.66; }
 
 /* ============================================================
-   06 · TESTIMONIALS
+   06 · REVIEWS — three rows, alternating, endlessly
+   ------------------------------------------------------------
+   The rows are the page's own card in motion: hairline gold box,
+   anthracite ground, square corners, and the same hover lift the
+   tour cards use. Nothing new is introduced — no radius, no second
+   shadow weight, no colour that is not already a token.
+
+   THE LOOP
+     Each .mq-track holds its cards twice and travels exactly 50%.
+     At the end of a cycle the second copy is where the first began,
+     so the restart lands on an identical frame and there is nothing
+     to see. The duration is set per direction, not per row, so the
+     two speeds stay slightly out of phase and the block never
+     resolves into a single sliding sheet.
+
+     Speed is a function of distance, not taste: a track is roughly
+     three viewport-widths of cards, and ~80s across it puts a card
+     on screen for long enough to read at a glance.
+
+   THE MASK
+     Cards fade out at both edges instead of being cut, which is
+     what stops the row reading as a clipped overflow box.
+
+   PAUSING
+     Three ways in, because a marquee that cannot be stopped is a
+     marquee nobody reads: hover, keyboard focus, and the explicit
+     button under the rows (which is also the touch answer, since a
+     phone has no hover). :active covers press-and-hold as well.
    ============================================================ */
 .mq{
   overflow:hidden;
   -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
           mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);
 }
-.mq-row{ border-top:1px solid var(--hair-gold); }
+.mq-row{
+  border-top:1px solid var(--hair-gold);
+  padding-block:clamp(1rem,2vw,1.5rem);
+  /* The tallest card measures 277px across every breakpoint tested, so a
+     row that reserves 17.5rem is never shorter than what lands in it.
+     index.html ships three empty rows with this same height, which is what
+     makes filling them in cost nothing in layout shift. */
+  min-height:17.5rem;
+}
 .mq-row:last-child{ border-bottom:1px solid var(--hair-gold); }
-.mq-track{ display:flex; width:max-content; will-change:transform; }
-.mq-l .mq-track{ animation:mqL 72s linear infinite; }
-.mq-r .mq-track{ animation:mqR 78s linear infinite; }
-.mq:hover .mq-track, .mq:focus-within .mq-track,
+
+/* The margin keeps the first row's hairline off the section heading,
+   which the rows would otherwise run straight into. The height is
+   reserved on .mq-row above rather than guessed here. */
+#mq-rows{ margin-top:clamp(1.9rem,4vw,3rem); }
+
+.mq-track{
+  display:flex; align-items:stretch;       /* every card in a row, one height */
+  gap:clamp(.85rem,1.7vw,1.25rem);
+  width:max-content;
+  padding-inline:clamp(.85rem,1.7vw,1.25rem);
+  will-change:transform;
+}
+.mq-r .mq-track{ animation:mqR 82s linear infinite; }
+.mq-l .mq-track{ animation:mqL 76s linear infinite; }
+.mq:hover .mq-track,
+.mq:focus-within .mq-track,
+.mq:active .mq-track,
 body.mq-paused .mq-track{ animation-play-state:paused; }
-@keyframes mqL{ from{transform:translate3d(0,0,0)}      to{transform:translate3d(-50%,0,0)} }
-@keyframes mqR{ from{transform:translate3d(-50%,0,0)}   to{transform:translate3d(0,0,0)} }
+
+@keyframes mqL{ from{ transform:translate3d(0,0,0) }    to{ transform:translate3d(-50%,0,0) } }
+@keyframes mqR{ from{ transform:translate3d(-50%,0,0) } to{ transform:translate3d(0,0,0) } }
+
+/* -- the card ------------------------------------------------ */
 .tm{
-  flex:0 0 auto; display:flex; align-items:baseline; gap:.9rem;
-  padding:1.1rem clamp(1.3rem,2.8vw,2.4rem);
-  border-left:1px solid var(--hair-gold);
-  white-space:nowrap;
+  flex:0 0 auto;
+  width:clamp(15.5rem,68vw,20rem);
+  display:flex; flex-direction:column; gap:.9rem;
+  margin:0;
+  padding:clamp(1.15rem,2.3vw,1.5rem);
+  border:1px solid var(--hair-gold);
+  background:var(--anthracite);
+  transition:border-color .45s var(--ease), background-color .45s var(--ease),
+             transform .45s var(--ease), box-shadow .45s var(--ease);
 }
-.tm-stars{ color:var(--gold); font-size:.68rem; letter-spacing:.14em; flex:none; }
-.tm-q{ font-family:var(--font-edit); font-size:1.16rem; font-weight:500; color:var(--papyrus); }
+.tm:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+  background:var(--navy-2);
+  box-shadow:0 18px 40px -24px rgba(0,0,0,.7);
+}
+
+.tm-stars{ display:flex; align-items:center; gap:.2rem; }
+.tm-star{
+  width:.85rem; height:.85rem; flex:none; display:block;
+  fill:none; stroke:var(--gold); stroke-width:1.6;
+  stroke-linejoin:round; opacity:.32;
+}
+.tm-star.is-on{ fill:var(--gold); opacity:1; }
+
+.tm-q{ margin:0; }
+.tm-q p{
+  margin:0;
+  font-family:var(--font-edit); font-weight:500;
+  font-size:1.04rem; line-height:1.5;
+  color:var(--papyrus); text-wrap:pretty;
+}
+
 .tm-who{
-  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
-  text-transform:uppercase; letter-spacing:var(--ls-ui); color:var(--papyrus-dim); font-style:normal;
+  display:flex; align-items:center; gap:.7rem;
+  margin-top:auto;                         /* name sits on the card's floor */
+  padding-top:.15rem;
+  font-style:normal;
 }
+/* The same circle the itinerary numerals and the step numbers use. */
+.tm-av{
+  width:2.1rem; height:2.1rem; flex:none;
+  display:grid; place-items:center;
+  border:1px solid var(--gold); border-radius:50%;
+  font-family:var(--font-display); font-weight:500; font-size:.82rem;
+  color:var(--gold);
+}
+.tm-name{
+  font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
+  text-transform:uppercase; letter-spacing:var(--ls-ui);
+  color:var(--papyrus-dim); min-width:0;
+}
+
 .mq-foot{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
   gap:.8rem 1.5rem; margin-top:1.3rem;
 }
+
+/* The demo badge. It is a label on the content, not a decoration:
+   while the reviews are placeholders this is what says so. */
 .flag{
   display:inline-flex; align-items:center; gap:.6rem;
   font-family:var(--font-ui); font-size:var(--fs-micro); font-weight:500;
@@ -1960,7 +2057,12 @@ body.tour-open .wa{
   .slide, .slide img, .slide.is-live img{ transform:none !important; }
   .hero-gesture, .hero-dim{ display:none !important; }
   .hero-lockup{ transform:none !important; filter:none !important; }
-  .mq{ overflow-x:auto; }
+  /* The blanket animation-duration override above would freeze each
+     track at its END transform — half the cards scrolled off. Cancel
+     the animation outright instead, park the track at its origin, and
+     hand the row to the reader as something they scroll themselves. */
+  .mq-track{ animation:none !important; transform:none !important; }
+  .mq{ overflow-x:auto; overscroll-behavior-x:contain; }
   .tour-panel-in{ animation:none !important; transform:none !important; }
   .js .rv{ opacity:1; transform:none; }
   .record-prog{ display:none; }

@@ -669,6 +669,13 @@
       <circle cx="17.2" cy="6.8" r="1.05" fill="currentColor" stroke="none"/>
     </symbol>
 
+    <!-- Review rating star. Filled or hairline is decided in CSS
+         (.tm-star / .tm-star.is-on), so one symbol draws both states
+         and the sprite carries no colour of its own. -->
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="M12 3.4l2.65 5.38 5.94.86-4.3 4.19 1.02 5.91L12 17.94l-5.31 2.8 1.02-5.91-4.3-4.19 5.94-.86z"/>
+    </symbol>
+
     <symbol id="ye-mark-compact" viewBox="0 0 64 64">
       <g fill="none" stroke="currentColor" stroke-linejoin="round">
         <circle cx="32" cy="32" r="28.4" stroke-width="1.9"/>
@@ -918,7 +925,16 @@
     <p class="eyebrow" data-secnum><span data-i18n="s6.eye">In their words</span></p>
     <h2 id="s6-h" class="lead lead--sm rv" data-i18n="s6.lead">What people said afterwards.</h2>
   </div>
-  <div id="mq-rows"></div>
+  <!-- Three empty rows stand here from the moment the HTML is parsed.
+       js/main.js replaces them with the real ones, and .mq-row carries a
+       min-height, so the box is already the right size before the cards
+       arrive and filling it in shifts nothing. A visitor with JavaScript
+       off sees an empty band rather than a broken one. -->
+  <div id="mq-rows">
+    <div class="mq-row"><div class="mq mq-r"><div class="mq-track"></div></div></div>
+    <div class="mq-row"><div class="mq mq-l"><div class="mq-track"></div></div></div>
+    <div class="mq-row"><div class="mq mq-r"><div class="mq-track"></div></div></div>
+  </div>
   <div class="wrap mq-foot">
     <p class="flag" id="demo-flag" data-i18n="s6.demo">Demo content. Replace via js/data.js</p>
     <button id="mq-toggle" class="ctl-text" type="button" aria-pressed="false">

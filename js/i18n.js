@@ -102,6 +102,7 @@ const I18N = {
     "s6.eye":"In their words",
     "s6.lead":"What people said afterwards.",
     "s6.demo":"Demo content. Replace via js/data.js",
+    "s6.rated":"Rated {n} out of 5.",
     "mq.pause":"Pause testimonials","mq.play":"Play testimonials",
 
     "s7.eye":"Who you'll be dealing with",
@@ -233,6 +234,7 @@ const I18N = {
     "s6.eye":"Onların ifadesiyle",
     "s6.lead":"Sonrasında söyledikleri.",
     "s6.demo":"Demo içerik. js/data.js üzerinden değiştirilecek",
+    "s6.rated":"5 üzerinden {n} puan.",
     "mq.pause":"Yorumları duraklat","mq.play":"Yorumları oynat",
 
     "s7.eye":"Muhatabınız kim",
@@ -364,6 +366,7 @@ const I18N = {
     "s6.eye":"In ihren Worten",
     "s6.lead":"Was Gäste hinterher gesagt haben.",
     "s6.demo":"Demo-Inhalt. Über js/data.js ersetzen",
+    "s6.rated":"Mit {n} von 5 Sternen bewertet.",
     "mq.pause":"Bewertungen pausieren","mq.play":"Bewertungen abspielen",
 
     "s7.eye":"Mit wem Sie es zu tun haben",
